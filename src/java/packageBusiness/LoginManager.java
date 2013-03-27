@@ -1,13 +1,12 @@
 package packageBusiness;
-import packageDataAccess.SingletonConnexion;
+import packageDataAccess.*;
+import packageException.*;
 
 
 public class LoginManager {
     
-   
-    
     //Identification
-    public void identification (String user, String pw){
+    public void identification (String user, String pw) throws IdentificationErreur{
         SingletonConnexion.getInstance(user,pw);
     }
     
