@@ -1,7 +1,9 @@
 package packageView;
 
+import java.awt.Color;
 import javax.swing.JOptionPane;
 import packageController.ApplicationController;
+import packageException.IdentificationErreur;
 
 
 public class LoginJFrame extends javax.swing.JFrame {
@@ -99,13 +101,20 @@ public class LoginJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_userFieldActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // Bouton valider
-        ApplicationController ap = new ApplicationController();
-        ap.identification(this.userField.getText(), new String(this.jPasswordField1.getPassword()));
-        dispose();
-        JOptionPane.showMessageDialog(null,"Connection réussie");
-        MainJFrame fen = new MainJFrame();
-        fen.setVisible(true);
+        // Bouton valider        
+        try{
+            ApplicationController ap = new ApplicationController();
+            ap.identification(this.userField.getText(), new String(this.jPasswordField1.getPassword()));
+            dispose();
+            JOptionPane.showMessageDialog(null,"Connexion réussie");
+            MainJFrame fen = new MainJFrame();
+            fen.setVisible(true);
+        }
+        catch(IdentificationErreur e){
+            JOptionPane.showMessageDialog(null, e, "Echec de connexion", JOptionPane.ERROR_MESSAGE);
+            this.userField.setBackground(Color.red);
+            this.jPasswordField1.setBackground(Color.red);
+        }
         
     }//GEN-LAST:event_jButton1ActionPerformed
 

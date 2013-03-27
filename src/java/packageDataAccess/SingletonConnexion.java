@@ -8,6 +8,7 @@ import javax.sql.DataSource;
 import javax.naming.InitialContext;
 import javax.naming.Context;
 import javax.naming.NamingException;
+import packageException.*;
 
 public class SingletonConnexion {
    
@@ -15,7 +16,7 @@ public class SingletonConnexion {
             
     
         //Recoit un password
-        public static Connection getInstance(String user, String pw){ 
+        public static Connection getInstance(String user, String pw)throws IdentificationErreur{ 
             if (connexionUnique == null){ 
                     try {
                         //Connexion à la base de données
@@ -25,7 +26,7 @@ public class SingletonConnexion {
                      } 
                     
                     catch (SQLException ex) { 
-                        Logger.getLogger(SingletonConnexion.class.getName()).log(Level.SEVERE, null, ex);
+                        throw new IdentificationErreur();
                     }
                     
                     catch (NamingException ex) {
