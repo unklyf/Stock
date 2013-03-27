@@ -102,10 +102,10 @@ public class LoginJFrame extends javax.swing.JFrame {
         // Bouton valider
         ApplicationController ap = new ApplicationController();
         ap.identification(this.userField.getSelectedText(), this.jPasswordField1.getSelectedText());
+        dispose();
+        JOptionPane.showMessageDialog(null,"Connection réussie");
         MainJFrame fen = new MainJFrame();
         fen.setVisible(true);
-        JOptionPane.showMessageDialog(null,"Connection réussie");
-        dispose();
         
     }//GEN-LAST:event_jButton1ActionPerformed
 

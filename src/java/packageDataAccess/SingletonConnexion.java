@@ -21,7 +21,7 @@ public class SingletonConnexion {
                         //Connexion à la base de données
                         Context cont = new InitialContext();
                         DataSource source = (DataSource)cont.lookup("jdbc/myDatasource");
-                        connexionUnique = source.getConnection(user, pw);
+                        connexionUnique = source.getConnection(user,pw);
                      } 
                     
                     catch (SQLException ex) { 
