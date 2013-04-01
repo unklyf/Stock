@@ -15,7 +15,7 @@ public class MainJFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jMenuBar1 = new javax.swing.JMenuBar();
+        menuBar = new javax.swing.JMenuBar();
         menuApplication = new javax.swing.JMenu();
         itemQuitter = new javax.swing.JMenuItem();
         menuAjout = new javax.swing.JMenu();
@@ -40,7 +40,7 @@ public class MainJFrame extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 72)); // NOI18N
         jLabel1.setText("BIENVENUE");
 
-        menuApplication.setText("Application");
+        menuApplication.setText("Application |");
 
         itemQuitter.setText("Quitter");
         itemQuitter.addActionListener(new java.awt.event.ActionListener() {
@@ -50,9 +50,9 @@ public class MainJFrame extends javax.swing.JFrame {
         });
         menuApplication.add(itemQuitter);
 
-        jMenuBar1.add(menuApplication);
+        menuBar.add(menuApplication);
 
-        menuAjout.setText("Nouvel Ajout");
+        menuAjout.setText("Nouvel Ajout |");
 
         itemArticleAjout.setText("Article");
         itemArticleAjout.addActionListener(new java.awt.event.ActionListener() {
@@ -70,9 +70,9 @@ public class MainJFrame extends javax.swing.JFrame {
         });
         menuAjout.add(itemAjoutReappro);
 
-        jMenuBar1.add(menuAjout);
+        menuBar.add(menuAjout);
 
-        menuModifier.setText("Modifier");
+        menuModifier.setText("Modifier |");
 
         itemModifAjout.setText("Article");
         menuModifier.add(itemModifAjout);
@@ -80,9 +80,9 @@ public class MainJFrame extends javax.swing.JFrame {
         itemModifReappro.setText("Réapprovisionnement");
         menuModifier.add(itemModifReappro);
 
-        jMenuBar1.add(menuModifier);
+        menuBar.add(menuModifier);
 
-        menuSupprimer.setText("Supprimer");
+        menuSupprimer.setText("Supprimer |");
 
         itemSuppArticle.setText("Article");
         menuSupprimer.add(itemSuppArticle);
@@ -90,9 +90,9 @@ public class MainJFrame extends javax.swing.JFrame {
         itemSuppReappro.setText("Réapprovisionnement");
         menuSupprimer.add(itemSuppReappro);
 
-        jMenuBar1.add(menuSupprimer);
+        menuBar.add(menuSupprimer);
 
-        menuListing.setText("Listing");
+        menuListing.setText("Listing |");
 
         itemListArticle.setText("Article");
         menuListing.add(itemListArticle);
@@ -100,7 +100,7 @@ public class MainJFrame extends javax.swing.JFrame {
         itemListReappro.setText("Réapprovisionnement");
         menuListing.add(itemListReappro);
 
-        jMenuBar1.add(menuListing);
+        menuBar.add(menuListing);
 
         menuRecherche.setText("Recherche");
 
@@ -113,9 +113,9 @@ public class MainJFrame extends javax.swing.JFrame {
         itemRechReappro.setText("Réapprovisionnement");
         menuRecherche.add(itemRechReappro);
 
-        jMenuBar1.add(menuRecherche);
+        menuBar.add(menuRecherche);
 
-        setJMenuBar(jMenuBar1);
+        setJMenuBar(menuBar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -196,9 +196,9 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JMenuItem itemSuppArticle;
     private javax.swing.JMenuItem itemSuppReappro;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenu menuAjout;
     private javax.swing.JMenu menuApplication;
+    private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenu menuListing;
     private javax.swing.JMenu menuModifier;
     private javax.swing.JMenu menuRecherche;
