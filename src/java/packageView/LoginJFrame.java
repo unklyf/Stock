@@ -1,7 +1,11 @@
 package packageView;
 
 import java.awt.Color;
+import java.awt.event.KeyEvent;
+import javax.swing.InputMap;
+import javax.swing.JComponent;
 import javax.swing.JOptionPane;
+import javax.swing.KeyStroke;
 import packageController.ApplicationController;
 import packageException.IdentificationErreur;
 
@@ -31,16 +35,10 @@ public class LoginJFrame extends javax.swing.JFrame {
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setResizable(false);
 
-        userField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                userFieldActionPerformed(evt);
-            }
-        });
-
         jButton1.setText("Se connecter");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                ConnectActionPerformed(evt);
             }
         });
 
@@ -50,7 +48,11 @@ public class LoginJFrame extends javax.swing.JFrame {
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/packageView/logo-cadenas.png"))); // NOI18N
 
-        jPasswordField1.setPreferredSize(new java.awt.Dimension(6, 20));
+        jPasswordField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jPasswordField1KeyPressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -96,12 +98,9 @@ public class LoginJFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void userFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_userFieldActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // Bouton valider        
+    private void ConnectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConnectActionPerformed
+        // Bouton se connecter
+ 
         try{
             ApplicationController ap = new ApplicationController();
             ap.identification(this.userField.getText(), new String(this.jPasswordField1.getPassword()));
@@ -116,7 +115,14 @@ public class LoginJFrame extends javax.swing.JFrame {
             this.jPasswordField1.setBackground(Color.red);
         }
         
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_ConnectActionPerformed
+
+    private void jPasswordField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPasswordField1KeyPressed
+        //Pour pouvoir appuyer sur ENTER et se connecter
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+            this.ConnectActionPerformed(null);
+        }
+    }//GEN-LAST:event_jPasswordField1KeyPressed
 
    
     public static void main(String args[]) {

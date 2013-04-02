@@ -12,7 +12,7 @@ import packageException.*;
 
 public class SingletonConnexion {
    
-    private static Connection connexionUnique;
+        private static Connection connexionUnique;
             
     
         //Recoit un password
@@ -25,8 +25,8 @@ public class SingletonConnexion {
                         connexionUnique = source.getConnection(user,pw);
                      } 
                     
-                    catch (SQLException ex) { 
-                        throw new IdentificationErreur();
+                    catch (SQLException e) { 
+                        throw new IdentificationErreur(e.getMessage());
                     }
                     
                     catch (NamingException ex) {
