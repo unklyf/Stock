@@ -14,7 +14,14 @@ public class SingletonConnexion {
    
         private static Connection connexionUnique;
             
-    
+        public static Connection getInstance() throws NoIdentification {
+		if (connexionUnique == null) {
+			throw new NoIdentification();
+		} else
+			return connexionUnique;
+
+	}
+        
         //Recoit un password
         public static Connection getInstance(String user, String pw)throws IdentificationErreur{ 
             if (connexionUnique == null){ 

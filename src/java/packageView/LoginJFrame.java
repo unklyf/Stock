@@ -122,6 +122,7 @@ public class LoginJFrame extends javax.swing.JFrame {
         if(evt.getKeyCode() == KeyEvent.VK_ENTER){
             this.ConnectActionPerformed(null);
         }
+        
     }//GEN-LAST:event_jPasswordField1KeyPressed
 
    

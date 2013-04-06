@@ -124,7 +124,7 @@ public class MainJFrame extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(227, 227, 227)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 393, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(247, Short.MAX_VALUE))
+                .addContainerGap(280, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -147,7 +147,12 @@ public class MainJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_itemArticleAjoutActionPerformed
 
     private void itemAjoutReapproActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemAjoutReapproActionPerformed
-        // TODO add your handling code here:
+        ReapproJPanel reapAdd=new ReapproJPanel();
+        reapAdd.setBounds(this.getBounds());
+        this.getContentPane().removeAll();
+        this.getContentPane().add(reapAdd);
+        this.getContentPane().validate(); 
+        this.getContentPane().repaint();
     }//GEN-LAST:event_itemAjoutReapproActionPerformed
 
     
