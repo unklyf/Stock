@@ -7,6 +7,7 @@ public class MainJFrame extends javax.swing.JFrame {
     public MainJFrame() {
         initComponents();
         this.setLocationRelativeTo(null);
+        
     }
 
    

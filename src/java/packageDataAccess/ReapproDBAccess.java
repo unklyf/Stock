@@ -6,15 +6,15 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import javax.naming.NamingException;
 import javax.swing.JComboBox;
-import packageException.AllArticleException;
+import packageException.SqlException;
 import packageException.NoIdentification;
 import packageModel.Article;
 
 
-public class ArticleDBAccess {
+public class ReapproDBAccess {
      
     
-    public JComboBox getLibArticle() throws  AllArticleException, NoIdentification{   
+    public JComboBox getLibArticle() throws  SqlException, NoIdentification{   
          
          String libelle;
          JComboBox listeLibA= new JComboBox();

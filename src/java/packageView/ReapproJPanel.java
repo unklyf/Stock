@@ -1,5 +1,11 @@
 package packageView;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import packageController.ApplicationController;
+import packageException.SqlException;
+import packageException.NoIdentification;
+
 public class ReapproJPanel extends javax.swing.JPanel {
 
     public ReapproJPanel() {
@@ -13,17 +19,20 @@ public class ReapproJPanel extends javax.swing.JPanel {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        comboBoxArticle = new javax.swing.JComboBox();
-        jLabel3 = new javax.swing.JLabel();
+        try{
+            comboBoxArticle = new ApplicationController().getLibArticle();
+            jLabel3 = new javax.swing.JLabel();
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(153, 0, 51));
-        jLabel1.setText("Encoder réapprovisionnement");
+            jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+            jLabel1.setForeground(new java.awt.Color(153, 0, 51));
+            jLabel1.setText("Encoder réapprovisionnement");
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel2.setText("Libelle Article :");
+            jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+            jLabel2.setText("Libelle Article :");
 
-        comboBoxArticle.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        }
+        catch(SqlException e){}
+        catch(NoIdentification e){}
         comboBoxArticle.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboBoxArticleActionPerformed(evt);
@@ -64,7 +73,7 @@ public class ReapproJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void comboBoxArticleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxArticleActionPerformed
-        // TODO add your handling code here:
+       
     }//GEN-LAST:event_comboBoxArticleActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
