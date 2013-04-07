@@ -13,8 +13,8 @@ public class ApplicationController {
         lM.identification(user, pw);         
     }
     
-    public JComboBox getLibArticle() throws  SqlException, NoIdentification{ 
-        return rM.getLibArticle();
+    public JComboBox getLibArticle(String typeA) throws  BdErreur, NoIdentification{ 
+        return rM.getLibArticle(typeA);
     }
     
 }
