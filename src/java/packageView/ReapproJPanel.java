@@ -45,7 +45,7 @@ public class ReapproJPanel extends javax.swing.JPanel {
 
             jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
             jLabel1.setForeground(new java.awt.Color(153, 0, 51));
-            jLabel1.setText("Encoder r�approvisionnement");
+            jLabel1.setText("Encoder réapprovisionnement");
 
             jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
             jLabel2.setText("Libelle Article :");
@@ -53,7 +53,7 @@ public class ReapproJPanel extends javax.swing.JPanel {
         
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel3.setText("Quantit�e :");
+        jLabel3.setText("Quantitée :");
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel4.setText("Type Article :");
@@ -75,7 +75,7 @@ public class ReapproJPanel extends javax.swing.JPanel {
         });
 
         buttonGroup1.add(futRadioButton);
-        futRadioButton.setText("F�t");
+        futRadioButton.setText("Fût");
         futRadioButton.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 futRadioButtonItemStateChanged(evt);
@@ -170,17 +170,13 @@ public class ReapproJPanel extends javax.swing.JPanel {
 
     private void futRadioButtonItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_futRadioButtonItemStateChanged
         if(evt.getStateChange()== ItemEvent.SELECTED){
-            typeA="F�t";
+            typeA="Fût";
         }
     }//GEN-LAST:event_futRadioButtonItemStateChanged
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JRadioButton bouteilleRadioButton;
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.ButtonGroup buttonGroup2;
-    private javax.swing.ButtonGroup buttonGroup3;
-    private javax.swing.ButtonGroup buttonGroup4;
-    private javax.swing.ButtonGroup buttonGroup5;
     private javax.swing.JRadioButton casierRadioButton;
     private javax.swing.JComboBox comboBoxArticle;
     private javax.swing.JRadioButton futRadioButton;
