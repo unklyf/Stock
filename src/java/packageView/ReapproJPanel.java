@@ -24,14 +24,18 @@ public class ReapproJPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
-        buttonGroup2 = new javax.swing.ButtonGroup();
-        buttonGroup3 = new javax.swing.ButtonGroup();
-        buttonGroup4 = new javax.swing.ButtonGroup();
-        buttonGroup5 = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         try{
             comboBoxArticle = new ApplicationController().getLibArticle(this.typeA);
+        }
+        catch(BdErreur e){
+            JOptionPane.showMessageDialog(null, e, "Erreur BD", JOptionPane.ERROR_MESSAGE);
+        }
+        catch(NoIdentification e){
+            JOptionPane.showMessageDialog(null, e, "Erreur identification", JOptionPane.ERROR_MESSAGE);
+        }
+        
             jLabel3 = new javax.swing.JLabel();
             jLabel4 = new javax.swing.JLabel();
             bouteilleRadioButton = new javax.swing.JRadioButton();
@@ -41,21 +45,15 @@ public class ReapproJPanel extends javax.swing.JPanel {
 
             jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
             jLabel1.setForeground(new java.awt.Color(153, 0, 51));
-            jLabel1.setText("Encoder réapprovisionnement");
+            jLabel1.setText("Encoder rï¿½approvisionnement");
 
             jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
             jLabel2.setText("Libelle Article :");
 
-        }
-        catch(BdErreur e){
-            JOptionPane.showMessageDialog(null, e, "Erreur BD", JOptionPane.ERROR_MESSAGE);
-        }
-        catch(NoIdentification e){
-            JOptionPane.showMessageDialog(null, e, "Erreur identification", JOptionPane.ERROR_MESSAGE);
-        }
+        
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel3.setText("Quantitée :");
+        jLabel3.setText("Quantitï¿½e :");
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel4.setText("Type Article :");
@@ -77,7 +75,7 @@ public class ReapproJPanel extends javax.swing.JPanel {
         });
 
         buttonGroup1.add(futRadioButton);
-        futRadioButton.setText("Fût");
+        futRadioButton.setText("Fï¿½t");
         futRadioButton.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 futRadioButtonItemStateChanged(evt);
@@ -172,7 +170,7 @@ public class ReapproJPanel extends javax.swing.JPanel {
 
     private void futRadioButtonItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_futRadioButtonItemStateChanged
         if(evt.getStateChange()== ItemEvent.SELECTED){
-            typeA="Fût";
+            typeA="Fï¿½t";
         }
     }//GEN-LAST:event_futRadioButtonItemStateChanged
 
