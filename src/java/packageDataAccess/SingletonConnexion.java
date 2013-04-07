@@ -47,6 +47,9 @@ public class SingletonConnexion {
                 return connexionUnique;
             }
           
-        }    
+        } 
+        
+        
+        //Pas oublier la deconnexion
     
 }

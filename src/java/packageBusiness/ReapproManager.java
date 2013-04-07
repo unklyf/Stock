@@ -14,7 +14,13 @@ public class ReapproManager {
             return rDBA.getLibArticle(typeA);
     }
     
+    public ArrayList <String> getLibArticle(String typeA,String rech) throws  BdErreur, NoIdentification{ 
+            return rDBA.getLibArticle(typeA,rech);
+    }
     public String getDescArticle(String libelle,String typeA) throws  BdErreur, NoIdentification{ 
             return rDBA.getDescArticle(libelle,typeA);
     }
+    
+    
+    
 }

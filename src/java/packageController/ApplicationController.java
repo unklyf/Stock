@@ -18,8 +18,14 @@ public class ApplicationController {
         return rM.getLibArticle(typeA);
     }
     
+     public ArrayList <String> getLibArticle(String typeA,String rech) throws  BdErreur, NoIdentification{ 
+        return rM.getLibArticle(typeA,rech);
+    }
+    
     public String getDescArticle(String libelle,String typeA) throws  BdErreur, NoIdentification{ 
         return rM.getDescArticle(libelle, typeA);
     }
+    
+    
     
 }
