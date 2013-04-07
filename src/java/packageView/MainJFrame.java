@@ -1,6 +1,7 @@
 package packageView;
 
 
+
 public class MainJFrame extends javax.swing.JFrame {
 
     
@@ -18,6 +19,7 @@ public class MainJFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         menuBar = new javax.swing.JMenuBar();
         menuApplication = new javax.swing.JMenu();
         itemQuitter = new javax.swing.JMenuItem();
@@ -42,6 +44,9 @@ public class MainJFrame extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 72)); // NOI18N
         jLabel1.setText("BIENVENUE");
+
+        jLabel2.setFont(new java.awt.Font("Tekton Pro", 0, 36)); // NOI18N
+        jLabel2.setText("Brasserie - Gestion Stock");
 
         menuApplication.setText("Application |");
 
@@ -125,16 +130,20 @@ public class MainJFrame extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(227, 227, 227)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 393, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(280, Short.MAX_VALUE))
+                .addGap(19, 19, 19)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 393, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(527, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(156, 156, 156)
+                .addGap(58, 58, 58)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(205, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel2)
+                .addContainerGap(260, Short.MAX_VALUE))
         );
 
         pack();
@@ -155,9 +164,10 @@ public class MainJFrame extends javax.swing.JFrame {
         this.getContentPane().removeAll();
         this.getContentPane().add(reapAdd);
         this.getContentPane().validate(); 
-        this.getContentPane().repaint();
+        this.getContentPane().repaint();        
     }//GEN-LAST:event_itemAjoutReapproActionPerformed
-
+   
+    
     
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -204,6 +214,7 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JMenuItem itemSuppArticle;
     private javax.swing.JMenuItem itemSuppReappro;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu menuAjout;
     private javax.swing.JMenu menuApplication;
     private javax.swing.JMenuBar menuBar;

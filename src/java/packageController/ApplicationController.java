@@ -1,4 +1,5 @@
 package packageController;
+import java.util.ArrayList;
 import javax.swing.JComboBox;
 import packageBusiness.*;
 import packageException.*;
@@ -13,8 +14,12 @@ public class ApplicationController {
         lM.identification(user, pw);         
     }
     
-    public JComboBox getLibArticle(String typeA) throws  BdErreur, NoIdentification{ 
+    public ArrayList <String> getLibArticle(String typeA) throws  BdErreur, NoIdentification{ 
         return rM.getLibArticle(typeA);
+    }
+    
+    public String getDescArticle(String libelle,String typeA) throws  BdErreur, NoIdentification{ 
+        return rM.getDescArticle(libelle, typeA);
     }
     
 }

@@ -3,42 +3,61 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import javax.naming.NamingException;
-import javax.swing.JComboBox;
 import packageException.BdErreur;
 import packageException.NoIdentification;
-import packageModel.Article;
+
 
 
 public class ReapproDBAccess {
      
-    private String libelle, type;
-    private JComboBox listeLibA;
+    private String libelle, libelleD;
+    private ArrayList <String> listeLibA;
     
-    public JComboBox getLibArticle(String typeA) throws  BdErreur, NoIdentification{   
+    public ArrayList <String> getLibArticle(String typeA) throws  BdErreur, NoIdentification{   
          
-         JComboBox listeLibA= new JComboBox();
-         type=typeA;
+         listeLibA= new ArrayList <String> ();
          
          try {  
                  String req = "select Libelle from Article where TypeA = ?";
                  PreparedStatement prepStat = SingletonConnexion.getInstance().prepareStatement(req);
-                 prepStat.setString(1, type);
+                 prepStat.setString(1, typeA);
                  ResultSet donnees = prepStat.executeQuery();
    
                  
                  while (donnees.next( )){
                      libelle = donnees.getString("Libelle");
-                     listeLibA.addItem(libelle);
+                     listeLibA.add(libelle);
                  }    
          }
             
-            catch (SQLException e) {                
+         catch (SQLException e) {  
+            throw new BdErreur(e.getMessage());   
         }                   
-            catch (NoIdentification e) {
-               throw new NoIdentification();
+        catch (NoIdentification e) {
+            throw new NoIdentification();
         }
         return listeLibA;
- }    
+   }  
+    
+   public String getDescArticle(String libelleA, String typeA) throws  BdErreur, NoIdentification{   
+                  
+         try {  
+                 String req = "select Description from Article where Libelle = ? and TypeA = ?";
+                 PreparedStatement prepStat = SingletonConnexion.getInstance().prepareStatement(req);
+                 prepStat.setString(1, libelleA);
+                 prepStat.setString(2, typeA);
+                 ResultSet donnees = prepStat.executeQuery(); 
+                 while (donnees.next( )){
+                     libelleD = donnees.getString("Description");
+                 }
+        }
+            
+         catch (SQLException e) {  
+            throw new BdErreur(e.getMessage());   
+        }                   
+        catch (NoIdentification e) {
+            throw new NoIdentification();
+        }
+        return libelleD;
+ }
 }
