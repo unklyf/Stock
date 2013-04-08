@@ -75,7 +75,7 @@ public class ReapproJPanel extends JPanel {
         });
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel3.setText("Quantitée :");
+        jLabel3.setText("Quantité  :");
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel4.setText("Type Article :");
@@ -85,6 +85,11 @@ public class ReapproJPanel extends JPanel {
         bouteilleRadioButton.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 bouteilleRadioButtonItemStateChanged(evt);
+            }
+        });
+        bouteilleRadioButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bouteilleRadioButtonActionPerformed(evt);
             }
         });
 
@@ -119,7 +124,7 @@ public class ReapproJPanel extends JPanel {
         descTexteArea.setRows(1);
         descTexteArea.setAutoscrolls(false);
         descTexteArea.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        descTexteArea.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        descTexteArea.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jScrollPane1.setViewportView(descTexteArea);
         descTexteArea.setEditable(false);
 
@@ -426,6 +431,10 @@ public class ReapproJPanel extends JPanel {
                        //Affichage du JPanel pour résumer les encodages
                     }
     }//GEN-LAST:event_ajoutReapproButton1ActionPerformed
+
+    private void bouteilleRadioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bouteilleRadioButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bouteilleRadioButtonActionPerformed
 
     
     
