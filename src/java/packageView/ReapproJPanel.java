@@ -73,6 +73,11 @@ public class ReapproJPanel extends JPanel {
                 comboBoxArticleItemStateChanged(evt);
             }
         });
+        comboBoxArticle.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboBoxArticleActionPerformed(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel3.setText("Quantité  :");
@@ -435,6 +440,10 @@ public class ReapproJPanel extends JPanel {
     private void bouteilleRadioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bouteilleRadioButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_bouteilleRadioButtonActionPerformed
+
+    private void comboBoxArticleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxArticleActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboBoxArticleActionPerformed
 
     
     

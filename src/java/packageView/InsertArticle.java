@@ -4,7 +4,10 @@
  */
 package packageView;
 
+import java.awt.event.ItemEvent;
+import java.util.*;
 import javax.swing.*;
+import packageController.ApplicationController;
 
 /**
  *
@@ -13,11 +16,15 @@ import javax.swing.*;
 public class InsertArticle extends JPanel {
     
 
-    /**
-     * Creates new form InsertArticle
-     */
+    private ArrayList <String> tabArt;
+    private String typeA;
+    
+            
+            
+            
     public InsertArticle() {
         initComponents();
+        tabArt= new ArrayList <String>();
     }
 
     /**

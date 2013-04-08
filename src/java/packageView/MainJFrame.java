@@ -155,7 +155,12 @@ public class MainJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_itemQuitterActionPerformed
 
     private void itemArticleAjoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemArticleAjoutActionPerformed
-        // TODO add your handling code here:
+        InsertArticle insArt=new InsertArticle();
+        insArt.setBounds(this.getBounds());
+        this.getContentPane().removeAll();
+        this.getContentPane().add(insArt);
+        this.getContentPane().validate(); 
+        this.getContentPane().repaint(); 
     }//GEN-LAST:event_itemArticleAjoutActionPerformed
 
     private void itemAjoutReapproActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemAjoutReapproActionPerformed
