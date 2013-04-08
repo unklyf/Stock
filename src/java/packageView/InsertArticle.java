@@ -29,6 +29,7 @@ public class InsertArticle extends JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         ButtonBouteille = new javax.swing.JRadioButton();
@@ -52,6 +53,8 @@ public class InsertArticle extends JPanel {
         PrixConsSpinner = new javax.swing.JSpinner();
         jLabel10 = new javax.swing.JLabel();
         CadeauComboBox = new javax.swing.JComboBox();
+        ButtonAjout1 = new javax.swing.JButton();
+        ButtonAjout2 = new javax.swing.JButton();
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(153, 0, 51));
@@ -60,6 +63,7 @@ public class InsertArticle extends JPanel {
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel2.setText("Type Article :");
 
+        buttonGroup1.add(ButtonBouteille);
         ButtonBouteille.setText("Bouteille");
         ButtonBouteille.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -67,6 +71,7 @@ public class InsertArticle extends JPanel {
             }
         });
 
+        buttonGroup1.add(ButtonCasier);
         ButtonCasier.setText("Casier");
         ButtonCasier.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -74,6 +79,7 @@ public class InsertArticle extends JPanel {
             }
         });
 
+        buttonGroup1.add(ButtonFut);
         ButtonFut.setText("Fût");
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -107,6 +113,10 @@ public class InsertArticle extends JPanel {
 
         CadeauComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
+        ButtonAjout1.setText("Enregistrer et encoder nouveau");
+
+        ButtonAjout2.setText("Enregistrer et quitter ");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -129,31 +139,36 @@ public class InsertArticle extends JPanel {
                                 .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(ButtonBouteille)
-                                .addGap(18, 18, 18)
-                                .addComponent(ButtonCasier)
-                                .addGap(18, 18, 18)
-                                .addComponent(ButtonFut))
-                            .addComponent(jTextField1)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane1)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(PrixConsSpinner, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 55, Short.MAX_VALUE)
-                                .addComponent(PrixMarchSpinner, javax.swing.GroupLayout.Alignment.LEADING))
-                            .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(ButtonBouteille)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(ButtonCasier)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(ButtonFut))
+                                .addComponent(jTextField1)
+                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jScrollPane1)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(CadeauComboBox, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addComponent(JourSpinner, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE)
-                                            .addComponent(jSpinner1, javax.swing.GroupLayout.Alignment.LEADING))
-                                        .addGap(18, 18, 18)
-                                        .addComponent(MoisSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(PrixConsSpinner, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 55, Short.MAX_VALUE)
+                                    .addComponent(PrixMarchSpinner, javax.swing.GroupLayout.Alignment.LEADING))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(CadeauComboBox, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                                .addComponent(JourSpinner, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE)
+                                                .addComponent(jSpinner1, javax.swing.GroupLayout.Alignment.LEADING))
+                                            .addGap(18, 18, 18)
+                                            .addComponent(MoisSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGap(18, 18, 18)
+                                    .addComponent(AnneeSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(ButtonAjout1)
                                 .addGap(18, 18, 18)
-                                .addComponent(AnneeSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(235, Short.MAX_VALUE))
+                                .addComponent(ButtonAjout2)))))
+                .addContainerGap(121, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -199,7 +214,11 @@ public class InsertArticle extends JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
                     .addComponent(CadeauComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ButtonAjout1)
+                    .addComponent(ButtonAjout2))
+                .addGap(29, 29, 29))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -213,6 +232,8 @@ public class InsertArticle extends JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JSpinner AnneeSpinner;
+    private javax.swing.JButton ButtonAjout1;
+    private javax.swing.JButton ButtonAjout2;
     private javax.swing.JRadioButton ButtonBouteille;
     private javax.swing.JRadioButton ButtonCasier;
     private javax.swing.JRadioButton ButtonFut;
@@ -221,6 +242,7 @@ public class InsertArticle extends JPanel {
     private javax.swing.JSpinner MoisSpinner;
     private javax.swing.JSpinner PrixConsSpinner;
     private javax.swing.JSpinner PrixMarchSpinner;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
