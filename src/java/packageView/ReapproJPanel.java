@@ -14,6 +14,7 @@ import packageModel.Reappro;
 
 public class ReapproJPanel extends JPanel {
     
+    
     private ArrayList <String> tabLib;
     private String typeA, rech="";
     private Reappro ajoutReap;
@@ -90,11 +91,6 @@ public class ReapproJPanel extends JPanel {
         bouteilleRadioButton.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 bouteilleRadioButtonItemStateChanged(evt);
-            }
-        });
-        bouteilleRadioButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bouteilleRadioButtonActionPerformed(evt);
             }
         });
 
@@ -271,6 +267,7 @@ public class ReapproJPanel extends JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    //Choix du type Bouteille
     private void bouteilleRadioButtonItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_bouteilleRadioButtonItemStateChanged
         if(evt.getStateChange()== ItemEvent.SELECTED){
             try {
@@ -292,7 +289,8 @@ public class ReapproJPanel extends JPanel {
             }
         }
     }//GEN-LAST:event_bouteilleRadioButtonItemStateChanged
-
+ 
+    //Choix du type Casier
     private void casierRadioButtonItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_casierRadioButtonItemStateChanged
         if(evt.getStateChange()== ItemEvent.SELECTED){
             try {
@@ -315,7 +313,9 @@ public class ReapproJPanel extends JPanel {
             
         }
     }//GEN-LAST:event_casierRadioButtonItemStateChanged
-
+ 
+    
+    //Choix du type Fut
     private void futRadioButtonItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_futRadioButtonItemStateChanged
         if(evt.getStateChange()== ItemEvent.SELECTED){
             try {
@@ -339,6 +339,8 @@ public class ReapproJPanel extends JPanel {
         }
     }//GEN-LAST:event_futRadioButtonItemStateChanged
 
+    
+    //Affichage de la desrcrption de l'article en fonction du libelle choisit
     private void comboBoxArticleItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comboBoxArticleItemStateChanged
         if(evt.getStateChange()== ItemEvent.SELECTED){
             try {
@@ -353,6 +355,7 @@ public class ReapproJPanel extends JPanel {
           }
     }//GEN-LAST:event_comboBoxArticleItemStateChanged
 
+    //Recherche libelle article 
     private void rechTextFieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_rechTextFieldKeyTyped
        
         if(typeA != null){
@@ -382,27 +385,28 @@ public class ReapproJPanel extends JPanel {
             evt.consume();
         }
     }//GEN-LAST:event_rechTextFieldKeyTyped
-
+ 
+    //Boutton enregistrer et quitter
     private void ajoutReapproButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ajoutReapproButton2ActionPerformed
         
     }//GEN-LAST:event_ajoutReapproButton2ActionPerformed
    
+    
+    //Boutton enregistrer et encoder un nouveau reappro
     private void ajoutReapproButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ajoutReapproButton1ActionPerformed
-         
+         /*
+        //Tests pour voir si tout est rempli
         if(this.typeA==null){ 
             JOptionPane.showMessageDialog(null, "Aucun type sélectionné.");
         }
-        else
+        else{
              if(Integer.parseInt(this.quantiteeSpinner.getValue().toString())==0){
                  JOptionPane.showMessageDialog(null, "Veuillez entrer une quantitée.");
              }
-             else
-                  if(this.comboBoxArticle.getSelectedItem().toString()==""){
-                      JOptionPane.showMessageDialog(null, "Aucun libelle d'article sélectionné.");
-                  }
-                    else{
+             else{
                        app = new ApplicationController();
-
+                       
+                       //Créer objet et ajout dans la BD 
                        try{
                            ajoutReap = new Reappro( Integer.parseInt(this.quantiteeSpinner.getValue().toString()),app.getIDArticle(this.comboBoxArticle.getSelectedItem().toString(),this.typeA), 
                                                  new GregorianCalendar(Integer.parseInt(this.anneeSpinner.getValue().toString()),Integer.parseInt(this.moisSpinner.getValue().toString())-1,Integer.parseInt(this.jourSpinner.getValue().toString())));
@@ -415,7 +419,7 @@ public class ReapproJPanel extends JPanel {
                        catch(NoIdentification e){
                               JOptionPane.showMessageDialog(null, e, "Erreur identification", JOptionPane.ERROR_MESSAGE);
                        }
-
+*/
                        JOptionPane.showMessageDialog(null,"Encodage réalisé avec succès !");
 
                        //Remise à zéro du pannel pour un nouvel encodage
@@ -433,13 +437,12 @@ public class ReapproJPanel extends JPanel {
                        this.comboBoxArticle.removeAllItems();
                        this.descTexteArea.setText("");
                        this.typeA=null;
-                       //Affichage du JPanel pour résumer les encodages
-                    }
+                       
+                       
+                       //Affichage d'une JTable pour résumer les encodages
+                   /* }
+        }*/
     }//GEN-LAST:event_ajoutReapproButton1ActionPerformed
-
-    private void bouteilleRadioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bouteilleRadioButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_bouteilleRadioButtonActionPerformed
 
     private void comboBoxArticleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxArticleActionPerformed
         // TODO add your handling code here:
