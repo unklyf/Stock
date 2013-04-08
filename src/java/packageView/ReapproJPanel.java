@@ -35,62 +35,119 @@ public class ReapproJPanel extends JPanel {
     private void initComponents() {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
-        buttonGroup2 = new javax.swing.ButtonGroup();
-        buttonGroup3 = new javax.swing.ButtonGroup();
-        buttonGroup4 = new javax.swing.ButtonGroup();
-        buttonGroup5 = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        comboBoxArticle = new javax.swing.JComboBox();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        bouteilleRadioButton = new javax.swing.JRadioButton();
-        casierRadioButton = new javax.swing.JRadioButton();
+        jPanel1 = new javax.swing.JPanel();
+        anneeSpinner = new javax.swing.JSpinner();
         futRadioButton = new javax.swing.JRadioButton();
-        rechTextField = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        descTexteArea = new javax.swing.JTextArea();
-        quantiteeSpinner = new javax.swing.JSpinner();
-        jLabel5 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        ajoutArtButton = new javax.swing.JButton();
-        ajoutReapproButton2 = new javax.swing.JButton();
-        ajoutReapproButton1 = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        rechTextField = new javax.swing.JTextField();
+        bouteilleRadioButton = new javax.swing.JRadioButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        descTexteArea = new javax.swing.JTextArea();
+        comboBoxArticle = new javax.swing.JComboBox();
+        jLabel9 = new javax.swing.JLabel();
+        quantiteeSpinner = new javax.swing.JSpinner();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         jourSpinner = new javax.swing.JSpinner();
         moisSpinner = new javax.swing.JSpinner();
-        anneeSpinner = new javax.swing.JSpinner();
+        jLabel10 = new javax.swing.JLabel();
+        ajoutReapproButton1 = new javax.swing.JButton();
+        casierRadioButton = new javax.swing.JRadioButton();
+        ajoutArtButton = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        noteTexteArea = new javax.swing.JTextArea();
+        ajoutReapproButton2 = new javax.swing.JButton();
+        jSpinner1 = new javax.swing.JSpinner();
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(153, 0, 51));
         jLabel1.setText("Encoder réapprovisionnement");
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel2.setText("Libelle Article :");
+        anneeSpinner.setMaximumSize(new java.awt.Dimension(29, 20));
+        SpinnerModel model3 = new SpinnerNumberModel(date.get(GregorianCalendar.YEAR),1900,2200,1);
+        anneeSpinner.setModel(model3);
 
-        comboBoxArticle.addItemListener(new java.awt.event.ItemListener() {
+        buttonGroup1.add(futRadioButton);
+        futRadioButton.setText("Fût");
+        futRadioButton.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                comboBoxArticleItemStateChanged(evt);
+                futRadioButtonItemStateChanged(evt);
             }
         });
-        comboBoxArticle.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comboBoxArticleActionPerformed(evt);
-            }
-        });
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel7.setText("Date :");
+
+        jLabel8.setFont(new java.awt.Font("Tahoma", 2, 10)); // NOI18N
+        jLabel8.setText("(Première lettre en majuscule)");
+
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/packageImage/loupe.png"))); // NOI18N
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel3.setText("Quantité  :");
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel4.setText("Type Article :");
+        rechTextField.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
+        rechTextField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                rechTextFieldKeyTyped(evt);
+            }
+        });
 
         buttonGroup1.add(bouteilleRadioButton);
         bouteilleRadioButton.setText("Bouteille");
         bouteilleRadioButton.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 bouteilleRadioButtonItemStateChanged(evt);
+            }
+        });
+
+        descTexteArea.setEditable(false);
+        descTexteArea.setColumns(20);
+        descTexteArea.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
+        descTexteArea.setRows(1);
+        descTexteArea.setAutoscrolls(false);
+        descTexteArea.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        descTexteArea.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jScrollPane2.setViewportView(descTexteArea);
+
+        comboBoxArticle.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                comboBoxArticleItemStateChanged(evt);
+            }
+        });
+
+        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel9.setText("Note :");
+
+        SpinnerModel modelq = new SpinnerNumberModel(0,0,1000,1);
+        quantiteeSpinner.setModel(modelq);
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel4.setText("Type Article :");
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel2.setText("Libelle Article :");
+
+        jourSpinner.setMaximumSize(new java.awt.Dimension(29, 20));
+        SpinnerModel model = new SpinnerNumberModel(date.get(GregorianCalendar.DAY_OF_MONTH),1,31,1);
+        jourSpinner.setModel(model);
+
+        moisSpinner.setMaximumSize(new java.awt.Dimension(29, 20));
+        SpinnerModel model2 = new SpinnerNumberModel(date.get(GregorianCalendar.MONTH)+1,1,12,1);
+        moisSpinner.setModel(model2);
+
+        jLabel10.setFont(new java.awt.Font("Tahoma", 2, 10)); // NOI18N
+        jLabel10.setText("(Facultatif)");
+
+        ajoutReapproButton1.setText("Enregistrer et Encoder nouveau");
+        ajoutReapproButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ajoutReapproButton1ActionPerformed(evt);
             }
         });
 
@@ -102,43 +159,15 @@ public class ReapproJPanel extends JPanel {
             }
         });
 
-        buttonGroup1.add(futRadioButton);
-        futRadioButton.setText("Fût");
-        futRadioButton.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                futRadioButtonItemStateChanged(evt);
-            }
-        });
-
-        rechTextField.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
-        rechTextField.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                rechTextFieldKeyTyped(evt);
-            }
-        });
+        ajoutArtButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/packageImage/plus.png"))); // NOI18N
+        ajoutArtButton.setText("Ajouter article inexistant");
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel6.setText("Description :");
 
-        descTexteArea.setColumns(20);
-        descTexteArea.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
-        descTexteArea.setRows(1);
-        descTexteArea.setAutoscrolls(false);
-        descTexteArea.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        descTexteArea.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jScrollPane1.setViewportView(descTexteArea);
-        descTexteArea.setEditable(false);
-
-        SpinnerModel modelq = new SpinnerNumberModel(0,0,1000,1);
-        quantiteeSpinner.setModel(modelq);
-
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/packageImage/loupe.png"))); // NOI18N
-
-        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel7.setText("Date :");
-
-        ajoutArtButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/packageImage/plus.png"))); // NOI18N
-        ajoutArtButton.setText("Ajouter article inexistant");
+        noteTexteArea.setColumns(20);
+        noteTexteArea.setRows(5);
+        jScrollPane3.setViewportView(noteTexteArea);
 
         ajoutReapproButton2.setText("Enregistrer et Quitter");
         ajoutReapproButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -147,123 +176,136 @@ public class ReapproJPanel extends JPanel {
             }
         });
 
-        ajoutReapproButton1.setText("Enregistrer et Encoder nouveau");
-        ajoutReapproButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ajoutReapproButton1ActionPerformed(evt);
-            }
-        });
-
-        jLabel8.setFont(new java.awt.Font("Tahoma", 2, 10)); // NOI18N
-        jLabel8.setText("(Première lettre en majuscule)");
-
-        jourSpinner.setMaximumSize(new java.awt.Dimension(29, 20));
-        SpinnerModel model = new SpinnerNumberModel(date.get(GregorianCalendar.DAY_OF_MONTH),1,31,1);
-        jourSpinner.setModel(model);
-
-        moisSpinner.setMaximumSize(new java.awt.Dimension(29, 20));
-        SpinnerModel model2 = new SpinnerNumberModel(date.get(GregorianCalendar.MONTH)+1,1,12,1);
-        moisSpinner.setModel(model2);
-
-        anneeSpinner.setMaximumSize(new java.awt.Dimension(29, 20));
-        SpinnerModel model3 = new SpinnerNumberModel(date.get(GregorianCalendar.YEAR),1900,2200,1);
-        anneeSpinner.setModel(model3);
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(65, 65, 65)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel3))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 426, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(ajoutReapproButton1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(ajoutReapproButton2))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(comboBoxArticle, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(bouteilleRadioButton)
-                                            .addGap(18, 18, 18)
-                                            .addComponent(casierRadioButton)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(futRadioButton))
-                                        .addComponent(rechTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.LEADING))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(ajoutArtButton))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(jourSpinner, javax.swing.GroupLayout.DEFAULT_SIZE, 62, Short.MAX_VALUE)
-                                    .addComponent(quantiteeSpinner))
-                                .addGap(17, 17, 17)
-                                .addComponent(moisSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(anneeSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(33, 33, 33)
-                        .addComponent(jLabel1)))
-                .addGap(372, 372, 372))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(jLabel1)
-                .addGap(28, 28, 28)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel4)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel9)
+                    .addComponent(jLabel10))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(ajoutReapproButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(ajoutReapproButton2))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(comboBoxArticle, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(bouteilleRadioButton)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(casierRadioButton)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(futRadioButton))
+                                    .addComponent(rechTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.LEADING))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jLabel5)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(ajoutArtButton))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jourSpinner, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(quantiteeSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(17, 17, 17)
+                            .addComponent(moisSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(anneeSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jScrollPane2)
+                        .addComponent(jScrollPane3)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel4)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(bouteilleRadioButton)
                         .addComponent(casierRadioButton)
                         .addComponent(futRadioButton)))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(rechTextField)
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(ajoutArtButton, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(comboBoxArticle, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel6)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(16, 16, 16)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(quantiteeSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(jourSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(moisSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(anneeSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(31, 31, 31)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel9)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel10))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(ajoutReapproButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ajoutReapproButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jSpinner1.setModel(new javax.swing.SpinnerDateModel());
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 112, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(ajoutReapproButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(ajoutReapproButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(97, 97, 97))
+                        .addComponent(jLabel1)
+                        .addContainerGap(512, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel6)
-                        .addGap(33, 33, 33)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(quantiteeSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(132, 132, 132))))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addComponent(jLabel1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel7)
-                            .addComponent(jourSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(moisSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(anneeSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(103, 103, 103)
+                        .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(110, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -388,66 +430,74 @@ public class ReapproJPanel extends JPanel {
  
     //Boutton enregistrer et quitter
     private void ajoutReapproButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ajoutReapproButton2ActionPerformed
-        
+      
     }//GEN-LAST:event_ajoutReapproButton2ActionPerformed
    
     
     //Boutton enregistrer et encoder un nouveau reappro
     private void ajoutReapproButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ajoutReapproButton1ActionPerformed
-         /*
+         
         //Tests pour voir si tout est rempli
         if(this.typeA==null){ 
             JOptionPane.showMessageDialog(null, "Aucun type sélectionné.");
         }
         else{
-             if(Integer.parseInt(this.quantiteeSpinner.getValue().toString())==0){
-                 JOptionPane.showMessageDialog(null, "Veuillez entrer une quantitée.");
-             }
-             else{
-                       app = new ApplicationController();
-                       
-                       //Créer objet et ajout dans la BD 
-                       try{
-                           ajoutReap = new Reappro( Integer.parseInt(this.quantiteeSpinner.getValue().toString()),app.getIDArticle(this.comboBoxArticle.getSelectedItem().toString(),this.typeA), 
-                                                 new GregorianCalendar(Integer.parseInt(this.anneeSpinner.getValue().toString()),Integer.parseInt(this.moisSpinner.getValue().toString())-1,Integer.parseInt(this.jourSpinner.getValue().toString())));
-                           app.addReappro(ajoutReap);
-                       }
-                       catch(BdErreur e){
-                           JOptionPane.showMessageDialog(null, e, "Erreur BD", JOptionPane.ERROR_MESSAGE);
-                       }
+            if(Integer.parseInt(this.quantiteeSpinner.getValue().toString())==0){ 
+                 JOptionPane.showMessageDialog(null, "Veuillez indiquer une quantitée.");
+            }
+            else{
+                
+                //Obliger sinon n'insère pas null dans la BD
+                String note=null;
+                if(!this.noteTexteArea.getText().equals("")){
+                    note=this.noteTexteArea.getText();
+                }
+                app = new ApplicationController();
 
-                       catch(NoIdentification e){
-                              JOptionPane.showMessageDialog(null, e, "Erreur identification", JOptionPane.ERROR_MESSAGE);
-                       }
-*/
-                       JOptionPane.showMessageDialog(null,"Encodage réalisé avec succès !");
+                 //Créer objet et ajout dans la BD 
+                 try{
+                     
+                    ajoutReap = new Reappro(Integer.parseInt(this.quantiteeSpinner.getValue().toString()),app.getIDArticle(this.comboBoxArticle.getSelectedItem().toString(),this.typeA), 
+                                             new GregorianCalendar(Integer.parseInt(this.anneeSpinner.getValue().toString()),Integer.parseInt(this.moisSpinner.getValue().toString())-1,Integer.parseInt(this.jourSpinner.getValue().toString())),
+                                             note);
+                    app.addReappro(ajoutReap);
+                    JOptionPane.showMessageDialog(null,"Encodage réalisé avec succès !");
 
-                       //Remise à zéro du pannel pour un nouvel encodage
-                       SpinnerModel model = new SpinnerNumberModel(date.get(GregorianCalendar.DAY_OF_MONTH),1,31,1);
-                       jourSpinner.setModel(model);
-                       SpinnerModel model2 = new SpinnerNumberModel(date.get(GregorianCalendar.MONTH)+1,1,12,1);
-                       moisSpinner.setModel(model2);
-                       SpinnerModel model3 = new SpinnerNumberModel(date.get(GregorianCalendar.YEAR),1900,2200,1);
-                       anneeSpinner.setModel(model3);
-                       this.rechTextField.setText("");
-                       this.quantiteeSpinner.setValue(0);
-                       this.futRadioButton.doClick();
-                       this.casierRadioButton.doClick();
-                       this.bouteilleRadioButton.doClick();
-                       this.comboBoxArticle.removeAllItems();
-                       this.descTexteArea.setText("");
-                       this.typeA=null;
-                       
-                       
-                       //Affichage d'une JTable pour résumer les encodages
-                   /* }
-        }*/
+                    //Remise à zéro du pannel pour un nouvel encodage
+                    SpinnerModel model = new SpinnerNumberModel(date.get(GregorianCalendar.DAY_OF_MONTH),1,31,1);
+                    jourSpinner.setModel(model);
+                    SpinnerModel model2 = new SpinnerNumberModel(date.get(GregorianCalendar.MONTH)+1,1,12,1);
+                    moisSpinner.setModel(model2);
+                    SpinnerModel model3 = new SpinnerNumberModel(date.get(GregorianCalendar.YEAR),1900,2200,1);
+                    anneeSpinner.setModel(model3);
+                    this.rechTextField.setText("");
+                    this.quantiteeSpinner.setValue(0);
+                    this.comboBoxArticle.removeAllItems();
+                    this.descTexteArea.setText("");
+                    this.noteTexteArea.removeAll();
+                    this.typeA=null;
+                    
+
+                    //Affichage d'une JTable pour résumer les encodages
+                    
+                    
+                 }
+                 catch(BdErreur e){
+                     JOptionPane.showMessageDialog(null, e, "Erreur BD", JOptionPane.ERROR_MESSAGE);
+                 }
+
+                 catch(NoIdentification e){
+                     JOptionPane.showMessageDialog(null, e, "Erreur identification", JOptionPane.ERROR_MESSAGE);
+                 }
+
+                 catch(Exception e){
+                     JOptionPane.showMessageDialog(null, "Aucun article sélectionné: "+e, "Erreur JComboBox", JOptionPane.ERROR_MESSAGE);
+                 }
+            }
+        }
     }//GEN-LAST:event_ajoutReapproButton1ActionPerformed
 
-    private void comboBoxArticleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBoxArticleActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_comboBoxArticleActionPerformed
-
+    
     
     
     
@@ -459,15 +509,12 @@ public class ReapproJPanel extends JPanel {
     private javax.swing.JSpinner anneeSpinner;
     private javax.swing.JRadioButton bouteilleRadioButton;
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.ButtonGroup buttonGroup2;
-    private javax.swing.ButtonGroup buttonGroup3;
-    private javax.swing.ButtonGroup buttonGroup4;
-    private javax.swing.ButtonGroup buttonGroup5;
     private javax.swing.JRadioButton casierRadioButton;
     private javax.swing.JComboBox comboBoxArticle;
     private javax.swing.JTextArea descTexteArea;
     private javax.swing.JRadioButton futRadioButton;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -475,9 +522,14 @@ public class ReapproJPanel extends JPanel {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JSpinner jSpinner1;
     private javax.swing.JSpinner jourSpinner;
     private javax.swing.JSpinner moisSpinner;
+    private javax.swing.JTextArea noteTexteArea;
     private javax.swing.JSpinner quantiteeSpinner;
     private javax.swing.JTextField rechTextField;
     // End of variables declaration//GEN-END:variables

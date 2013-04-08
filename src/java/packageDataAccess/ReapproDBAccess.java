@@ -2,6 +2,7 @@ package packageDataAccess;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import packageException.BdErreur;
@@ -16,6 +17,8 @@ public class ReapproDBAccess {
     private ArrayList <String> listeLibA;
     private Integer IDArt;
     
+    
+    //REMPLIR LA JComboBox EN FONCTION DU TYPE ARTICLE CHOISIT
     public ArrayList <String> getLibArticle(String typeA) throws  BdErreur, NoIdentification{   
          
          listeLibA= new ArrayList <String> ();
@@ -43,7 +46,7 @@ public class ReapproDBAccess {
    } 
     
     
-    
+    //LIKE POUR EFFECTUER UNE RECHERCHE DANS LA JComboBox
     public ArrayList <String> getLibArticle(String typeA,String rech) throws  BdErreur, NoIdentification{   
          
          listeLibA= new ArrayList <String> ();
@@ -71,7 +74,8 @@ public class ReapproDBAccess {
         return listeLibA;
    } 
     
-    
+   
+    //OBTENIR LA DESCRIPTION DE L'ARTICLE EN FONCTION DU LIBBELLE ET DE SON TYPE
    public String getDescArticle(String libelleA, String typeA) throws  BdErreur, NoIdentification{   
                   
          try {  
@@ -94,6 +98,9 @@ public class ReapproDBAccess {
         return libelleD;
   }
    
+   
+   //OBTENIR L'ID DU PRODUIT AFIN D'ENCODER NOUVEAU REAPPRO 
+   //Reçoit : Libelle choisit dans JComboBox & Le type article choisit
    public Integer getIDArticle(String libelleA, String typeA) throws  BdErreur, NoIdentification{   
                   
          try {  
@@ -116,23 +123,65 @@ public class ReapproDBAccess {
         return IDArt;
    }
    
-   public  void  addReappro (Reappro reappro)  throws  BdErreur,NoIdentification{
+   
+   //AJOUT BD
+   public  void  addReappro (Reappro reappro)  throws  BdErreur,NoIdentification,Exception{
 
-       try{                      
+       try{ 
+             
+            //Update pour colonne obligatoire
             String req = "insert into Reapprovisionnement (DateApprovisionnement,Qte,IDProduit) values (?,?,?)";
-            PreparedStatement prepStat = SingletonConnexion.getInstance().prepareStatement(req);
+            PreparedStatement prepStat = SingletonConnexion.getInstance().prepareStatement(req,Statement.RETURN_GENERATED_KEYS);
             prepStat.setDate(1,new java.sql.Date(reappro.getReapDate().getTimeInMillis()));
             prepStat.setInt(2, reappro.getQuantitee());
             prepStat.setInt(3, reappro.getIDArticle());
-            prepStat.executeUpdate(); 
-               
+            prepStat.executeUpdate();             
+            
+            //Obtenir IDReappro venant d'être insérer
+            ResultSet rs = prepStat.getGeneratedKeys();
+            
+            while(rs.next()){
+                int lastID = rs.getInt(1);
+                //Update pour colonne facultative
+                if(reappro.getNote()!=null){
+                    req = "update Reapprovisionnement set NoteReappro = ? where IDReappro= ?";
+                    prepStat = SingletonConnexion.getInstance().prepareStatement(req);
+                    prepStat.setString(1, reappro.getNote());
+                    prepStat.setInt(2, lastID);
+                    prepStat.executeUpdate();                
+                }
+            }
+            
+            
+            //Récuperer ancienne quantitée
+            int newQte=0;
+            req = "select Qte from Article where IDProduit= ?";
+            prepStat = SingletonConnexion.getInstance().prepareStatement(req);
+            prepStat.setInt(1, reappro.getIDArticle());
+            ResultSet donnees = prepStat.executeQuery(); 
+            while (donnees.next( )){
+                newQte = donnees.getInt("Qte");
+            }
+            
+            newQte+=reappro.getQuantitee();
+            
+            //Ajout dans les stocks article (modifier quantitée)
+            req = "update Article set Qte = ? where IDProduit= ?";
+            prepStat = SingletonConnexion.getInstance().prepareStatement(req);
+            prepStat.setInt(1, newQte);
+            prepStat.setInt(2, reappro.getIDArticle());
+            prepStat.executeUpdate();
+             
         }
-        catch (SQLException ex){       
-            throw new BdErreur(ex.getMessage());
+        catch (SQLException e){       
+            throw new BdErreur(e.getMessage());
         }
         catch (NoIdentification e) {
             throw new NoIdentification();
         }
+        catch (Exception e){
+           throw new BdErreur(e.getMessage());
+       }
       
    }
 }

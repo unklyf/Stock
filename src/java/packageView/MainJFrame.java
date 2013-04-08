@@ -22,6 +22,7 @@ public class MainJFrame extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         menuBar = new javax.swing.JMenuBar();
         menuApplication = new javax.swing.JMenu();
+        accueilMenuItem = new javax.swing.JMenuItem();
         itemQuitter = new javax.swing.JMenuItem();
         menuAjout = new javax.swing.JMenu();
         itemArticleAjout = new javax.swing.JMenuItem();
@@ -49,6 +50,9 @@ public class MainJFrame extends javax.swing.JFrame {
         jLabel2.setText("Brasserie - Gestion Stock");
 
         menuApplication.setText("Application |");
+
+        accueilMenuItem.setText("Accueil");
+        menuApplication.add(accueilMenuItem);
 
         itemQuitter.setText("Quitter");
         itemQuitter.addActionListener(new java.awt.event.ActionListener() {
@@ -206,6 +210,7 @@ public class MainJFrame extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem accueilMenuItem;
     private javax.swing.JMenuItem itemAjoutReappro;
     private javax.swing.JMenuItem itemArticleAjout;
     private javax.swing.JMenuItem itemListArticle;

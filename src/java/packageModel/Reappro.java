@@ -7,11 +7,13 @@ public class Reappro {
     
     private Integer quantitee, iDProduit;
     private GregorianCalendar dateReappro;
+    private String note;
     
-    public Reappro (Integer q,Integer iDP, GregorianCalendar dR ){
+    public Reappro (Integer q,Integer iDP, GregorianCalendar dR, String n ){
         this.quantitee=q;
         this.iDProduit=iDP;
-        this.dateReappro=dR;             
+        this.dateReappro=dR;
+        this.note=n;
     }
     
     public Integer getQuantitee(){
@@ -22,8 +24,12 @@ public class Reappro {
         return this.iDProduit;
     } 
     
-     public GregorianCalendar getReapDate(){
+    public GregorianCalendar getReapDate(){
         return this.dateReappro;        
+    }
+    
+    public String getNote(){
+        return this.note;        
     }
     
 }

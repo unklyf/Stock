@@ -9,6 +9,11 @@
             <Property name="text" type="java.lang.String" value="Application |"/>
           </Properties>
           <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="accueilMenuItem">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Accueil"/>
+              </Properties>
+            </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="itemQuitter">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Quitter"/>

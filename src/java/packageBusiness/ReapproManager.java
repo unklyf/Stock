@@ -11,6 +11,8 @@ public class ReapproManager {
     
     private ReapproDBAccess rDBA = new ReapproDBAccess();
     
+    
+    //AJOUT REAPPRO
     public ArrayList <String> getLibArticle(String typeA) throws  BdErreur, NoIdentification{ 
             return rDBA.getLibArticle(typeA);
     }
@@ -27,7 +29,7 @@ public class ReapproManager {
             return rDBA.getIDArticle(libelle,typeA);
     }
     
-    public  void  addReappro (Reappro reappro)  throws  BdErreur,NoIdentification{
+    public  void  addReappro (Reappro reappro)  throws  BdErreur,NoIdentification,Exception{
         rDBA.addReappro(reappro);
     }
     
