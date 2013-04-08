@@ -3,6 +3,7 @@ import java.util.ArrayList;
 import javax.swing.JComboBox;
 import packageBusiness.*;
 import packageException.*;
+import packageModel.Reappro;
 
 public class ApplicationController {
     
@@ -25,6 +26,14 @@ public class ApplicationController {
     public String getDescArticle(String libelle,String typeA) throws  BdErreur, NoIdentification{ 
         return rM.getDescArticle(libelle, typeA);
     }
+    public Integer getIDArticle(String libelle,String typeA) throws  BdErreur, NoIdentification{ 
+        return rM.getIDArticle(libelle, typeA);
+    }
+    
+    public  void  addReappro (Reappro reappro)  throws  BdErreur,NoIdentification{
+        rM.addReappro(reappro);
+    }
+    
     
     
     

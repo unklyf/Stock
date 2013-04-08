@@ -3,21 +3,33 @@ package packageView;
 import java.awt.Color;
 import java.awt.event.ItemEvent;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JSpinner;
+import javax.swing.SpinnerDateModel;
+import javax.swing.SpinnerModel;
+import javax.swing.SpinnerNumberModel;
 import packageController.ApplicationController;
 import packageException.BdErreur;
 import packageException.NoIdentification;
+import packageModel.Reappro;
 
 
 public class ReapproJPanel extends JPanel {
     
     private ArrayList <String> tabLib;
     private String typeA, rech="";
+    private Reappro ajoutReap;
+    private ApplicationController app;
+    private GregorianCalendar date = new GregorianCalendar();
+        
     
     public ReapproJPanel() {
         initComponents();
-        tabLib= new ArrayList <String>(); 
+        tabLib= new ArrayList <String>();
+        date.setTime(new Date());
     }
     
    
@@ -43,13 +55,16 @@ public class ReapproJPanel extends JPanel {
         jLabel6 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         descTexteArea = new javax.swing.JTextArea();
-        jSpinner1 = new javax.swing.JSpinner();
+        quantiteeSpinner = new javax.swing.JSpinner();
         jLabel5 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         ajoutArtButton = new javax.swing.JButton();
         ajoutReapproButton2 = new javax.swing.JButton();
         ajoutReapproButton1 = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
+        jourSpinner = new javax.swing.JSpinner();
+        moisSpinner = new javax.swing.JSpinner();
+        anneeSpinner = new javax.swing.JSpinner();
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(153, 0, 51));
@@ -129,9 +144,26 @@ public class ReapproJPanel extends JPanel {
         });
 
         ajoutReapproButton1.setText("Enregistrer et Encoder nouveau");
+        ajoutReapproButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ajoutReapproButton1ActionPerformed(evt);
+            }
+        });
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 2, 10)); // NOI18N
         jLabel8.setText("(Première lettre en majuscule)");
+
+        jourSpinner.setMaximumSize(new java.awt.Dimension(29, 20));
+        SpinnerModel model = new SpinnerNumberModel(date.get(GregorianCalendar.DAY_OF_MONTH),1,31,1);
+        jourSpinner.setModel(model);
+
+        moisSpinner.setMaximumSize(new java.awt.Dimension(29, 20));
+        SpinnerModel model2 = new SpinnerNumberModel(date.get(GregorianCalendar.MONTH)+1,1,12,1);
+        moisSpinner.setModel(model2);
+
+        anneeSpinner.setMaximumSize(new java.awt.Dimension(29, 20));
+        SpinnerModel model3 = new SpinnerNumberModel(date.get(GregorianCalendar.YEAR),1900,2200,1);
+        anneeSpinner.setModel(model3);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -150,7 +182,6 @@ public class ReapproJPanel extends JPanel {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 426, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(ajoutReapproButton1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -170,7 +201,15 @@ public class ReapproJPanel extends JPanel {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel5)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(ajoutArtButton))))
+                                .addComponent(ajoutArtButton))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(jourSpinner, javax.swing.GroupLayout.DEFAULT_SIZE, 62, Short.MAX_VALUE)
+                                    .addComponent(quantiteeSpinner))
+                                .addGap(17, 17, 17)
+                                .addComponent(moisSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(anneeSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(33, 33, 33)
                         .addComponent(jLabel1)))
@@ -213,9 +252,13 @@ public class ReapproJPanel extends JPanel {
                         .addGap(33, 33, 33)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
-                            .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(quantiteeSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel7)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel7)
+                            .addComponent(jourSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(moisSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(anneeSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -333,8 +376,43 @@ public class ReapproJPanel extends JPanel {
     }//GEN-LAST:event_rechTextFieldKeyTyped
 
     private void ajoutReapproButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ajoutReapproButton2ActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_ajoutReapproButton2ActionPerformed
+   
+    private void ajoutReapproButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ajoutReapproButton1ActionPerformed
+         
+         app = new ApplicationController();
+        
+         try{
+             ajoutReap = new Reappro( Integer.parseInt(this.quantiteeSpinner.getValue().toString()),app.getIDArticle(this.comboBoxArticle.getSelectedItem().toString(),this.typeA), 
+                                   new GregorianCalendar(Integer.parseInt(this.anneeSpinner.getValue().toString()),Integer.parseInt(this.moisSpinner.getValue().toString()),Integer.parseInt(this.jourSpinner.getValue().toString())));
+             app.addReappro(ajoutReap);
+         }
+         catch(BdErreur e){
+             JOptionPane.showMessageDialog(null, e, "Erreur BD", JOptionPane.ERROR_MESSAGE);
+         }
+         
+         catch(NoIdentification e){
+                JOptionPane.showMessageDialog(null, e, "Erreur identification", JOptionPane.ERROR_MESSAGE);
+         }
+         
+         JOptionPane.showMessageDialog(null,"Encodage réalisé avec succès !");
+         
+         //Remise à zéro du pannel pour un nouvel encodage
+         SpinnerModel model = new SpinnerNumberModel(date.get(GregorianCalendar.DAY_OF_MONTH),1,31,1);
+         jourSpinner.setModel(model);
+         SpinnerModel model2 = new SpinnerNumberModel(date.get(GregorianCalendar.MONTH)+1,1,12,1);
+         moisSpinner.setModel(model2);
+         SpinnerModel model3 = new SpinnerNumberModel(date.get(GregorianCalendar.YEAR),1900,2200,1);
+         anneeSpinner.setModel(model3);
+         this.rechTextField.setText("");
+         this.quantiteeSpinner.setValue(0);
+         this.futRadioButton.setSelected(false);
+         this.casierRadioButton.setSelected(false);
+         this.bouteilleRadioButton.setSelected(false);
+         
+         //Affichage du JPanel pour résumer les encodages
+    }//GEN-LAST:event_ajoutReapproButton1ActionPerformed
 
     
     
@@ -344,6 +422,7 @@ public class ReapproJPanel extends JPanel {
     private javax.swing.JButton ajoutArtButton;
     private javax.swing.JButton ajoutReapproButton1;
     private javax.swing.JButton ajoutReapproButton2;
+    private javax.swing.JSpinner anneeSpinner;
     private javax.swing.JRadioButton bouteilleRadioButton;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
@@ -363,7 +442,9 @@ public class ReapproJPanel extends JPanel {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JSpinner jSpinner1;
+    private javax.swing.JSpinner jourSpinner;
+    private javax.swing.JSpinner moisSpinner;
+    private javax.swing.JSpinner quantiteeSpinner;
     private javax.swing.JTextField rechTextField;
     // End of variables declaration//GEN-END:variables
 }

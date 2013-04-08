@@ -14,4 +14,16 @@ public class Reappro {
         this.dateReappro=dR;             
     }
     
+    public Integer getQuantitee(){
+        return this.quantitee;
+    }
+    
+    public Integer getIDArticle(){
+        return this.iDProduit;
+    } 
+    
+     public GregorianCalendar getReapDate(){
+        return this.dateReappro;        
+    }
+    
 }
