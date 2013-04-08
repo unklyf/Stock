@@ -241,8 +241,8 @@ public class ReapproJPanel extends JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 119, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 112, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(ajoutReapproButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(ajoutReapproButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -385,7 +385,7 @@ public class ReapproJPanel extends JPanel {
         
          try{
              ajoutReap = new Reappro( Integer.parseInt(this.quantiteeSpinner.getValue().toString()),app.getIDArticle(this.comboBoxArticle.getSelectedItem().toString(),this.typeA), 
-                                   new GregorianCalendar(Integer.parseInt(this.anneeSpinner.getValue().toString()),Integer.parseInt(this.moisSpinner.getValue().toString()),Integer.parseInt(this.jourSpinner.getValue().toString())));
+                                   new GregorianCalendar(Integer.parseInt(this.anneeSpinner.getValue().toString()),Integer.parseInt(this.moisSpinner.getValue().toString())-1,Integer.parseInt(this.jourSpinner.getValue().toString())));
              app.addReappro(ajoutReap);
          }
          catch(BdErreur e){
@@ -407,10 +407,10 @@ public class ReapproJPanel extends JPanel {
          anneeSpinner.setModel(model3);
          this.rechTextField.setText("");
          this.quantiteeSpinner.setValue(0);
-         this.futRadioButton.setSelected(false);
-         this.casierRadioButton.setSelected(false);
-         this.bouteilleRadioButton.setSelected(false);
-         
+         this.futRadioButton.doClick();
+         this.casierRadioButton.doClick();
+         this.bouteilleRadioButton.doClick();
+         this.comboBoxArticle.removeAllItems();
          //Affichage du JPanel pour résumer les encodages
     }//GEN-LAST:event_ajoutReapproButton1ActionPerformed
 
