@@ -5,12 +5,7 @@ import java.awt.event.ItemEvent;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.GregorianCalendar;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JSpinner;
-import javax.swing.SpinnerDateModel;
-import javax.swing.SpinnerModel;
-import javax.swing.SpinnerNumberModel;
+import javax.swing.*;
 import packageController.ApplicationController;
 import packageException.BdErreur;
 import packageException.NoIdentification;
@@ -127,6 +122,9 @@ public class ReapproJPanel extends JPanel {
         descTexteArea.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         jScrollPane1.setViewportView(descTexteArea);
         descTexteArea.setEditable(false);
+
+        SpinnerModel modelq = new SpinnerNumberModel(0,0,1000,1);
+        quantiteeSpinner.setModel(modelq);
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/packageImage/loupe.png"))); // NOI18N
 
@@ -381,37 +379,52 @@ public class ReapproJPanel extends JPanel {
    
     private void ajoutReapproButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ajoutReapproButton1ActionPerformed
          
-         app = new ApplicationController();
-        
-         try{
-             ajoutReap = new Reappro( Integer.parseInt(this.quantiteeSpinner.getValue().toString()),app.getIDArticle(this.comboBoxArticle.getSelectedItem().toString(),this.typeA), 
-                                   new GregorianCalendar(Integer.parseInt(this.anneeSpinner.getValue().toString()),Integer.parseInt(this.moisSpinner.getValue().toString())-1,Integer.parseInt(this.jourSpinner.getValue().toString())));
-             app.addReappro(ajoutReap);
-         }
-         catch(BdErreur e){
-             JOptionPane.showMessageDialog(null, e, "Erreur BD", JOptionPane.ERROR_MESSAGE);
-         }
-         
-         catch(NoIdentification e){
-                JOptionPane.showMessageDialog(null, e, "Erreur identification", JOptionPane.ERROR_MESSAGE);
-         }
-         
-         JOptionPane.showMessageDialog(null,"Encodage réalisé avec succès !");
-         
-         //Remise à zéro du pannel pour un nouvel encodage
-         SpinnerModel model = new SpinnerNumberModel(date.get(GregorianCalendar.DAY_OF_MONTH),1,31,1);
-         jourSpinner.setModel(model);
-         SpinnerModel model2 = new SpinnerNumberModel(date.get(GregorianCalendar.MONTH)+1,1,12,1);
-         moisSpinner.setModel(model2);
-         SpinnerModel model3 = new SpinnerNumberModel(date.get(GregorianCalendar.YEAR),1900,2200,1);
-         anneeSpinner.setModel(model3);
-         this.rechTextField.setText("");
-         this.quantiteeSpinner.setValue(0);
-         this.futRadioButton.doClick();
-         this.casierRadioButton.doClick();
-         this.bouteilleRadioButton.doClick();
-         this.comboBoxArticle.removeAllItems();
-         //Affichage du JPanel pour résumer les encodages
+        if(this.typeA==null){ 
+            JOptionPane.showMessageDialog(null, "Aucun type sélectionné.");
+        }
+        else
+             if(Integer.parseInt(this.quantiteeSpinner.getValue().toString())==0){
+                 JOptionPane.showMessageDialog(null, "Veuillez entrer une quantitée.");
+             }
+             else
+                  if(this.comboBoxArticle.getSelectedItem().toString()==""){
+                      JOptionPane.showMessageDialog(null, "Aucun libelle d'article sélectionné.");
+                  }
+                    else{
+                       app = new ApplicationController();
+
+                       try{
+                           ajoutReap = new Reappro( Integer.parseInt(this.quantiteeSpinner.getValue().toString()),app.getIDArticle(this.comboBoxArticle.getSelectedItem().toString(),this.typeA), 
+                                                 new GregorianCalendar(Integer.parseInt(this.anneeSpinner.getValue().toString()),Integer.parseInt(this.moisSpinner.getValue().toString())-1,Integer.parseInt(this.jourSpinner.getValue().toString())));
+                           app.addReappro(ajoutReap);
+                       }
+                       catch(BdErreur e){
+                           JOptionPane.showMessageDialog(null, e, "Erreur BD", JOptionPane.ERROR_MESSAGE);
+                       }
+
+                       catch(NoIdentification e){
+                              JOptionPane.showMessageDialog(null, e, "Erreur identification", JOptionPane.ERROR_MESSAGE);
+                       }
+
+                       JOptionPane.showMessageDialog(null,"Encodage réalisé avec succès !");
+
+                       //Remise à zéro du pannel pour un nouvel encodage
+                       SpinnerModel model = new SpinnerNumberModel(date.get(GregorianCalendar.DAY_OF_MONTH),1,31,1);
+                       jourSpinner.setModel(model);
+                       SpinnerModel model2 = new SpinnerNumberModel(date.get(GregorianCalendar.MONTH)+1,1,12,1);
+                       moisSpinner.setModel(model2);
+                       SpinnerModel model3 = new SpinnerNumberModel(date.get(GregorianCalendar.YEAR),1900,2200,1);
+                       anneeSpinner.setModel(model3);
+                       this.rechTextField.setText("");
+                       this.quantiteeSpinner.setValue(0);
+                       this.futRadioButton.doClick();
+                       this.casierRadioButton.doClick();
+                       this.bouteilleRadioButton.doClick();
+                       this.comboBoxArticle.removeAllItems();
+                       this.descTexteArea.setText("");
+                       this.typeA=null;
+                       //Affichage du JPanel pour résumer les encodages
+                    }
     }//GEN-LAST:event_ajoutReapproButton1ActionPerformed
 
     

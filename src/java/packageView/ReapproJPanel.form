@@ -270,6 +270,9 @@
       </SubComponents>
     </Container>
     <Component class="javax.swing.JSpinner" name="quantiteeSpinner">
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="SpinnerModel modelq = new SpinnerNumberModel(0,0,1000,1);&#xa;quantiteeSpinner.setModel(modelq);"/>
+      </AuxValues>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel5">
       <Properties>
