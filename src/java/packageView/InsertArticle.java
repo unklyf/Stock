@@ -4,11 +4,14 @@
  */
 package packageView;
 
+import javax.swing.*;
+
 /**
  *
  * @author Home
  */
-public class InsertArticle extends javax.swing.JPanel {
+public class InsertArticle extends JPanel {
+    
 
     /**
      * Creates new form InsertArticle
@@ -150,7 +153,7 @@ public class InsertArticle extends javax.swing.JPanel {
                                         .addComponent(MoisSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(18, 18, 18)
                                 .addComponent(AnneeSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(217, Short.MAX_VALUE))
+                .addContainerGap(235, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
