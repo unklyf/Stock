@@ -19,13 +19,15 @@ public class ReapproJPanel extends JPanel {
     private String typeA, rech="";
     private Reappro ajoutReap;
     private ApplicationController app;
-    private GregorianCalendar date = new GregorianCalendar();
+    private GregorianCalendar dateReap;
+    private AccueilPanel panA;
+    private MainJFrame fen;
         
     
     public ReapproJPanel() {
         initComponents();
         tabLib= new ArrayList <String>();
-        date.setTime(new Date());
+ 
     }
     
    
@@ -37,7 +39,6 @@ public class ReapproJPanel extends JPanel {
         buttonGroup1 = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        anneeSpinner = new javax.swing.JSpinner();
         futRadioButton = new javax.swing.JRadioButton();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
@@ -52,8 +53,6 @@ public class ReapproJPanel extends JPanel {
         quantiteeSpinner = new javax.swing.JSpinner();
         jLabel4 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jourSpinner = new javax.swing.JSpinner();
-        moisSpinner = new javax.swing.JSpinner();
         jLabel10 = new javax.swing.JLabel();
         ajoutReapproButton1 = new javax.swing.JButton();
         casierRadioButton = new javax.swing.JRadioButton();
@@ -62,15 +61,11 @@ public class ReapproJPanel extends JPanel {
         jScrollPane3 = new javax.swing.JScrollPane();
         noteTexteArea = new javax.swing.JTextArea();
         ajoutReapproButton2 = new javax.swing.JButton();
-        jSpinner1 = new javax.swing.JSpinner();
+        SpinnerDate = new javax.swing.JSpinner();
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(153, 0, 51));
         jLabel1.setText("Encoder réapprovisionnement");
-
-        anneeSpinner.setMaximumSize(new java.awt.Dimension(29, 20));
-        SpinnerModel model3 = new SpinnerNumberModel(date.get(GregorianCalendar.YEAR),1900,2200,1);
-        anneeSpinner.setModel(model3);
 
         buttonGroup1.add(futRadioButton);
         futRadioButton.setText("Fût");
@@ -133,14 +128,6 @@ public class ReapproJPanel extends JPanel {
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel2.setText("Libelle Article :");
 
-        jourSpinner.setMaximumSize(new java.awt.Dimension(29, 20));
-        SpinnerModel model = new SpinnerNumberModel(date.get(GregorianCalendar.DAY_OF_MONTH),1,31,1);
-        jourSpinner.setModel(model);
-
-        moisSpinner.setMaximumSize(new java.awt.Dimension(29, 20));
-        SpinnerModel model2 = new SpinnerNumberModel(date.get(GregorianCalendar.MONTH)+1,1,12,1);
-        moisSpinner.setModel(model2);
-
         jLabel10.setFont(new java.awt.Font("Tahoma", 2, 10)); // NOI18N
         jLabel10.setText("(Facultatif)");
 
@@ -181,6 +168,12 @@ public class ReapproJPanel extends JPanel {
             }
         });
 
+        SpinnerDateModel dateModel =new SpinnerDateModel();
+        SpinnerDate.setModel(dateModel);
+        SpinnerDate.setEditor(new JSpinner.DateEditor(SpinnerDate, "dd-MM-yyyy"));
+        dateReap= new GregorianCalendar();
+        dateReap.setTime(dateModel.getDate());
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -218,16 +211,10 @@ public class ReapproJPanel extends JPanel {
                             .addComponent(jLabel5)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(ajoutArtButton))
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jourSpinner, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(quantiteeSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGap(17, 17, 17)
-                            .addComponent(moisSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(anneeSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(quantiteeSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jScrollPane2)
-                        .addComponent(jScrollPane3)))
+                        .addComponent(jScrollPane3))
+                    .addComponent(SpinnerDate, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -262,9 +249,7 @@ public class ReapproJPanel extends JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(jourSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(moisSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(anneeSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(SpinnerDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(31, 31, 31)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -280,8 +265,6 @@ public class ReapproJPanel extends JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jSpinner1.setModel(new javax.swing.SpinnerDateModel());
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -294,22 +277,15 @@ public class ReapproJPanel extends JPanel {
                         .addContainerGap(512, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(132, 132, 132))))
+                        .addGap(132, 407, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addComponent(jLabel1)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(103, 103, 103)
-                        .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(110, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -435,7 +411,53 @@ public class ReapproJPanel extends JPanel {
  
     //Boutton enregistrer et quitter
     private void ajoutReapproButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ajoutReapproButton2ActionPerformed
-      
+      //Tests pour voir si tout est rempli
+        if(this.typeA==null){ 
+            JOptionPane.showMessageDialog(null, "Aucun type sélectionné.");
+        }
+        else{
+            if(Integer.parseInt(this.quantiteeSpinner.getValue().toString())==0){ 
+                 JOptionPane.showMessageDialog(null, "Veuillez indiquer une quantitée.");
+            }
+            else{
+                
+                //Obliger sinon n'insère pas null dans la BD
+                String note=null;
+                if(!this.noteTexteArea.getText().equals("")){
+                    note=this.noteTexteArea.getText();
+                }
+                app = new ApplicationController();
+
+                 //Créer objet et ajout dans la BD 
+                 try{                  
+                    
+                    ajoutReap = new Reappro(Integer.parseInt(this.quantiteeSpinner.getValue().toString()),app.getIDArticle(this.comboBoxArticle.getSelectedItem().toString(),this.typeA), 
+                                             dateReap,note);
+                    app.addReappro(ajoutReap);
+                    JOptionPane.showMessageDialog(null,"Encodage réalisé avec succès !");
+
+                    //Fermer le panneau et retour accueil.
+                    panA= new AccueilPanel();
+                    fen = new MainJFrame();
+                    panA.setBounds(fen.getContentPaneBounds());                   
+                    this.removeAll();
+                    this.add(panA);
+                    this.repaint();
+                    this.validate();                    
+                 }
+                 catch(BdErreur e){
+                     JOptionPane.showMessageDialog(null, e, "Erreur BD", JOptionPane.ERROR_MESSAGE);
+                 }
+
+                 catch(NoIdentification e){
+                     JOptionPane.showMessageDialog(null, e, "Erreur identification", JOptionPane.ERROR_MESSAGE);
+                 }
+
+                 catch(Exception e){
+                     JOptionPane.showMessageDialog(null, "Aucun article sélectionné: "+e, "Erreur JComboBox", JOptionPane.ERROR_MESSAGE);
+                 }
+            }
+        }
     }//GEN-LAST:event_ajoutReapproButton2ActionPerformed
    
     
@@ -460,21 +482,16 @@ public class ReapproJPanel extends JPanel {
                 app = new ApplicationController();
 
                  //Créer objet et ajout dans la BD 
-                 try{
-                     
+                 try{                  
+                    
                     ajoutReap = new Reappro(Integer.parseInt(this.quantiteeSpinner.getValue().toString()),app.getIDArticle(this.comboBoxArticle.getSelectedItem().toString(),this.typeA), 
-                                             new GregorianCalendar(Integer.parseInt(this.anneeSpinner.getValue().toString()),Integer.parseInt(this.moisSpinner.getValue().toString())-1,Integer.parseInt(this.jourSpinner.getValue().toString())),
-                                             note);
+                                             dateReap,note);
                     app.addReappro(ajoutReap);
                     JOptionPane.showMessageDialog(null,"Encodage réalisé avec succès !");
 
                     //Remise à zéro du pannel pour un nouvel encodage
-                    SpinnerModel model = new SpinnerNumberModel(date.get(GregorianCalendar.DAY_OF_MONTH),1,31,1);
-                    jourSpinner.setModel(model);
-                    SpinnerModel model2 = new SpinnerNumberModel(date.get(GregorianCalendar.MONTH)+1,1,12,1);
-                    moisSpinner.setModel(model2);
-                    SpinnerModel model3 = new SpinnerNumberModel(date.get(GregorianCalendar.YEAR),1900,2200,1);
-                    anneeSpinner.setModel(model3);
+                    this.SpinnerDate.setModel(new SpinnerDateModel());
+                    this.SpinnerDate.setEditor(new JSpinner.DateEditor(SpinnerDate, "dd-MM-yyyy"));
                     this.rechTextField.setText("");
                     this.quantiteeSpinner.setValue(0);
                     this.comboBoxArticle.removeAllItems();
@@ -482,7 +499,7 @@ public class ReapproJPanel extends JPanel {
                     this.noteTexteArea.removeAll();
                     this.typeA=null;
                     
-
+                   
                     //Affichage d'une JTable pour résumer les encodages
                     
                     
@@ -512,10 +529,10 @@ public class ReapproJPanel extends JPanel {
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JSpinner SpinnerDate;
     private javax.swing.JButton ajoutArtButton;
     private javax.swing.JButton ajoutReapproButton1;
     private javax.swing.JButton ajoutReapproButton2;
-    private javax.swing.JSpinner anneeSpinner;
     private javax.swing.JRadioButton bouteilleRadioButton;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JRadioButton casierRadioButton;
@@ -535,9 +552,6 @@ public class ReapproJPanel extends JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JSpinner jSpinner1;
-    private javax.swing.JSpinner jourSpinner;
-    private javax.swing.JSpinner moisSpinner;
     private javax.swing.JTextArea noteTexteArea;
     private javax.swing.JSpinner quantiteeSpinner;
     private javax.swing.JTextField rechTextField;
