@@ -158,6 +158,11 @@ public class ReapproJPanel extends JPanel {
                 casierRadioButtonItemStateChanged(evt);
             }
         });
+        casierRadioButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                casierRadioButtonActionPerformed(evt);
+            }
+        });
 
         ajoutArtButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/packageImage/plus.png"))); // NOI18N
         ajoutArtButton.setText("Ajouter article inexistant");
@@ -496,6 +501,10 @@ public class ReapproJPanel extends JPanel {
             }
         }
     }//GEN-LAST:event_ajoutReapproButton1ActionPerformed
+
+    private void casierRadioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_casierRadioButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_casierRadioButtonActionPerformed
 
     
     

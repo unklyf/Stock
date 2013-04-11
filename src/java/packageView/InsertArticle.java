@@ -17,7 +17,8 @@ public class InsertArticle extends JPanel {
     
 
     private ArrayList <String> tabArt;
-    private String typeA;
+    private String typeArt;
+    private GregorianCalendar date;
     
             
             
@@ -25,6 +26,7 @@ public class InsertArticle extends JPanel {
     public InsertArticle() {
         initComponents();
         tabArt= new ArrayList <String>();
+        typeArt = "";
     }
 
     /**
@@ -57,9 +59,11 @@ public class InsertArticle extends JPanel {
         PrixConsSpinner = new javax.swing.JSpinner();
         jLabel10 = new javax.swing.JLabel();
         CadeauComboBox = new javax.swing.JComboBox();
-        ButtonAjout1 = new javax.swing.JButton();
-        ButtonAjout2 = new javax.swing.JButton();
+        ButtonAjout = new javax.swing.JButton();
+        ButtonQuitter = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(153, 0, 51));
@@ -104,31 +108,51 @@ public class InsertArticle extends JPanel {
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel6.setText("Quantité :");
 
+        SpinnerModel modelq = new SpinnerNumberModel(0,0,1000,1);
+        jSpinner1.setModel(modelq);
+
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel7.setText("Date de peremption : ");
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel8.setText("Prix Marchandise :");
 
+        SpinnerModel modelpm = new SpinnerNumberModel(0,0,1000,1);
+        PrixMarchSpinner.setModel(modelpm);
+
         jLabel9.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel9.setText("Prix Consigne :");
+
+        SpinnerModel modelpc = new SpinnerNumberModel(0,0,1000,1);
+        PrixConsSpinner.setModel(modelpc);
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel10.setText("Cadeau :");
 
-        CadeauComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Decapsuleur ", "Ballon ", "Lazy Bag ", "Casquette", "Parapluie", "Verre", "Clé USB" }));
-        CadeauComboBox.addActionListener(new java.awt.event.ActionListener() {
+        CadeauComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "------------------", "Decapsuleur", "Ballon", "Lazy Bag", "Casquette", "Parapluie", "Verre", "Clé USB" }));
+
+        ButtonAjout.setText("Enregistrer et encoder nouveau");
+        ButtonAjout.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CadeauComboBoxActionPerformed(evt);
+                ButtonAjoutActionPerformed(evt);
             }
         });
 
-        ButtonAjout1.setText("Enregistrer et encoder nouveau");
-
-        ButtonAjout2.setText("Enregistrer et quitter ");
+        ButtonQuitter.setText("Enregistrer et quitter ");
+        ButtonQuitter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonQuitterActionPerformed(evt);
+            }
+        });
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
         jLabel11.setText("(Facultatif)");
+
+        jLabel12.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
+        jLabel12.setText("(Facultatif)");
+
+        jLabel13.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
+        jLabel13.setText("(Facultatif)");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -165,15 +189,17 @@ public class InsertArticle extends JPanel {
                                     .addComponent(jScrollPane1)
                                     .addComponent(PrixConsSpinner)
                                     .addComponent(PrixMarchSpinner)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(CadeauComboBox, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jSpinner1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(CadeauComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(ButtonAjout1, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(ButtonAjout, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(ButtonAjout2)))))
+                                .addComponent(ButtonQuitter)))))
                 .addContainerGap(121, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -213,37 +239,43 @@ public class InsertArticle extends JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
-                    .addComponent(PrixConsSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(PrixConsSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel12))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
-                    .addComponent(CadeauComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(CadeauComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel13))
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(ButtonAjout1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ButtonAjout2, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(ButtonAjout, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ButtonQuitter, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(43, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void ButtonBouteilleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonBouteilleActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ButtonBouteilleActionPerformed
-
     private void ButtonCasierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonCasierActionPerformed
-        // TODO add your handling code here:
+        typeArt = "Casier";
     }//GEN-LAST:event_ButtonCasierActionPerformed
 
-    private void CadeauComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CadeauComboBoxActionPerformed
+    private void ButtonAjoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonAjoutActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_CadeauComboBoxActionPerformed
+    }//GEN-LAST:event_ButtonAjoutActionPerformed
+
+    private void ButtonQuitterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonQuitterActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ButtonQuitterActionPerformed
+
+    private void ButtonBouteilleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonBouteilleActionPerformed
+        typeArt = "Bouteille";
+    }//GEN-LAST:event_ButtonBouteilleActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton ButtonAjout1;
-    private javax.swing.JButton ButtonAjout2;
+    private javax.swing.JButton ButtonAjout;
     private javax.swing.JRadioButton ButtonBouteille;
     private javax.swing.JRadioButton ButtonCasier;
     private javax.swing.JRadioButton ButtonFut;
+    private javax.swing.JButton ButtonQuitter;
     private javax.swing.JComboBox CadeauComboBox;
     private javax.swing.JSpinner PrixConsSpinner;
     private javax.swing.JSpinner PrixMarchSpinner;
@@ -251,6 +283,8 @@ public class InsertArticle extends JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
