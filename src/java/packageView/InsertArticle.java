@@ -270,20 +270,20 @@ public class InsertArticle extends JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ButtonAjoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonAjoutActionPerformed
-       /* if (" ".equals(typeArt))
+        if (" ".equals(typeArt))
             JOptionPane.showMessageDialog(null, "Aucun type sélectionné.");
         else {
-            if ()
+            if (this.JTextFieldLibelle.equals(null))
                 JOptionPane.showMessageDialog(null, "Veuillez entrer un libellé.");
             else {
-                if() 
+                if(this.JTextAreaDesc.equals(null)) 
                     JOptionPane.showMessageDialog(null, "Veuillez entrer une description.");
                 else {
                     if(Integer.parseInt(this.SpinnerQuantite.getValue().toString())==0)
                         JOptionPane.showMessageDialog(null, "Veuillez indiquer une quantité.");
                 }
             }
-      } */ 
+      }  
     }//GEN-LAST:event_ButtonAjoutActionPerformed
 
     private void ButtonQuitterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonQuitterActionPerformed
