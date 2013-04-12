@@ -271,19 +271,42 @@ public class InsertArticle extends JPanel {
 
     private void ButtonAjoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonAjoutActionPerformed
         if (" ".equals(typeArt))
-            JOptionPane.showMessageDialog(null, "Aucun type sélectionné.");
+            JOptionPane.showMessageDialog(null, "Aucun type sélectionné.");      
         else {
-            if (this.JTextFieldLibelle.equals(null))
+            if (this.JTextFieldLibelle.getText().equals(""))
                 JOptionPane.showMessageDialog(null, "Veuillez entrer un libellé.");
             else {
-                if(this.JTextAreaDesc.equals(null)) 
+                if(this.JTextAreaDesc.getText().equals("")) 
                     JOptionPane.showMessageDialog(null, "Veuillez entrer une description.");
                 else {
                     if(Integer.parseInt(this.SpinnerQuantite.getValue().toString())==0)
                         JOptionPane.showMessageDialog(null, "Veuillez indiquer une quantité.");
-                }
-            }
-      }  
+                    else {
+                        if(Double.parseDouble(this.PrixMarchSpinner.getValue().toString())==0)
+                            JOptionPane.showMessageDialog(null, "Veuillez indiquer le prix de la marchandise.");
+                        else {
+                            double PrixC=0;
+                            if (!(Double.parseDouble(this.PrixConsSpinner.getValue().toString())==0))
+                                PrixC = Double.parseDouble(this.PrixConsSpinner.getValue().toString());
+                                GregorianCalendar DateP;
+                                //if(DateP)
+                                    
+                                
+                                    //if(Cadeau)
+                                    
+                                    
+                                        
+                                        
+                                        //try{
+                                            
+                                        }
+                                    }
+                                    
+                                }
+   
+                        }
+                    }
+                
     }//GEN-LAST:event_ButtonAjoutActionPerformed
 
     private void ButtonQuitterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonQuitterActionPerformed
