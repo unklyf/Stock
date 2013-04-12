@@ -2,6 +2,7 @@ package packageController;
 import java.util.ArrayList;
 import packageBusiness.*;
 import packageException.*;
+import packageModel.Article;
 import packageModel.Reappro;
 
 public class ApplicationController {
@@ -9,6 +10,7 @@ public class ApplicationController {
     
     private LoginManager lM= new LoginManager();
     private ReapproManager rM= new ReapproManager();
+    private InsertArtManager iAM = new InsertArtManager();
     
     
     //IDENTIFICATION
@@ -36,6 +38,12 @@ public class ApplicationController {
     public  void  addReappro (Reappro reappro)  throws  BdErreur,NoIdentification,Exception{
         rM.addReappro(reappro);
     }
+    
+    // AJOUT ARTICLE
+    public void  addArticle (Article nouvArt) throws BdErreur,NoIdentification{
+        iAM.addArticle(nouvArt);
+    }
+            
     
     
     

@@ -8,6 +8,9 @@ import java.awt.event.ItemEvent;
 import java.util.*;
 import javax.swing.*;
 import packageController.ApplicationController;
+import packageException.BdErreur;
+import packageException.NoIdentification;
+import packageModel.Article;
 
 /**
  *
@@ -15,17 +18,16 @@ import packageController.ApplicationController;
  */
 public class InsertArticle extends JPanel {
     
-
-    private ArrayList <String> tabArt;
     private String typeArt;
     private GregorianCalendar date;
+    private ApplicationController app;
+    private Article nouvArt;
     
             
             
             
     public InsertArticle() {
         initComponents();
-        tabArt= new ArrayList <String>();
         typeArt = "";
     }
 
@@ -270,43 +272,61 @@ public class InsertArticle extends JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ButtonAjoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonAjoutActionPerformed
-        if (" ".equals(typeArt))
+        if (typeArt.equals("")) {
             JOptionPane.showMessageDialog(null, "Aucun type sélectionné.");      
+        }      
         else {
-            if (this.JTextFieldLibelle.getText().equals(""))
+            if (this.JTextFieldLibelle.getText().equals("")) {
                 JOptionPane.showMessageDialog(null, "Veuillez entrer un libellé.");
+            }
             else {
-                if(this.JTextAreaDesc.getText().equals("")) 
+                if(this.JTextAreaDesc.getText().equals("")) { 
                     JOptionPane.showMessageDialog(null, "Veuillez entrer une description.");
+                }
                 else {
-                    if(Integer.parseInt(this.SpinnerQuantite.getValue().toString())==0)
+                    if(Integer.parseInt(this.SpinnerQuantite.getValue().toString())==0) {
                         JOptionPane.showMessageDialog(null, "Veuillez indiquer une quantité.");
+                    }
                     else {
-                        if(Double.parseDouble(this.PrixMarchSpinner.getValue().toString())==0)
+                        if(Double.parseDouble(this.PrixMarchSpinner.getValue().toString())==0) {
                             JOptionPane.showMessageDialog(null, "Veuillez indiquer le prix de la marchandise.");
+                        }
                         else {
                             double PrixC=0;
-                            if (!(Double.parseDouble(this.PrixConsSpinner.getValue().toString())==0))
+                            if (!(Double.parseDouble(this.PrixConsSpinner.getValue().toString())==0)) {
                                 PrixC = Double.parseDouble(this.PrixConsSpinner.getValue().toString());
-                                GregorianCalendar DateP;
-                                //if(DateP)
+                            }
+                            
+                            GregorianCalendar DateP;
+                            //if(DateP){
+                            // }
                                     
                                 
-                                    //if(Cadeau)
+                            //if(Cadeau){                                    
                                     
-                                    
-                                        
-                                        
-                                        //try{
-                                            
-                                        }
-                                    }
-                                    
-                                }
+                           //  }        
+                               app = new ApplicationController ();         
+                            try{
+                                nouvArt = new Article (this.JTextFieldLibelle.getText(),typeArt,this.JTextAreaDesc.getText(),this.SpinnerQuantite.getValue().toString(),DateP,
+                                        this.PrixMarchSpinner.getValue().toString(),this.PrixConsSpinner.getValue().toString(),Cadeau); 
+                                app.addArticle(nouvArt);
+                                JOptionPane.showMessageDialog(null,"Encodage réalisé avec succès !");
+                            }   
+                            
+                            catch(BdErreur e){
+                                   JOptionPane.showMessageDialog(null, e, "Erreur BD", JOptionPane.ERROR_MESSAGE);
+                            }
+
+                            catch(NoIdentification e){
+                                   JOptionPane.showMessageDialog(null, e, "Erreur identification", JOptionPane.ERROR_MESSAGE);
+                            }
+                            
+                            }           
+                       }
    
-                        }
-                    }
-                
+                   }
+              }
+        }     
     }//GEN-LAST:event_ButtonAjoutActionPerformed
 
     private void ButtonQuitterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonQuitterActionPerformed
