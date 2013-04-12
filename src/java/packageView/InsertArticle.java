@@ -51,7 +51,7 @@ public class InsertArticle extends JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         jLabel6 = new javax.swing.JLabel();
-        jSpinner1 = new javax.swing.JSpinner();
+        SpinnerQuantite = new javax.swing.JSpinner();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         PrixMarchSpinner = new javax.swing.JSpinner();
@@ -74,22 +74,27 @@ public class InsertArticle extends JPanel {
 
         buttonGroup1.add(ButtonBouteille);
         ButtonBouteille.setText("Bouteille");
-        ButtonBouteille.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ButtonBouteilleActionPerformed(evt);
+        ButtonBouteille.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                ButtonBouteilleItemStateChanged(evt);
             }
         });
 
         buttonGroup1.add(ButtonCasier);
         ButtonCasier.setText("Casier");
-        ButtonCasier.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ButtonCasierActionPerformed(evt);
+        ButtonCasier.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                ButtonCasierItemStateChanged(evt);
             }
         });
 
         buttonGroup1.add(ButtonFut);
         ButtonFut.setText("Fût");
+        ButtonFut.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                ButtonFutItemStateChanged(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel3.setText("Libellé :");
@@ -109,7 +114,7 @@ public class InsertArticle extends JPanel {
         jLabel6.setText("Quantité :");
 
         SpinnerModel modelq = new SpinnerNumberModel(0,0,1000,1);
-        jSpinner1.setModel(modelq);
+        SpinnerQuantite.setModel(modelq);
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel7.setText("Date de peremption : ");
@@ -189,7 +194,7 @@ public class InsertArticle extends JPanel {
                                     .addComponent(jScrollPane1)
                                     .addComponent(PrixConsSpinner)
                                     .addComponent(PrixMarchSpinner)
-                                    .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(SpinnerQuantite, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(CadeauComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -227,7 +232,7 @@ public class InsertArticle extends JPanel {
                 .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(SpinnerQuantite, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
@@ -254,21 +259,38 @@ public class InsertArticle extends JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void ButtonCasierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonCasierActionPerformed
-        typeArt = "Casier";
-    }//GEN-LAST:event_ButtonCasierActionPerformed
-
     private void ButtonAjoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonAjoutActionPerformed
-        // TODO add your handling code here:
+       /* if (" ".equals(typeArt))
+            JOptionPane.showMessageDialog(null, "Aucun type sélectionné.");
+        else {
+            if ()
+                JOptionPane.showMessageDialog(null, "Veuillez entrer un libellé.");
+            else {
+                if() 
+                    JOptionPane.showMessageDialog(null, "Veuillez entrer une description.");
+                else {
+                    if(Integer.parseInt(this.SpinnerQuantite.getValue().toString())==0)
+                        JOptionPane.showMessageDialog(null, "Veuillez indiquer une quantité.");
+                }
+            }
+      } */ 
     }//GEN-LAST:event_ButtonAjoutActionPerformed
 
     private void ButtonQuitterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonQuitterActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_ButtonQuitterActionPerformed
 
-    private void ButtonBouteilleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonBouteilleActionPerformed
+    private void ButtonBouteilleItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_ButtonBouteilleItemStateChanged
         typeArt = "Bouteille";
-    }//GEN-LAST:event_ButtonBouteilleActionPerformed
+    }//GEN-LAST:event_ButtonBouteilleItemStateChanged
+
+    private void ButtonCasierItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_ButtonCasierItemStateChanged
+       typeArt = "Casier";
+    }//GEN-LAST:event_ButtonCasierItemStateChanged
+
+    private void ButtonFutItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_ButtonFutItemStateChanged
+       typeArt ="Fût";
+    }//GEN-LAST:event_ButtonFutItemStateChanged
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ButtonAjout;
@@ -279,6 +301,7 @@ public class InsertArticle extends JPanel {
     private javax.swing.JComboBox CadeauComboBox;
     private javax.swing.JSpinner PrixConsSpinner;
     private javax.swing.JSpinner PrixMarchSpinner;
+    private javax.swing.JSpinner SpinnerQuantite;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -294,7 +317,6 @@ public class InsertArticle extends JPanel {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JSpinner jSpinner1;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables

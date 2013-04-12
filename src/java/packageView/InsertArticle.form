@@ -54,7 +54,7 @@
                                   <Component id="jScrollPane1" max="32767" attributes="0"/>
                                   <Component id="PrixConsSpinner" alignment="0" max="32767" attributes="0"/>
                                   <Component id="PrixMarchSpinner" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="jSpinner1" alignment="0" min="-2" pref="47" max="-2" attributes="0"/>
+                                  <Component id="SpinnerQuantite" alignment="0" min="-2" pref="47" max="-2" attributes="0"/>
                                   <Component id="CadeauComboBox" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
@@ -105,7 +105,7 @@
               <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jSpinner1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="SpinnerQuantite" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -167,7 +167,7 @@
         <Property name="text" type="java.lang.String" value="Bouteille"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ButtonBouteilleActionPerformed"/>
+        <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="ButtonBouteilleItemStateChanged"/>
       </Events>
     </Component>
     <Component class="javax.swing.JRadioButton" name="ButtonCasier">
@@ -178,7 +178,7 @@
         <Property name="text" type="java.lang.String" value="Casier"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ButtonCasierActionPerformed"/>
+        <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="ButtonCasierItemStateChanged"/>
       </Events>
     </Component>
     <Component class="javax.swing.JRadioButton" name="ButtonFut">
@@ -188,6 +188,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="F&#xfb;t"/>
       </Properties>
+      <Events>
+        <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="ButtonFutItemStateChanged"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>
@@ -241,9 +244,9 @@
         <Property name="text" type="java.lang.String" value="Quantit&#xe9; :"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JSpinner" name="jSpinner1">
+    <Component class="javax.swing.JSpinner" name="SpinnerQuantite">
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="SpinnerModel modelq = new SpinnerNumberModel(0,0,1000,1);&#xa;jSpinner1.setModel(modelq);"/>
+        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="SpinnerModel modelq = new SpinnerNumberModel(0,0,1000,1);&#xa;SpinnerQuantite.setModel(modelq);"/>
       </AuxValues>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel7">
