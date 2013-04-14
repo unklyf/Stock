@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.3" maxVersion="1.8" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
+<Form version="1.5" maxVersion="1.8" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
   <NonVisualComponents>
     <Component class="javax.swing.ButtonGroup" name="buttonGroup1">
     </Component>
@@ -103,7 +103,7 @@
                   <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                   <Component id="jScrollPane1" min="-2" pref="43" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="SpinnerQuantite" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -138,7 +138,7 @@
                   <Component id="ButtonAjout" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
                   <Component id="ButtonQuitter" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="43" max="32767" attributes="0"/>
+              <EmptySpace pref="37" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -352,8 +352,13 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JSpinner" name="SpinnerDate">
+      <Properties>
+        <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
+          <SpinnerModel initial="1365951508485" stepSize="5" type="date"/>
+        </Property>
+      </Properties>
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="SpinnerDateModel dateModel =new SpinnerDateModel();&#xa;SpinnerDate.setModel(dateModel);&#xa;SpinnerDate.setEditor(new JSpinner.DateEditor(SpinnerDate, &quot;dd-MM-yyyy&quot;));&#xa;date= new GregorianCalendar();&#xa;date.setTime(dateModel.getDate());"/>
+        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="SpinnerDateModel dateModel =new SpinnerDateModel();&#xa;SpinnerDate.setModel(dateModel);&#xa;SpinnerDate.setEditor(new JSpinner.DateEditor(SpinnerDate, &quot;dd-MM-yyyy&quot;));"/>
       </AuxValues>
     </Component>
   </SubComponents>

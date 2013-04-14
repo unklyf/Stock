@@ -19,7 +19,6 @@ import packageModel.Article;
 public class InsertArticle extends JPanel {
     
     private String typeArt;
-    private GregorianCalendar date;
     private ApplicationController app;
     private Article nouvArt;
     
@@ -165,8 +164,7 @@ public class InsertArticle extends JPanel {
         SpinnerDateModel dateModel =new SpinnerDateModel();
         SpinnerDate.setModel(dateModel);
         SpinnerDate.setEditor(new JSpinner.DateEditor(SpinnerDate, "dd-MM-yyyy"));
-        date= new GregorianCalendar();
-        date.setTime(dateModel.getDate());
+        SpinnerDate.setModel(new javax.swing.SpinnerDateModel(new java.util.Date(1365951508485L), null, null, java.util.Calendar.DAY_OF_MONTH));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -239,7 +237,7 @@ public class InsertArticle extends JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31)
+                .addGap(37, 37, 37)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(SpinnerQuantite, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -267,7 +265,7 @@ public class InsertArticle extends JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ButtonAjout, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(ButtonQuitter, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -292,23 +290,32 @@ public class InsertArticle extends JPanel {
                             JOptionPane.showMessageDialog(null, "Veuillez indiquer le prix de la marchandise.");
                         }
                         else {
-                            double PrixC=0;
+                            double prixCons=0;
                             if (!(Double.parseDouble(this.PrixConsSpinner.getValue().toString())==0)) {
-                                PrixC = Double.parseDouble(this.PrixConsSpinner.getValue().toString());
+                                prixCons = Double.parseDouble(this.PrixConsSpinner.getValue().toString());
                             }
                             
-                            GregorianCalendar DateP;
-                            //if(DateP){
-                            // }
-                                    
-                                
-                            //if(Cadeau){                                    
-                                    
-                           //  }        
-                               app = new ApplicationController ();         
+                            GregorianCalendar dateP = new GregorianCalendar();
+                            Date datePeremp = ((SpinnerDateModel)SpinnerDate.getModel()).getDate();
+                            if(!(datePeremp.toString().equals(""))){
+                                dateP.set(datePeremp.getDay(),datePeremp.getMonth(),datePeremp.getYear());
+                             }
+                     
+                            String cadeau = (String)CadeauComboBox.getSelectedItem();
+                            if (cadeau.charAt(0) == '-'){
+                                cadeau = null; 
+                            }
+                   
+                            app = new ApplicationController ();         
                             try{
-                                nouvArt = new Article (this.JTextFieldLibelle.getText(),typeArt,this.JTextAreaDesc.getText(),this.SpinnerQuantite.getValue().toString(),DateP,
-                                        this.PrixMarchSpinner.getValue().toString(),this.PrixConsSpinner.getValue().toString(),Cadeau); 
+                                nouvArt = new Article (this.JTextFieldLibelle.getText(),
+                                                       typeArt,
+                                                       this.JTextAreaDesc.getText(),
+                                                       cadeau,
+                                                       Double.parseDouble(this.SpinnerQuantite.getValue().toString()),
+                                                       Double.parseDouble(this.PrixMarchSpinner.getValue().toString()),
+                                                       prixCons,
+                                                       dateP); 
                                 app.addArticle(nouvArt);
                                 JOptionPane.showMessageDialog(null,"Encodage réalisé avec succès !");
                             }   
