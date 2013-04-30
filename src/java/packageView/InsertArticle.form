@@ -21,13 +21,19 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
+              <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
+              <Component id="jLabel1" min="-2" pref="380" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace pref="107" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
-                      <Component id="jLabel1" min="-2" pref="380" max="-2" attributes="0"/>
+                      <Component id="jLabel14" min="-2" pref="174" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="ComboFourn" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="75" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="jLabel10" max="32767" attributes="0"/>
                           <Component id="jLabel9" max="32767" attributes="0"/>
@@ -36,13 +42,13 @@
                           <Component id="jLabel6" max="32767" attributes="0"/>
                           <Component id="jLabel5" max="32767" attributes="0"/>
                           <Component id="jLabel3" max="32767" attributes="0"/>
-                          <Component id="jLabel2" max="32767" attributes="0"/>
+                          <Component id="jLabel2" min="-2" pref="174" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Group type="102" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
                                       <Component id="ButtonBouteille" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Component id="ButtonCasier" min="-2" max="-2" attributes="0"/>
@@ -56,7 +62,7 @@
                                   <Component id="PrixMarchSpinner" alignment="0" max="32767" attributes="0"/>
                                   <Component id="SpinnerQuantite" alignment="0" min="-2" pref="47" max="-2" attributes="0"/>
                                   <Component id="CadeauComboBox" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="SpinnerDate" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="SpinnerDate" alignment="0" min="-2" pref="226" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
@@ -65,7 +71,7 @@
                                   <Component id="jLabel13" min="-2" pref="78" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <Group type="102" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
                               <Component id="ButtonAjout" min="-2" pref="185" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="ButtonQuitter" min="-2" max="-2" attributes="0"/>
@@ -73,7 +79,7 @@
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace pref="121" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="89" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -83,9 +89,14 @@
               <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jLabel14" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="ComboFourn" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
                   <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
+                  <Group type="103" alignment="1" groupAlignment="3" attributes="0">
                       <Component id="ButtonBouteille" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="ButtonCasier" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="ButtonFut" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -138,7 +149,7 @@
                   <Component id="ButtonAjout" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
                   <Component id="ButtonQuitter" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="37" max="32767" attributes="0"/>
+              <EmptySpace pref="35" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -360,6 +371,19 @@
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="SpinnerDateModel dateModel =new SpinnerDateModel();&#xa;SpinnerDate.setModel(dateModel);&#xa;SpinnerDate.setEditor(new JSpinner.DateEditor(SpinnerDate, &quot;dd-MM-yyyy&quot;));"/>
       </AuxValues>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel14">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="18" style="0"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Fournisseur :"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="ComboFourn">
+      <Events>
+        <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="ComboFournItemStateChanged"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

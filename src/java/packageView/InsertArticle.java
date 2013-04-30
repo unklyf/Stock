@@ -4,6 +4,7 @@
  */
 package packageView;
 
+import java.awt.Color;
 import java.awt.event.ItemEvent;
 import java.util.*;
 import javax.swing.*;
@@ -18,6 +19,7 @@ import packageModel.Article;
  */
 public class InsertArticle extends JPanel {
     
+    private ArrayList <String> tabFourn;
     private String typeArt;
     private ApplicationController app;
     private Article nouvArt;
@@ -28,6 +30,7 @@ public class InsertArticle extends JPanel {
     public InsertArticle() {
         initComponents();
         typeArt = "";
+        tabFourn= new ArrayList <String>();
     }
 
     /**
@@ -66,6 +69,8 @@ public class InsertArticle extends JPanel {
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         SpinnerDate = new javax.swing.JSpinner();
+        jLabel14 = new javax.swing.JLabel();
+        ComboFourn = new javax.swing.JComboBox();
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(153, 0, 51));
@@ -166,17 +171,31 @@ public class InsertArticle extends JPanel {
         SpinnerDate.setEditor(new JSpinner.DateEditor(SpinnerDate, "dd-MM-yyyy"));
         SpinnerDate.setModel(new javax.swing.SpinnerDateModel(new java.util.Date(1365951508485L), null, null, java.util.Calendar.DAY_OF_MONTH));
 
+        jLabel14.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel14.setText("Fournisseur :");
+
+        ComboFourn.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                ComboFournItemStateChanged(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(41, 41, 41)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(107, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(41, 41, 41)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(ComboFourn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(75, 75, 75)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -185,7 +204,7 @@ public class InsertArticle extends JPanel {
                             .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -203,7 +222,7 @@ public class InsertArticle extends JPanel {
                                     .addComponent(PrixMarchSpinner)
                                     .addComponent(SpinnerQuantite, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(CadeauComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(SpinnerDate))
+                                    .addComponent(SpinnerDate, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -213,7 +232,7 @@ public class InsertArticle extends JPanel {
                                 .addComponent(ButtonAjout, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(ButtonQuitter)))))
-                .addContainerGap(121, Short.MAX_VALUE))
+                .addGap(89, 89, 89))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -221,6 +240,10 @@ public class InsertArticle extends JPanel {
                 .addGap(25, 25, 25)
                 .addComponent(jLabel1)
                 .addGap(29, 29, 29)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel14)
+                    .addComponent(ComboFourn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel2)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -265,75 +288,81 @@ public class InsertArticle extends JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ButtonAjout, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(ButtonQuitter, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(37, Short.MAX_VALUE))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void ButtonAjoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonAjoutActionPerformed
-        if (typeArt.equals("")) {
-            JOptionPane.showMessageDialog(null, "Aucun type sélectionné.");      
-        }      
-        else {
-            if (this.JTextFieldLibelle.getText().equals("")) {
-                JOptionPane.showMessageDialog(null, "Veuillez entrer un libellé.");
-            }
+        String Fourn = (String)ComboFourn.getSelectedItem();
+        if (Fourn.charAt(0) == '-'){
+            JOptionPane.showMessageDialog(null, "Aucun fournisseur sélectionné.");
+        }
+        else{
+            if (typeArt.equals("")) {
+                JOptionPane.showMessageDialog(null, "Aucun type sélectionné.");      
+            }      
             else {
-                if(this.JTextAreaDesc.getText().equals("")) { 
-                    JOptionPane.showMessageDialog(null, "Veuillez entrer une description.");
+                if (this.JTextFieldLibelle.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "Veuillez entrer un libellé.");
                 }
                 else {
-                    if(Integer.parseInt(this.SpinnerQuantite.getValue().toString())==0) {
-                        JOptionPane.showMessageDialog(null, "Veuillez indiquer une quantité.");
+                    if(this.JTextAreaDesc.getText().equals("")) { 
+                    JOptionPane.showMessageDialog(null, "Veuillez entrer une description.");
                     }
                     else {
-                        if(Double.parseDouble(this.PrixMarchSpinner.getValue().toString())==0) {
-                            JOptionPane.showMessageDialog(null, "Veuillez indiquer le prix de la marchandise.");
+                        if(Integer.parseInt(this.SpinnerQuantite.getValue().toString())==0) {
+                        JOptionPane.showMessageDialog(null, "Veuillez indiquer une quantité.");
                         }
                         else {
-                            double prixCons=0;
-                            if (!(Double.parseDouble(this.PrixConsSpinner.getValue().toString())==0)) {
-                                prixCons = Double.parseDouble(this.PrixConsSpinner.getValue().toString());
+                            if(Double.parseDouble(this.PrixMarchSpinner.getValue().toString())==0) {
+                            JOptionPane.showMessageDialog(null, "Veuillez indiquer le prix de la marchandise.");
                             }
+                            else {
+                                double prixCons=0;
+                                if (!(Double.parseDouble(this.PrixConsSpinner.getValue().toString())==0)) {
+                                    prixCons = Double.parseDouble(this.PrixConsSpinner.getValue().toString());
+                                }
                             
-                            GregorianCalendar dateP = new GregorianCalendar();
-                            Date datePeremp = ((SpinnerDateModel)SpinnerDate.getModel()).getDate();
-                            if(!(datePeremp.toString().equals(""))){
-                                dateP.set(datePeremp.getDay(),datePeremp.getMonth(),datePeremp.getYear());
-                             }
+                                GregorianCalendar dateP = new GregorianCalendar();
+                                Date datePeremp = ((SpinnerDateModel)SpinnerDate.getModel()).getDate();
+                                if(!(datePeremp.toString().equals(""))){
+                                    dateP.set(datePeremp.getDay(),datePeremp.getMonth(),datePeremp.getYear());
+                                 }
                      
-                            String cadeau = (String)CadeauComboBox.getSelectedItem();
-                            if (cadeau.charAt(0) == '-'){
-                                cadeau = null; 
-                            }
+                                String cadeau = (String)CadeauComboBox.getSelectedItem();
+                                if (cadeau.charAt(0) == '-'){
+                                     cadeau = null; 
+                                }
                    
-                            app = new ApplicationController ();         
-                            try{
-                                nouvArt = new Article (this.JTextFieldLibelle.getText(),
-                                                       typeArt,
-                                                       this.JTextAreaDesc.getText(),
-                                                       cadeau,
-                                                       Double.parseDouble(this.SpinnerQuantite.getValue().toString()),
-                                                       Double.parseDouble(this.PrixMarchSpinner.getValue().toString()),
-                                                       prixCons,
-                                                       dateP); 
-                                app.addArticle(nouvArt);
-                                JOptionPane.showMessageDialog(null,"Encodage réalisé avec succès !");
-                            }   
+                                app = new ApplicationController ();         
+                                try{
+                                    nouvArt = new Article (this.JTextFieldLibelle.getText(),
+                                                           typeArt,
+                                                           this.JTextAreaDesc.getText(),
+                                                           cadeau,
+                                                           Double.parseDouble(this.SpinnerQuantite.getValue().toString()),
+                                                           Double.parseDouble(this.PrixMarchSpinner.getValue().toString()),
+                                                           prixCons,
+                                                           dateP); 
+                                    app.addArticle(nouvArt);
+                                    JOptionPane.showMessageDialog(null,"Encodage réalisé avec succès !");
+                                }   
                             
-                            catch(BdErreur e){
-                                   JOptionPane.showMessageDialog(null, e, "Erreur BD", JOptionPane.ERROR_MESSAGE);
-                            }
+                                catch(BdErreur e){
+                                     JOptionPane.showMessageDialog(null, e, "Erreur BD", JOptionPane.ERROR_MESSAGE);
+                                }
 
-                            catch(NoIdentification e){
-                                   JOptionPane.showMessageDialog(null, e, "Erreur identification", JOptionPane.ERROR_MESSAGE);
-                            }
+                                catch(NoIdentification e){
+                                     JOptionPane.showMessageDialog(null, e, "Erreur identification", JOptionPane.ERROR_MESSAGE);
+                                }
                             
-                            }           
-                       }
+                                }           
+                        }
    
-                   }
-              }
-        }     
+                    }
+                }
+            }
+        }
     }//GEN-LAST:event_ButtonAjoutActionPerformed
 
     private void ButtonQuitterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonQuitterActionPerformed
@@ -358,6 +387,28 @@ public class InsertArticle extends JPanel {
        }
     }//GEN-LAST:event_ButtonFutItemStateChanged
 
+    private void ComboFournItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_ComboFournItemStateChanged
+        if(evt.getStateChange()== ItemEvent.SELECTED){
+         try {
+                tabFourn= new ApplicationController().getFournArticle();
+                this.ComboFourn.removeAllItems();
+                for (String lib : tabFourn){
+                    this.ComboFourn.addItem(lib);
+                }
+                this.ComboFourn.setBackground(Color.blue);
+                this.ComboFourn.repaint();
+                this.ComboFourn.validate();
+             
+         }   
+         catch(BdErreur e){
+                JOptionPane.showMessageDialog(null, e, "Erreur BD", JOptionPane.ERROR_MESSAGE);
+            }
+         catch(NoIdentification e){
+                JOptionPane.showMessageDialog(null, e, "Erreur identification", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }//GEN-LAST:event_ComboFournItemStateChanged
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ButtonAjout;
     private javax.swing.JRadioButton ButtonBouteille;
@@ -365,6 +416,7 @@ public class InsertArticle extends JPanel {
     private javax.swing.JRadioButton ButtonFut;
     private javax.swing.JButton ButtonQuitter;
     private javax.swing.JComboBox CadeauComboBox;
+    private javax.swing.JComboBox ComboFourn;
     private javax.swing.JTextArea JTextAreaDesc;
     private javax.swing.JTextField JTextFieldLibelle;
     private javax.swing.JSpinner PrixConsSpinner;
@@ -377,6 +429,7 @@ public class InsertArticle extends JPanel {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

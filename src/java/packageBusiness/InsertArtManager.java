@@ -4,6 +4,7 @@
  */
 package packageBusiness;
 
+import java.util.ArrayList;
 import packageDataAccess.InsertArtDBAccess;
 import packageException.BdErreur;
 import packageException.NoIdentification;
@@ -16,5 +17,9 @@ public class InsertArtManager {
     
     public void  addArticle (Article nouvArt) throws BdErreur,NoIdentification{
         iAMDB.addArticle(nouvArt);
+    }
+    
+    public ArrayList <String> getFournArticle() throws  BdErreur, NoIdentification{
+        return iAMDB.getFournArticle();
     }
 }

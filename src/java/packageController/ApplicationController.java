@@ -43,6 +43,12 @@ public class ApplicationController {
     public void  addArticle (Article nouvArt) throws BdErreur,NoIdentification{
         iAM.addArticle(nouvArt);
     }
+    
+    public ArrayList <String> getFournArticle()throws  BdErreur, NoIdentification{
+        return iAM.getFournArticle();
+    }
+
+    
             
     
     
