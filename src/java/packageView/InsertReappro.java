@@ -2,7 +2,9 @@ package packageView;
 
 import java.awt.Color;
 import java.util.ArrayList;
+import java.util.GregorianCalendar;
 import javax.swing.JOptionPane;
+import javax.swing.JSpinner;
 import packageController.ApplicationController;
 import packageException.BdErreur;
 import packageException.NoIdentification;
@@ -11,7 +13,8 @@ import packageException.NoIdentification;
 public class InsertReappro extends javax.swing.JPanel {
 
     private ArrayList <String> tabLibF;
-    
+    private GregorianCalendar dateReap;
+        
     public InsertReappro() {
         initComponents();
         tabLibF= new ArrayList <String>();
