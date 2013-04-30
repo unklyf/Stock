@@ -39,6 +39,11 @@ public class ApplicationController {
         rM.addReappro(reappro);
     }
     
+    public ArrayList <String> getNomFourn()throws  BdErreur, NoIdentification{
+        return rM.getLibFourn();
+    }
+
+    
     // AJOUT ARTICLE
     public void  addArticle (Article nouvArt) throws BdErreur,NoIdentification{
         iAM.addArticle(nouvArt);

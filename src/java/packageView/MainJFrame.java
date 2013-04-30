@@ -8,7 +8,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private AccueilPanel aP;
     private InsertArticle insArt;
-    private ReapproJPanel reapAdd;
+    private InsertReappro reapAdd;
             
     public MainJFrame() {
         initComponents();
@@ -33,7 +33,6 @@ public class MainJFrame extends javax.swing.JFrame {
         itemAjoutReappro = new javax.swing.JMenuItem();
         menuModifier = new javax.swing.JMenu();
         itemModifAjout = new javax.swing.JMenuItem();
-        itemModifReappro = new javax.swing.JMenuItem();
         menuSupprimer = new javax.swing.JMenu();
         itemSuppArticle = new javax.swing.JMenuItem();
         itemSuppReappro = new javax.swing.JMenuItem();
@@ -92,9 +91,6 @@ public class MainJFrame extends javax.swing.JFrame {
 
         itemModifAjout.setText("Article");
         menuModifier.add(itemModifAjout);
-
-        itemModifReappro.setText("Réapprovisionnement");
-        menuModifier.add(itemModifReappro);
 
         menuBar.add(menuModifier);
 
@@ -162,7 +158,7 @@ public class MainJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_itemArticleAjoutActionPerformed
 
     private void itemAjoutReapproActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemAjoutReapproActionPerformed
-        reapAdd=new ReapproJPanel();
+        reapAdd=new InsertReappro();
         reapAdd.setBounds(this.getBounds());
         this.getContentPane().removeAll();
         this.getContentPane().add(reapAdd);
@@ -225,7 +221,6 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JMenuItem itemListReappro;
     private javax.swing.JMenuItem itemMenuAccueil;
     private javax.swing.JMenuItem itemModifAjout;
-    private javax.swing.JMenuItem itemModifReappro;
     private javax.swing.JMenuItem itemQuitter;
     private javax.swing.JMenuItem itemRechCat;
     private javax.swing.JMenuItem itemRechFourn;

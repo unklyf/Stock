@@ -13,10 +13,35 @@ import packageModel.Reappro;
 
 public class ReapproDBAccess {
      
-    private String libelle, libelleD;
-    private ArrayList <String> listeLibA;
+    private String libelle, libelleD, nomF;
+    private ArrayList <String> listeLibA,listeNomF;
     private Integer IDArt;
     
+    
+    //LIBELLE DES FOURNISSEUR    
+     public ArrayList <String> getNomFourn() throws  BdErreur, NoIdentification{   
+         
+         listeNomF= new ArrayList <String> ();
+         
+         try {  
+                 String req = "select Nom from Fournisseur";
+                 PreparedStatement prepStat = SingletonConnexion.getInstance().prepareStatement(req);
+                 ResultSet donnees = prepStat.executeQuery();
+   
+                 while (donnees.next( )){
+                     nomF = donnees.getString("Nom");
+                     listeNomF.add(nomF);
+                 }    
+         }
+            
+         catch (SQLException e) {  
+            throw new BdErreur(e.getMessage());   
+        }                   
+        catch (NoIdentification e) {
+            throw new NoIdentification();
+        }
+        return listeNomF;
+    } 
     
     //REMPLIR LA JComboBox EN FONCTION DU TYPE ARTICLE CHOISIT
     public ArrayList <String> getLibArticle(String typeA) throws  BdErreur, NoIdentification{   

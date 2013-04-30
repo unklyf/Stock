@@ -33,6 +33,10 @@ public class ReapproManager {
         rDBA.addReappro(reappro);
     }
     
+    public ArrayList <String> getLibFourn()throws  BdErreur, NoIdentification{
+        return rDBA.getNomFourn();
+    }
+    
     
     
 }
