@@ -3,7 +3,6 @@ package packageView;
 import java.awt.Rectangle;
 
 
-
 public class MainJFrame extends javax.swing.JFrame {
 
     private AccueilPanel aP;
@@ -20,7 +19,7 @@ public class MainJFrame extends javax.swing.JFrame {
     }
 
    
-    @SuppressWarnings("unchecked")
+
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -49,6 +48,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
         menuApplication.setText("Application |");
 
+        itemMenuAccueil.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_SPACE, java.awt.event.InputEvent.CTRL_MASK));
         itemMenuAccueil.setText("Accueil");
         itemMenuAccueil.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -57,6 +57,7 @@ public class MainJFrame extends javax.swing.JFrame {
         });
         menuApplication.add(itemMenuAccueil);
 
+        itemQuitter.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, java.awt.event.InputEvent.CTRL_MASK));
         itemQuitter.setText("Quitter");
         itemQuitter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -67,8 +68,9 @@ public class MainJFrame extends javax.swing.JFrame {
 
         menuBar.add(menuApplication);
 
-        menuAjout.setText("Nouvel Ajout |");
+        menuAjout.setText("Nouveau |");
 
+        itemArticleAjout.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.CTRL_MASK));
         itemArticleAjout.setText("Article");
         itemArticleAjout.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -77,7 +79,8 @@ public class MainJFrame extends javax.swing.JFrame {
         });
         menuAjout.add(itemArticleAjout);
 
-        itemAjoutReappro.setText("Réapprovisionnement");
+        itemAjoutReappro.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.CTRL_MASK));
+        itemAjoutReappro.setText("Commande fournisseur");
         itemAjoutReappro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 itemAjoutReapproActionPerformed(evt);
@@ -89,6 +92,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
         menuModifier.setText("Modifier |");
 
+        itemModifAjout.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_M, java.awt.event.InputEvent.CTRL_MASK));
         itemModifAjout.setText("Article");
         menuModifier.add(itemModifAjout);
 
@@ -96,20 +100,24 @@ public class MainJFrame extends javax.swing.JFrame {
 
         menuSupprimer.setText("Supprimer |");
 
+        itemSuppArticle.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Z, java.awt.event.InputEvent.CTRL_MASK));
         itemSuppArticle.setText("Article");
         menuSupprimer.add(itemSuppArticle);
 
-        itemSuppReappro.setText("Réapprovisionnement");
+        itemSuppReappro.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_X, java.awt.event.InputEvent.CTRL_MASK));
+        itemSuppReappro.setText("Commande fournisseur");
         menuSupprimer.add(itemSuppReappro);
 
         menuBar.add(menuSupprimer);
 
         menuListing.setText("Listing |");
 
+        itemListArticle.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.CTRL_MASK));
         itemListArticle.setText("Article");
         menuListing.add(itemListArticle);
 
-        itemListReappro.setText("Réapprovisionnement");
+        itemListReappro.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_MASK));
+        itemListReappro.setText("Commande fournisseur");
         menuListing.add(itemListReappro);
 
         menuBar.add(menuListing);
@@ -174,8 +182,7 @@ public class MainJFrame extends javax.swing.JFrame {
         this.getContentPane().validate(); 
         this.getContentPane().repaint(); 
     }//GEN-LAST:event_itemMenuAccueilActionPerformed
-   
-    
+       
     
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

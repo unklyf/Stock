@@ -1,22 +1,29 @@
 package packageView;
 
+
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
+import java.util.Locale;
 import javax.swing.JOptionPane;
-import javax.swing.JSpinner;
 import packageController.ApplicationController;
 import packageException.BdErreur;
 import packageException.NoIdentification;
+import packageModel.Reappro;
 
 
 public class InsertReappro extends javax.swing.JPanel {
 
     private ArrayList <String> tabLibF;
+    private ReapproJPanel reapAddPannel; 
     private GregorianCalendar dateReap;
-        
+    private Reappro reapAdd;
+    
     public InsertReappro() {
         initComponents();
+        jCalendarReappro.setLocale(new Locale("fr", "FR"));
+        
+        //Garnir comboBox de fournisseur
         tabLibF= new ArrayList <String>();
         try {
 
@@ -36,32 +43,35 @@ public class InsertReappro extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(null, e, "Erreur identification", JOptionPane.ERROR_MESSAGE);
             }
     }
-
-    
     
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel11 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        titrePanel = new javax.swing.JLabel();
+        jLabelDate = new javax.swing.JLabel();
         comboBoxFourn = new javax.swing.JComboBox();
-        jLabel2 = new javax.swing.JLabel();
-        SpinnerDate = new javax.swing.JSpinner();
+        jLabelFourn = new javax.swing.JLabel();
+        validerButton = new javax.swing.JButton();
+        jCalendarReappro = new com.toedter.calendar.JCalendar();
 
-        jLabel11.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(153, 0, 51));
-        jLabel11.setText("Commande fournisseur");
+        titrePanel.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        titrePanel.setForeground(new java.awt.Color(153, 0, 51));
+        titrePanel.setText("Commande fournisseur");
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 2, 14)); // NOI18N
-        jLabel1.setText("Sélectionnez la date pour laquelle la commande est souhaitée :");
+        jLabelDate.setFont(new java.awt.Font("Tahoma", 2, 14)); // NOI18N
+        jLabelDate.setText("Sélectionnez la date pour laquelle la commande est souhaitée :");
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 2, 14)); // NOI18N
-        jLabel2.setText("Sélectionnez un fournisseur chez qui passer la commande :");
+        jLabelFourn.setFont(new java.awt.Font("Tahoma", 2, 14)); // NOI18N
+        jLabelFourn.setText("Sélectionnez un fournisseur chez qui passer la commande :");
 
-        SpinnerDate.setModel(dateModel);
-        SpinnerDate.setEditor(new JSpinner.DateEditor(SpinnerDate, "dd-MM-yyyy"));
-        dateReap= new GregorianCalendar();
-        dateReap.setTime(dateModel.getDate());
+        validerButton.setText("Passer commande");
+        validerButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                validerButtonActionPerformed(evt);
+            }
+        });
+
+        jCalendarReappro.setMinSelectableDate(new java.util.Date());
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -70,34 +80,64 @@ public class InsertReappro extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(59, 59, 59)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(SpinnerDate, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel11)
+                    .addComponent(jCalendarReappro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(validerButton)
+                    .addComponent(jLabelDate)
+                    .addComponent(jLabelFourn)
+                    .addComponent(titrePanel)
                     .addComponent(comboBoxFourn, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(205, Short.MAX_VALUE))
+                .addContainerGap(389, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(29, 29, 29)
-                .addComponent(jLabel11)
+                .addComponent(titrePanel)
                 .addGap(45, 45, 45)
-                .addComponent(jLabel2)
+                .addComponent(jLabelFourn)
                 .addGap(18, 18, 18)
                 .addComponent(comboBoxFourn, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(54, 54, 54)
-                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addComponent(jLabelDate)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(SpinnerDate, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(137, Short.MAX_VALUE))
+                .addComponent(jCalendarReappro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(validerButton, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(109, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void validerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_validerButtonActionPerformed
+        
+        //Recuperation des donnees
+        dateReap=new GregorianCalendar();
+        dateReap.setTime(jCalendarReappro.getDate());
+        
+        //Instance objet reappro
+        reapAdd = new Reappro (dateReap,comboBoxFourn.getSelectedItem().toString(),"En cours");
+        
+        //Affichage de panel d'encodage des articles pour la commande (reappro)
+        reapAddPannel=new ReapproJPanel();
+        reapAddPannel.setBounds(this.getBounds());
+        this.removeAll();
+        this.add(reapAddPannel);
+        this.repaint();
+        this.validate();
+       
+    }//GEN-LAST:event_validerButtonActionPerformed
+
+    //Methode pour créer le reappro après à la validation finale de la commande
+    public Reappro getReapp (){
+        return reapAdd;
+    }
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JSpinner SpinnerDate;
     private javax.swing.JComboBox comboBoxFourn;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel2;
+    private com.toedter.calendar.JCalendar jCalendarReappro;
+    private javax.swing.JLabel jLabelDate;
+    private javax.swing.JLabel jLabelFourn;
+    private javax.swing.JLabel titrePanel;
+    private javax.swing.JButton validerButton;
     // End of variables declaration//GEN-END:variables
 }

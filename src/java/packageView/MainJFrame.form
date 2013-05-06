@@ -11,6 +11,9 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="itemMenuAccueil">
               <Properties>
+                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
+                  <KeyStroke key="Ctrl+SPACE"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Accueil"/>
               </Properties>
               <Events>
@@ -19,6 +22,9 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="itemQuitter">
               <Properties>
+                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
+                  <KeyStroke key="Ctrl+Q"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Quitter"/>
               </Properties>
               <Events>
@@ -29,11 +35,14 @@
         </Menu>
         <Menu class="javax.swing.JMenu" name="menuAjout">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Nouvel Ajout |"/>
+            <Property name="text" type="java.lang.String" value="Nouveau |"/>
           </Properties>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="itemArticleAjout">
               <Properties>
+                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
+                  <KeyStroke key="Ctrl+A"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Article"/>
               </Properties>
               <Events>
@@ -42,7 +51,10 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="itemAjoutReappro">
               <Properties>
-                <Property name="text" type="java.lang.String" value="R&#xe9;approvisionnement"/>
+                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
+                  <KeyStroke key="Ctrl+C"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Commande fournisseur"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="itemAjoutReapproActionPerformed"/>
@@ -57,6 +69,9 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="itemModifAjout">
               <Properties>
+                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
+                  <KeyStroke key="Ctrl+M"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Article"/>
               </Properties>
             </MenuItem>
@@ -69,12 +84,18 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="itemSuppArticle">
               <Properties>
+                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
+                  <KeyStroke key="Ctrl+Z"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Article"/>
               </Properties>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="itemSuppReappro">
               <Properties>
-                <Property name="text" type="java.lang.String" value="R&#xe9;approvisionnement"/>
+                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
+                  <KeyStroke key="Ctrl+X"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Commande fournisseur"/>
               </Properties>
             </MenuItem>
           </SubComponents>
@@ -86,12 +107,18 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="itemListArticle">
               <Properties>
+                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
+                  <KeyStroke key="Ctrl+L"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Article"/>
               </Properties>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="itemListReappro">
               <Properties>
-                <Property name="text" type="java.lang.String" value="R&#xe9;approvisionnement"/>
+                <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
+                  <KeyStroke key="Ctrl+N"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Commande fournisseur"/>
               </Properties>
             </MenuItem>
           </SubComponents>

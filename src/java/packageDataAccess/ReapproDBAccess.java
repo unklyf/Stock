@@ -4,7 +4,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.GregorianCalendar;
 import packageException.BdErreur;
 import packageException.NoIdentification;
 import packageModel.Reappro;
@@ -18,7 +17,7 @@ public class ReapproDBAccess {
     private Integer IDArt;
     
     
-    //LIBELLE DES FOURNISSEUR    
+    //LISTE NOMS DES FOURNISSEUR    
      public ArrayList <String> getNomFourn() throws  BdErreur, NoIdentification{   
          
          listeNomF= new ArrayList <String> ();
@@ -42,6 +41,8 @@ public class ReapproDBAccess {
         }
         return listeNomF;
     } 
+     
+     
     
     //REMPLIR LA JComboBox EN FONCTION DU TYPE ARTICLE CHOISIT
     public ArrayList <String> getLibArticle(String typeA) throws  BdErreur, NoIdentification{   
@@ -100,7 +101,7 @@ public class ReapproDBAccess {
    } 
     
    
-    //OBTENIR LA DESCRIPTION DE L'ARTICLE EN FONCTION DU LIBBELLE ET DE SON TYPE
+    //OBTENIR LA DESCRIPTION DE L'ARTICLE EN FONCTION DU LIBELLE ET DE SON TYPE
    public String getDescArticle(String libelleA, String typeA) throws  BdErreur, NoIdentification{   
                   
          try {  
@@ -158,8 +159,8 @@ public class ReapproDBAccess {
             String req = "insert into Reapprovisionnement (DateApprovisionnement,Qte,IDProduit) values (?,?,?)";
             PreparedStatement prepStat = SingletonConnexion.getInstance().prepareStatement(req,Statement.RETURN_GENERATED_KEYS);
             prepStat.setDate(1,new java.sql.Date(reappro.getReapDate().getTimeInMillis()));
-            prepStat.setInt(2, reappro.getQuantitee());
-            prepStat.setInt(3, reappro.getIDArticle());
+            //prepStat.setInt(2, reappro.getQuantitee());
+            //prepStat.setInt(3, reappro.getIDArticle());
             prepStat.executeUpdate();             
             
             //Obtenir IDReappro venant d'être insérer
@@ -182,19 +183,19 @@ public class ReapproDBAccess {
             int newQte=0;
             req = "select Qte from Article where IDProduit= ?";
             prepStat = SingletonConnexion.getInstance().prepareStatement(req);
-            prepStat.setInt(1, reappro.getIDArticle());
+            //prepStat.setInt(1, reappro.getIDArticle());
             ResultSet donnees = prepStat.executeQuery(); 
             while (donnees.next( )){
                 newQte = donnees.getInt("Qte");
             }
             
-            newQte+=reappro.getQuantitee();
+           // newQte+=reappro.getQuantitee();
             
             //Ajout dans les stocks article (modifier quantitée)
             req = "update Article set Qte = ? where IDProduit= ?";
             prepStat = SingletonConnexion.getInstance().prepareStatement(req);
             prepStat.setInt(1, newQte);
-            prepStat.setInt(2, reappro.getIDArticle());
+           // prepStat.setInt(2, reappro.getIDArticle());
             prepStat.executeUpdate();
              
         }
