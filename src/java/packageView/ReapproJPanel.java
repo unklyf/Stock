@@ -3,8 +3,6 @@ package packageView;
 import java.awt.Color;
 import java.awt.event.ItemEvent;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.GregorianCalendar;
 import javax.swing.*;
 import packageController.ApplicationController;
 import packageException.BdErreur;
@@ -19,7 +17,6 @@ public class ReapproJPanel extends JPanel {
     private String typeA, rech="";
     private Reappro ajoutReap;
     private ApplicationController app;
-    private GregorianCalendar dateReap;
     private AccueilPanel panA;
     private MainJFrame fen;
         
@@ -31,8 +28,6 @@ public class ReapproJPanel extends JPanel {
     }
     
    
-    
-    @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -50,15 +45,18 @@ public class ReapproJPanel extends JPanel {
         quantiteeSpinner = new javax.swing.JSpinner();
         jLabel4 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        ajoutReapproButton1 = new javax.swing.JButton();
+        addButton = new javax.swing.JButton();
         casierRadioButton = new javax.swing.JRadioButton();
         jLabel6 = new javax.swing.JLabel();
-        ajoutReapproButton2 = new javax.swing.JButton();
+        endButton = new javax.swing.JButton();
+        annulerButton = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        modifButton = new javax.swing.JButton();
+        deleteButton = new javax.swing.JButton();
 
         buttonGroup1.add(futRadioButton);
         futRadioButton.setText("Fût");
@@ -91,8 +89,8 @@ public class ReapproJPanel extends JPanel {
             }
         });
 
-        descTexteArea.setColumns(20);
         descTexteArea.setEditable(false);
+        descTexteArea.setColumns(20);
         descTexteArea.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
         descTexteArea.setRows(1);
         descTexteArea.setAutoscrolls(false);
@@ -115,10 +113,11 @@ public class ReapproJPanel extends JPanel {
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel2.setText("Libelle Article :");
 
-        ajoutReapproButton1.setText("Commander nouvel article");
-        ajoutReapproButton1.addActionListener(new java.awt.event.ActionListener() {
+        addButton.setBackground(new java.awt.Color(51, 102, 255));
+        addButton.setText("Commander nouvel article");
+        addButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ajoutReapproButton1ActionPerformed(evt);
+                addButtonActionPerformed(evt);
             }
         });
 
@@ -138,10 +137,19 @@ public class ReapproJPanel extends JPanel {
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel6.setText("Description :");
 
-        ajoutReapproButton2.setText("Terminer la commande");
-        ajoutReapproButton2.addActionListener(new java.awt.event.ActionListener() {
+        endButton.setBackground(new java.awt.Color(0, 153, 0));
+        endButton.setText("Terminer la commande");
+        endButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ajoutReapproButton2ActionPerformed(evt);
+                endButtonActionPerformed(evt);
+            }
+        });
+
+        annulerButton.setBackground(new java.awt.Color(255, 0, 0));
+        annulerButton.setText("Annuler");
+        annulerButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                annulerButtonActionPerformed(evt);
             }
         });
 
@@ -158,28 +166,29 @@ public class ReapproJPanel extends JPanel {
                     .addComponent(jLabel3))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(comboBoxArticle, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(bouteilleRadioButton)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(casierRadioButton)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(futRadioButton))
-                                    .addComponent(rechTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.LEADING))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jLabel5))
-                        .addComponent(quantiteeSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 426, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(ajoutReapproButton1)
-                        .addGap(18, 18, 18)
-                        .addComponent(ajoutReapproButton2)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(comboBoxArticle, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(bouteilleRadioButton)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(casierRadioButton)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(futRadioButton))
+                                .addComponent(rechTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel5))
+                    .addComponent(quantiteeSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 426, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(addButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(endButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(annulerButton)))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -210,9 +219,10 @@ public class ReapproJPanel extends JPanel {
                     .addComponent(quantiteeSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(40, 40, 40)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(ajoutReapproButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ajoutReapproButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(22, Short.MAX_VALUE))
+                    .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(endButton, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(annulerButton, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
@@ -236,12 +246,31 @@ public class ReapproJPanel extends JPanel {
         ));
         jScrollPane1.setViewportView(jTable1);
 
+        modifButton.setText("Modifier un article");
+        modifButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                modifButtonActionPerformed(evt);
+            }
+        });
+
+        deleteButton.setText("Supprimer un article");
+        deleteButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(modifButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(deleteButton)))
                 .addGap(0, 20, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -249,7 +278,11 @@ public class ReapproJPanel extends JPanel {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(41, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(modifButton, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -259,7 +292,7 @@ public class ReapproJPanel extends JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(33, 33, 33)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel12)
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -268,21 +301,21 @@ public class ReapproJPanel extends JPanel {
                 .addGroup(layout.createSequentialGroup()
                     .addGap(43, 43, 43)
                     .addComponent(jLabel11)
-                    .addContainerGap(727, Short.MAX_VALUE)))
+                    .addContainerGap(742, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(82, 82, 82)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(36, 36, 36)
                         .addComponent(jLabel12)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(93, Short.MAX_VALUE))
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(82, 82, 82)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(86, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(31, 31, 31)
@@ -411,7 +444,7 @@ public class ReapproJPanel extends JPanel {
     }//GEN-LAST:event_rechTextFieldKeyTyped
  
     //Boutton enregistrer et quitter
-    private void ajoutReapproButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ajoutReapproButton2ActionPerformed
+    private void modifButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifButtonActionPerformed
       //Tests pour voir si tout est rempli
         if(this.typeA==null){ 
             JOptionPane.showMessageDialog(null, "Aucun type sélectionné.");
@@ -428,8 +461,8 @@ public class ReapproJPanel extends JPanel {
                  //Créer objet et ajout dans la BD 
                  try{                  
                     
-                    ajoutReap = new Reappro(Integer.parseInt(this.quantiteeSpinner.getValue().toString()),app.getIDArticle(this.comboBoxArticle.getSelectedItem().toString(),this.typeA), 
-                                             dateReap,null);
+                   // ajoutReap = new Reappro(Integer.parseInt(this.quantiteeSpinner.getValue().toString()),app.getIDArticle(this.comboBoxArticle.getSelectedItem().toString(),this.typeA), 
+                    //                         null,null);
                     app.addReappro(ajoutReap);
                     JOptionPane.showMessageDialog(null,"Encodage réalisé avec succès !");
 
@@ -455,11 +488,11 @@ public class ReapproJPanel extends JPanel {
                  }
             }
         }
-    }//GEN-LAST:event_ajoutReapproButton2ActionPerformed
+    }//GEN-LAST:event_modifButtonActionPerformed
    
     
     //Boutton enregistrer et encoder un nouveau reappro
-    private void ajoutReapproButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ajoutReapproButton1ActionPerformed
+    private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
          
         //Tests pour voir si tout est rempli
         if(this.typeA==null){ 
@@ -471,29 +504,22 @@ public class ReapproJPanel extends JPanel {
             }
             else{
                 
-                //Obliger sinon n'insère pas null dans la BD
-                String note=null;
-                if(!this.noteTexteArea.getText().equals("")){
-                    note=this.noteTexteArea.getText();
-                }
+                
                 app = new ApplicationController();
 
                  //Créer objet et ajout dans la BD 
                  try{                  
                     
-                    ajoutReap = new Reappro(Integer.parseInt(this.quantiteeSpinner.getValue().toString()),app.getIDArticle(this.comboBoxArticle.getSelectedItem().toString(),this.typeA), 
-                                             dateReap,note);
+                    //ajoutReap = new Reappro(Integer.parseInt(this.quantiteeSpinner.getValue().toString()),app.getIDArticle(this.comboBoxArticle.getSelectedItem().toString(),this.typeA), 
+                    //                         null,null);
                     app.addReappro(ajoutReap);
                     JOptionPane.showMessageDialog(null,"Encodage réalisé avec succès !");
 
                     //Remise à zéro du pannel pour un nouvel encodage
-                    this.SpinnerDate.setModel(new SpinnerDateModel());
-                    this.SpinnerDate.setEditor(new JSpinner.DateEditor(SpinnerDate, "dd-MM-yyyy"));
                     this.rechTextField.setText("");
                     this.quantiteeSpinner.setValue(0);
                     this.comboBoxArticle.removeAllItems();
                     this.descTexteArea.setText("");
-                    this.noteTexteArea.removeAll();
                     this.typeA=null;
                     
                    
@@ -514,11 +540,23 @@ public class ReapproJPanel extends JPanel {
                  }
             }
         }
-    }//GEN-LAST:event_ajoutReapproButton1ActionPerformed
+    }//GEN-LAST:event_addButtonActionPerformed
 
     private void casierRadioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_casierRadioButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_casierRadioButtonActionPerformed
+
+    private void endButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_endButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_endButtonActionPerformed
+
+    private void annulerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_annulerButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_annulerButtonActionPerformed
+
+    private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_deleteButtonActionPerformed
 
     
     
@@ -526,13 +564,15 @@ public class ReapproJPanel extends JPanel {
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton ajoutReapproButton1;
-    private javax.swing.JButton ajoutReapproButton2;
+    private javax.swing.JButton addButton;
+    private javax.swing.JButton annulerButton;
     private javax.swing.JRadioButton bouteilleRadioButton;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JRadioButton casierRadioButton;
     private javax.swing.JComboBox comboBoxArticle;
+    private javax.swing.JButton deleteButton;
     private javax.swing.JTextArea descTexteArea;
+    private javax.swing.JButton endButton;
     private javax.swing.JRadioButton futRadioButton;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -547,6 +587,7 @@ public class ReapproJPanel extends JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
+    private javax.swing.JButton modifButton;
     private javax.swing.JSpinner quantiteeSpinner;
     private javax.swing.JTextField rechTextField;
     // End of variables declaration//GEN-END:variables
