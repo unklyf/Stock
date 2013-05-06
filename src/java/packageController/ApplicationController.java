@@ -52,6 +52,15 @@ public class ApplicationController {
     public ArrayList <String> getFournArticle()throws  BdErreur, NoIdentification{
         return iAM.getFournArticle();
     }
+    public ArrayList <String> getCatArticle()throws  BdErreur, NoIdentification{
+        return iAM.getCatArticle();
+    }
+    public Integer rechIDFourn(String libelle) throws  BdErreur, NoIdentification{
+        return iAM.rechIDFourn(libelle);
+    }
+    public Integer rechIDCat(String libelle) throws  BdErreur, NoIdentification{
+        return iAM.rechIDCat(libelle);
+    }
 
     
             

@@ -5,11 +5,12 @@ import java.util.GregorianCalendar;
 
 public class Article {
     private  String libelle, typeA ,desc, cadeau;
-    private  double qte, prixM, prixC;
-    private GregorianCalendar datePeremp; 
+    private  double  prixM, prixC;
+    private GregorianCalendar datePeremp;
+    private Integer qte, IDFourn, IDCat;
     
 
-    public Article(String lib, String typ , String d , String c, double q, double pm , double pc, GregorianCalendar dp){
+    public Article(String lib, String typ , String d , String c, Integer q, double pm , double pc, GregorianCalendar dp, Integer IDF, Integer IDC){
             this.libelle= lib; 
             this.typeA= typ;
             this.desc= d;
@@ -18,6 +19,8 @@ public class Article {
             this.prixM =pm;
             this.prixC =pc; 
             this.cadeau= c;
+            this.IDFourn=IDF;
+            this.IDCat= IDC;
     }
     
     public String getLibelle(){
@@ -36,7 +39,7 @@ public class Article {
         return this.cadeau;
     }
     
-    public double getQuantite(){
+    public Integer getQuantite(){
         return this.qte;
     }
     
@@ -50,6 +53,14 @@ public class Article {
     
     public GregorianCalendar getDatePeremp(){
         return this.datePeremp;
+    }
+    
+    public Integer getIDFourn(){
+        return this.IDFourn;
+    }
+    
+    public Integer getIDCat(){
+        return this.IDCat;
     }
     
 }

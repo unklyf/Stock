@@ -22,4 +22,16 @@ public class InsertArtManager {
     public ArrayList <String> getFournArticle() throws  BdErreur, NoIdentification{
         return iAMDB.getFournArticle();
     }
+    
+    public ArrayList <String> getCatArticle() throws  BdErreur, NoIdentification{
+        return iAMDB.getCatArticle();
+    }
+    
+    public Integer rechIDFourn(String libelle) throws  BdErreur, NoIdentification{
+        return iAMDB.rechIDFourn(libelle);
+    }
+    
+    public Integer rechIDCat(String libelle) throws  BdErreur, NoIdentification{
+        return iAMDB.rechIDCat(libelle);
+    }
 }
