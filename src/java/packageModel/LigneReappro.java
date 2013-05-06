@@ -16,11 +16,11 @@ public class LigneReappro {
         return this.qte;
     }
     
-    public Integer getiDReap (){
+    public Integer getIDReap (){
         return this.iDReappro;
     }
     
-    public Integer getiDProd (){
+    public Integer getIDProd (){
         return this.iDProduit;
     }
     

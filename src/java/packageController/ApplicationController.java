@@ -20,14 +20,10 @@ public class ApplicationController {
     
     
     //AJOUT REAPPRO
-    public ArrayList <String> getLibArticle(String typeA) throws  BdErreur, NoIdentification{ 
-        return rM.getLibArticle(typeA);
+    public ArrayList <String> getLibArticle(String typeA,String fourn) throws  BdErreur, NoIdentification{ 
+        return rM.getLibArticle(typeA,fourn);
     }
-    
-     public ArrayList <String> getLibArticle(String typeA,String rech) throws  BdErreur, NoIdentification{ 
-        return rM.getLibArticle(typeA,rech);
-    }
-    
+     
     public String getDescArticle(String libelle,String typeA) throws  BdErreur, NoIdentification{ 
         return rM.getDescArticle(libelle, typeA);
     }
@@ -42,7 +38,18 @@ public class ApplicationController {
     public ArrayList <String> getNomFourn()throws  BdErreur, NoIdentification{
         return rM.getLibFourn();
     }
-
+    
+    public String getRechLibArt(Integer iDArt) throws  BdErreur,NoIdentification{
+        return rM.getRechLibArt(iDArt);
+    }
+    
+    public String getRechTypeArt(Integer iDArt) throws  BdErreur,NoIdentification{
+        return rM.getRechTypeArt(iDArt);
+    }
+    
+    
+    
+    
     
     // AJOUT ARTICLE
     public void  addArticle (Article nouvArt) throws BdErreur,NoIdentification{

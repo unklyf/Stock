@@ -13,13 +13,9 @@ public class ReapproManager {
     
     
     //AJOUT REAPPRO
-    public ArrayList <String> getLibArticle(String typeA) throws  BdErreur, NoIdentification{ 
-            return rDBA.getLibArticle(typeA);
-    }
-    
-    public ArrayList <String> getLibArticle(String typeA,String rech) throws  BdErreur, NoIdentification{ 
-            return rDBA.getLibArticle(typeA,rech);
-    }
+    public ArrayList <String> getLibArticle(String typeA, String nomF) throws  BdErreur, NoIdentification{ 
+            return rDBA.getLibArticle(typeA, nomF);
+    }  
     
     public String getDescArticle(String libelle,String typeA) throws  BdErreur, NoIdentification{ 
             return rDBA.getDescArticle(libelle,typeA);
@@ -35,6 +31,14 @@ public class ReapproManager {
     
     public ArrayList <String> getLibFourn()throws  BdErreur, NoIdentification{
         return rDBA.getNomFourn();
+    }
+    
+    public String getRechLibArt(Integer iDArt) throws  BdErreur,NoIdentification{
+        return rDBA.getRechLibArt(iDArt);
+    }
+    
+    public String getRechTypeArt(Integer iDArt) throws  BdErreur,NoIdentification{
+        return rDBA.getRechTypeArt(iDArt);
     }
     
     

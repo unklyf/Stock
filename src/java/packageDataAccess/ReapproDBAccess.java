@@ -12,7 +12,7 @@ import packageModel.Reappro;
 
 public class ReapproDBAccess {
      
-    private String libelle, libelleD, nomF;
+    private String libelle, libelleD, nomF, libRechArt, typeRechArt;
     private ArrayList <String> listeLibA,listeNomF;
     private Integer IDArt;
     
@@ -45,14 +45,19 @@ public class ReapproDBAccess {
      
     
     //REMPLIR LA JComboBox EN FONCTION DU TYPE ARTICLE CHOISIT
-    public ArrayList <String> getLibArticle(String typeA) throws  BdErreur, NoIdentification{   
+    public ArrayList <String> getLibArticle(String typeA, String nomF) throws  BdErreur, NoIdentification{   
          
          listeLibA= new ArrayList <String> ();
          
          try {  
-                 String req = "select Libelle from Article where TypeA = ?";
+                 String req = "select art.Libelle, fourn.IDFournisseur, fourn.Nom\n" +
+                              "from Article art, Fournisseur fourn\n" +
+                              "where TypeA = ? \n" +
+                              "and fourn.Nom = ?\n" +
+                              "and art.IDFournisseur = fourn.IDFournisseur";
                  PreparedStatement prepStat = SingletonConnexion.getInstance().prepareStatement(req);
                  prepStat.setString(1, typeA);
+                 prepStat.setString(2, nomF);
                  ResultSet donnees = prepStat.executeQuery();
    
                  
@@ -72,35 +77,6 @@ public class ReapproDBAccess {
    } 
     
     
-    //LIKE POUR EFFECTUER UNE RECHERCHE DANS LA JComboBox
-    public ArrayList <String> getLibArticle(String typeA,String rech) throws  BdErreur, NoIdentification{   
-         
-         listeLibA= new ArrayList <String> ();
-         
-         try {  
-                 String req = "select Libelle from Article where TypeA = ? and Libelle like ?";
-                 PreparedStatement prepStat = SingletonConnexion.getInstance().prepareStatement(req);
-                 prepStat.setString(1, typeA);
-                 prepStat.setString(2, "%"+rech+"%");
-                 ResultSet donnees = prepStat.executeQuery();
-   
-                 
-                 while (donnees.next( )){
-                     libelle = donnees.getString("Libelle");
-                     listeLibA.add(libelle);
-                 }    
-         }
-            
-         catch (SQLException e) {  
-            throw new BdErreur(e.getMessage());   
-        }                   
-        catch (NoIdentification e) {
-            throw new NoIdentification();
-        }
-        return listeLibA;
-   } 
-    
-   
     //OBTENIR LA DESCRIPTION DE L'ARTICLE EN FONCTION DU LIBELLE ET DE SON TYPE
    public String getDescArticle(String libelleA, String typeA) throws  BdErreur, NoIdentification{   
                   
@@ -148,6 +124,51 @@ public class ReapproDBAccess {
         }
         return IDArt;
    }
+   
+   
+   //Recherche libelle article a partir de l'ID pour remplir jTable
+   public String getRechLibArt(Integer iDArt) throws  BdErreur,NoIdentification{
+         
+       try {  
+                 String req = "select Libelle from Article where iDProduit= ?";
+                 PreparedStatement prepStat = SingletonConnexion.getInstance().prepareStatement(req);
+                 prepStat.setInt(1, iDArt);
+                 ResultSet donnees = prepStat.executeQuery(); 
+                 while (donnees.next( )){
+                     typeRechArt = donnees.getString("Libelle");
+                 }
+        }
+            
+         catch (SQLException e) {  
+            throw new BdErreur(e.getMessage());   
+        }                   
+        catch (NoIdentification e) {
+            throw new NoIdentification();
+        }
+        return typeRechArt;
+    }
+   
+   //Recherche type article a partir de l'ID pour remplir jTable
+   public String getRechTypeArt(Integer iDArt) throws  BdErreur,NoIdentification{
+         
+       try {  
+                 String req = "select typeA from Article where iDProduit= ?";
+                 PreparedStatement prepStat = SingletonConnexion.getInstance().prepareStatement(req);
+                 prepStat.setInt(1, iDArt);
+                 ResultSet donnees = prepStat.executeQuery(); 
+                 while (donnees.next( )){
+                     libRechArt = donnees.getString("typeA");
+                 }
+        }
+            
+         catch (SQLException e) {  
+            throw new BdErreur(e.getMessage());   
+        }                   
+        catch (NoIdentification e) {
+            throw new NoIdentification();
+        }
+        return libRechArt;
+    }
    
    
    //AJOUT BD

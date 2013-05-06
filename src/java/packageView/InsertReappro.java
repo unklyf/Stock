@@ -64,7 +64,7 @@ public class InsertReappro extends javax.swing.JPanel {
         jLabelFourn.setFont(new java.awt.Font("Tahoma", 2, 14)); // NOI18N
         jLabelFourn.setText("Sélectionnez un fournisseur chez qui passer la commande :");
 
-        validerButton.setText("Passer commande");
+        validerButton.setText("Initialiser nouvelle commande");
         validerButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 validerButtonActionPerformed(evt);
@@ -114,10 +114,10 @@ public class InsertReappro extends javax.swing.JPanel {
         dateReap.setTime(jCalendarReappro.getDate());
         
         //Instance objet reappro
-        reapAdd = new Reappro (dateReap,comboBoxFourn.getSelectedItem().toString(),"En cours");
+        reapAdd = new Reappro (dateReap,null,"En cours");
         
         //Affichage de panel d'encodage des articles pour la commande (reappro)
-        reapAddPannel=new ReapproJPanel();
+        reapAddPannel=new ReapproJPanel(reapAdd,comboBoxFourn.getSelectedItem().toString());
         reapAddPannel.setBounds(this.getBounds());
         this.removeAll();
         this.add(reapAddPannel);
@@ -126,11 +126,6 @@ public class InsertReappro extends javax.swing.JPanel {
        
     }//GEN-LAST:event_validerButtonActionPerformed
 
-    //Methode pour créer le reappro après à la validation finale de la commande
-    public Reappro getReapp (){
-        return reapAdd;
-    }
-    
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox comboBoxFourn;
