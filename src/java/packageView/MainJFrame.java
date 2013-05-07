@@ -8,6 +8,7 @@ public class MainJFrame extends javax.swing.JFrame {
     private AccueilPanel aP;
     private InsertArticle insArt;
     private InsertReappro reapAdd;
+    private ModifArticleJPanel ModifArt;
             
     public MainJFrame() {
         initComponents();
@@ -94,6 +95,11 @@ public class MainJFrame extends javax.swing.JFrame {
 
         itemModifAjout.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_M, java.awt.event.InputEvent.CTRL_MASK));
         itemModifAjout.setText("Article");
+        itemModifAjout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemModifAjoutActionPerformed(evt);
+            }
+        });
         menuModifier.add(itemModifAjout);
 
         menuBar.add(menuModifier);
@@ -182,6 +188,15 @@ public class MainJFrame extends javax.swing.JFrame {
         this.getContentPane().validate(); 
         this.getContentPane().repaint(); 
     }//GEN-LAST:event_itemMenuAccueilActionPerformed
+
+    private void itemModifAjoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemModifAjoutActionPerformed
+        ModifArt =new ModifArticleJPanel();
+        ModifArt.setBounds(this.getBounds());
+        this.getContentPane().removeAll();
+        this.getContentPane().add(ModifArt);
+        this.getContentPane().validate(); 
+        this.getContentPane().repaint(); 
+    }//GEN-LAST:event_itemModifAjoutActionPerformed
        
     
     public static void main(String args[]) {

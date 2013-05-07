@@ -13,29 +13,51 @@ import packageModel.Article;
 public class InsertArtDBAccess {
     
     private ArrayList <String> tabFournDB, tabCatDB;
-    private String nomFourn,nomCat;
+    private String nomFourn,nomCat; 
+    private Integer iDArt;
             
     public void  addArticle (Article nouvArt) throws BdErreur,NoIdentification{
         
         try { 
-            String req = "insert into Article (Libelle,TypeA,Description,Qte,PrixMarchandise,IDFournisseur,IDCategorie)";
-            PreparedStatement prepStat = SingletonConnexion.getInstance().prepareStatement(req);
+            String req = "insert into Article (Libelle,TypeA,Description,PrixMarchandise,IDFournisseur,IDCategorie) values(?,?,?,?,?,?)";
+            PreparedStatement prepStat = SingletonConnexion.getInstance().prepareStatement(req,Statement.RETURN_GENERATED_KEYS);
             prepStat.setString(1,nouvArt.getLibelle());
             prepStat.setString(2,nouvArt.getType());
             prepStat.setString(3,nouvArt.getDescription());
-            prepStat.setInt(4,nouvArt.getQuantite() );
-            prepStat.setDouble(5, nouvArt.getPrixM());
-            prepStat.setInt(6, nouvArt.getIDFourn());
-            prepStat.setInt(7, nouvArt.getIDCat());
+            prepStat.setDouble(4, nouvArt.getPrixM());
+            prepStat.setInt(5, nouvArt.getIDFourn());
+            prepStat.setInt(6, nouvArt.getIDCat());
+            prepStat.executeUpdate(); 
+            
+            /*
+            req= "update Article set Libelle = ";
+            prepStat = SingletonConnexion.getInstance().prepareStatement(req);
             prepStat.executeUpdate();
+             */   
+            //Obtenir IDProduit venant d'être insérer
+            ResultSet rs = prepStat.getGeneratedKeys();
             
-            
-            
-            
-            
-            
-            
-            
+            while(rs.next()){
+                int lastID = rs.getInt(1);
+                //Update pour colonne facultative
+                if(nouvArt.getPrixC()!=0){
+                    req = "update Article set PrixConsigne = ? where IDProduit= ?";
+                    prepStat = SingletonConnexion.getInstance().prepareStatement(req);
+                    prepStat.setDouble(1,nouvArt.getPrixC());
+                    prepStat.setInt(2, lastID);
+                    prepStat.executeUpdate();                
+                }
+                
+                if (nouvArt.getCadeau()!= null){
+                    req = "update Article set Cadeau = ? where IDProduit= ?";
+                    prepStat = SingletonConnexion.getInstance().prepareStatement(req);
+                    prepStat.setString(1,nouvArt.getCadeau());
+                     prepStat.setInt(2, lastID);
+                    prepStat.executeUpdate();
+                }
+            }
+          
+             
         }
          catch (SQLException e){       
             throw new BdErreur(e.getMessage());
@@ -46,6 +68,8 @@ public class InsertArtDBAccess {
         catch (Exception e){
            throw new BdErreur(e.getMessage());
        }
+       
+       
       
    }
 
@@ -137,7 +161,7 @@ public class InsertArtDBAccess {
             ResultSet donnees = prepStat.executeQuery();
             
             while (donnees.next( )){
-                     iDCat = donnees.getInt("IDFournisseur");  
+                     iDCat = donnees.getInt("IDCategorie");  
                  }    
             
         }
@@ -151,4 +175,6 @@ public class InsertArtDBAccess {
         
     return iDCat;
     }
+    
+    
 }

@@ -11,6 +11,7 @@ public class ApplicationController {
     private LoginManager lM= new LoginManager();
     private ReapproManager rM= new ReapproManager();
     private InsertArtManager iAM = new InsertArtManager();
+    private ModifArtManager mAM = new ModifArtManager();
     
     
     //IDENTIFICATION
@@ -68,6 +69,18 @@ public class ApplicationController {
     public Integer rechIDCat(String libelle) throws  BdErreur, NoIdentification{
         return iAM.rechIDCat(libelle);
     }
+    
+    
+    //Modif article
+    public String rechNomFourn(Integer iDArt) throws  BdErreur, NoIdentification{
+        return mAM.rechNomFourn(iDArt);
+    }
+    public String rechNomCat(Integer iDArt) throws  BdErreur, NoIdentification{
+        return mAM.rechNomCat(iDArt);
+    }
+    
+    
+  
 
     
             

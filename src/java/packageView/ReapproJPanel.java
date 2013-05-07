@@ -247,6 +247,14 @@ public class ReapproJPanel extends JPanel {
         titrePanelTableau.setText("Récapitulatif réappro");
 
         jTableRecap.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jTableRecap.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
         jScrollPane1.setViewportView(jTableRecap);
 
         modifButton.setForeground(new java.awt.Color(204, 102, 0));

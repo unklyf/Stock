@@ -34,4 +34,6 @@ public class InsertArtManager {
     public Integer rechIDCat(String libelle) throws  BdErreur, NoIdentification{
         return iAMDB.rechIDCat(libelle);
     }
+    
+    
 }
