@@ -7,8 +7,10 @@ package packageDataAccess;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import packageException.BdErreur;
 import packageException.NoIdentification;
+import packageModel.Article;
 
 /**
  *
@@ -16,51 +18,59 @@ import packageException.NoIdentification;
  */
 public class ModifArtDBAccess {
     
-    private String nomFourn, nomCat;
     
-    public String rechNomFourn(Integer iDArt) throws  BdErreur, NoIdentification{
+    private ArrayList<Article> tabArt;
+    
+    
+       public ArrayList<Article> getAllArticle ()throws  BdErreur, NoIdentification{
         
-        try {  
-                 String req = "select Nom from Fournisseur where iDFournisseur= ?";
-                 PreparedStatement prepStat = SingletonConnexion.getInstance().prepareStatement(req);
-                 prepStat.setInt(1, iDArt);
-                 ResultSet donnees = prepStat.executeQuery(); 
+        tabArt = new ArrayList<Article>();
+        String  cadeau;
+        double  prixC;
+          
+        try{
+            String req =" select * from Article";
+            PreparedStatement prepStat = SingletonConnexion.getInstance().prepareStatement(req);
+            ResultSet donnees = prepStat.executeQuery();
+   
                  while (donnees.next( )){
-                     nomFourn = donnees.getString("Nom");
+                      Article art = new Article (donnees.getString("Libelle"),
+                                                 donnees.getString("TypeA"),
+                                                 donnees.getString("Description"),
+                                                 donnees.getDouble("PrixMarchandise"));
+                     
+                     
+                    
+                      cadeau = donnees.getString("Cadeau");
+                      if (donnees.wasNull()){
+                            art.setCadeau(cadeau);
+                      }
+                      
+                      prixC = donnees.getDouble("PrixConsigne");
+                      if (donnees.wasNull()){
+                            art.setPrixC(prixC);
+                       }
+                      
+                      tabArt.add(art);
                  }
-        }
+                 
             
-         catch (SQLException e) {  
+            
+            
+            
+            
+        }
+        catch (SQLException e) {  
             throw new BdErreur(e.getMessage());   
         }                   
         catch (NoIdentification e) {
             throw new NoIdentification();
         }
-        return nomFourn;
-     
+        return null;
         
     }
-    public String rechNomCat(Integer iDArt) throws  BdErreur, NoIdentification{
-        
-      try {  
-                 String req = "select Libelle from Categorie where iDCategorie= ?";
-                 PreparedStatement prepStat = SingletonConnexion.getInstance().prepareStatement(req);
-                 prepStat.setInt(1, iDArt);
-                 ResultSet donnees = prepStat.executeQuery(); 
-                 while (donnees.next( )){
-                     nomCat = donnees.getString("Libelle");
-                 }
-        }
-            
-         catch (SQLException e) {  
-            throw new BdErreur(e.getMessage());   
-        }                   
-        catch (NoIdentification e) {
-            throw new NoIdentification();
-        }
-        return nomCat;
-        
-    }
+    
+    
             
             
             

@@ -9,14 +9,16 @@ import packageDataAccess.InsertArtDBAccess;
 import packageException.BdErreur;
 import packageException.NoIdentification;
 import packageModel.Article;
+import packageModel.Categorie;
+import packageModel.Fournisseur;
 
 
 public class InsertArtManager {
     
     private InsertArtDBAccess iAMDB = new InsertArtDBAccess();
     
-    public void  addArticle (Article nouvArt) throws BdErreur,NoIdentification{
-        iAMDB.addArticle(nouvArt);
+    public void  addArticle (Article nouvArt, Fournisseur fourn, Categorie cat) throws BdErreur,NoIdentification{
+        iAMDB.addArticle(nouvArt, fourn, cat);
     }
     
     public ArrayList <String> getFournArticle() throws  BdErreur, NoIdentification{
@@ -27,13 +29,7 @@ public class InsertArtManager {
         return iAMDB.getCatArticle();
     }
     
-    public Integer rechIDFourn(String libelle) throws  BdErreur, NoIdentification{
-        return iAMDB.rechIDFourn(libelle);
-    }
     
-    public Integer rechIDCat(String libelle) throws  BdErreur, NoIdentification{
-        return iAMDB.rechIDCat(libelle);
-    }
     
     
 }

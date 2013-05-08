@@ -1,22 +1,11 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package packageView;
 
 import java.util.ArrayList;
-import javax.swing.JOptionPane;
 import javax.swing.table.AbstractTableModel;
-import packageController.ApplicationController;
-import packageException.BdErreur;
-import packageException.NoIdentification;
-import packageModel.Article;
-import packageModel.LigneReappro;
 
-/**
- *
- * @author Home
- */
+import packageModel.Article;
+
+
 public class AllArticleModif extends AbstractTableModel {
     
     private ArrayList<String> columnNames = new ArrayList<String>( );
@@ -30,8 +19,8 @@ public class AllArticleModif extends AbstractTableModel {
         columnNames.add("Prix Marchandise");
         columnNames.add("Prix Consigne");
         columnNames.add("Cadeau");
-        columnNames.add("Fournisseur");
-        columnNames.add("Catégorie");
+       // columnNames.add("Fournisseur");
+       // columnNames.add("Categorie");
        
     }
 
@@ -45,6 +34,7 @@ public class AllArticleModif extends AbstractTableModel {
         return columnNames.size();
     }
     
+    @Override
     public String getColumnName(int col) {
         return columnNames.get(col);
     }
@@ -52,75 +42,57 @@ public class AllArticleModif extends AbstractTableModel {
     @Override
     public Object getValueAt(int row, int column) {
         Article art= contents.get(row);
-        String fourn="", cat="";
-        
-        try {
-            fourn = new ApplicationController().rechNomFourn(art.getIDFourn());
-            cat= new ApplicationController().rechNomCat(art.getIDCat());
-            
-        }
-        catch(BdErreur e){
-                JOptionPane.showMessageDialog(null, e, "Erreur BD", JOptionPane.ERROR_MESSAGE);
-        }
-        
-        catch(NoIdentification e){
-                JOptionPane.showMessageDialog(null, e, "Erreur identification", JOptionPane.ERROR_MESSAGE);
-        
-        }
         
         switch(column){ 
-            case 0: return fourn;
-            case 1: return cat;          
+            case 0: return art.getLibelle();
+            case 1: return art.getType();
+            case 2: return art.getDescription();
+            case 3: return art.getPrixM();
+            case 4: if (art.getPrixC()!= 0){
+                            return art.getPrixC();
+                    }
+                    else{
+                            return null;
+                    }
+            case 5: if(art.getCadeau()!= null){
+                            return art.getCadeau();
+                    }
+                    else {
+                            return null;
+                    }
+            //case 6: return ;
+            //case 7: return ;    
             default: return null;
-    }
+        }
+      }
    
+
+    @Override
+      public Class getColumnClass (int col){
+            
+            Class c; 
+            
+            switch(col){ 
+            case 0: c = String.class;
+                break;
+            case 1: c = String.class;
+                break;
+            case 2: c = String.class;
+                break;
+            case 3: c = Double.class;
+                break;
+            case 4: c = Double.class;
+                break;
+            case 5: c = String.class;
+                break;
+            default: c = String.class;
+          
+        }
+            
+       return c;
    }
 }
-
-
-   /* public Object getValueAt(int row, int col){
-        LigneReappro reap = contents.get(row);
-        String libelle="", type="";
-        
-        
-        try {
-            libelle= new ApplicationController().getRechLibArt(reap.getIDProd());
-            type= new ApplicationController().getRechTypeArt(reap.getIDProd());
-        }  
-        
-        catch(BdErreur e){
-                JOptionPane.showMessageDialog(null, e, "Erreur BD", JOptionPane.ERROR_MESSAGE);
-        }
-        
-        catch(NoIdentification e){
-                JOptionPane.showMessageDialog(null, e, "Erreur identification", JOptionPane.ERROR_MESSAGE);
-        
-        }
-        
-        switch(col){ 
-            case 0: return libelle;
-            case 1: return type;
-            case 2: return reap.getQte();          
-            default: return null;
-        }
-    
-    }
     
 
 
-    public Class getColumnClass (int col){
-
-        Class c;
-
-        switch (col){
-            case 0: c = String.class;  
-            break;
-            case 1: c = String.class;
-            break;
-            case 2: c = Integer.class;
-            break;
-            default: c = String.class;
-        }
-        return c;
-    }
-*/
+   

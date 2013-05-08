@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import packageException.BdErreur;
 import packageException.NoIdentification;
 import packageModel.Article;
+import packageModel.Categorie;
+import packageModel.Fournisseur;
 
 
 public class InsertArtDBAccess {
@@ -15,8 +17,9 @@ public class InsertArtDBAccess {
     private ArrayList <String> tabFournDB, tabCatDB;
     private String nomFourn,nomCat; 
     private Integer iDArt;
+    
             
-    public void  addArticle (Article nouvArt) throws BdErreur,NoIdentification{
+    public void  addArticle (Article nouvArt, Fournisseur fourn, Categorie cat) throws BdErreur,NoIdentification{
         
         try { 
             String req = "insert into Article (Libelle,TypeA,Description,PrixMarchandise,IDFournisseur,IDCategorie) values(?,?,?,?,?,?)";
@@ -25,8 +28,8 @@ public class InsertArtDBAccess {
             prepStat.setString(2,nouvArt.getType());
             prepStat.setString(3,nouvArt.getDescription());
             prepStat.setDouble(4, nouvArt.getPrixM());
-            prepStat.setInt(5, nouvArt.getIDFourn());
-            prepStat.setInt(6, nouvArt.getIDCat());
+            prepStat.setInt(5, this.getIDFourn(fourn.getNom()));
+            prepStat.setInt(6, this.getIDCat(cat.getNom()));
             prepStat.executeUpdate(); 
             
             /*
@@ -124,14 +127,14 @@ public class InsertArtDBAccess {
         return tabCatDB;
     }
     
-    public Integer rechIDFourn(String libelle) throws  BdErreur, NoIdentification{
+    public Integer getIDFourn(String nom) throws  BdErreur, NoIdentification{
         
         Integer iDFourn=0;
         
         try{
             String req = "select IDFournisseur from Fournisseur where Nom = ?";
             PreparedStatement prepStat = SingletonConnexion.getInstance().prepareStatement(req);
-            prepStat.setString(1,libelle);
+            prepStat.setString(1,nom);
             ResultSet donnees = prepStat.executeQuery();
             
             while (donnees.next( )){
@@ -150,7 +153,7 @@ public class InsertArtDBAccess {
     return iDFourn;
     }
     
-    public Integer rechIDCat(String libelle) throws  BdErreur, NoIdentification{
+    public Integer getIDCat(String libelle) throws  BdErreur, NoIdentification{
         
         Integer iDCat=0;
         

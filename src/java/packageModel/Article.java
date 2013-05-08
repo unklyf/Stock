@@ -1,24 +1,37 @@
 package packageModel;
 
-import java.util.GregorianCalendar;
+
 
 
 public class Article {
     private  String libelle, typeA ,desc, cadeau;
     private  double  prixM, prixC;
-    private Integer  IDFourn, IDCat;
+    
     
 
-    public Article(String lib, String typ , String d , String c, double pm , double pc, Integer IDF, Integer IDC){
+    public Article(String lib, String typ , String d , String c, double pm , double pc){
             this.libelle= lib; 
             this.typeA= typ;
             this.desc= d;
             this.prixM =pm;
             this.prixC =pc; 
             this.cadeau= c;
-            this.IDFourn=IDF;
-            this.IDCat= IDC;
-         
+            
+    }
+    
+    public Article(String lib,String typ , String d,double pm){
+        this.libelle=lib;
+        this.typeA= typ;
+        this.desc= d;
+        this.prixM =pm;
+    }
+
+    public void setCadeau(String cadeau) {
+        this.cadeau = cadeau;
+    }
+
+    public void setPrixC(double prixC) {
+        this.prixC = prixC;
     }
     
     public String getLibelle(){
@@ -45,14 +58,5 @@ public class Article {
         return this.prixC;
     }
     
-    public Integer getIDFourn(){
-        return this.IDFourn;
-    }
-    
-    public Integer getIDCat(){
-        return this.IDCat;
-    }
-    
-    
-    
+  
 }

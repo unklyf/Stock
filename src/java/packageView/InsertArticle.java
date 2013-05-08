@@ -12,6 +12,8 @@ import packageController.ApplicationController;
 import packageException.BdErreur;
 import packageException.NoIdentification;
 import packageModel.Article;
+import packageModel.Categorie;
+import packageModel.Fournisseur;
 
 public class InsertArticle extends JPanel {
     
@@ -19,6 +21,8 @@ public class InsertArticle extends JPanel {
     private String typeArt;
     private ApplicationController app;
     private Article nouvArt;
+    private Fournisseur fourn;
+    private Categorie cat;
    
     
             
@@ -333,11 +337,12 @@ public class InsertArticle extends JPanel {
                                                                 this.JTextAreaDesc.getText(),
                                                                 cadeau,                                                               
                                                                 Double.parseDouble(this.PrixMarchSpinner.getValue().toString()),
-                                                                prixCons,
-                                                                new ApplicationController().rechIDFourn(this.ComboFourn.getSelectedItem().toString()),
-                                                                new ApplicationController().rechIDCat(this.JComboCat.getSelectedItem().toString())); 
+                                                                prixCons); 
+                                        fourn = new Fournisseur(ComboFourn.getSelectedItem().toString());
+                                        cat = new Categorie (JComboCat.getSelectedItem().toString());
+                                        app.addArticle(nouvArt, fourn, cat);
                                         
-                                        app.addArticle(nouvArt);
+                                        
                                         JOptionPane.showMessageDialog(null,"Encodage réalisé avec succès !");
                                        // Retour page d'acceuil apres ajout 
                                         AccueilPanel panel= new AccueilPanel();

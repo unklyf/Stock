@@ -3,6 +3,8 @@ import java.util.ArrayList;
 import packageBusiness.*;
 import packageException.*;
 import packageModel.Article;
+import packageModel.Categorie;
+import packageModel.Fournisseur;
 import packageModel.Reappro;
 
 public class ApplicationController {
@@ -53,8 +55,8 @@ public class ApplicationController {
     
     
     // AJOUT ARTICLE
-    public void  addArticle (Article nouvArt) throws BdErreur,NoIdentification{
-        iAM.addArticle(nouvArt);
+    public void  addArticle (Article nouvArt, Fournisseur fourn, Categorie cat) throws BdErreur,NoIdentification{
+        iAM.addArticle(nouvArt,fourn, cat);
     }
     
     public ArrayList <String> getFournArticle()throws  BdErreur, NoIdentification{
@@ -63,20 +65,14 @@ public class ApplicationController {
     public ArrayList <String> getCatArticle()throws  BdErreur, NoIdentification{
         return iAM.getCatArticle();
     }
-    public Integer rechIDFourn(String libelle) throws  BdErreur, NoIdentification{
-        return iAM.rechIDFourn(libelle);
-    }
-    public Integer rechIDCat(String libelle) throws  BdErreur, NoIdentification{
-        return iAM.rechIDCat(libelle);
-    }
+    
+    
+   
     
     
     //Modif article
-    public String rechNomFourn(Integer iDArt) throws  BdErreur, NoIdentification{
-        return mAM.rechNomFourn(iDArt);
-    }
-    public String rechNomCat(Integer iDArt) throws  BdErreur, NoIdentification{
-        return mAM.rechNomCat(iDArt);
+    public ArrayList<Article> getAllArticle ()throws  BdErreur, NoIdentification{
+        return mAM.getAllArticle();
     }
     
     
