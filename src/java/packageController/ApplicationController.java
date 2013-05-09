@@ -5,13 +5,14 @@ import packageException.*;
 import packageModel.Article;
 import packageModel.Categorie;
 import packageModel.Fournisseur;
+import packageModel.LigneReappro;
 import packageModel.Reappro;
 
 public class ApplicationController {
     
     
     private LoginManager lM= new LoginManager();
-    private ReapproManager rM= new ReapproManager();
+    private InsertReapproManager rM= new InsertReapproManager();
     private InsertArtManager iAM = new InsertArtManager();
     private ModifArtManager mAM = new ModifArtManager();
     
@@ -23,7 +24,7 @@ public class ApplicationController {
     
     
     //AJOUT REAPPRO
-    public ArrayList <String> getLibArticle(String typeA,String fourn) throws  BdErreur, NoIdentification{ 
+     public ArrayList <String> getLibArticle(String typeA,String fourn) throws  BdErreur, NoIdentification{ 
         return rM.getLibArticle(typeA,fourn);
     }
      
@@ -32,10 +33,6 @@ public class ApplicationController {
     }
     public Integer getIDArticle(String libelle,String typeA) throws  BdErreur, NoIdentification{ 
         return rM.getIDArticle(libelle, typeA);
-    }
-    
-    public  void  addReappro (Reappro reappro)  throws  BdErreur,NoIdentification,Exception{
-        rM.addReappro(reappro);
     }
     
     public ArrayList <String> getNomFourn()throws  BdErreur, NoIdentification{
@@ -48,6 +45,14 @@ public class ApplicationController {
     
     public String getRechTypeArt(Integer iDArt) throws  BdErreur,NoIdentification{
         return rM.getRechTypeArt(iDArt);
+    }
+    
+    public  Integer  addReappro (Reappro reappro)  throws  BdErreur,NoIdentification,Exception{
+        return rM.addReappro(reappro);
+    }
+    
+    public  void  addLigneReappro (LigneReappro lReap)  throws  BdErreur,NoIdentification,Exception{
+        rM.addLigneReappro(lReap);
     }
     
     

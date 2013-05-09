@@ -132,6 +132,11 @@ public class ReapproJPanel extends JPanel {
 
         endButton.setBackground(new java.awt.Color(0, 153, 0));
         endButton.setText("Terminer la commande");
+        endButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                endButtonActionPerformed(evt);
+            }
+        });
 
         annulerButton.setBackground(new java.awt.Color(255, 0, 0));
         annulerButton.setText("Annuler");
@@ -429,6 +434,9 @@ public class ReapproJPanel extends JPanel {
     
     //Ajout article a l'arrayListe et mis à jour jTableReap
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
+        boolean existe=false;
+        int choix,indice=0,qte;
+        
         if (typeA.equals("")) {
               JOptionPane.showMessageDialog(null, "Aucun type sélectionné.");      
         }
@@ -442,18 +450,38 @@ public class ReapproJPanel extends JPanel {
                 }
                 else {
                       try{
-                          lReap = new LigneReappro(Integer.parseInt(quantiteSpinner.getValue().toString()),null,new ApplicationController().getIDArticle(comboBoxArticle.getSelectedItem().toString(), typeA));
-                          listeLReap.add(lReap);              
-                      }
+                          lReap = new LigneReappro(Integer.parseInt(quantiteSpinner.getValue().toString()),null,new ApplicationController().getIDArticle(comboBoxArticle.getSelectedItem().toString(), typeA));                      
+}
                       catch(BdErreur e){
                         JOptionPane.showMessageDialog(null, e, "Erreur BD", JOptionPane.ERROR_MESSAGE);
                       }
                       catch(NoIdentification e){
                         JOptionPane.showMessageDialog(null, e, "Erreur identification", JOptionPane.ERROR_MESSAGE);
                       }
-
+                      
+                      
+                     //Verification doublon d'articles
+                     for (int i=0;i<listeLReap.size();i++){
+                        if(listeLReap.get(i).getIDProd()==lReap.getIDProd()){
+                            existe=true;
+                            indice = i;
+                        }
+                     }
+                     
+                     if(existe == false){
+                        listeLReap.add(lReap);
+                     }
+                     else{
+                        choix= JOptionPane.showConfirmDialog(null, "L'article existe déjà !\nVoulez-vous ajouter cette quantité à la précédente ?","Double article", JOptionPane.YES_NO_OPTION);
+                        if(choix==JOptionPane.YES_OPTION){
+                            qte= listeLReap.get(indice).getQte();
+                            qte+= Integer.parseInt(quantiteSpinner.getValue().toString());
+                            lReap = new LigneReappro(qte,null,listeLReap.get(indice).getIDProd());
+                            listeLReap.set(indice, lReap);
+                        }
+                     }
                      //Remplir jTable
-                     AllArticleReappro model = new AllArticleReappro(listeLReap);
+                     AllArticleReapproModel model = new AllArticleReapproModel(listeLReap);
                      jTableRecap.setModel(model);
                      jTableRecap.repaint();
                      jTableRecap.validate();
@@ -482,7 +510,7 @@ public class ReapproJPanel extends JPanel {
             
         
             //Raffraichir jTable
-            AllArticleReappro model = new AllArticleReappro(listeLReap);
+            AllArticleReapproModel model = new AllArticleReapproModel(listeLReap);
             jTableRecap.setModel(model);
             jTableRecap.repaint();
             jTableRecap.validate();
@@ -495,9 +523,8 @@ public class ReapproJPanel extends JPanel {
     
     //Modifier article de la commande (jTable)--Affichage
     private void modifButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifButtonActionPerformed
-        
-            
-        if(listSelect.isSelectionEmpty()==false){
+  
+       if(listSelect.isSelectionEmpty()==false){
             String libelle="", type="";
             int indLigne= listSelect.getMinSelectionIndex();
         
@@ -545,7 +572,6 @@ public class ReapproJPanel extends JPanel {
     //Enregistrer/Confirmer la modification de l'article dans la commande
     private void confirmModifButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmModifButtonActionPerformed
         
-        
         if(listSelect.isSelectionEmpty()==false){
                 int indLigne= listSelect.getMinSelectionIndex();
             
@@ -574,7 +600,7 @@ public class ReapproJPanel extends JPanel {
                 jTextFieldModifType.setVisible(false);
 
                 //Raffraichir jTable
-                AllArticleReappro model = new AllArticleReappro(listeLReap);
+                AllArticleReapproModel model = new AllArticleReapproModel(listeLReap);
                 jTableRecap.setModel(model);
                 jTableRecap.repaint();
                 jTableRecap.validate();       
@@ -597,12 +623,19 @@ public class ReapproJPanel extends JPanel {
             this.validate();
        }
     }//GEN-LAST:event_annulerButtonActionPerformed
- 
+
     
-    
-    
-    
-    
+    //Terminer la commande
+    private void endButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_endButtonActionPerformed
+        if(listeLReap.isEmpty()){
+           JOptionPane.showMessageDialog(null, "Aucun article dans la commande. \nMerci d'en ajouter.");
+       }
+            else{             
+              ConfirmReapproJFrame confF = new ConfirmReapproJFrame(listeLReap,fourn,reapAdd,this);     
+              confF.setVisible(true);
+       }
+    }//GEN-LAST:event_endButtonActionPerformed
+  
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addButton;

@@ -23,5 +23,9 @@ public class LigneReappro {
     public Integer getIDProd (){
         return this.iDProduit;
     }
+
+    public void setIDReap(int iDR) {
+        this.iDReappro=iDR;
+    }
     
 }

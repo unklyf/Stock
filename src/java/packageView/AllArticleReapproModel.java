@@ -11,12 +11,12 @@ import packageException.BdErreur;
 import packageException.NoIdentification;
 import packageModel.LigneReappro;
 
-public class AllArticleReappro extends AbstractTableModel{ 
+public class AllArticleReapproModel extends AbstractTableModel{ 
     
     private ArrayList<String> columnNames = new ArrayList<String>( );
     private ArrayList<LigneReappro> contents = new ArrayList<LigneReappro>( );
     
-    public AllArticleReappro (ArrayList<LigneReappro> lReappro){
+    public AllArticleReapproModel (ArrayList<LigneReappro> lReappro){
         contents = lReappro;
         columnNames.add("Libelle");
         columnNames.add("Type");

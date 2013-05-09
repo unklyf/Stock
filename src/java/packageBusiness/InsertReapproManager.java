@@ -1,15 +1,15 @@
 package packageBusiness;
 
 import java.util.ArrayList;
-import packageDataAccess.ReapproDBAccess;
+import packageDataAccess.InsertReapproDBAccess;
 import packageException.BdErreur;
 import packageException.NoIdentification;
-import packageModel.Reappro;
+import packageModel.*;
 
 
-public class ReapproManager {
+public class InsertReapproManager {
     
-    private ReapproDBAccess rDBA = new ReapproDBAccess();
+    private InsertReapproDBAccess rDBA = new InsertReapproDBAccess();
     
     
     //AJOUT REAPPRO
@@ -24,11 +24,7 @@ public class ReapproManager {
     public Integer getIDArticle(String libelle,String typeA) throws  BdErreur, NoIdentification{ 
             return rDBA.getIDArticle(libelle,typeA);
     }
-    
-    public  void  addReappro (Reappro reappro)  throws  BdErreur,NoIdentification,Exception{
-        rDBA.addReappro(reappro);
-    }
-    
+        
     public ArrayList <String> getLibFourn()throws  BdErreur, NoIdentification{
         return rDBA.getNomFourn();
     }
@@ -39,6 +35,14 @@ public class ReapproManager {
     
     public String getRechTypeArt(Integer iDArt) throws  BdErreur,NoIdentification{
         return rDBA.getRechTypeArt(iDArt);
+    }
+    
+    public  Integer  addReappro (Reappro reappro)  throws  BdErreur,NoIdentification,Exception{
+        return rDBA.addReappro(reappro);
+    }
+    
+    public  void  addLigneReappro (LigneReappro lReap)  throws  BdErreur,NoIdentification,Exception{
+       rDBA .addLigneReappro(lReap);
     }
     
     
