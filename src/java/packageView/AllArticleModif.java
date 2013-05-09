@@ -2,7 +2,6 @@ package packageView;
 
 import java.util.ArrayList;
 import javax.swing.table.AbstractTableModel;
-
 import packageModel.Article;
 
 
@@ -24,14 +23,15 @@ public class AllArticleModif extends AbstractTableModel {
        
     }
 
-    @Override
-    public int getRowCount() {
-        return contents.size();
-    }
 
     @Override
     public int getColumnCount() {
         return columnNames.size();
+    }
+    
+    @Override
+    public int getRowCount() {
+        return contents.size();
     }
     
     @Override

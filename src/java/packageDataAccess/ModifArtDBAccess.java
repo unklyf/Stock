@@ -42,12 +42,12 @@ public class ModifArtDBAccess {
                      
                     
                       cadeau = donnees.getString("Cadeau");
-                      if (donnees.wasNull()){
+                      if (donnees.wasNull()== false){
                             art.setCadeau(cadeau);
                       }
                       
                       prixC = donnees.getDouble("PrixConsigne");
-                      if (donnees.wasNull()){
+                      if (donnees.wasNull()== false){
                             art.setPrixC(prixC);
                        }
                       
@@ -66,7 +66,7 @@ public class ModifArtDBAccess {
         catch (NoIdentification e) {
             throw new NoIdentification();
         }
-        return null;
+        return tabArt;
         
     }
     
