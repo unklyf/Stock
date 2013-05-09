@@ -4,28 +4,13 @@ package packageModel;
 public class LigneReappro {
     
     
-    private Integer qte,iDReappro,iDProduit;
+    private Integer qte;
     
-    public LigneReappro(Integer q, Integer iDR, Integer iDP){
+    public LigneReappro(Integer q){
         this.qte=q;
-        this.iDReappro=iDR;
-        this.iDProduit=iDP;  
     }
     
     public Integer getQte (){
         return this.qte;
-    }
-    
-    public Integer getIDReap (){
-        return this.iDReappro;
-    }
-    
-    public Integer getIDProd (){
-        return this.iDProduit;
-    }
-
-    public void setIDReap(int iDR) {
-        this.iDReappro=iDR;
-    }
-    
+    }   
 }

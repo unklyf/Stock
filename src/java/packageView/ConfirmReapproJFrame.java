@@ -5,6 +5,8 @@ import javax.swing.JOptionPane;
 import packageController.ApplicationController;
 import packageException.BdErreur;
 import packageException.NoIdentification;
+import packageModel.Article;
+import packageModel.Fournisseur;
 import packageModel.LigneReappro;
 import packageModel.Reappro;
 
@@ -13,18 +15,22 @@ public class ConfirmReapproJFrame extends javax.swing.JFrame {
 
 
     private ArrayList <LigneReappro> listeLReap;
+    private ArrayList <Article> listeArtAdd;
     private Reappro reapAdd;
     private ReapproJPanel pan;
+    private Fournisseur fourn;
     private int iDReappro=0;
     
-    public ConfirmReapproJFrame(ArrayList tabRecap,String fourn, Reappro reapInfo,ReapproJPanel panel) {
+    public ConfirmReapproJFrame(ArrayList <Article>  listeA, ArrayList <LigneReappro> listeReap,Fournisseur f, Reappro reapInfo,ReapproJPanel panel) {
         initComponents();
         reapAdd=reapInfo;
-        listeLReap=tabRecap;
+        listeArtAdd=listeA;
+        listeLReap=listeReap;
+        fourn=f;
         pan=panel;
         
-        AllArticleReapproModel model = new AllArticleReapproModel(tabRecap);
-        jTextFieldLibF.setText(fourn);
+        AllArticleReapproModel model = new AllArticleReapproModel(listeArtAdd,listeLReap);
+        jTextFieldLibF.setText(fourn.getNom());
         jTextFieldDateR.setText(reapInfo.getReapDate().getTime().toString());
         jTableRecapFinal.setModel(model);
         jTableRecapFinal.repaint();
@@ -169,15 +175,10 @@ public class ConfirmReapproJFrame extends javax.swing.JFrame {
         }
 
 
-        //Modifier IDReappro dans les objets
-        for (int i=0;i<listeLReap.size();i++){
-            listeLReap.get(i).setIDReap(iDReappro);
-        }
-
         //Ajout LigneReappro
         try {
-             for (LigneReappro lR : listeLReap){
-                 new ApplicationController().addLigneReappro(lR);
+             for (int i=0;i<listeArtAdd.size();i++){
+                 new ApplicationController().addLigneReappro(listeLReap.get(i),listeArtAdd.get(i),iDReappro);
              }               
         }
         catch(BdErreur e){

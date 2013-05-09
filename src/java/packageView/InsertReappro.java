@@ -1,7 +1,6 @@
 package packageView;
 
 
-import java.awt.Color;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.Locale;
@@ -9,12 +8,13 @@ import javax.swing.JOptionPane;
 import packageController.ApplicationController;
 import packageException.BdErreur;
 import packageException.NoIdentification;
+import packageModel.Fournisseur;
 import packageModel.Reappro;
 
 
 public class InsertReappro extends javax.swing.JPanel {
 
-    private ArrayList <String> tabLibF;
+    private ArrayList <Fournisseur> tabLibF;
     private ReapproJPanel reapAddPannel; 
     private GregorianCalendar dateReap;
     private Reappro reapAdd;
@@ -24,13 +24,12 @@ public class InsertReappro extends javax.swing.JPanel {
         jCalendarReappro.setLocale(new Locale("fr", "FR"));
         
         //Garnir comboBox de fournisseur
-        tabLibF= new ArrayList <String>();
+   
         try {
-
-                tabLibF= new ApplicationController().getNomFourn();
+                tabLibF = new ApplicationController().getFournReappro();
                 this.comboBoxFourn.removeAllItems();
-                for (String lib : tabLibF){                   
-                    this.comboBoxFourn.addItem(lib);
+                for (Fournisseur lib : tabLibF){                   
+                    this.comboBoxFourn.addItem(lib.getNom());
                 }
                 this.comboBoxFourn.repaint();
                 this.comboBoxFourn.validate();
@@ -117,7 +116,7 @@ public class InsertReappro extends javax.swing.JPanel {
         reapAdd = new Reappro (dateReap,null,"En cours");
         
         //Affichage de panel d'encodage des articles pour la commande (reappro)
-        reapAddPannel=new ReapproJPanel(reapAdd,comboBoxFourn.getSelectedItem().toString());
+        reapAddPannel=new ReapproJPanel(reapAdd,new Fournisseur (comboBoxFourn.getSelectedItem().toString()));
         reapAddPannel.setBounds(this.getBounds());
         this.removeAll();
         this.add(reapAddPannel);

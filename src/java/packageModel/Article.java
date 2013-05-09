@@ -1,5 +1,7 @@
 package packageModel;
 
+import java.util.logging.Logger;
+
 
 
 
@@ -8,7 +10,8 @@ public class Article {
     private  double  prixM, prixC;
     
     
-
+    public Article(){};
+    
     public Article(String lib, String typ , String d , String c, double pm , double pc){
             this.libelle= lib; 
             this.typeA= typ;
@@ -25,15 +28,12 @@ public class Article {
         this.desc= d;
         this.prixM =pm;
     }
-
-    public void setCadeau(String cadeau) {
-        this.cadeau = cadeau;
-    }
-
-    public void setPrixC(double prixC) {
-        this.prixC = prixC;
-    }
     
+    public Article(String lib,String d){
+        this.libelle=lib;
+        this.desc= d;
+    }
+   
     public String getLibelle(){
         return this.libelle;
     }
@@ -57,6 +57,23 @@ public class Article {
     public double getPrixC(){
         return this.prixC;
     }
+
+    public void setTypeA(String typeA) {
+        this.typeA = typeA;
+    }
     
-  
+     public void setCadeau(String cadeau) {
+        this.cadeau = cadeau;
+    }
+
+    public void setPrixC(double prixC) {
+        this.prixC = prixC;
+    }
+
+    public void setLibelle(String libelle) {
+        this.libelle = libelle;
+    }
+
+
+ 
 }

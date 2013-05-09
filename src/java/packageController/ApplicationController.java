@@ -23,36 +23,26 @@ public class ApplicationController {
     }
     
     
+    
     //AJOUT REAPPRO
-     public ArrayList <String> getLibArticle(String typeA,String fourn) throws  BdErreur, NoIdentification{ 
-        return rM.getLibArticle(typeA,fourn);
+    public ArrayList <Fournisseur> getFournReappro()throws  BdErreur, NoIdentification{
+        return rM.getFournReappro();
+    }
+    
+    public ArrayList <Article> getArticleReappro(Article art,Fournisseur fourn) throws  BdErreur, NoIdentification{ 
+        return rM.getArticleReappro(art,fourn);
     }
      
-    public String getDescArticle(String libelle,String typeA) throws  BdErreur, NoIdentification{ 
-        return rM.getDescArticle(libelle, typeA);
-    }
     public Integer getIDArticle(String libelle,String typeA) throws  BdErreur, NoIdentification{ 
         return rM.getIDArticle(libelle, typeA);
-    }
-    
-    public ArrayList <String> getNomFourn()throws  BdErreur, NoIdentification{
-        return rM.getLibFourn();
-    }
-    
-    public String getRechLibArt(Integer iDArt) throws  BdErreur,NoIdentification{
-        return rM.getRechLibArt(iDArt);
-    }
-    
-    public String getRechTypeArt(Integer iDArt) throws  BdErreur,NoIdentification{
-        return rM.getRechTypeArt(iDArt);
     }
     
     public  Integer  addReappro (Reappro reappro)  throws  BdErreur,NoIdentification,Exception{
         return rM.addReappro(reappro);
     }
     
-    public  void  addLigneReappro (LigneReappro lReap)  throws  BdErreur,NoIdentification,Exception{
-        rM.addLigneReappro(lReap);
+    public  void  addLigneReappro (LigneReappro lReap,Article art, Integer iDReap)  throws  BdErreur,NoIdentification,Exception{
+        rM.addLigneReappro(lReap,art,iDReap);
     }
     
     
