@@ -12,7 +12,7 @@ public class ApplicationController {
     
     
     private LoginManager lM= new LoginManager();
-    private ReapproManager rM= new ReapproManager();
+    private InsertReapproManager rM= new InsertReapproManager();
     private InsertArtManager iAM = new InsertArtManager();
     private ModifArtManager mAM = new ModifArtManager();
     

@@ -1,15 +1,15 @@
 package packageBusiness;
 
 import java.util.ArrayList;
-import packageDataAccess.ReapproDBAccess;
+import packageDataAccess.InsertReapproDBAccess;
 import packageException.BdErreur;
 import packageException.NoIdentification;
 import packageModel.*;
 
 
-public class ReapproManager {
+public class InsertReapproManager {
     
-    private ReapproDBAccess rDBA = new ReapproDBAccess();
+    private InsertReapproDBAccess rDBA = new InsertReapproDBAccess();
     
     
     //AJOUT REAPPRO

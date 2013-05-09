@@ -12,7 +12,7 @@ import packageModel.Reappro;
 
 
 
-public class ReapproDBAccess {
+public class InsertReapproDBAccess {
      
     private String libelle, libelleD, nomF, libRechArt, typeRechArt;
     private ArrayList <String> listeLibA,listeNomF;
