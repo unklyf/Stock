@@ -3,9 +3,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Types;
 import java.util.ArrayList;
 import packageException.BdErreur;
 import packageException.NoIdentification;
+import packageModel.LigneReappro;
 import packageModel.Reappro;
 
 
@@ -101,7 +103,7 @@ public class ReapproDBAccess {
   }
    
    
-   //OBTENIR L'ID DU PRODUIT AFIN D'ENCODER NOUVEAU REAPPRO 
+   //OBTENIR L'ID DU PRODUIT AFIN D'ENCODER NOUVEAU LIGNEREAPPRO 
    //Reçoit : Libelle choisit dans JComboBox & Le type article choisit
    public Integer getIDArticle(String libelleA, String typeA) throws  BdErreur, NoIdentification{   
                   
@@ -148,6 +150,7 @@ public class ReapproDBAccess {
         return typeRechArt;
     }
    
+   
    //Recherche type article a partir de l'ID pour remplir jTable
    public String getRechTypeArt(Integer iDArt) throws  BdErreur,NoIdentification{
          
@@ -171,54 +174,25 @@ public class ReapproDBAccess {
     }
    
    
-   //AJOUT BD
-   public  void  addReappro (Reappro reappro)  throws  BdErreur,NoIdentification,Exception{
-
+   //AJOUT BD REAPPRO
+   public  Integer  addReappro (Reappro reappro)  throws  BdErreur,NoIdentification,Exception{
+       int lastID=0;
        try{ 
              
-            //Update pour colonne obligatoire
-            String req = "insert into Reapprovisionnement (DateApprovisionnement,Qte,IDProduit) values (?,?,?)";
+            //Insert reappro
+            String req = "insert into Reapprovisionnement (DateApprovisionnement,Etat,NoteReappro) values (?,?,?)";
             PreparedStatement prepStat = SingletonConnexion.getInstance().prepareStatement(req,Statement.RETURN_GENERATED_KEYS);
             prepStat.setDate(1,new java.sql.Date(reappro.getReapDate().getTimeInMillis()));
-            //prepStat.setInt(2, reappro.getQuantitee());
-            //prepStat.setInt(3, reappro.getIDArticle());
+            prepStat.setString(2, reappro.getEtat());
+            prepStat.setNull(3, Types.VARCHAR);
             prepStat.executeUpdate();             
             
             //Obtenir IDReappro venant d'être insérer
             ResultSet rs = prepStat.getGeneratedKeys();
             
             while(rs.next()){
-                int lastID = rs.getInt(1);
-                //Update pour colonne facultative
-                if(reappro.getNote()!=null){
-                    req = "update Reapprovisionnement set NoteReappro = ? where IDReappro= ?";
-                    prepStat = SingletonConnexion.getInstance().prepareStatement(req);
-                    prepStat.setString(1, reappro.getNote());
-                    prepStat.setInt(2, lastID);
-                    prepStat.executeUpdate();                
-                }
-            }
-            
-            
-            //Récuperer ancienne quantitée
-            int newQte=0;
-            req = "select Qte from Article where IDProduit= ?";
-            prepStat = SingletonConnexion.getInstance().prepareStatement(req);
-            //prepStat.setInt(1, reappro.getIDArticle());
-            ResultSet donnees = prepStat.executeQuery(); 
-            while (donnees.next( )){
-                newQte = donnees.getInt("Qte");
-            }
-            
-           // newQte+=reappro.getQuantitee();
-            
-            //Ajout dans les stocks article (modifier quantitée)
-            req = "update Article set Qte = ? where IDProduit= ?";
-            prepStat = SingletonConnexion.getInstance().prepareStatement(req);
-            prepStat.setInt(1, newQte);
-           // prepStat.setInt(2, reappro.getIDArticle());
-            prepStat.executeUpdate();
-             
+                lastID = rs.getInt(1);                                
+            } 
         }
         catch (SQLException e){       
             throw new BdErreur(e.getMessage());
@@ -229,6 +203,31 @@ public class ReapproDBAccess {
         catch (Exception e){
            throw new BdErreur(e.getMessage());
        }
-      
+       
+       return lastID;      
+   }
+   
+   //AJOUT BD LIGNE REAPPRO
+   public  void  addLigneReappro (LigneReappro lReap)  throws  BdErreur,NoIdentification,Exception{
+ 
+       try{ 
+             
+            //Insert ligne reappro
+            String req = "insert into LigneReappro (IDProduit,IDReappro,Qte) values (?,?,?)";
+            PreparedStatement prepStat = SingletonConnexion.getInstance().prepareStatement(req);
+            prepStat.setInt(1, lReap.getIDProd());
+            prepStat.setInt(2, lReap.getIDReap());
+            prepStat.setInt(3, lReap.getQte());
+            prepStat.executeUpdate();               
+        }
+        catch (SQLException e){       
+            throw new BdErreur(e.getMessage());
+        }
+        catch (NoIdentification e) {
+            throw new NoIdentification();
+        }
+        catch (Exception e){
+           throw new BdErreur(e.getMessage());
+       }    
    }
 }
