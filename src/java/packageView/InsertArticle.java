@@ -4,7 +4,7 @@
  */
 package packageView;
 
-import java.awt.Color;
+
 import java.awt.event.ItemEvent;
 import java.util.*;
 import javax.swing.*;
@@ -17,7 +17,8 @@ import packageModel.Fournisseur;
 
 public class InsertArticle extends JPanel {
     
-    private ArrayList <String> tabFourn, tabCat;
+    private ArrayList <Fournisseur> tabFourn;
+    private ArrayList <Categorie> tabCat;
     private String typeArt;
     private ApplicationController app;
     private Article nouvArt;
@@ -31,14 +32,14 @@ public class InsertArticle extends JPanel {
     public InsertArticle() {
         initComponents();
         typeArt = "";
-        tabFourn= new ArrayList <String>();
-        tabCat= new ArrayList <String>();
+        tabFourn= new ArrayList <Fournisseur>();
+        tabCat= new ArrayList <Categorie>();
         try {
                 tabFourn= new ApplicationController().getFournArticle();
                 this.ComboFourn.removeAllItems();
                 this.ComboFourn.addItem(new String("------------------------------------------------"));
-                for (String lib : tabFourn){
-                    this.ComboFourn.addItem(lib);
+                for (Fournisseur f : tabFourn){
+                    this.ComboFourn.addItem(f.getNom());
                 }
                 this.ComboFourn.repaint();
                 this.ComboFourn.validate();
@@ -46,8 +47,8 @@ public class InsertArticle extends JPanel {
                 tabCat= new ApplicationController().getCatArticle();
                 this.JComboCat.removeAllItems();
                 this.JComboCat.addItem(new String("------------------------------------------------"));
-                for (String cat : tabCat){
-                    this.JComboCat.addItem(cat);
+                for (Categorie cat : tabCat){
+                    this.JComboCat.addItem(cat.getNom());
                 }
                 this.JComboCat.repaint();
                 this.JComboCat.validate();

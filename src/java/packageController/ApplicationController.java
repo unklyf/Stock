@@ -54,10 +54,10 @@ public class ApplicationController {
         iAM.addArticle(nouvArt,fourn, cat);
     }
     
-    public ArrayList <String> getFournArticle()throws  BdErreur, NoIdentification{
+    public ArrayList <Fournisseur> getFournArticle()throws  BdErreur, NoIdentification{
         return iAM.getFournArticle();
     }
-    public ArrayList <String> getCatArticle()throws  BdErreur, NoIdentification{
+    public ArrayList <Categorie> getCatArticle()throws  BdErreur, NoIdentification{
         return iAM.getCatArticle();
     }
     
@@ -69,6 +69,8 @@ public class ApplicationController {
     public ArrayList<Article> getAllArticle ()throws  BdErreur, NoIdentification{
         return mAM.getAllArticle();
     }
+    
+
     
     
   

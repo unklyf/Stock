@@ -21,11 +21,11 @@ public class InsertArtManager {
         iAMDB.addArticle(nouvArt, fourn, cat);
     }
     
-    public ArrayList <String> getFournArticle() throws  BdErreur, NoIdentification{
+    public ArrayList <Fournisseur> getFournArticle() throws  BdErreur, NoIdentification{
         return iAMDB.getFournArticle();
     }
     
-    public ArrayList <String> getCatArticle() throws  BdErreur, NoIdentification{
+    public ArrayList <Categorie> getCatArticle() throws  BdErreur, NoIdentification{
         return iAMDB.getCatArticle();
     }
     

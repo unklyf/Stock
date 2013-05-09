@@ -1,13 +1,11 @@
 package packageModel;
 
-import java.util.logging.Logger;
-
-
-
 
 public class Article {
     private  String libelle, typeA ,desc, cadeau;
     private  double  prixM, prixC;
+    private Categorie cat;
+    private Fournisseur fourn;
     
     
     public Article(){};
@@ -27,6 +25,25 @@ public class Article {
         this.typeA= typ;
         this.desc= d;
         this.prixM =pm;
+    }
+    
+    public Article(String lib, String typ , String d , double pm , Fournisseur f, Categorie ca){
+            this.libelle= lib; 
+            this.typeA= typ;
+            this.desc= d;
+            this.prixM =pm;
+            this.fourn= f;
+            this.cat=ca;
+            
+    }
+    
+   
+    public Categorie getCat() {
+        return cat;
+    }
+
+    public Fournisseur getFourn() {
+        return fourn;
     }
     
     public Article(String lib,String d){
