@@ -36,6 +36,14 @@ public class Article {
             this.cat=ca;
             
     }
+
+    public Categorie getCat() {
+        return cat;
+    }
+
+    public Fournisseur getFourn() {
+        return fourn;
+    }
     
    
     public Categorie getCat() {
