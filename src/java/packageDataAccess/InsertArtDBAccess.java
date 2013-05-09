@@ -14,9 +14,10 @@ import packageModel.Fournisseur;
 
 public class InsertArtDBAccess {
     
-    private ArrayList <String> tabFournDB, tabCatDB;
-    private String nomFourn,nomCat; 
-    private Integer iDArt;
+    private ArrayList <Fournisseur> tabFournDB;
+    private ArrayList <Categorie>  tabCatDB;
+     
+   
     
             
     public void  addArticle (Article nouvArt, Fournisseur fourn, Categorie cat) throws BdErreur,NoIdentification{
@@ -77,9 +78,9 @@ public class InsertArtDBAccess {
    }
 
     
-    public ArrayList <String> getFournArticle() throws  BdErreur, NoIdentification{
+    public ArrayList <Fournisseur> getFournArticle() throws  BdErreur, NoIdentification{
        
-        tabFournDB =new ArrayList <String> ();
+        tabFournDB =new ArrayList <Fournisseur> ();
         
         try {  
                  String req = "select Nom from Fournisseur";
@@ -87,8 +88,8 @@ public class InsertArtDBAccess {
                  ResultSet donnees = prepStat.executeQuery();
    
                  while (donnees.next( )){
-                     nomFourn = donnees.getString("Nom");
-                     tabFournDB.add(nomFourn);
+                     Fournisseur nomF = new Fournisseur (donnees.getString("Nom"));
+                     tabFournDB.add(nomF);
                  }    
          }
             
@@ -102,9 +103,9 @@ public class InsertArtDBAccess {
         return tabFournDB;
     }
     
-    public ArrayList <String> getCatArticle() throws  BdErreur, NoIdentification{
+    public ArrayList <Categorie> getCatArticle() throws  BdErreur, NoIdentification{
        
-        tabCatDB =new ArrayList <String> ();
+        tabCatDB =new ArrayList <Categorie> ();
         
         try {  
                  String req = "select Libelle from Categorie";
@@ -112,8 +113,8 @@ public class InsertArtDBAccess {
                  ResultSet donnees = prepStat.executeQuery();
    
                  while (donnees.next( )){
-                     nomCat = donnees.getString("Libelle");
-                     tabCatDB.add(nomCat);
+                     Categorie cat = new Categorie (donnees.getString("Libelle"));
+                     tabCatDB.add(cat);
                  }    
          }
             

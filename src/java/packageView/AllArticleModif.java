@@ -1,14 +1,23 @@
 package packageView;
 
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.AbstractTableModel;
+import packageController.ApplicationController;
+import packageException.BdErreur;
+import packageException.NoIdentification;
 import packageModel.Article;
+import packageModel.Categorie;
+import packageModel.Fournisseur;
+
+
 
 
 public class AllArticleModif extends AbstractTableModel {
     
     private ArrayList<String> columnNames = new ArrayList<String>( );
     private ArrayList<Article> contents = new ArrayList<Article>( );
+   
     
     public AllArticleModif (ArrayList<Article> modifArt){
         contents = modifArt;
@@ -18,8 +27,8 @@ public class AllArticleModif extends AbstractTableModel {
         columnNames.add("Prix Marchandise");
         columnNames.add("Prix Consigne");
         columnNames.add("Cadeau");
-       // columnNames.add("Fournisseur");
-       // columnNames.add("Categorie");
+        columnNames.add("Fournisseur");
+        columnNames.add("Categorie");
        
     }
 
@@ -60,8 +69,9 @@ public class AllArticleModif extends AbstractTableModel {
                     else {
                             return null;
                     }
-            //case 6: return ;
-            //case 7: return ;    
+            
+            case 6: return art.getFourn().getNom();  
+            case 7: return art.getCat().getNom();
             default: return null;
         }
       }
@@ -84,6 +94,10 @@ public class AllArticleModif extends AbstractTableModel {
             case 4: c = Double.class;
                 break;
             case 5: c = String.class;
+                break;
+            case 6: c = String.class;
+                break;
+            case 7: c = String.class;
                 break;
             default: c = String.class;
           

@@ -11,6 +11,8 @@ import java.util.ArrayList;
 import packageException.BdErreur;
 import packageException.NoIdentification;
 import packageModel.Article;
+import packageModel.Categorie;
+import packageModel.Fournisseur;
 
 /**
  *
@@ -21,15 +23,20 @@ public class ModifArtDBAccess {
     
     private ArrayList<Article> tabArt;
     
-    
+
        public ArrayList<Article> getAllArticle ()throws  BdErreur, NoIdentification{
         
         tabArt = new ArrayList<Article>();
         String  cadeau;
         double  prixC;
-          
+       
+ 
         try{
-            String req =" select * from Article";
+            String req ="select a.Libelle, a.TypeA, a.Description, a.PrixMarchandise, a.PrixConsigne, a.Cadeau, "
+                    + "f.Nom, c.Libelle libCat "
+                    + "from Article a, Fournisseur f, Categorie c "
+                    + "where a.IDFournisseur = f.IDFournisseur AND a.IDCategorie = c.IDCategorie "
+                    + "order by a.Libelle";
             PreparedStatement prepStat = SingletonConnexion.getInstance().prepareStatement(req);
             ResultSet donnees = prepStat.executeQuery();
    
@@ -37,7 +44,9 @@ public class ModifArtDBAccess {
                       Article art = new Article (donnees.getString("Libelle"),
                                                  donnees.getString("TypeA"),
                                                  donnees.getString("Description"),
-                                                 donnees.getDouble("PrixMarchandise"));
+                                                 donnees.getDouble("PrixMarchandise"),
+                                                 new Fournisseur (donnees.getString("Nom")),
+                                                 new Categorie (donnees.getString("LibCat")));
                      
                      
                     
@@ -53,12 +62,7 @@ public class ModifArtDBAccess {
                       
                       tabArt.add(art);
                  }
-                 
-            
-            
-            
-            
-            
+    
         }
         catch (SQLException e) {  
             throw new BdErreur(e.getMessage());   
@@ -69,6 +73,9 @@ public class ModifArtDBAccess {
         return tabArt;
         
     }
+      
+       
+      
     
     
             

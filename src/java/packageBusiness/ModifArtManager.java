@@ -23,4 +23,6 @@ public class ModifArtManager {
         return mADBA.getAllArticle();
     }
    
+    
+   
 }
