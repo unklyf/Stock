@@ -36,29 +36,21 @@ public class Article {
             this.cat=ca;
             
     }
-
-    public Categorie getCat() {
-        return cat;
-    }
-
-    public Fournisseur getFourn() {
-        return fourn;
-    }
-    
-   
-    public Categorie getCat() {
-        return cat;
-    }
-
-    public Fournisseur getFourn() {
-        return fourn;
-    }
     
     public Article(String lib,String d){
         this.libelle=lib;
         this.desc= d;
     }
-   
+    
+    public Categorie getCat() {
+        return cat;
+    }
+
+    public Fournisseur getFourn() {
+        return fourn;
+    }
+    
+       
     public String getLibelle(){
         return this.libelle;
     }
