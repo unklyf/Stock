@@ -1,14 +1,9 @@
 package packageView;
 
 import java.util.ArrayList;
-import javax.swing.JOptionPane;
 import javax.swing.table.AbstractTableModel;
-import packageController.ApplicationController;
-import packageException.BdErreur;
-import packageException.NoIdentification;
 import packageModel.Article;
-import packageModel.Categorie;
-import packageModel.Fournisseur;
+
 
 
 
