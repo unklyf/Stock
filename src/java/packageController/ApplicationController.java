@@ -15,7 +15,7 @@ public class ApplicationController {
     private InsertReapproManager rM= new InsertReapproManager();
     private InsertArtManager iAM = new InsertArtManager();
     private ModifArtManager mAM = new ModifArtManager();
-    
+    private ListingReapproManager lrm = new ListingReapproManager();
     
     //IDENTIFICATION
     public void identification(String user, String pw) throws IdentificationErreur{
@@ -29,8 +29,8 @@ public class ApplicationController {
         return rM.getFournReappro();
     }
     
-    public ArrayList <Article> getArticleReappro(Article art,Fournisseur fourn) throws  BdErreur, NoIdentification{ 
-        return rM.getArticleReappro(art,fourn);
+    public ArrayList <Article> getArticleReappro(Article art,Reappro reap) throws  BdErreur, NoIdentification{ 
+        return rM.getArticleReappro(art,reap);
     }
      
     public Integer getIDArticle(String libelle,String typeA) throws  BdErreur, NoIdentification{ 
@@ -41,14 +41,21 @@ public class ApplicationController {
         return rM.addReappro(reappro);
     }
     
-    public  void  addLigneReappro (LigneReappro lReap,Article art, Integer iDReap)  throws  BdErreur,NoIdentification,Exception{
-        rM.addLigneReappro(lReap,art,iDReap);
+    public  void  addLigneReappro (LigneReappro lReap, Integer iDReap)  throws  BdErreur,NoIdentification,Exception{
+        rM.addLigneReappro(lReap,iDReap);
     }
     
     
+    //LISTING REAPPRO
+    public ArrayList<Reappro> getAllReappro ()throws  BdErreur, NoIdentification{
+        return lrm.getAllReappro();
+    }
     
+    public ArrayList<LigneReappro> getAllLigneReappro (Integer iDR)throws  BdErreur, NoIdentification{
+        return lrm.getAllLigneReappro(iDR);
+    }
     
-    
+       
     // AJOUT ARTICLE
     public void  addArticle (Article nouvArt, Fournisseur fourn, Categorie cat) throws BdErreur,NoIdentification{
         iAM.addArticle(nouvArt,fourn, cat);
