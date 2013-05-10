@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package packageDataAccess;
 
 import java.sql.PreparedStatement;
@@ -14,15 +10,10 @@ import packageModel.Article;
 import packageModel.Categorie;
 import packageModel.Fournisseur;
 
-/**
- *
- * @author Home
- */
+
 public class ModifArtDBAccess {
-    
-    
-    private ArrayList<Article> tabArt;
-    
+        
+       private ArrayList<Article> tabArt;  
 
        public ArrayList<Article> getAllArticle ()throws  BdErreur, NoIdentification{
         
@@ -72,14 +63,5 @@ public class ModifArtDBAccess {
         }
         return tabArt;
         
-    }
-      
-       
-      
-    
-    
-            
-            
-            
-            
+    }           
 }
