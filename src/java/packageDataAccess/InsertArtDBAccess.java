@@ -23,7 +23,7 @@ public class InsertArtDBAccess {
     public void  addArticle (Article nouvArt, Fournisseur fourn, Categorie cat) throws BdErreur,NoIdentification{
         
         try { 
-            String req = "insert into Article (Libelle,TypeA,Description,PrixMarchandise,IDFournisseur,IDCategorie) values(?,?,?,?,?,?)";
+            String req = "insert into Article (Libelle,TypeA,Description,PrixMarchandise,IDFournisseur,IDCategorie,Cadeau) values(?,?,?,?,?,?,?)";
             PreparedStatement prepStat = SingletonConnexion.getInstance().prepareStatement(req,Statement.RETURN_GENERATED_KEYS);
             prepStat.setString(1,nouvArt.getLibelle());
             prepStat.setString(2,nouvArt.getType());
@@ -31,6 +31,7 @@ public class InsertArtDBAccess {
             prepStat.setDouble(4, nouvArt.getPrixM());
             prepStat.setInt(5, this.getIDFourn(fourn.getNom()));
             prepStat.setInt(6, this.getIDCat(cat.getNom()));
+            prepStat.setString(7, nouvArt.getCadeau());
             prepStat.executeUpdate(); 
             
             /*
@@ -52,13 +53,6 @@ public class InsertArtDBAccess {
                     prepStat.executeUpdate();                
                 }
                 
-                if (nouvArt.getCadeau()!= null){
-                    req = "update Article set Cadeau = ? where IDProduit= ?";
-                    prepStat = SingletonConnexion.getInstance().prepareStatement(req);
-                    prepStat.setString(1,nouvArt.getCadeau());
-                     prepStat.setInt(2, lastID);
-                    prepStat.executeUpdate();
-                }
             }
           
              

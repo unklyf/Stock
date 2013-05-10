@@ -6,40 +6,46 @@ public class Article {
     private  double  prixM, prixC;
     private Categorie cat;
     private Fournisseur fourn;
+    private Integer idProduit;
     
     
-    public Article(){};
+    public Article (){    
+    }
     
     public Article(String lib, String typ , String d , String c, double pm , double pc){
-            this.libelle= lib; 
-            this.typeA= typ;
-            this.desc= d;
-            this.prixM =pm;
-            this.prixC =pc; 
-            this.cadeau= c;
+            this.libelle = lib; 
+            this.typeA = typ;
+            this.desc = d;
+            this.prixM = pm;
+            this.prixC = pc; 
+            this.cadeau = c;
             
     }
     
     public Article(String lib,String typ , String d,double pm){
-        this.libelle=lib;
-        this.typeA= typ;
-        this.desc= d;
-        this.prixM =pm;
+        this.libelle = lib;
+        this.typeA = typ;
+        this.desc = d;
+        this.prixM = pm;
     }
     
-    public Article(String lib, String typ , String d , double pm , Fournisseur f, Categorie ca){
-            this.libelle= lib; 
-            this.typeA= typ;
-            this.desc= d;
-            this.prixM =pm;
-            this.fourn= f;
-            this.cat=ca;
-            
+    public Article(Integer id, String lib, String typ , String d , double pm , Fournisseur f, Categorie ca){
+            this.idProduit = id;
+            this.libelle = lib; 
+            this.typeA = typ;
+            this.desc = d;
+            this.prixM = pm;
+            this.fourn = f;
+            this.cat = ca;       
     }
-    
+      
     public Article(String lib,String d){
         this.libelle=lib;
         this.desc= d;
+    }
+
+    public Integer getIdProduit() {
+        return idProduit;
     }
     
     public Categorie getCat() {

@@ -32,7 +32,7 @@ public class ModifArtDBAccess {
        
  
         try{
-            String req ="select a.Libelle, a.TypeA, a.Description, a.PrixMarchandise, a.PrixConsigne, a.Cadeau, "
+            String req ="select a.IDProduit, a.Libelle, a.TypeA, a.Description, a.PrixMarchandise, a.PrixConsigne, a.Cadeau, "
                     + "f.Nom, c.Libelle libCat "
                     + "from Article a, Fournisseur f, Categorie c "
                     + "where a.IDFournisseur = f.IDFournisseur AND a.IDCategorie = c.IDCategorie "
@@ -41,7 +41,8 @@ public class ModifArtDBAccess {
             ResultSet donnees = prepStat.executeQuery();
    
                  while (donnees.next( )){
-                      Article art = new Article (donnees.getString("Libelle"),
+                      Article art = new Article (donnees.getInt("IDProduit"),
+                                                 donnees.getString("Libelle"),
                                                  donnees.getString("TypeA"),
                                                  donnees.getString("Description"),
                                                  donnees.getDouble("PrixMarchandise"),
@@ -75,11 +76,4 @@ public class ModifArtDBAccess {
     }
       
        
-      
-    
-    
-            
-            
-            
-            
 }
