@@ -63,10 +63,9 @@ public class ModifArtDBAccess {
         }
         return tabArt;
         
-    }  
+    }
        
-       
-     public void modifArticle(Article artNouvVersion, Article artAncVersion) throws BdErreur, NoIdentification{
+    public void modifArticle(Article artNouvVersion, Article artAncVersion) throws BdErreur, NoIdentification{
        
         try{
             String req ="update Article  " +
@@ -102,5 +101,5 @@ public class ModifArtDBAccess {
         catch (NoIdentification e) {
             throw new NoIdentification();
         }
-    } 
+    }    
 }
