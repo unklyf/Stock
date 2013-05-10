@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package packageView;
 
 
@@ -13,10 +9,7 @@ import packageException.BdErreur;
 import packageException.NoIdentification;
 import packageModel.Article;
 
-/**
- *
- * @author Home
- */
+
 public class ArticleModif extends javax.swing.JPanel {
 
     private String tabCad[] = {"------------","Decapsuleur", "Ballon", "Lazy Bag", "Casquette", "Parapluie", "Verre", "Clé USB"};
