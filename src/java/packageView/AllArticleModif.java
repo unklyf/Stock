@@ -7,7 +7,6 @@ import packageModel.Article;
 
 
 
-
 public class AllArticleModif extends AbstractTableModel {
     
     private ArrayList<String> columnNames = new ArrayList<String>( );
