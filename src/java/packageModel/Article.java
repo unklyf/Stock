@@ -43,6 +43,13 @@ public class Article {
         this.libelle=lib;
         this.desc= d;
     }
+    
+    public Article (Integer id, String d, Double pm, double pc){
+        this.idProduit=id;
+        this.desc=d;
+        this.prixM=pm;
+        this.prixC=pc;
+    }
 
     public Integer getIdProduit() {
         return idProduit;

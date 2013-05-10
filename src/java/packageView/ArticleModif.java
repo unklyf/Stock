@@ -6,6 +6,12 @@ package packageView;
 
 
 import javax.swing.JOptionPane;
+import javax.swing.SpinnerModel;
+import javax.swing.SpinnerNumberModel;
+import packageController.ApplicationController;
+import packageException.BdErreur;
+import packageException.NoIdentification;
+import packageModel.Article;
 
 /**
  *
@@ -13,12 +19,16 @@ import javax.swing.JOptionPane;
  */
 public class ArticleModif extends javax.swing.JPanel {
 
-    private String tabCad[] = {"Decapsuleur", "Ballon", "Lazy Bag", "Casquette", "Parapluie", "Verre", "Clé USB"};
-    private Integer iTabCad=7;
+    private String tabCad[] = {"------------","Decapsuleur", "Ballon", "Lazy Bag", "Casquette", "Parapluie", "Verre", "Clé USB"};
+    private Integer iTabCad=8;
+    private ApplicationController app;
+    private Article artModif ;
+    
     
     public ArticleModif( int indL, AllArticleModif art ) {
         initComponents();
         
+        artModif=art.getContents().get(indL);
         this.fournisseurField.setText(art.getValueAt(indL,6).toString());
         this.fournisseurField.setEnabled(false);
         this.typeArtField.setText(art.getValueAt(indL,1).toString());
@@ -111,6 +121,12 @@ public class ArticleModif extends javax.swing.JPanel {
         descriptionField.setColumns(20);
         descriptionField.setRows(5);
         jScrollPane1.setViewportView(descriptionField);
+
+        SpinnerModel modelpm = new SpinnerNumberModel(0.00,0.00,1000.00,0.01);
+        prixMarchSpinner.setModel(modelpm);
+
+        SpinnerModel modelpc = new SpinnerNumberModel(0.00,0.00,1000.00,0.01);
+        prixConsSpinner.setModel(modelpc);
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
         jLabel12.setText("(Facultatif)");
@@ -241,7 +257,33 @@ public class ArticleModif extends javax.swing.JPanel {
             if(Double.parseDouble(this.prixMarchSpinner.getValue().toString())==0){
                 JOptionPane.showMessageDialog(null, "Veuillez indiquer le prix de la marchandise.");
             }
+            else{
+                double prixCons=0;
+                if (!(Double.parseDouble(this.prixConsSpinner.getValue().toString())==0)) {
+                    prixCons = Double.parseDouble(this.prixConsSpinner.getValue().toString());
+                }
+                
+                app = new ApplicationController ();         
+                try{
+                    Article art = new Article ( artModif.getIdProduit(),
+                                                this.descriptionField.getText(),
+                                                Double.parseDouble(this.prixMarchSpinner.getValue().toString()),                                                               
+                                                prixCons
+                                                ); 
+                                       
+                app.modifArticle(art,artModif);
+                JOptionPane.showMessageDialog(null,"Modification effectuée avec succès !");
+                
+            }
+            catch(BdErreur e){
+                  JOptionPane.showMessageDialog(null, e, "Erreur BD", JOptionPane.ERROR_MESSAGE);
+            }
+
+            catch(NoIdentification e){
+                  JOptionPane.showMessageDialog(null, e, "Erreur identification", JOptionPane.ERROR_MESSAGE);
+            }
         }
+      }
     }//GEN-LAST:event_boutonModifActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
