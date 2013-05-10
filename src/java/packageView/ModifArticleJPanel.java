@@ -9,12 +9,10 @@ import packageException.NoIdentification;
 
 public class ModifArticleJPanel extends javax.swing.JPanel {
 
-  private ListSelectionModel listSelect;
-  
+  private ListSelectionModel listSelect;  
   
    public ModifArticleJPanel() {
-       
-              
+                   
        
         try {
             initComponents();
