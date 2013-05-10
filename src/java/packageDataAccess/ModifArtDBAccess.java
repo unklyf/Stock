@@ -88,14 +88,21 @@ public class ModifArtDBAccess {
             prepStat.executeUpdate();
 
             //Update du prix consigné uniquement si changé 
-            if(artNouvVersion.getPrixC()!= artAncVersion.getPrixC()){
-               req = "update Article set PrixConsigne = ? where IDProduit= ?";
-               prepStat = SingletonConnexion.getInstance().prepareStatement(req);
-               prepStat.setDouble(1,artNouvVersion.getPrixC());
-               prepStat.setInt(2, artNouvVersion.getIdProduit());
-               prepStat.executeUpdate();                
-            }
-   
+            if(artNouvVersion.getPrixC() == 0 && artAncVersion.getPrixC() != 0) {
+                    req = "update Article set PrixConsigne = NULL where IDProduit= ?";
+                    prepStat = SingletonConnexion.getInstance().prepareStatement(req);
+                    prepStat.setInt(1, artNouvVersion.getIdProduit());
+                    prepStat.executeUpdate();       
+            }      
+            else {
+                if(artNouvVersion.getPrixC() != artAncVersion.getPrixC()){
+                   req = "update Article set PrixConsigne = ? where IDProduit= ?";
+                   prepStat = SingletonConnexion.getInstance().prepareStatement(req);
+                   prepStat.setDouble(1,artNouvVersion.getPrixC());
+                   prepStat.setInt(2, artNouvVersion.getIdProduit());
+                   prepStat.executeUpdate();                
+                }
+            } 
         }
         catch (SQLException e) {  
             throw new BdErreur(e.getMessage());   
