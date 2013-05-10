@@ -16,15 +16,12 @@ import packageModel.Reappro;
 
 public class InsertReapproDBAccess {
      
-    private String libelle, libelleD, libRechArt, typeRechArt;
-    private Integer IDArt;
-    
-    
+   
+
     //LISTE NOMS DES FOURNISSEUR    
      public ArrayList <Fournisseur> getFournReappro() throws  BdErreur, NoIdentification{   
          
          ArrayList <Fournisseur> listeNomF= new ArrayList <Fournisseur> ();
-         
          
          try {  
                  String req = "select Nom from Fournisseur";
@@ -49,25 +46,26 @@ public class InsertReapproDBAccess {
      
     
     //REMPLIR LA JComboBox EN FONCTION DU TYPE ARTICLE CHOISIT
-    public ArrayList <Article> getArticleReappro(Article artC, Fournisseur fourn) throws  BdErreur, NoIdentification{   
+    public ArrayList <Article> getArticleReappro(Article artC, Reappro reap) throws  BdErreur, NoIdentification{   
          
          ArrayList <Article> listeLibA= new ArrayList <Article> ();
          
          try {  
-                 String req = "select art.Libelle, art.Description, fourn.IDFournisseur, fourn.Nom\n" +
-                              "from Article art, Fournisseur fourn\n" +
-                              "where TypeA = ? \n" +
-                              "and fourn.Nom = ?\n" +
-                              "and art.IDFournisseur = fourn.IDFournisseur";
+                String req =  "select a.Libelle, a.Description, a.TypeA, f.IDFournisseur, f.Nom\n" +
+                              "from Article a, Fournisseur f\n" +
+                              "where a.IDFournisseur = f.IDFournisseur\n" +
+                              "and f.Nom = ? \n" +
+                              "and a.TypeA= ? ";
+          
                  PreparedStatement prepStat = SingletonConnexion.getInstance().prepareStatement(req);
-                 prepStat.setString(1, artC.getType());
-                 prepStat.setString(2, fourn.getNom());
+                 prepStat.setString(1, reap.getFourn().getNom());
+                 prepStat.setString(2, artC.getType());
                  ResultSet donnees = prepStat.executeQuery();
    
                  
                  while (donnees.next( )){
-                     Article art = new Article(donnees.getString("Libelle"),donnees.getString("Description"));
-                     listeLibA.add(art);
+                     Article arti = new Article(donnees.getString("Libelle"),donnees.getString("Description"));
+                     listeLibA.add(arti);
                  }    
          }
             
@@ -85,7 +83,8 @@ public class InsertReapproDBAccess {
    //OBTENIR L'ID D'UN ARTICLE 
    //Reçoit : Libelle & type 
    public Integer getIDArticle(String libelleA, String typeA) throws  BdErreur, NoIdentification{   
-                  
+         Integer IDArt=0;
+                 
          try {  
                  String req = "select IDProduit from Article where Libelle = ? and TypeA = ?";
                  PreparedStatement prepStat = SingletonConnexion.getInstance().prepareStatement(req);
@@ -143,14 +142,14 @@ public class InsertReapproDBAccess {
    
    
    //AJOUT BD LIGNE REAPPRO
-   public  void  addLigneReappro (LigneReappro lReap,Article art, Integer iDReap)  throws  BdErreur,NoIdentification,Exception{
+   public  void  addLigneReappro (LigneReappro lReap,Integer iDReap)  throws  BdErreur,NoIdentification,Exception{
  
        try{ 
              
             //Insert ligne reappro
             String req = "insert into LigneReappro (IDProduit,IDReappro,Qte) values (?,?,?)";
             PreparedStatement prepStat = SingletonConnexion.getInstance().prepareStatement(req);
-            prepStat.setInt(1, this.getIDArticle(art.getLibelle(), art.getType()));
+            prepStat.setInt(1, this.getIDArticle(lReap.getArt().getLibelle(), lReap.getArt().getType()));
             prepStat.setInt(2, iDReap);
             prepStat.setInt(3, lReap.getQte());
             prepStat.executeUpdate();               

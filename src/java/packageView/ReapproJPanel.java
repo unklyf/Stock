@@ -13,20 +13,18 @@ import packageModel.*;
 public class ReapproJPanel extends JPanel {
     
     
-    private ArrayList <Article> listeArtCombo,listeArtAdd;
+    private ArrayList <Article> listeArtCombo;
     private ArrayList <LigneReappro> listeLReap;
     private Article art;
-    private Fournisseur fourn;
     private Reappro reapAdd;
     private LigneReappro lReap;
     private ListSelectionModel listSelect;
     
-    public ReapproJPanel(Reappro rA, Fournisseur f) {
+    public ReapproJPanel(Reappro rA) {
         initComponents();
         
         //Objets
         listeArtCombo= new ArrayList <Article>();
-        listeArtAdd= new ArrayList <Article>();
         listeLReap = new ArrayList <LigneReappro> ();
         
         //JTable
@@ -35,7 +33,7 @@ public class ReapproJPanel extends JPanel {
         
         //Remplir ce qu'on reçoit avec le constructeur
         reapAdd = rA;
-        fourn=f;
+    
         
         //Boutons modifications
         confirmModifButton.setVisible(false);
@@ -361,7 +359,7 @@ public class ReapproJPanel extends JPanel {
             try {
                 art=new Article();
                 art.setTypeA("Bouteille");
-                listeArtCombo= new ApplicationController().getArticleReappro(art,fourn);
+                listeArtCombo= new ApplicationController().getArticleReappro(art,reapAdd);
                 this.comboBoxArticle.removeAllItems();
                 for (Article lib : listeArtCombo){
                     this.comboBoxArticle.addItem(lib.getLibelle());
@@ -386,7 +384,7 @@ public class ReapproJPanel extends JPanel {
             try {
                 art=new Article();
                 art.setTypeA("Casier");                
-                listeArtCombo= new ApplicationController().getArticleReappro(art,fourn);
+                listeArtCombo= new ApplicationController().getArticleReappro(art,reapAdd);
                 this.comboBoxArticle.removeAllItems();
                 for (Article lib : listeArtCombo){
                     this.comboBoxArticle.addItem(lib.getLibelle());
@@ -413,7 +411,7 @@ public class ReapproJPanel extends JPanel {
             try {
                 art=new Article();
                 art.setTypeA("Fût");
-                listeArtCombo= new ApplicationController().getArticleReappro(art,fourn);
+                listeArtCombo= new ApplicationController().getArticleReappro(art,reapAdd);
                 this.comboBoxArticle.removeAllItems();
                 for (Article lib : listeArtCombo){
                     this.comboBoxArticle.addItem(lib.getLibelle());
@@ -458,13 +456,14 @@ public class ReapproJPanel extends JPanel {
             else {
                   
                  //Creation ligne reappro
-                 lReap = new LigneReappro(Integer.parseInt(quantiteSpinner.getValue().toString()));                      
                  art.setLibelle(listeArtCombo.get(comboBoxArticle.getSelectedIndex()).getLibelle());
+                 lReap = new LigneReappro(Integer.parseInt(quantiteSpinner.getValue().toString()),art);                      
+                 
                 
       
                  //Verification doublon d'articles
-                 for (int i=0;i<listeArtAdd.size();i++){
-                     if(listeArtAdd.get(i).getLibelle().equals(art.getLibelle()) && listeArtAdd.get(i).getType().equals(art.getType())){
+                 for (int i=0;i<listeLReap.size();i++){
+                     if(listeLReap.get(i).getArt().getLibelle().equals(art.getLibelle()) && listeLReap.get(i).getArt().getType().equals(art.getType())){
                         existe=true;
                         indice = i;
                     }
@@ -472,7 +471,6 @@ public class ReapproJPanel extends JPanel {
                  
                  if(existe == false){
                      //Ajout dans les arrayList
-                     listeArtAdd.add(art);
                      listeLReap.add(lReap);
                  }
                  else{
@@ -480,13 +478,12 @@ public class ReapproJPanel extends JPanel {
                     if(choix==JOptionPane.YES_OPTION){
                         qte= listeLReap.get(indice).getQte();
                         qte+= Integer.parseInt(quantiteSpinner.getValue().toString());
-                        lReap = new LigneReappro(qte);
-                        listeLReap.set(indice, lReap);
+                        listeLReap.get(indice).setQte(qte);
                     }
                  }
                  
                  //Remplir jTable
-                 AllArticleReapproModel model = new AllArticleReapproModel(listeArtAdd,listeLReap);
+                 AllLigneReapproModel model = new AllLigneReapproModel(listeLReap);
                  jTableRecap.setModel(model);
                  jTableRecap.repaint();
                  jTableRecap.validate();
@@ -510,10 +507,9 @@ public class ReapproJPanel extends JPanel {
         if(listSelect.isSelectionEmpty()==false){
             int indLigne= listSelect.getMinSelectionIndex();
             listeLReap.remove(indLigne);
-            listeArtAdd.remove(indLigne);
         
             //Raffraichir jTable
-            AllArticleReapproModel model = new AllArticleReapproModel(listeArtAdd,listeLReap);
+            AllLigneReapproModel model = new AllLigneReapproModel(listeLReap);
             jTableRecap.setModel(model);
             jTableRecap.repaint();
             jTableRecap.validate();
@@ -552,8 +548,8 @@ public class ReapproJPanel extends JPanel {
 
   
             quantiteSpinner.setValue(listeLReap.get(indLigne).getQte());   
-            jTextFieldModifLib.setText(listeArtAdd.get(indLigne).getLibelle());
-            jTextFieldModifType.setText(listeArtAdd.get(indLigne).getType());
+            jTextFieldModifLib.setText(listeLReap.get(indLigne).getArt().getLibelle());
+            jTextFieldModifType.setText(listeLReap.get(indLigne).getArt().getType());
         }
         else{
             JOptionPane.showMessageDialog(null, "Aucune ligne du tableau récapitulatif sélectionnée");
@@ -568,7 +564,7 @@ public class ReapproJPanel extends JPanel {
                 int indLigne= listSelect.getMinSelectionIndex();
             
                 //Encoder les changements
-                lReap = new LigneReappro(Integer.parseInt(quantiteSpinner.getValue().toString()));
+                lReap = new LigneReappro(Integer.parseInt(quantiteSpinner.getValue().toString()),art);
                 listeLReap.set(indLigne, lReap);
 
 
@@ -592,7 +588,7 @@ public class ReapproJPanel extends JPanel {
                 jTextFieldModifType.setVisible(false);
 
                 //Raffraichir jTable
-                AllArticleReapproModel model = new AllArticleReapproModel(listeArtAdd,listeLReap);
+                AllLigneReapproModel model = new AllLigneReapproModel(listeLReap);
                 jTableRecap.setModel(model);
                 jTableRecap.repaint();
                 jTableRecap.validate();       
@@ -623,7 +619,7 @@ public class ReapproJPanel extends JPanel {
            JOptionPane.showMessageDialog(null, "Aucun article dans la commande. \nMerci d'en ajouter.");
        }
             else{             
-              ConfirmReapproJFrame confF = new ConfirmReapproJFrame(listeArtAdd,listeLReap,fourn,reapAdd,this);     
+              ConfirmReapproJFrame confF = new ConfirmReapproJFrame(listeLReap,reapAdd,this);     
               confF.setVisible(true);
        }
     }//GEN-LAST:event_endButtonActionPerformed

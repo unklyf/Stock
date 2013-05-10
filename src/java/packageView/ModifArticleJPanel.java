@@ -5,21 +5,32 @@ import javax.swing.ListSelectionModel;
 import packageController.ApplicationController;
 import packageException.BdErreur;
 import packageException.NoIdentification;
+import packageModel.Fournisseur;
 
 
 public class ModifArticleJPanel extends javax.swing.JPanel {
 
-  private ListSelectionModel listSelect;  
+  private ListSelectionModel listSelect;
+  private ArticleModif panModif;
+  private AllArticleModif artMod;
+
+  
   
    public ModifArticleJPanel() {
-                   
+       
+        
        
         try {
             initComponents();
-            AllArticleModif artMod = new AllArticleModif (new ApplicationController().getAllArticle());
+            artMod = new AllArticleModif (new ApplicationController().getAllArticle());
             JTableModif.setModel(artMod);
             JTableModif.repaint();
             JTableModif.validate();
+            
+            JTableModif.getColumnModel().getColumn(0).setPreferredWidth(100);
+            
+            JTableModif.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+            listSelect = JTableModif.getSelectionModel();
             
             }        
             catch(BdErreur e){
@@ -58,6 +69,11 @@ public class ModifArticleJPanel extends javax.swing.JPanel {
         jScrollPane1.setViewportView(JTableModif);
 
         BoutonModif.setText("Modifier");
+        BoutonModif.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BoutonModifActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -68,8 +84,8 @@ public class ModifArticleJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(BoutonModif, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(LabelModif, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 892, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(81, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1293, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(126, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -83,6 +99,25 @@ public class ModifArticleJPanel extends javax.swing.JPanel {
                 .addContainerGap(65, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void BoutonModifActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BoutonModifActionPerformed
+        if(listSelect.isSelectionEmpty()==false){
+            
+            int indLigne= listSelect.getMinSelectionIndex();
+            
+            panModif=new ArticleModif(indLigne, artMod);
+            panModif.setBounds(this.getBounds());
+            this.removeAll();
+            this.add(panModif);
+            this.repaint();
+            this.validate();     
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Aucune ligne du tableau récapitulatif sélectionnée");
+        }
+    }//GEN-LAST:event_BoutonModifActionPerformed
+
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BoutonModif;

@@ -77,6 +77,10 @@ public class ApplicationController {
         return mAM.getAllArticle();
     }
     
+    public void modifArticle(Article artNouvVersion, Article artAncVersion) throws BdErreur, NoIdentification{
+         mAM.modifArticle(artNouvVersion, artAncVersion);
+    }
+    
 
     
     

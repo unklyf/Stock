@@ -15,6 +15,10 @@ public class ModifArtManager {
     public ArrayList<Article> getAllArticle ()throws  BdErreur, NoIdentification{
         return mADBA.getAllArticle();
     }
+    
+    public void modifArticle(Article artNouvVersion, Article artAncVersion) throws BdErreur, NoIdentification{
+         mADBA.modifArticle(artNouvVersion, artAncVersion);
+    }
    
     
    

@@ -17,8 +17,8 @@ public class InsertReapproManager {
         return rDBA.getFournReappro();
     }
      
-    public ArrayList <Article> getArticleReappro(Article art, Fournisseur fourn) throws  BdErreur, NoIdentification{ 
-            return rDBA.getArticleReappro(art, fourn);
+    public ArrayList <Article> getArticleReappro(Article art, Reappro reap) throws  BdErreur, NoIdentification{ 
+            return rDBA.getArticleReappro(art, reap);
     }  
     
     public Integer getIDArticle(String libelle,String typeA) throws  BdErreur, NoIdentification{ 
@@ -29,8 +29,8 @@ public class InsertReapproManager {
         return rDBA.addReappro(reappro);
     }
     
-    public  void  addLigneReappro (LigneReappro lReap,Article art, Integer iDReap)  throws  BdErreur,NoIdentification,Exception{
-       rDBA .addLigneReappro(lReap,art,iDReap);
+    public  void  addLigneReappro (LigneReappro lReap, Integer iDReap)  throws  BdErreur,NoIdentification,Exception{
+       rDBA .addLigneReappro(lReap,iDReap);
     }
     
     

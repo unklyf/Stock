@@ -113,10 +113,10 @@ public class InsertReappro extends javax.swing.JPanel {
         dateReap.setTime(jCalendarReappro.getDate());
         
         //Instance objet reappro
-        reapAdd = new Reappro (dateReap,null,"En cours");
+        reapAdd = new Reappro (dateReap,null,"En cours",new Fournisseur (comboBoxFourn.getSelectedItem().toString()));
         
         //Affichage de panel d'encodage des articles pour la commande (reappro)
-        reapAddPannel=new ReapproJPanel(reapAdd,new Fournisseur (comboBoxFourn.getSelectedItem().toString()));
+        reapAddPannel=new ReapproJPanel(reapAdd);
         reapAddPannel.setBounds(this.getBounds());
         this.removeAll();
         this.add(reapAddPannel);

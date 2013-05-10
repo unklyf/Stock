@@ -26,12 +26,15 @@ public class AllArticleModif extends AbstractTableModel {
        
     }
 
-
+    public ArrayList<Article> getContents() {
+        return contents;
+    }
+    
     @Override
     public int getColumnCount() {
         return columnNames.size();
     }
-    
+
     @Override
     public int getRowCount() {
         return contents.size();

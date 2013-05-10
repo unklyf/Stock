@@ -5,8 +5,6 @@ import javax.swing.JOptionPane;
 import packageController.ApplicationController;
 import packageException.BdErreur;
 import packageException.NoIdentification;
-import packageModel.Article;
-import packageModel.Fournisseur;
 import packageModel.LigneReappro;
 import packageModel.Reappro;
 
@@ -15,22 +13,18 @@ public class ConfirmReapproJFrame extends javax.swing.JFrame {
 
 
     private ArrayList <LigneReappro> listeLReap;
-    private ArrayList <Article> listeArtAdd;
     private Reappro reapAdd;
     private ReapproJPanel pan;
-    private Fournisseur fourn;
     private int iDReappro=0;
     
-    public ConfirmReapproJFrame(ArrayList <Article>  listeA, ArrayList <LigneReappro> listeReap,Fournisseur f, Reappro reapInfo,ReapproJPanel panel) {
+    public ConfirmReapproJFrame(ArrayList <LigneReappro> listeReap, Reappro reapInfo,ReapproJPanel panel) {
         initComponents();
         reapAdd=reapInfo;
-        listeArtAdd=listeA;
         listeLReap=listeReap;
-        fourn=f;
         pan=panel;
         
-        AllArticleReapproModel model = new AllArticleReapproModel(listeArtAdd,listeLReap);
-        jTextFieldLibF.setText(fourn.getNom());
+        AllLigneReapproModel model = new AllLigneReapproModel(listeLReap);
+        jTextFieldLibF.setText(reapAdd.getFourn().getNom());
         jTextFieldDateR.setText(reapInfo.getReapDate().getTime().toString());
         jTableRecapFinal.setModel(model);
         jTableRecapFinal.repaint();
@@ -177,8 +171,8 @@ public class ConfirmReapproJFrame extends javax.swing.JFrame {
 
         //Ajout LigneReappro
         try {
-             for (int i=0;i<listeArtAdd.size();i++){
-                 new ApplicationController().addLigneReappro(listeLReap.get(i),listeArtAdd.get(i),iDReappro);
+             for (int i=0;i<listeLReap.size();i++){
+                 new ApplicationController().addLigneReappro(listeLReap.get(i),iDReappro);
              }               
         }
         catch(BdErreur e){

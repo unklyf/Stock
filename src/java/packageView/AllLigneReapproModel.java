@@ -1,47 +1,46 @@
-
 package packageView;
 
 import java.util.ArrayList;
 import javax.swing.table.AbstractTableModel;
-import packageModel.Article;
 import packageModel.LigneReappro;
 
-public class AllArticleReapproModel extends AbstractTableModel{ 
+public class AllLigneReapproModel extends AbstractTableModel{ 
     
     private ArrayList<String> columnNames = new ArrayList<String>( );
-    private ArrayList<LigneReappro> contentsR = new ArrayList<LigneReappro>();
-    private ArrayList<Article> contentsA = new ArrayList<Article>();
+    private ArrayList<LigneReappro> contents = new ArrayList<LigneReappro>();
+
     
-    public AllArticleReapproModel (ArrayList<Article> lArt,ArrayList<LigneReappro> lReappro){
-        contentsR = lReappro;
-        contentsA = lArt;
+    public AllLigneReapproModel (ArrayList<LigneReappro> lReappro){
+        contents = lReappro;
         columnNames.add("Libelle");
         columnNames.add("Type");
         columnNames.add("Quantité");
     }
     
     
+    public void setQte(Integer qte,int row){
+        contents.get(row).setQte(qte);
+    }
     public int getColumnCount() {
         return columnNames.size();
     }
     
     public int getRowCount() {
-        return contentsA.size();
+        return contents.size();
     }
     
     public String getColumnName(int col) {
         return columnNames.get(col);
     }
-
-
-
+    
+   
     public Object getValueAt(int row, int col){
-        LigneReappro reap = contentsR.get(row);
-        Article art = contentsA.get(row);
-        
+        LigneReappro reap = contents.get(row);
+          
+
         switch(col){ 
-            case 0: return art.getLibelle();
-            case 1: return art.getType();
+            case 0: return reap.getArt().getLibelle();
+            case 1: return reap.getArt().getType();
             case 2: return reap.getQte();          
             default: return null;
         }

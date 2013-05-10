@@ -9,6 +9,7 @@ public class MainJFrame extends javax.swing.JFrame {
     private InsertArticle insArt;
     private InsertReappro reapAdd;
     private ModifArticleJPanel ModifArt;
+    private ListingReapproJPanel ListReap;
             
     public MainJFrame() {
         initComponents();
@@ -35,9 +36,8 @@ public class MainJFrame extends javax.swing.JFrame {
         itemModifAjout = new javax.swing.JMenuItem();
         menuSupprimer = new javax.swing.JMenu();
         itemSuppArticle = new javax.swing.JMenuItem();
-        itemSuppReappro = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
         menuListing = new javax.swing.JMenu();
-        itemListArticle = new javax.swing.JMenuItem();
         itemListReappro = new javax.swing.JMenuItem();
         menuRecherche = new javax.swing.JMenu();
         itemRechFourn = new javax.swing.JMenuItem();
@@ -110,20 +110,20 @@ public class MainJFrame extends javax.swing.JFrame {
         itemSuppArticle.setText("Article");
         menuSupprimer.add(itemSuppArticle);
 
-        itemSuppReappro.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_X, java.awt.event.InputEvent.CTRL_MASK));
-        itemSuppReappro.setText("Commande fournisseur");
-        menuSupprimer.add(itemSuppReappro);
+        jMenuItem1.setText("Commande fournisseur");
+        menuSupprimer.add(jMenuItem1);
 
         menuBar.add(menuSupprimer);
 
         menuListing.setText("Listing |");
 
-        itemListArticle.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.CTRL_MASK));
-        itemListArticle.setText("Article");
-        menuListing.add(itemListArticle);
-
         itemListReappro.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_MASK));
         itemListReappro.setText("Commande fournisseur");
+        itemListReappro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemListReapproActionPerformed(evt);
+            }
+        });
         menuListing.add(itemListReappro);
 
         menuBar.add(menuListing);
@@ -136,7 +136,7 @@ public class MainJFrame extends javax.swing.JFrame {
         itemRechCat.setText("Catégorie");
         menuRecherche.add(itemRechCat);
 
-        itemRechReappro.setText("Réapprovisionnement");
+        itemRechReappro.setText("Commande fournisseur");
         menuRecherche.add(itemRechReappro);
 
         menuBar.add(menuRecherche);
@@ -197,6 +197,15 @@ public class MainJFrame extends javax.swing.JFrame {
         this.getContentPane().validate(); 
         this.getContentPane().repaint(); 
     }//GEN-LAST:event_itemModifAjoutActionPerformed
+
+    private void itemListReapproActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemListReapproActionPerformed
+        ListReap =new ListingReapproJPanel();
+        ListReap.setBounds(this.getBounds());
+        this.getContentPane().removeAll();
+        this.getContentPane().add(ListReap);
+        this.getContentPane().validate(); 
+        this.getContentPane().repaint(); 
+    }//GEN-LAST:event_itemListReapproActionPerformed
        
     
     public static void main(String args[]) {
@@ -236,7 +245,6 @@ public class MainJFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem itemAjoutReappro;
     private javax.swing.JMenuItem itemArticleAjout;
-    private javax.swing.JMenuItem itemListArticle;
     private javax.swing.JMenuItem itemListReappro;
     private javax.swing.JMenuItem itemMenuAccueil;
     private javax.swing.JMenuItem itemModifAjout;
@@ -245,7 +253,7 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JMenuItem itemRechFourn;
     private javax.swing.JMenuItem itemRechReappro;
     private javax.swing.JMenuItem itemSuppArticle;
-    private javax.swing.JMenuItem itemSuppReappro;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenu menuAjout;
     private javax.swing.JMenu menuApplication;
     private javax.swing.JMenuBar menuBar;
