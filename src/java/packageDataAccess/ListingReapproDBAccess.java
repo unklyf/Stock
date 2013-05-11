@@ -15,6 +15,8 @@ import packageModel.Reappro;
 
 public class ListingReapproDBAccess {    
     
+    
+        //Lister tous les réappros
         public ArrayList<Reappro> getAllReappro ()throws  BdErreur, NoIdentification{
         
         ArrayList<Reappro> listeReap = new ArrayList<Reappro>();
@@ -24,7 +26,7 @@ public class ListingReapproDBAccess {
             String req ="select distinct r.IDReappro, r.Etat, r.DateApprovisionnement, r.NoteReappro, f.Nom\n"
                       + "from Reapprovisionnement r, Fournisseur f, Article a, LigneReappro lr \n"
                       + "where lr.IDReappro = r.IDReappro and lr.IDPRoduit = a.IDProduit\n"
-                      + "and a.IDFournisseur = f.IDFournisseur\n";
+                      + "and a.IDFournisseur = f.IDFournisseur order by r.DateApprovisionnement";
             
             PreparedStatement prepStat = SingletonConnexion.getInstance().prepareStatement(req);
             ResultSet donnees = prepStat.executeQuery();
@@ -60,7 +62,9 @@ public class ListingReapproDBAccess {
         
     }    
         
+      
         
+    //Lister tous les articles (ligne réappro)
     public ArrayList<LigneReappro> getAllLigneReappro (Integer iDR)throws  BdErreur, NoIdentification{
         
         ArrayList<LigneReappro> listeLigne = new ArrayList<LigneReappro>();    
@@ -96,5 +100,87 @@ public class ListingReapproDBAccess {
         
     }        
 
-
+    
+    //Modifier pour encoder les quantités
+    public void setQteStock (Reappro reap, LigneReappro lReap)throws  BdErreur, NoIdentification{
+       Integer Qte=0;
+       Qte = this.getQtePrec(lReap.getArt().getLibelle(),lReap.getArt().getType());
+       
+       try{
+            
+            //Cloture du reéappro dans les stocks
+            String req ="update Reapprovisionnement set Etat = ?, NoteReappro= ? where iDReappro = ?";  
+            PreparedStatement prepStat = SingletonConnexion.getInstance().prepareStatement(req);
+            prepStat.setString(1,reap.getEtat());
+            prepStat.setString(2,reap.getNote());
+            prepStat.setInt(3,reap.getiDReappro());
+            prepStat.executeUpdate();
+            
+            //Mis à jour des quantités dans les stocks
+            req ="update Article set Qte = ? where iDProduit= ?";  
+            prepStat = SingletonConnexion.getInstance().prepareStatement(req);
+            prepStat.setInt(1,Qte+ lReap.getQte());
+            prepStat.setInt(2,this.getIDArticle(lReap.getArt().getLibelle(),lReap.getArt().getType()));
+            prepStat.executeUpdate();
+            
+    
+        }
+        catch (SQLException e) {  
+            throw new BdErreur(e.getMessage());   
+        }                   
+        catch (NoIdentification e) {
+            throw new NoIdentification();
+        }
+    }
+    
+    
+    //OBTENIR L'ID D'UN ARTICLE 
+    //Reçoit : Libelle & type 
+    public Integer getIDArticle(String libelleA, String typeA) throws  BdErreur, NoIdentification{   
+         Integer IDArt=0;
+                 
+         try {  
+                 String req = "select IDProduit from Article where Libelle = ? and TypeA = ?";
+                 PreparedStatement prepStat = SingletonConnexion.getInstance().prepareStatement(req);
+                 prepStat.setString(1, libelleA);
+                 prepStat.setString(2, typeA);
+                 ResultSet donnees = prepStat.executeQuery(); 
+                 while (donnees.next( )){
+                     IDArt = donnees.getInt("IDProduit");
+                 }
+        }
+            
+         catch (SQLException e) {  
+            throw new BdErreur(e.getMessage());   
+        }                   
+        catch (NoIdentification e) {
+            throw new NoIdentification();
+        }
+        return IDArt;
+   }
+    
+    //OBTENIR QTE ARTICLE PRECEDENT 
+    //Reçoit : Libelle & type 
+    public Integer getQtePrec(String libelleA, String typeA) throws  BdErreur, NoIdentification{   
+         Integer Qte=0;
+                 
+         try {  
+                 String req = "select Qte from Article where Libelle = ? and TypeA = ?";
+                 PreparedStatement prepStat = SingletonConnexion.getInstance().prepareStatement(req);
+                 prepStat.setString(1, libelleA);
+                 prepStat.setString(2, typeA);
+                 ResultSet donnees = prepStat.executeQuery(); 
+                 while (donnees.next( )){
+                     Qte = donnees.getInt("Qte");
+                 }
+        }
+            
+         catch (SQLException e) {  
+            throw new BdErreur(e.getMessage());   
+        }                   
+        catch (NoIdentification e) {
+            throw new NoIdentification();
+        }
+        return Qte;
+   }
 }

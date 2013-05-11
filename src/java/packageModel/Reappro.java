@@ -47,5 +47,11 @@ public class Reappro {
     public void setNote(String note) {
         this.note = note;
     }
+
+    public void setEtat(String etat) {
+        this.etat = etat;
+    }
+    
+    
     
 }

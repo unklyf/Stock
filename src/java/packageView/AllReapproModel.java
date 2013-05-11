@@ -23,8 +23,10 @@ public class AllReapproModel extends AbstractTableModel {
         columnNames.add("Fournisseur");
     }
 
-
-
+    public ArrayList<Reappro> getContents() {
+        return contents;
+    }
+     
     @Override
     public int getColumnCount() {
         return columnNames.size();

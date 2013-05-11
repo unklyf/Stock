@@ -4,9 +4,9 @@ package packageModel;
 public class Article {
     private  String libelle, typeA ,desc, cadeau;
     private  double  prixM, prixC;
-    private Categorie cat;
-    private Fournisseur fourn;
-    private Integer idProduit;
+    private  Categorie cat;
+    private  Fournisseur fourn;
+    private  Integer idProduit;
     
     
     public Article (){    
