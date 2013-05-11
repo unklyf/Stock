@@ -1,12 +1,16 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package packageModel;
 
 
 public class Article {
     private  String libelle, typeA ,desc, cadeau;
     private  double  prixM, prixC;
-    private Categorie cat;
-    private Fournisseur fourn;
-    private Integer idProduit, quantite;
+    private  Categorie cat;
+    private  Fournisseur fourn;
+    private  Integer idProduit, quantite;
     
     
     public Article (){    

@@ -21,6 +21,11 @@ public class AllLigneReapproModel extends AbstractTableModel{
     public void setQte(Integer qte,int row){
         contents.get(row).setQte(qte);
     }
+    
+    public ArrayList<LigneReappro> getContents() {
+        return contents;
+    }
+    
     public int getColumnCount() {
         return columnNames.size();
     }

@@ -22,4 +22,8 @@ public class ListingReapproManager {
         return lrm.getAllLigneReappro(iDR);
     }
     
+    public void setQteStock (Reappro reap, LigneReappro lReap)throws  BdErreur, NoIdentification{
+        lrm.setQteStock(reap, lReap);
+    }
+    
 }

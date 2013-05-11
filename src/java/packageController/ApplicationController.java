@@ -56,6 +56,9 @@ public class ApplicationController {
         return lrm.getAllLigneReappro(iDR);
     }
     
+    public void setQteStock (Reappro reap, LigneReappro lReap)throws  BdErreur, NoIdentification{
+        lrm.setQteStock(reap, lReap);
+    }
        
     // AJOUT ARTICLE
     public void  addArticle (Article nouvArt, Fournisseur fourn, Categorie cat) throws BdErreur,NoIdentification{

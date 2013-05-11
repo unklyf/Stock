@@ -12,7 +12,7 @@ import packageException.NoIdentification;
 public class ListingReapproJPanel extends javax.swing.JPanel {
     private ListSelectionModel listSelect, listSelectArticle;
     private AllLigneReapproModel reapL;
-    
+    private AllReapproModel  reapMod;
     
     public ListingReapproJPanel() {
         initComponents();
@@ -33,7 +33,7 @@ public class ListingReapproJPanel extends javax.swing.JPanel {
         jTextNote.setVisible(false);
         
         try {
-            AllReapproModel reapMod = new AllReapproModel (new ApplicationController().getAllReappro());
+            reapMod = new AllReapproModel (new ApplicationController().getAllReappro());
             jTableReappro.setModel(reapMod);
             jTableReappro.repaint();
             jTableReappro.validate();
@@ -195,6 +195,11 @@ public class ListingReapproJPanel extends javax.swing.JPanel {
         buttonEndEncoder.setBackground(new java.awt.Color(0, 119, 0));
         buttonEndEncoder.setText("Terminer et Encoder");
         buttonEndEncoder.setActionCommand("Lister les articles commandés");
+        buttonEndEncoder.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonEndEncoderActionPerformed(evt);
+            }
+        });
 
         buttonModifArt.setBackground(new java.awt.Color(51, 102, 255));
         buttonModifArt.setText("Modifier un article");
@@ -326,6 +331,7 @@ public class ListingReapproJPanel extends javax.swing.JPanel {
             try {
                 int indLigne = listSelect.getMinSelectionIndex();
                 reapL = new AllLigneReapproModel (new ApplicationController().getAllLigneReappro(Integer.parseInt(jTableReappro.getValueAt(indLigne, 0).toString())));
+                jTableLigneReappro.setVisible(true);
                 jTableLigneReappro.setModel(reapL);
                 jTableLigneReappro.repaint();
                 jTableLigneReappro.validate();
@@ -366,6 +372,7 @@ public class ListingReapproJPanel extends javax.swing.JPanel {
                    
                    try {
                         reapL = new AllLigneReapproModel (new ApplicationController().getAllLigneReappro(Integer.parseInt(jTableReappro.getValueAt(indLigne, 0).toString())));
+                        jTableLigneReappro.setVisible(true);
                         jTableLigneReappro.setModel(reapL);
                         jTableLigneReappro.repaint();
                         jTableLigneReappro.validate();
@@ -424,7 +431,7 @@ public class ListingReapproJPanel extends javax.swing.JPanel {
         int indice = listSelectArticle.getMinSelectionIndex(); 
         
         //Modifier quantitée
-        reapL.setQte(Integer.parseInt(quantiteSpinner.getValue().toString()), indice);
+        reapL.getContents().get(indice).setQte(Integer.parseInt(quantiteSpinner.getValue().toString()));
         
         //Reaffichage encodage et jTable
         labelTitrePanelEncodage.setVisible(false);
@@ -433,6 +440,33 @@ public class ListingReapproJPanel extends javax.swing.JPanel {
         jTableLigneReappro.validate();
     }//GEN-LAST:event_buttonValiderModifActionPerformed
 
+    private void buttonEndEncoderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEndEncoderActionPerformed
+        
+        //Encoder les articles dans les stocks        
+        int indLigne = listSelect.getMinSelectionIndex();
+        reapMod.getContents().get(indLigne).setNote(this.jTextNote.getText());
+        reapMod.getContents().get(indLigne).setEtat("Terminé");
+        try {
+                for(int i=0; i < reapL.getContents().size();i++){
+                    new ApplicationController().setQteStock(reapMod.getContents().get(indLigne), reapL.getContents().get(i));
+                }       
+        }        
+        catch(BdErreur e){
+            JOptionPane.showMessageDialog(null, e, "Erreur BD", JOptionPane.ERROR_MESSAGE);
+        }
+        catch(NoIdentification e){
+            JOptionPane.showMessageDialog(null, e, "Erreur identification", JOptionPane.ERROR_MESSAGE);
+        }
+        
+        
+        //Reaffichage listing
+        buttonAnnuler.doClick();
+        jTableReappro.setModel(reapMod);
+        jTableReappro.repaint();
+        jTableReappro.validate();
+        jTableLigneReappro.setVisible(false);       
+    }//GEN-LAST:event_buttonEndEncoderActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonAnnuler;
     private javax.swing.JButton buttonEncoderReap;
@@ -440,15 +474,11 @@ public class ListingReapproJPanel extends javax.swing.JPanel {
     private javax.swing.JButton buttonListerLigneReap1;
     private javax.swing.JButton buttonModifArt;
     private javax.swing.JButton buttonValiderModif;
-    private javax.swing.JRadioButton futRadioButton;
-    private javax.swing.JRadioButton futRadioButton1;
     private javax.swing.JLabel jLabelFacult;
     private javax.swing.JLabel jLabelLibArt;
     private javax.swing.JLabel jLabelNote;
     private javax.swing.JLabel jLabelQte;
     private javax.swing.JLabel jLabelTypeArt;
-    private javax.swing.JPanel jPanelEncodage;
-    private javax.swing.JPanel jPanelEncodage1;
     private javax.swing.JPanel jPanelEncodageStock;
     private javax.swing.JPanel jPanelListing;
     private javax.swing.JScrollPane jScrollPane1;
