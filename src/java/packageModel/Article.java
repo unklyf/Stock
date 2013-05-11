@@ -6,6 +6,7 @@ package packageModel;
 
 
 public class Article {
+    
     private  String libelle, typeA ,desc, cadeau;
     private  double  prixM, prixC;
     private  Categorie cat;
@@ -34,14 +35,14 @@ public class Article {
     }
     
     public Article(Integer id, String lib, String typ , String d ,Integer q, double pm , Fournisseur f, Categorie ca){
-            this.idProduit = id;
-            this.libelle = lib; 
-            this.typeA = typ;
-            this.desc = d;
-            this.quantite=q;
-            this.prixM = pm;
-            this.fourn = f;
-            this.cat = ca;       
+        this.idProduit = id;
+        this.libelle = lib; 
+        this.typeA = typ;
+        this.desc = d;
+        this.quantite=q;
+        this.prixM = pm;
+        this.fourn = f;
+        this.cat = ca;       
     }
       
     public Article(String lib,String d){
