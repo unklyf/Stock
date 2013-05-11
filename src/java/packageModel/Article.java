@@ -12,6 +12,7 @@ public class Article {
     private  Categorie cat;
     private  Fournisseur fourn;
     private  Integer idProduit, quantite;
+
     
     
     public Article (){    
