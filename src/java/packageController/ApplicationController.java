@@ -16,6 +16,7 @@ public class ApplicationController {
     private InsertArtManager iAM = new InsertArtManager();
     private ModifArtManager mAM = new ModifArtManager();
     private ListingReapproManager lrm = new ListingReapproManager();
+    private SuppArticleManager sAM =new SuppArticleManager();
     
     //IDENTIFICATION
     public void identification(String user, String pw) throws IdentificationErreur{
@@ -79,6 +80,11 @@ public class ApplicationController {
     
     public void modifArticle(Article artNouvVersion, Article artAncVersion) throws BdErreur, NoIdentification{
          mAM.modifArticle(artNouvVersion, artAncVersion);
+    }
+    
+    // Supp article
+    public void suppArticle(Integer idP) throws BdErreur, NoIdentification{
+        sAM.suppArticle(idP);
     }
     
 

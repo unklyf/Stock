@@ -1,6 +1,7 @@
 package packageView;
 
 
+import java.awt.event.ItemEvent;
 import javax.swing.JOptionPane;
 import javax.swing.SpinnerModel;
 import javax.swing.SpinnerNumberModel;
@@ -16,35 +17,40 @@ public class ArticleModif extends javax.swing.JPanel {
     private Integer iTabCad=8;
     private ApplicationController app;
     private Article artModif ;
+    private String boutonRadioCadeau="";
     
     
     public ArticleModif( int indL, AllArticleModif art ) {
         initComponents();
         
+        this.cadeauCombo.setVisible(false);
+        
         artModif=art.getContents().get(indL);
-        this.fournisseurField.setText(art.getValueAt(indL,6).toString());
+        this.fournisseurField.setText(art.getValueAt(indL,7).toString());
         this.fournisseurField.setEnabled(false);
         this.typeArtField.setText(art.getValueAt(indL,1).toString());
         this.typeArtField.setEnabled(false);
         this.libelleField.setText(art.getValueAt(indL,0).toString());
         this.libelleField.setEnabled(false);
-        this.categorieField.setText(art.getValueAt(indL,7).toString());
+        this.categorieField.setText(art.getValueAt(indL,8).toString());
         this.categorieField.setEnabled(false);
         this.descriptionField.setText(art.getValueAt(indL,2).toString());
-        this.prixMarchSpinner.setValue(art.getValueAt(indL,3));
-        
-        if (art.getValueAt(indL, 4) != null) {
-            this.prixConsSpinner.setValue(art.getValueAt(indL, 4));
-        }
+        this.quantiteField.setText(art.getValueAt(indL, 3).toString());
+        this.quantiteField.setEnabled(false);
+        this.prixMarchSpinner.setValue(art.getValueAt(indL,4));
         
         if (art.getValueAt(indL, 5) != null) {
-            this.cadeauField.setText(art.getValueAt(indL, 5).toString()); 
+            this.prixConsSpinner.setValue(art.getValueAt(indL, 5));
+        }
+        
+        if (art.getValueAt(indL, 6) != null) {
+            this.cadeauField.setText(art.getValueAt(indL, 6).toString()); 
         }
         this.cadeauField.setEnabled(false);
         
         for (int i=0; i<iTabCad; i++){
-            if (art.getValueAt(indL, 5) == null  || 
-               (art.getValueAt(indL, 5) != null && !tabCad[i].equals(art.getValueAt(indL, 5).toString()))) {
+            if (art.getValueAt(indL, 6) == null  || 
+               (art.getValueAt(indL, 6) != null && !tabCad[i].equals(art.getValueAt(indL, 6).toString()))) {
                 this.cadeauCombo.addItem(tabCad[i]);
             }         
         }      
@@ -59,6 +65,7 @@ public class ArticleModif extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         labelModifArticle = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
@@ -82,6 +89,11 @@ public class ArticleModif extends javax.swing.JPanel {
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         boutonModif = new javax.swing.JButton();
+        jLabel11 = new javax.swing.JLabel();
+        radioBoutonOui = new javax.swing.JRadioButton();
+        radioBoutonNon = new javax.swing.JRadioButton();
+        jLabel4 = new javax.swing.JLabel();
+        quantiteField = new javax.swing.JTextField();
 
         labelModifArticle.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         labelModifArticle.setForeground(new java.awt.Color(153, 0, 51));
@@ -109,7 +121,7 @@ public class ArticleModif extends javax.swing.JPanel {
         jLabel9.setText("Prix Consigne :");
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel10.setText("Cadeau :");
+        jLabel10.setText("Voulez-vous changer de cadeau ?");
 
         descriptionField.setColumns(20);
         descriptionField.setRows(5);
@@ -134,21 +146,39 @@ public class ArticleModif extends javax.swing.JPanel {
             }
         });
 
+        jLabel11.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel11.setText("Cadeau :");
+
+        buttonGroup1.add(radioBoutonOui);
+        radioBoutonOui.setText("Oui");
+        radioBoutonOui.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                radioBoutonOuiItemStateChanged(evt);
+            }
+        });
+
+        buttonGroup1.add(radioBoutonNon);
+        radioBoutonNon.setText("Non");
+        radioBoutonNon.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                radioBoutonNonItemStateChanged(evt);
+            }
+        });
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel4.setText("Quantité :");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(cadeauCombo, 0, 183, Short.MAX_VALUE)
-                            .addComponent(cadeauField))
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(quantiteField, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -172,13 +202,38 @@ public class ArticleModif extends javax.swing.JPanel {
                                 .addComponent(fournisseurField, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(categorieField, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(libelleField, javax.swing.GroupLayout.Alignment.LEADING))))
-                    .addComponent(boutonModif, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(116, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(boutonModif, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(cadeauCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(141, 141, 141))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(cadeauField, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addGap(23, 23, 23)
+                                        .addComponent(radioBoutonOui)
+                                        .addGap(51, 51, 51)
+                                        .addComponent(radioBoutonNon)))
+                                .addGap(0, 0, Short.MAX_VALUE))))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(161, 161, 161)
+                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(25, 25, 25)
+                .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel14)
                     .addComponent(fournisseurField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -198,7 +253,11 @@ public class ArticleModif extends javax.swing.JPanel {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel5)
-                        .addGap(93, 93, 93)
+                        .addGap(89, 89, 89)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4)
+                            .addComponent(quantiteField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel8)
                             .addComponent(prixMarchSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -209,15 +268,22 @@ public class ArticleModif extends javax.swing.JPanel {
                     .addComponent(prixConsSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel12))
                 .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(cadeauField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel13))
+                    .addComponent(jLabel11))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel10)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel10)
-                    .addComponent(cadeauField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel13))
-                .addGap(18, 18, 18)
+                    .addComponent(radioBoutonOui)
+                    .addComponent(radioBoutonNon))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(cadeauCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(boutonModif, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addContainerGap(73, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -225,20 +291,23 @@ public class ArticleModif extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(43, 43, 43)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(labelModifArticle, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(91, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(43, 43, 43)
+                        .addComponent(labelModifArticle, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(34, 34, 34)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(509, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(24, 24, 24)
+                .addGap(17, 17, 17)
                 .addComponent(labelModifArticle)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(53, Short.MAX_VALUE))
+                .addContainerGap(64, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -251,9 +320,23 @@ public class ArticleModif extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(null, "Veuillez indiquer le prix de la marchandise.");
             }
             else{
+                if(boutonRadioCadeau.equals("")) {
+                   JOptionPane.showMessageDialog(null, "Veuillez cochez une case à la question.");
+                }
+                else{
+                    
                 double prixCons=0;
                 if (!(Double.parseDouble(this.prixConsSpinner.getValue().toString())==0)) {
                     prixCons = Double.parseDouble(this.prixConsSpinner.getValue().toString());
+                }
+                
+                String cadeau =artModif.getCadeau();
+                if (this.radioBoutonOui.isSelected()){
+                    cadeau = (String)this.cadeauCombo.getSelectedItem();
+                
+                    if (cadeau.charAt(0) == '-'){
+                        cadeau = null; 
+                    }
                 }
                 
                 app = new ApplicationController ();         
@@ -261,8 +344,8 @@ public class ArticleModif extends javax.swing.JPanel {
                     Article art = new Article ( artModif.getIdProduit(),
                                                 this.descriptionField.getText(),
                                                 Double.parseDouble(this.prixMarchSpinner.getValue().toString()),                                                               
-                                                prixCons
-                                                ); 
+                                                prixCons,
+                                                cadeau); 
                                        
                 app.modifArticle(art,artModif);
                 JOptionPane.showMessageDialog(null,"Modification effectuée avec succès !");
@@ -275,24 +358,42 @@ public class ArticleModif extends javax.swing.JPanel {
             catch(NoIdentification e){
                   JOptionPane.showMessageDialog(null, e, "Erreur identification", JOptionPane.ERROR_MESSAGE);
             }
+          }
         }
       }
     }//GEN-LAST:event_boutonModifActionPerformed
 
+    private void radioBoutonOuiItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_radioBoutonOuiItemStateChanged
+        if(evt.getStateChange()== ItemEvent.SELECTED){
+            boutonRadioCadeau= "Oui";
+            this.cadeauCombo.setVisible(true);
+        }
+    }//GEN-LAST:event_radioBoutonOuiItemStateChanged
+
+    private void radioBoutonNonItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_radioBoutonNonItemStateChanged
+        if(evt.getStateChange()== ItemEvent.SELECTED){
+            boutonRadioCadeau= "Non";
+            this.cadeauCombo.setVisible(false);
+        }
+    }//GEN-LAST:event_radioBoutonNonItemStateChanged
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton boutonModif;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox cadeauCombo;
     private javax.swing.JTextField cadeauField;
     private javax.swing.JTextField categorieField;
     private javax.swing.JTextArea descriptionField;
     private javax.swing.JTextField fournisseurField;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
@@ -302,6 +403,9 @@ public class ArticleModif extends javax.swing.JPanel {
     private javax.swing.JTextField libelleField;
     private javax.swing.JSpinner prixConsSpinner;
     private javax.swing.JSpinner prixMarchSpinner;
+    private javax.swing.JTextField quantiteField;
+    private javax.swing.JRadioButton radioBoutonNon;
+    private javax.swing.JRadioButton radioBoutonOui;
     private javax.swing.JTextField typeArtField;
     // End of variables declaration//GEN-END:variables
 }

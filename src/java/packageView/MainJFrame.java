@@ -10,6 +10,7 @@ public class MainJFrame extends javax.swing.JFrame {
     private InsertReappro reapAdd;
     private ModifArticleJPanel ModifArt;
     private ListingReapproJPanel ListReap;
+    private SuppArticleJPanel SuppArt;
             
     public MainJFrame() {
         initComponents();
@@ -108,6 +109,11 @@ public class MainJFrame extends javax.swing.JFrame {
 
         itemSuppArticle.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Z, java.awt.event.InputEvent.CTRL_MASK));
         itemSuppArticle.setText("Article");
+        itemSuppArticle.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemSuppArticleActionPerformed(evt);
+            }
+        });
         menuSupprimer.add(itemSuppArticle);
 
         jMenuItem1.setText("Commande fournisseur");
@@ -206,6 +212,15 @@ public class MainJFrame extends javax.swing.JFrame {
         this.getContentPane().validate(); 
         this.getContentPane().repaint(); 
     }//GEN-LAST:event_itemListReapproActionPerformed
+
+    private void itemSuppArticleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemSuppArticleActionPerformed
+        SuppArt =new SuppArticleJPanel();
+        SuppArt.setBounds(this.getBounds());
+        this.getContentPane().removeAll();
+        this.getContentPane().add(SuppArt);
+        this.getContentPane().validate(); 
+        this.getContentPane().repaint(); 
+    }//GEN-LAST:event_itemSuppArticleActionPerformed
        
     
     public static void main(String args[]) {

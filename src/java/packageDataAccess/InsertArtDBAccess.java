@@ -23,7 +23,7 @@ public class InsertArtDBAccess {
     public void  addArticle (Article nouvArt, Fournisseur fourn, Categorie cat) throws BdErreur,NoIdentification{
         
         try { 
-            String req = "insert into Article (Libelle,TypeA,Description,PrixMarchandise,IDFournisseur,IDCategorie,Cadeau) values(?,?,?,?,?,?,?)";
+            String req = "insert into Article (Libelle,TypeA,Description,PrixMarchandise,IDFournisseur,IDCategorie,Cadeau,Qte) values(?,?,?,?,?,?,?,NULL)";
             PreparedStatement prepStat = SingletonConnexion.getInstance().prepareStatement(req,Statement.RETURN_GENERATED_KEYS);
             prepStat.setString(1,nouvArt.getLibelle());
             prepStat.setString(2,nouvArt.getType());

@@ -6,7 +6,7 @@ public class Article {
     private  double  prixM, prixC;
     private Categorie cat;
     private Fournisseur fourn;
-    private Integer idProduit;
+    private Integer idProduit, quantite;
     
     
     public Article (){    
@@ -29,11 +29,12 @@ public class Article {
         this.prixM = pm;
     }
     
-    public Article(Integer id, String lib, String typ , String d , double pm , Fournisseur f, Categorie ca){
+    public Article(Integer id, String lib, String typ , String d ,Integer q, double pm , Fournisseur f, Categorie ca){
             this.idProduit = id;
             this.libelle = lib; 
             this.typeA = typ;
             this.desc = d;
+            this.quantite=q;
             this.prixM = pm;
             this.fourn = f;
             this.cat = ca;       
@@ -44,11 +45,12 @@ public class Article {
         this.desc= d;
     }
     
-    public Article (Integer id, String d, Double pm, double pc){
+    public Article (Integer id, String d, Double pm, double pc,String c){
         this.idProduit=id;
         this.desc=d;
         this.prixM=pm;
         this.prixC=pc;
+        this.cadeau=c;
     }
 
     public Integer getIdProduit() {
@@ -78,6 +80,10 @@ public class Article {
     
     public String getCadeau(){
         return this.cadeau;
+    }
+
+    public Integer getQuantite() {
+        return quantite;
     }
     
     public double getPrixM(){

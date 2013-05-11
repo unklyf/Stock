@@ -1,6 +1,7 @@
 package packageView;
 
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import packageController.ApplicationController;
 import packageException.BdErreur;
@@ -41,7 +42,7 @@ public class ModifArticleJPanel extends javax.swing.JPanel {
             }
     
     }
-   
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {

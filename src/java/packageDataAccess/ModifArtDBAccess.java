@@ -22,7 +22,7 @@ public class ModifArtDBAccess {
         double  prixC;
 
         try{
-            String req ="select a.IDProduit, a.Libelle, a.TypeA, a.Description, a.PrixMarchandise, a.PrixConsigne, a.Cadeau, "
+            String req ="select a.IDProduit, a.Libelle, a.TypeA, a.Description, a.Qte, a.PrixMarchandise, a.PrixConsigne, a.Cadeau, "
                     + "f.Nom, c.Libelle libCat "
                     + "from Article a, Fournisseur f, Categorie c "
                     + "where a.IDFournisseur = f.IDFournisseur AND a.IDCategorie = c.IDCategorie "
@@ -35,6 +35,7 @@ public class ModifArtDBAccess {
                                                  donnees.getString("Libelle"),
                                                  donnees.getString("TypeA"),
                                                  donnees.getString("Description"),
+                                                 donnees.getInt("Qte"),
                                                  donnees.getDouble("PrixMarchandise"),
                                                  new Fournisseur (donnees.getString("Nom")),
                                                  new Categorie (donnees.getString("LibCat")));
@@ -70,12 +71,14 @@ public class ModifArtDBAccess {
         try{
             String req ="update Article  " +
                         "set    Description = ?," +
-                        "       PrixMarchandise = ? " +
+                        "       PrixMarchandise = ?, "+
+                        "       Cadeau = ? " +
                         "where  IDProduit = ?";
             PreparedStatement prepStat = SingletonConnexion.getInstance().prepareStatement(req);
             prepStat.setString(1, artNouvVersion.getDescription());
             prepStat.setDouble(2, artNouvVersion.getPrixM());
-            prepStat.setInt(3, artNouvVersion.getIdProduit());
+            prepStat.setString(3,artNouvVersion.getCadeau());
+            prepStat.setInt(4, artNouvVersion.getIdProduit());
             prepStat.executeUpdate();
 
             //Update du prix consigné uniquement si changé 
