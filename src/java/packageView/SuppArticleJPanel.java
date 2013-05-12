@@ -13,7 +13,7 @@ import packageModel.Article;
 
 /**
  *
- * @author Home
+ * @author Homer
  */
 public class SuppArticleJPanel extends javax.swing.JPanel {
 

@@ -18,6 +18,7 @@ public class ApplicationController {
     private ListingReapproManager lrm = new ListingReapproManager();
     private SuppArticleManager sAM =new SuppArticleManager();
     
+    
     //IDENTIFICATION
     public void identification(String user, String pw) throws IdentificationErreur{
         lM.identification(user, pw);         
@@ -89,6 +90,9 @@ public class ApplicationController {
     public void suppArticle(Integer idP) throws BdErreur, NoIdentification{
         sAM.suppArticle(idP);
     }
+    
+    
+    
     
 
     
