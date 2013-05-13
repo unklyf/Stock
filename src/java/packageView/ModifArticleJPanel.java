@@ -1,12 +1,11 @@
 package packageView;
 
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import packageController.ApplicationController;
 import packageException.BdErreur;
 import packageException.NoIdentification;
-import packageModel.Fournisseur;
+
 
 
 public class ModifArticleJPanel extends javax.swing.JPanel {
