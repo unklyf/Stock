@@ -144,16 +144,23 @@ public class RechercheCategorie extends javax.swing.JPanel {
 
     private void ButtonBouteilleItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_ButtonBouteilleItemStateChanged
         if(evt.getStateChange()== ItemEvent.SELECTED){
+            
+        try {
             typeArt = "Bouteille";
-            listeArtCombo= new ApplicationController().getArticleReappro(typeArt,tabCat);
-            this.comboLib.removeAllItems();
+            listeArtCombo= new ApplicationController().getArticleCat(typeArt,tabCat.get(comboCat.getSelectedIndex()));
                 for (Article lib : listeArtCombo){
                     this.comboLib.addItem(lib.getLibelle());
                 }
-                this.comboLib.setEnabled(true);
                 this.comboLib.setBackground(Color.blue);
                 this.comboLib.repaint();
                 this.comboLib.validate();
+        }
+        catch(BdErreur e){
+             JOptionPane.showMessageDialog(null, e, "Erreur BD", JOptionPane.ERROR_MESSAGE);
+        }
+        catch(NoIdentification e){
+             JOptionPane.showMessageDialog(null, e, "Erreur identification", JOptionPane.ERROR_MESSAGE);
+        }
         }
     }//GEN-LAST:event_ButtonBouteilleItemStateChanged
 

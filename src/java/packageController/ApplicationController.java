@@ -95,7 +95,9 @@ public class ApplicationController {
     public ArrayList <Fournisseur> getFournisseur()throws  BdErreur, NoIdentification{
         return rechM.getFournisseur();
     }
-    
+    public ArrayList <Article> getArticleCat(String typeArt,Categorie cat) throws  BdErreur, NoIdentification{
+        return rechM.getArticleCat(typeArt,cat);
+    }
     
     
     

@@ -13,6 +13,7 @@ public class MainJFrame extends javax.swing.JFrame {
     private SuppressionRJPanel suppArt;
     private ListingArticle listArt;
     private RechReapproJPanel rechReap;
+    private RechercheCategorie rechCat;
             
     public MainJFrame() {
         initComponents();
@@ -44,7 +45,7 @@ public class MainJFrame extends javax.swing.JFrame {
         itemListingArticle = new javax.swing.JMenuItem();
         menuRecherche = new javax.swing.JMenu();
         itemRechFourn = new javax.swing.JMenuItem();
-        itemRechCat = new javax.swing.JMenuItem();
+        itemRechCategorie = new javax.swing.JMenuItem();
         itemRechReappro = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -147,8 +148,13 @@ public class MainJFrame extends javax.swing.JFrame {
         itemRechFourn.setText("Fournisseur");
         menuRecherche.add(itemRechFourn);
 
-        itemRechCat.setText("Catégorie");
-        menuRecherche.add(itemRechCat);
+        itemRechCategorie.setText("Categorie");
+        itemRechCategorie.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemRechCategorieActionPerformed(evt);
+            }
+        });
+        menuRecherche.add(itemRechCategorie);
 
         itemRechReappro.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F, java.awt.event.InputEvent.CTRL_MASK));
         itemRechReappro.setText("Commande fournisseur");
@@ -253,6 +259,15 @@ public class MainJFrame extends javax.swing.JFrame {
         this.getContentPane().validate(); 
         this.getContentPane().repaint(); 
     }//GEN-LAST:event_itemRechReapproActionPerformed
+
+    private void itemRechCategorieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemRechCategorieActionPerformed
+        rechCat=new RechercheCategorie();
+        rechCat.setBounds(this.getBounds());
+        this.getContentPane().removeAll();
+        this.getContentPane().add(rechCat);
+        this.getContentPane().validate(); 
+        this.getContentPane().repaint(); 
+    }//GEN-LAST:event_itemRechCategorieActionPerformed
        
     
     public static void main(String args[]) {
@@ -297,7 +312,7 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JMenuItem itemMenuAccueil;
     private javax.swing.JMenuItem itemModifAjout;
     private javax.swing.JMenuItem itemQuitter;
-    private javax.swing.JMenuItem itemRechCat;
+    private javax.swing.JMenuItem itemRechCategorie;
     private javax.swing.JMenuItem itemRechFourn;
     private javax.swing.JMenuItem itemRechReappro;
     private javax.swing.JMenuItem itemSuppReap;

@@ -14,10 +14,11 @@ public class RechReapproJPanel extends javax.swing.JPanel {
     
     public RechReapproJPanel() {
         initComponents();
-        
+        listeLib= new ArrayList <Fournisseur>();
         //Garnir comboBox de fournisseur   
         try {
                 listeLib = new ApplicationController().getFournisseur();
+                this.jComboBoxFournisseur.removeAllItems();
                 for (Fournisseur lib : listeLib){                   
                     jComboBoxFournisseur.addItem(lib.getNom());
                 }                              

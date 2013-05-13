@@ -137,12 +137,12 @@
                 <Property name="text" type="java.lang.String" value="Fournisseur"/>
               </Properties>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="itemRechCat">
+            <MenuItem class="javax.swing.JMenuItem" name="itemRechCategorie">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Cat&#xe9;gorie"/>
+                <Property name="text" type="java.lang.String" value="Categorie"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="itemRechCatActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="itemRechCategorieActionPerformed"/>
               </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="itemRechReappro">

@@ -27,6 +27,13 @@ public class Article {
             this.cadeau = c;
             
     }
+     public Article(String lib, String typ , String d ,Integer q, double pm){
+            this.libelle = lib; 
+            this.typeA = typ;
+            this.desc = d;
+            this.quantite =q;
+            this.prixM = pm;     
+    }
     
     public Article(String lib,String typ , String d,double pm){
         this.libelle = lib;
