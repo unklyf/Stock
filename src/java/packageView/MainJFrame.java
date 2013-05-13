@@ -148,11 +148,6 @@ public class MainJFrame extends javax.swing.JFrame {
         menuRecherche.add(itemRechFourn);
 
         itemRechCat.setText("Catégorie");
-        itemRechCat.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                itemRechCatActionPerformed(evt);
-            }
-        });
         menuRecherche.add(itemRechCat);
 
         itemRechReappro.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F, java.awt.event.InputEvent.CTRL_MASK));
