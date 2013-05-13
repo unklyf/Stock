@@ -1,19 +1,11 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package packageDataAccess;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Statement;
 import packageException.BdErreur;
 import packageException.NoIdentification;
 
-/**
- *
- * @author Home
- */
+
 public class SuppArticleDBAccess {
     
     
