@@ -48,7 +48,7 @@ public class ModifArticleJPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         LabelModif = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        jScrollPaneModif = new javax.swing.JScrollPane();
         JTableModif = new javax.swing.JTable();
         BoutonModif = new javax.swing.JButton();
 
@@ -67,7 +67,9 @@ public class ModifArticleJPanel extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(JTableModif);
+        JTableModif.getTableHeader().setResizingAllowed(false);
+        JTableModif.getTableHeader().setReorderingAllowed(false);
+        jScrollPaneModif.setViewportView(JTableModif);
 
         BoutonModif.setText("Modifier");
         BoutonModif.addActionListener(new java.awt.event.ActionListener() {
@@ -85,8 +87,8 @@ public class ModifArticleJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(BoutonModif, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(LabelModif, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1293, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(126, Short.MAX_VALUE))
+                    .addComponent(jScrollPaneModif, javax.swing.GroupLayout.PREFERRED_SIZE, 1293, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(126, 126, 126))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -94,7 +96,7 @@ public class ModifArticleJPanel extends javax.swing.JPanel {
                 .addGap(29, 29, 29)
                 .addComponent(LabelModif)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 373, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPaneModif, javax.swing.GroupLayout.PREFERRED_SIZE, 373, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(BoutonModif, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(65, Short.MAX_VALUE))
@@ -124,6 +126,6 @@ public class ModifArticleJPanel extends javax.swing.JPanel {
     private javax.swing.JButton BoutonModif;
     private javax.swing.JTable JTableModif;
     private javax.swing.JLabel LabelModif;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPaneModif;
     // End of variables declaration//GEN-END:variables
 }
