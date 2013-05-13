@@ -12,6 +12,7 @@ public class MainJFrame extends javax.swing.JFrame {
     private ListingReapproJPanel ListReap;
     private SuppArticleJPanel SuppArt;
     private ListingArticle ListArt;
+    private RechercheCategorie RechCat;
             
     public MainJFrame() {
         initComponents();
@@ -150,6 +151,11 @@ public class MainJFrame extends javax.swing.JFrame {
         menuRecherche.add(itemRechFourn);
 
         itemRechCat.setText("Catégorie");
+        itemRechCat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemRechCatActionPerformed(evt);
+            }
+        });
         menuRecherche.add(itemRechCat);
 
         itemRechReappro.setText("Commande fournisseur");
@@ -240,6 +246,15 @@ public class MainJFrame extends javax.swing.JFrame {
         this.getContentPane().validate(); 
         this.getContentPane().repaint(); 
     }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void itemRechCatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemRechCatActionPerformed
+        RechCat =new RechercheCategorie();
+        RechCat.setBounds(this.getBounds());
+        this.getContentPane().removeAll();
+        this.getContentPane().add(RechCat);
+        this.getContentPane().validate(); 
+        this.getContentPane().repaint(); 
+    }//GEN-LAST:event_itemRechCatActionPerformed
        
     
     public static void main(String args[]) {
