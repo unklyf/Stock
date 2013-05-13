@@ -23,8 +23,7 @@ public class InsertReappro extends javax.swing.JPanel {
         initComponents();
         jCalendarReappro.setLocale(new Locale("fr", "FR"));
         
-        //Garnir comboBox de fournisseur
-   
+        //Garnir comboBox de fournisseur   
         try {
                 tabLibF = new ApplicationController().getFournReappro();
                 this.comboBoxFourn.removeAllItems();

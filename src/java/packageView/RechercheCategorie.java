@@ -53,7 +53,7 @@ public class RechercheCategorie extends javax.swing.JPanel {
         ButtonBouteille = new javax.swing.JRadioButton();
         ButtonCasier = new javax.swing.JRadioButton();
         ButtonFut = new javax.swing.JRadioButton();
-        jComboBox1 = new javax.swing.JComboBox();
+        comboLib = new javax.swing.JComboBox();
 
         LabelListing.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         LabelListing.setForeground(new java.awt.Color(153, 0, 51));
@@ -114,7 +114,7 @@ public class RechercheCategorie extends javax.swing.JPanel {
                                 .addGap(18, 18, 18)
                                 .addComponent(ButtonFut))
                             .addComponent(comboCat, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(comboLib, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(168, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -137,7 +137,7 @@ public class RechercheCategorie extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelLibelle)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(comboLib, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(229, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -146,14 +146,14 @@ public class RechercheCategorie extends javax.swing.JPanel {
         if(evt.getStateChange()== ItemEvent.SELECTED){
             typeArt = "Bouteille";
             listeArtCombo= new ApplicationController().getArticleReappro(typeArt,tabCat);
-            this.comboBoxArticle.removeAllItems();
+            this.comboLib.removeAllItems();
                 for (Article lib : listeArtCombo){
-                    this.comboBoxArticle.addItem(lib.getLibelle());
+                    this.comboLib.addItem(lib.getLibelle());
                 }
-                this.comboBoxArticle.setEnabled(true);
-                this.comboBoxArticle.setBackground(Color.blue);
-                this.comboBoxArticle.repaint();
-                this.comboBoxArticle.validate();
+                this.comboLib.setEnabled(true);
+                this.comboLib.setBackground(Color.blue);
+                this.comboLib.repaint();
+                this.comboLib.validate();
         }
     }//GEN-LAST:event_ButtonBouteilleItemStateChanged
 
@@ -176,7 +176,7 @@ public class RechercheCategorie extends javax.swing.JPanel {
     private javax.swing.JLabel LabelListing;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox comboCat;
-    private javax.swing.JComboBox jComboBox1;
+    private javax.swing.JComboBox comboLib;
     private javax.swing.JLabel labelCat;
     private javax.swing.JLabel labelLibelle;
     private javax.swing.JLabel labelType;

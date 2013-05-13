@@ -2,11 +2,7 @@ package packageController;
 import java.util.ArrayList;
 import packageBusiness.*;
 import packageException.*;
-import packageModel.Article;
-import packageModel.Categorie;
-import packageModel.Fournisseur;
-import packageModel.LigneReappro;
-import packageModel.Reappro;
+import packageModel.*;
 
 public class ApplicationController {
     
@@ -16,7 +12,8 @@ public class ApplicationController {
     private InsertArtManager iAM = new InsertArtManager();
     private ModifArtManager mAM = new ModifArtManager();
     private ListingReapproManager lrm = new ListingReapproManager();
-    private SuppArticleManager sAM =new SuppArticleManager();
+    private SuppressionManager sAM =new SuppressionManager();
+    private RechercheManager rechM =new RechercheManager();
     
     
     //IDENTIFICATION
@@ -86,9 +83,17 @@ public class ApplicationController {
          mAM.modifArticle(artNouvVersion, artAncVersion);
     }
     
-    // Supp article
+    
+    
+    // Suppression réappro
     public void suppArticle(Integer idP) throws BdErreur, NoIdentification{
         sAM.suppArticle(idP);
+    }
+    
+    
+    //Recherches
+    public ArrayList <Fournisseur> getFournisseur()throws  BdErreur, NoIdentification{
+        return rechM.getFournisseur();
     }
     
     
