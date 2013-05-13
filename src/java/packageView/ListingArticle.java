@@ -6,6 +6,7 @@ package packageView;
 
 import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
+import javax.swing.table.TableColumn;
 import packageController.ApplicationController;
 import packageException.BdErreur;
 import packageException.NoIdentification;
@@ -25,13 +26,10 @@ public class ListingArticle extends javax.swing.JPanel {
             jTableListing.setModel(allArt);
             jTableListing.repaint();
             jTableListing.validate();
+            TableColumn col = jTableListing.getColumnModel().getColumn(3);
+            col.setCellRenderer(new JTableRender());
+          
             
-            
-            for(int i=0; i<allArt.getContents().size(); i++){
-                if(allArt.getContents().get(i).getQuantite()<20){
-                    jTableListing.setDefaultRenderer(Integer.class, null);
-                }
-            }
              
         }
         catch(BdErreur e){
@@ -52,13 +50,13 @@ public class ListingArticle extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        LabelModif = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        LabelListing = new javax.swing.JLabel();
+        jScrollPaneListing = new javax.swing.JScrollPane();
         jTableListing = new javax.swing.JTable();
 
-        LabelModif.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        LabelModif.setForeground(new java.awt.Color(153, 0, 51));
-        LabelModif.setText("Listing article ");
+        LabelListing.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        LabelListing.setForeground(new java.awt.Color(153, 0, 51));
+        LabelListing.setText("Listing article ");
 
         jTableListing.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -71,7 +69,11 @@ public class ListingArticle extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTableListing);
+        jTableListing.setDragEnabled(true);
+        jTableListing.setRowSelectionAllowed(false);
+        jTableListing.getTableHeader().setResizingAllowed(false);
+        jTableListing.getTableHeader().setReorderingAllowed(false);
+        jScrollPaneListing.setViewportView(jTableListing);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -80,23 +82,23 @@ public class ListingArticle extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(36, 36, 36)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(LabelModif, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1091, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(LabelListing, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPaneListing, javax.swing.GroupLayout.PREFERRED_SIZE, 1091, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(334, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addComponent(LabelModif)
+                .addComponent(LabelListing)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(33, Short.MAX_VALUE))
+                .addComponent(jScrollPaneListing, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel LabelModif;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel LabelListing;
+    private javax.swing.JScrollPane jScrollPaneListing;
     private javax.swing.JTable jTableListing;
     // End of variables declaration//GEN-END:variables
 }

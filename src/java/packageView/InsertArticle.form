@@ -29,11 +29,11 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
-                      <Component id="jLabel1" min="-2" pref="380" max="-2" attributes="0"/>
+                      <Component id="labelInsArt" min="-2" pref="380" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
-                      <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
+                      <Component id="panelChamp" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace pref="170" max="32767" attributes="0"/>
@@ -44,16 +44,16 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+              <Component id="labelInsArt" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
+              <Component id="panelChamp" min="-2" max="-2" attributes="0"/>
               <EmptySpace pref="134" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JLabel" name="jLabel1">
+    <Component class="javax.swing.JLabel" name="labelInsArt">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="36" style="0"/>
@@ -64,7 +64,7 @@
         <Property name="text" type="java.lang.String" value="Inserer nouvel article"/>
       </Properties>
     </Component>
-    <Container class="javax.swing.JPanel" name="jPanel1">
+    <Container class="javax.swing.JPanel" name="panelChamp">
 
       <Layout>
         <DimensionLayout dim="0">
@@ -73,23 +73,23 @@
                   <EmptySpace pref="32" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <Component id="jLabel15" min="-2" pref="174" max="-2" attributes="0"/>
+                          <Component id="labelCat" min="-2" pref="174" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="JComboCat" min="-2" pref="226" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="jLabel14" min="-2" pref="174" max="-2" attributes="0"/>
+                          <Component id="labelFourn" min="-2" pref="174" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="ComboFourn" min="-2" pref="226" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="jLabel10" max="32767" attributes="0"/>
-                              <Component id="jLabel9" max="32767" attributes="0"/>
-                              <Component id="jLabel8" max="32767" attributes="0"/>
-                              <Component id="jLabel5" max="32767" attributes="0"/>
-                              <Component id="jLabel3" max="32767" attributes="0"/>
-                              <Component id="jLabel2" min="-2" pref="174" max="-2" attributes="0"/>
+                              <Component id="labelCadeau" max="32767" attributes="0"/>
+                              <Component id="labelConsigne" max="32767" attributes="0"/>
+                              <Component id="labelMarchandise" max="32767" attributes="0"/>
+                              <Component id="labelDescription" max="32767" attributes="0"/>
+                              <Component id="labelLibelle" max="32767" attributes="0"/>
+                              <Component id="labelType" min="-2" pref="174" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -101,16 +101,16 @@
                                   <Component id="ButtonFut" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <Component id="JTextFieldLibelle" max="32767" attributes="0"/>
-                              <Component id="jLabel4" alignment="0" min="-2" pref="197" max="-2" attributes="0"/>
-                              <Component id="jScrollPane1" max="32767" attributes="0"/>
+                              <Component id="labelMajuscule" alignment="0" min="-2" pref="197" max="-2" attributes="0"/>
+                              <Component id="jScrollPaneDesc" max="32767" attributes="0"/>
                               <Component id="PrixConsSpinner" alignment="0" max="32767" attributes="0"/>
                               <Component id="PrixMarchSpinner" alignment="0" max="32767" attributes="0"/>
                               <Component id="CadeauComboBox" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jLabel12" min="-2" pref="78" max="-2" attributes="0"/>
-                              <Component id="jLabel13" min="-2" pref="78" max="-2" attributes="0"/>
+                              <Component id="labelFacultatifCons" min="-2" pref="78" max="-2" attributes="0"/>
+                              <Component id="labelFacultatifCad" min="-2" pref="78" max="-2" attributes="0"/>
                               <Component id="ButtonAjout" min="-2" pref="78" max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -124,12 +124,12 @@
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace pref="27" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jLabel14" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="labelFourn" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="ComboFourn" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
-                      <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                      <Component id="labelType" min="-2" max="-2" attributes="0"/>
                       <Group type="103" alignment="1" groupAlignment="3" attributes="0">
                           <Component id="ButtonBouteille" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="ButtonCasier" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -138,37 +138,37 @@
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jLabel15" min="-2" max="-2" attributes="0"/>
+                      <Component id="labelCat" min="-2" max="-2" attributes="0"/>
                       <Component id="JComboCat" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                  <Component id="labelMajuscule" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="labelLibelle" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="JTextFieldLibelle" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
-                      <Component id="jScrollPane1" min="-2" pref="62" max="-2" attributes="0"/>
+                      <Component id="labelDescription" min="-2" max="-2" attributes="0"/>
+                      <Component id="jScrollPaneDesc" min="-2" pref="62" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="labelMarchandise" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="PrixMarchSpinner" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="labelConsigne" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="PrixConsSpinner" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel12" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="labelFacultatifCons" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jLabel10" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="labelCadeau" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="CadeauComboBox" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel13" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="labelFacultatifCad" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                   <Component id="ButtonAjout" min="-2" pref="33" max="-2" attributes="0"/>
@@ -178,7 +178,7 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="jLabel9">
+        <Component class="javax.swing.JLabel" name="labelConsigne">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="18" style="0"/>
@@ -196,7 +196,7 @@
             <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="SpinnerModel modelpm = new SpinnerNumberModel(0.00,0.00,1000.00,0.01);&#xa;PrixMarchSpinner.setModel(modelpm);"/>
           </AuxValues>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel8">
+        <Component class="javax.swing.JLabel" name="labelMarchandise">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="18" style="0"/>
@@ -233,7 +233,7 @@
             <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="SpinnerModel modelpc = new SpinnerNumberModel(0.00,0.00,1000.00,0.01);&#xa;PrixConsSpinner.setModel(modelpc);"/>
           </AuxValues>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel10">
+        <Component class="javax.swing.JLabel" name="labelCadeau">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="18" style="0"/>
@@ -241,7 +241,7 @@
             <Property name="text" type="java.lang.String" value="Cadeau :"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel13">
+        <Component class="javax.swing.JLabel" name="labelFacultatifCad">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="11" style="2"/>
@@ -251,7 +251,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="JTextFieldLibelle">
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel12">
+        <Component class="javax.swing.JLabel" name="labelFacultatifCons">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="11" style="2"/>
@@ -259,7 +259,7 @@
             <Property name="text" type="java.lang.String" value="(Facultatif)"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel3">
+        <Component class="javax.swing.JLabel" name="labelLibelle">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="18" style="0"/>
@@ -267,7 +267,7 @@
             <Property name="text" type="java.lang.String" value="Libell&#xe9; :"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel14">
+        <Component class="javax.swing.JLabel" name="labelFourn">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="18" style="0"/>
@@ -286,7 +286,7 @@
             <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="ButtonBouteilleItemStateChanged"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel2">
+        <Component class="javax.swing.JLabel" name="labelType">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="18" style="0"/>
@@ -316,7 +316,7 @@
             <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="ButtonCasierItemStateChanged"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel5">
+        <Component class="javax.swing.JLabel" name="labelDescription">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="18" style="0"/>
@@ -326,7 +326,7 @@
         </Component>
         <Component class="javax.swing.JComboBox" name="ComboFourn">
         </Component>
-        <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+        <Container class="javax.swing.JScrollPane" name="jScrollPaneDesc">
           <AuxValues>
             <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
           </AuxValues>
@@ -344,7 +344,7 @@
             </Component>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JLabel" name="jLabel4">
+        <Component class="javax.swing.JLabel" name="labelMajuscule">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="10" style="2"/>
@@ -352,7 +352,7 @@
             <Property name="text" type="java.lang.String" value="(Premi&#xe8;re lettre en majuscule)"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel15">
+        <Component class="javax.swing.JLabel" name="labelCat">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="18" style="0"/>
