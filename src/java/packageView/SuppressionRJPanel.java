@@ -125,7 +125,7 @@ public class SuppressionRJPanel extends javax.swing.JPanel {
             
             
             try { 
-                app.suppArticle(allReap.getContents().get(indLigne).getiDReappro());
+                app.suppReappro(allReap.getContents().get(indLigne).getiDReappro());
                 JOptionPane.showMessageDialog(null,"Suppression effectuée avec succès !");
                 allReap = new AllReapproModel (new ApplicationController().getAllReappro());
             }  

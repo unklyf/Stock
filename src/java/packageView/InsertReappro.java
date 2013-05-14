@@ -25,7 +25,7 @@ public class InsertReappro extends javax.swing.JPanel {
         
         //Garnir comboBox de fournisseur   
         try {
-                tabLibF = new ApplicationController().getFournReappro();
+                tabLibF = new ApplicationController().getFournisseur();
                 this.comboBoxFourn.removeAllItems();
                 for (Fournisseur lib : tabLibF){                   
                     this.comboBoxFourn.addItem(lib.getNom());

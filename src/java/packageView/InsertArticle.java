@@ -35,7 +35,7 @@ public class InsertArticle extends JPanel {
         tabFourn= new ArrayList <Fournisseur>();
         tabCat= new ArrayList <Categorie>();
         try {
-                tabFourn= new ApplicationController().getFournArticle();
+                tabFourn= new ApplicationController().getFournisseur();
                 this.ComboFourn.removeAllItems();
                 this.ComboFourn.addItem(new String("------------------------------------------------"));
                 for (Fournisseur f : tabFourn){
