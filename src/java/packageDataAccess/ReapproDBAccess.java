@@ -1,8 +1,14 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package packageDataAccess;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.sql.Types;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import packageException.BdErreur;
@@ -13,11 +19,65 @@ import packageModel.LigneReappro;
 import packageModel.Reappro;
 
 
-public class ListingReapproDBAccess {    
+
+public class ReapproDBAccess {
     
+    public  Integer  addReappro (Reappro reappro)  throws  BdErreur,NoIdentification,Exception{
+       int lastID=0;
+       try{ 
+             
+            //Insert reappro
+            String req = "insert into Reapprovisionnement (DateApprovisionnement,Etat,NoteReappro) values (?,?,?)";
+            PreparedStatement prepStat = SingletonConnexion.getInstance().prepareStatement(req,Statement.RETURN_GENERATED_KEYS);
+            prepStat.setDate(1,new java.sql.Date(reappro.getReapDate().getTimeInMillis()));
+            prepStat.setString(2, reappro.getEtat());
+            prepStat.setNull(3, Types.VARCHAR);
+            prepStat.executeUpdate();             
+            
+            //Obtenir IDReappro venant d'être insérer
+            ResultSet rs = prepStat.getGeneratedKeys();
+            
+            while(rs.next()){
+                lastID = rs.getInt(1);                                
+            } 
+        }
+        catch (SQLException e){       
+            throw new BdErreur(e.getMessage());
+        }
+        catch (NoIdentification e) {
+            throw new NoIdentification();
+        }
+        catch (Exception e){
+           throw new BdErreur(e.getMessage());
+       }
+       
+       return lastID;      
+   }
     
-        //Lister tous les réappros
-        public ArrayList<Reappro> getAllReappro ()throws  BdErreur, NoIdentification{
+    public  void  addLigneReappro (LigneReappro lReap,Integer iDReap)  throws  BdErreur,NoIdentification,Exception{
+ 
+       try{ 
+             
+            //Insert ligne reappro
+            String req = "insert into LigneReappro (IDProduit,IDReappro,Qte) values (?,?,?)";
+            PreparedStatement prepStat = SingletonConnexion.getInstance().prepareStatement(req);
+            prepStat.setInt(1, new ArticleDBAccess().getIDArticle(lReap.getArt().getLibelle(), lReap.getArt().getType()));
+            prepStat.setInt(2, iDReap);
+            prepStat.setInt(3, lReap.getQte());
+            prepStat.executeUpdate();               
+        }
+        catch (SQLException e){       
+            throw new BdErreur(e.getMessage());
+        }
+        catch (NoIdentification e) {
+            throw new NoIdentification();
+        }
+        catch (Exception e){
+           throw new BdErreur(e.getMessage());
+       }    
+   }
+    
+    public ArrayList<Reappro> getAllReappro ()throws  BdErreur, NoIdentification{
         
         ArrayList<Reappro> listeReap = new ArrayList<Reappro>();
         String  note;     
@@ -61,10 +121,7 @@ public class ListingReapproDBAccess {
         return listeReap;
         
     }    
-        
-      
-        
-    //Lister tous les articles (ligne réappro)
+    
     public ArrayList<LigneReappro> getAllLigneReappro (Integer iDR)throws  BdErreur, NoIdentification{
         
         ArrayList<LigneReappro> listeLigne = new ArrayList<LigneReappro>();    
@@ -98,13 +155,11 @@ public class ListingReapproDBAccess {
         }
         return listeLigne;
         
-    }        
-
+    }    
     
-    //Modifier pour encoder les quantités
     public void setQteStock (Reappro reap, LigneReappro lReap)throws  BdErreur, NoIdentification{
        Integer Qte=0;
-       Qte = this.getQtePrec(lReap.getArt().getLibelle(),lReap.getArt().getType());
+       Qte = new ArticleDBAccess().getQtePrec(lReap.getArt().getLibelle(),lReap.getArt().getType());
        
        try{
             
@@ -120,7 +175,7 @@ public class ListingReapproDBAccess {
             req ="update Article set Qte = ? where iDProduit= ?";  
             prepStat = SingletonConnexion.getInstance().prepareStatement(req);
             prepStat.setInt(1,Qte+ lReap.getQte());
-            prepStat.setInt(2,this.getIDArticle(lReap.getArt().getLibelle(),lReap.getArt().getType()));
+            prepStat.setInt(2,new ArticleDBAccess().getIDArticle(lReap.getArt().getLibelle(),lReap.getArt().getType()));
             prepStat.executeUpdate();
             
     
@@ -133,54 +188,32 @@ public class ListingReapproDBAccess {
         }
     }
     
-    
-    //OBTENIR L'ID D'UN ARTICLE 
-    //Reçoit : Libelle & type 
-    public Integer getIDArticle(String libelleA, String typeA) throws  BdErreur, NoIdentification{   
-         Integer IDArt=0;
-                 
-         try {  
-                 String req = "select IDProduit from Article where Libelle = ? and TypeA = ?";
-                 PreparedStatement prepStat = SingletonConnexion.getInstance().prepareStatement(req);
-                 prepStat.setString(1, libelleA);
-                 prepStat.setString(2, typeA);
-                 ResultSet donnees = prepStat.executeQuery(); 
-                 while (donnees.next( )){
-                     IDArt = donnees.getInt("IDProduit");
-                 }
-        }
+    public void suppReappro(Integer idR) throws BdErreur, NoIdentification{
+        
+        try{  
+            String  req = "delete from LigneReappro where IDReappro = ? ";
+            PreparedStatement  prepStat = SingletonConnexion.getInstance().prepareStatement(req);
+            prepStat.setInt(1,idR);
+            prepStat.executeUpdate();
             
-         catch (SQLException e) {  
-            throw new BdErreur(e.getMessage());   
-        }                   
+            req = "delete from Reapprovisionnement where IDReappro = ? ";
+            prepStat = SingletonConnexion.getInstance().prepareStatement(req);
+            prepStat.setInt(1,idR);
+            prepStat.executeUpdate(); 
+            
+             
+        }
+        catch (SQLException e){       
+            throw new BdErreur(e.getMessage());
+        }
         catch (NoIdentification e) {
             throw new NoIdentification();
         }
-        return IDArt;
-   }
+        catch (Exception e){
+           throw new BdErreur(e.getMessage());
+        }
+    }
     
-    //OBTENIR QTE ARTICLE PRECEDENT 
-    //Reçoit : Libelle & type 
-    public Integer getQtePrec(String libelleA, String typeA) throws  BdErreur, NoIdentification{   
-         Integer Qte=0;
-                 
-         try {  
-                 String req = "select Qte from Article where Libelle = ? and TypeA = ?";
-                 PreparedStatement prepStat = SingletonConnexion.getInstance().prepareStatement(req);
-                 prepStat.setString(1, libelleA);
-                 prepStat.setString(2, typeA);
-                 ResultSet donnees = prepStat.executeQuery(); 
-                 while (donnees.next( )){
-                     Qte = donnees.getInt("Qte");
-                 }
-        }
-            
-         catch (SQLException e) {  
-            throw new BdErreur(e.getMessage());   
-        }                   
-        catch (NoIdentification e) {
-            throw new NoIdentification();
-        }
-        return Qte;
-   }
+    
+    
 }
