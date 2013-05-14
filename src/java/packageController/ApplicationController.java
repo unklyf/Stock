@@ -8,12 +8,11 @@ public class ApplicationController {
     
     
     private LoginManager lM= new LoginManager();
-    private InsertReapproManager rM= new InsertReapproManager();
-    private InsertArtManager iAM = new InsertArtManager();
-    private ModifArtManager mAM = new ModifArtManager();
-    private ListingReapproManager lrm = new ListingReapproManager();
-    private SuppressionManager sAM =new SuppressionManager();
-    private RechercheManager rechM =new RechercheManager();
+    private ReapproManager rM= new ReapproManager();
+    private ArticleManager aM = new ArticleManager();
+    private FournisseurManager fM = new FournisseurManager();
+    private CategorieManager cM = new CategorieManager();
+   
     
     
     //IDENTIFICATION
@@ -24,16 +23,13 @@ public class ApplicationController {
     
     
     //AJOUT REAPPRO
-    public ArrayList <Fournisseur> getFournReappro()throws  BdErreur, NoIdentification{
-        return rM.getFournReappro();
-    }
-    
+
     public ArrayList <Article> getArticleReappro(Article art,Reappro reap) throws  BdErreur, NoIdentification{ 
-        return rM.getArticleReappro(art,reap);
+        return aM.getArticleReappro(art,reap);
     }
      
     public Integer getIDArticle(String libelle,String typeA) throws  BdErreur, NoIdentification{ 
-        return rM.getIDArticle(libelle, typeA);
+        return aM.getIDArticle(libelle, typeA);
     }
     
     public  Integer  addReappro (Reappro reappro)  throws  BdErreur,NoIdentification,Exception{
@@ -47,59 +43,61 @@ public class ApplicationController {
     
     //LISTING REAPPRO
     public ArrayList<Reappro> getAllReappro ()throws  BdErreur, NoIdentification{
-        return lrm.getAllReappro();
+        return rM.getAllReappro();
     }
     
     public ArrayList<LigneReappro> getAllLigneReappro (Integer iDR)throws  BdErreur, NoIdentification{
-        return lrm.getAllLigneReappro(iDR);
+        return rM.getAllLigneReappro(iDR);
     }
     
     public void setQteStock (Reappro reap, LigneReappro lReap)throws  BdErreur, NoIdentification{
-        lrm.setQteStock(reap, lReap);
+        rM.setQteStock(reap, lReap);
     }
        
     // AJOUT ARTICLE
     public void  addArticle (Article nouvArt, Fournisseur fourn, Categorie cat) throws BdErreur,NoIdentification{
-        iAM.addArticle(nouvArt,fourn, cat);
+        aM.addArticle(nouvArt,fourn, cat);
     }
-    
-    public ArrayList <Fournisseur> getFournArticle()throws  BdErreur, NoIdentification{
-        return iAM.getFournArticle();
-    }
+
     public ArrayList <Categorie> getCatArticle()throws  BdErreur, NoIdentification{
-        return iAM.getCatArticle();
+        return cM.getCatArticle();
     }
-    
+    public Integer getIDFourn(String nom) throws  BdErreur, NoIdentification{
+        return fM.getIDFourn(nom);
+    }
+    public Integer getIDCat(String libelle) throws  BdErreur, NoIdentification{ 
+            return cM.getIDCat(libelle);
+    }
     
    
     
     
     //Modif article
     public ArrayList<Article> getAllArticle ()throws  BdErreur, NoIdentification{
-        return mAM.getAllArticle();
+        return aM.getAllArticle();
     }
     
     public void modifArticle(Article artNouvVersion, Article artAncVersion) throws BdErreur, NoIdentification{
-         mAM.modifArticle(artNouvVersion, artAncVersion);
+         aM.modifArticle(artNouvVersion, artAncVersion);
     }
     
     
     
     // Suppression réappro
-    public void suppArticle(Integer idP) throws BdErreur, NoIdentification{
-        sAM.suppArticle(idP);
+    public void suppReappro(Integer idP) throws BdErreur, NoIdentification{
+        rM.suppReappro(idP);
     }
     
     
     //Recherches
     public ArrayList <Fournisseur> getFournisseur()throws  BdErreur, NoIdentification{
-        return rechM.getFournisseur();
+        return fM.getFournisseur();
     }
     public ArrayList <Article> getArticleCat(String typeArt,Categorie cat) throws  BdErreur, NoIdentification{
-        return rechM.getArticleCat(typeArt,cat);
+        return aM.getArticleCat(typeArt,cat);
     }
     
-    
+     
     
 
     
