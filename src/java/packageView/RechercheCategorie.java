@@ -1,4 +1,3 @@
-
 package packageView;
 
 import java.awt.Color;
@@ -13,33 +12,32 @@ import packageModel.Categorie;
 
 public class RechercheCategorie extends javax.swing.JPanel {
 
-    private ArrayList <Categorie> tabCat;
-    private ArrayList <Article> listeArtCombo;
+    private ArrayList<Categorie> tabCat;
+    private ArrayList<Article> listeArtCombo;
     private String typeArt;
-    
+    private AllArticleModif allArt;
+
     public RechercheCategorie() {
         initComponents();
-        tabCat= new ArrayList <Categorie>();
-        listeArtCombo= new ArrayList <Article>();
+        this.jTableRechCat.setVisible(false);
+        tabCat = new ArrayList<Categorie>();
+        listeArtCombo = new ArrayList<Article>();
         try {
-             tabCat= new ApplicationController().getCatArticle();
-             this.comboCat.removeAllItems();
-             this.comboCat.addItem(new String("---------------------------"));
-             for (Categorie cat : tabCat){
-                 this.comboCat.addItem(cat.getNom());
-             }
-             this.comboCat.repaint();
-             this.comboCat.validate();
-        }
-        catch(BdErreur e){
-             JOptionPane.showMessageDialog(null, e, "Erreur BD", JOptionPane.ERROR_MESSAGE);
-        }
-        catch(NoIdentification e){
-             JOptionPane.showMessageDialog(null, e, "Erreur identification", JOptionPane.ERROR_MESSAGE);
+            tabCat = new ApplicationController().getCatArticle();
+            this.comboCat.removeAllItems();
+            for (Categorie cat : tabCat) {
+                this.comboCat.addItem(cat.getNom());
+            }
+            this.comboCat.repaint();
+            this.comboCat.validate();
+
+        } catch (BdErreur e) {
+            JOptionPane.showMessageDialog(null, e, "Erreur BD", JOptionPane.ERROR_MESSAGE);
+        } catch (NoIdentification e) {
+            JOptionPane.showMessageDialog(null, e, "Erreur identification", JOptionPane.ERROR_MESSAGE);
         }
     }
 
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -48,12 +46,12 @@ public class RechercheCategorie extends javax.swing.JPanel {
         LabelListing = new javax.swing.JLabel();
         labelCat = new javax.swing.JLabel();
         labelType = new javax.swing.JLabel();
-        labelLibelle = new javax.swing.JLabel();
         comboCat = new javax.swing.JComboBox();
         ButtonBouteille = new javax.swing.JRadioButton();
         ButtonCasier = new javax.swing.JRadioButton();
         ButtonFut = new javax.swing.JRadioButton();
-        comboLib = new javax.swing.JComboBox();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTableRechCat = new javax.swing.JTable();
 
         LabelListing.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         LabelListing.setForeground(new java.awt.Color(153, 0, 51));
@@ -65,8 +63,11 @@ public class RechercheCategorie extends javax.swing.JPanel {
         labelType.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         labelType.setText("Type Article :");
 
-        labelLibelle.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        labelLibelle.setText("Libellé :");
+        comboCat.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                comboCatItemStateChanged(evt);
+            }
+        });
 
         buttonGroup1.add(ButtonBouteille);
         ButtonBouteille.setText("Bouteille");
@@ -92,6 +93,11 @@ public class RechercheCategorie extends javax.swing.JPanel {
             }
         });
 
+        jTableRechCat.setRowSelectionAllowed(false);
+        jTableRechCat.getTableHeader().setResizingAllowed(false);
+        jTableRechCat.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(jTableRechCat);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -103,7 +109,6 @@ public class RechercheCategorie extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(labelCat, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(labelLibelle, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(labelType, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -113,9 +118,9 @@ public class RechercheCategorie extends javax.swing.JPanel {
                                 .addComponent(ButtonCasier)
                                 .addGap(18, 18, 18)
                                 .addComponent(ButtonFut))
-                            .addComponent(comboCat, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(comboLib, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap(168, Short.MAX_VALUE))
+                            .addComponent(comboCat, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1015, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -135,47 +140,67 @@ public class RechercheCategorie extends javax.swing.JPanel {
                         .addComponent(ButtonCasier)
                         .addComponent(ButtonFut)))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelLibelle)
-                    .addComponent(comboLib, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(229, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(32, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void ButtonBouteilleItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_ButtonBouteilleItemStateChanged
-        if(evt.getStateChange()== ItemEvent.SELECTED){
-            
-        try {
-            typeArt = "Bouteille";
-            listeArtCombo= new ApplicationController().getArticleCat(typeArt,tabCat.get(comboCat.getSelectedIndex()));
-                for (Article lib : listeArtCombo){
-                    this.comboLib.addItem(lib.getLibelle());
-                }
-                this.comboLib.setBackground(Color.blue);
-                this.comboLib.repaint();
-                this.comboLib.validate();
-        }
-        catch(BdErreur e){
-             JOptionPane.showMessageDialog(null, e, "Erreur BD", JOptionPane.ERROR_MESSAGE);
-        }
-        catch(NoIdentification e){
-             JOptionPane.showMessageDialog(null, e, "Erreur identification", JOptionPane.ERROR_MESSAGE);
-        }
+        if (evt.getStateChange() == ItemEvent.SELECTED) {
+            try {
+                typeArt = "Bouteille";
+                this.jTableRechCat.setVisible(true);
+                allArt = new AllArticleModif(new ApplicationController().getAllArticleRechCat(typeArt, tabCat.get(comboCat.getSelectedIndex())));
+                jTableRechCat.setModel(allArt);
+                jTableRechCat.repaint();
+                jTableRechCat.validate();
+
+            } catch (BdErreur e) {
+                JOptionPane.showMessageDialog(null, e, "Erreur BD", JOptionPane.ERROR_MESSAGE);
+            } catch (NoIdentification e) {
+                JOptionPane.showMessageDialog(null, e, "Erreur identification", JOptionPane.ERROR_MESSAGE);
+            }
         }
     }//GEN-LAST:event_ButtonBouteilleItemStateChanged
 
     private void ButtonCasierItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_ButtonCasierItemStateChanged
-        if(evt.getStateChange()== ItemEvent.SELECTED){
-            typeArt = "Casier";
+        if (evt.getStateChange() == ItemEvent.SELECTED) {
+            try {
+                typeArt = "Casier";
+                this.jTableRechCat.setVisible(true);
+                allArt = new AllArticleModif(new ApplicationController().getAllArticleRechCat(typeArt, tabCat.get(comboCat.getSelectedIndex())));
+                jTableRechCat.setModel(allArt);
+                jTableRechCat.repaint();
+                jTableRechCat.validate();
+            } catch (BdErreur e) {
+                JOptionPane.showMessageDialog(null, e, "Erreur BD", JOptionPane.ERROR_MESSAGE);
+            } catch (NoIdentification e) {
+                JOptionPane.showMessageDialog(null, e, "Erreur identification", JOptionPane.ERROR_MESSAGE);
+            }
         }
     }//GEN-LAST:event_ButtonCasierItemStateChanged
 
     private void ButtonFutItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_ButtonFutItemStateChanged
-        if(evt.getStateChange()== ItemEvent.SELECTED){
-            typeArt ="Fût";
+        if (evt.getStateChange() == ItemEvent.SELECTED) {
+            try {
+                typeArt = "Fût";
+                this.jTableRechCat.setVisible(true);
+                allArt = new AllArticleModif(new ApplicationController().getAllArticleRechCat(typeArt, tabCat.get(comboCat.getSelectedIndex())));
+                jTableRechCat.setModel(allArt);
+                jTableRechCat.repaint();
+                jTableRechCat.validate();
+            } catch (BdErreur e) {
+                JOptionPane.showMessageDialog(null, e, "Erreur BD", JOptionPane.ERROR_MESSAGE);
+            } catch (NoIdentification e) {
+                JOptionPane.showMessageDialog(null, e, "Erreur identification", JOptionPane.ERROR_MESSAGE);
+            }
         }
     }//GEN-LAST:event_ButtonFutItemStateChanged
 
+    private void comboCatItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comboCatItemStateChanged
+        this.buttonGroup1.clearSelection();
+        this.jTableRechCat.setVisible(false);
+    }//GEN-LAST:event_comboCatItemStateChanged
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JRadioButton ButtonBouteille;
     private javax.swing.JRadioButton ButtonCasier;
@@ -183,9 +208,9 @@ public class RechercheCategorie extends javax.swing.JPanel {
     private javax.swing.JLabel LabelListing;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox comboCat;
-    private javax.swing.JComboBox comboLib;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTableRechCat;
     private javax.swing.JLabel labelCat;
-    private javax.swing.JLabel labelLibelle;
     private javax.swing.JLabel labelType;
     // End of variables declaration//GEN-END:variables
 }

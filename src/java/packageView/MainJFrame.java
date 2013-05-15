@@ -14,6 +14,7 @@ public class MainJFrame extends javax.swing.JFrame {
     private ListingArticle listArt;
     private RechReapproJPanel rechReap;
     private RechercheCategorie rechCat;
+    private RechercheFournisseur rechFourn;
             
     public MainJFrame() {
         initComponents();
@@ -147,6 +148,11 @@ public class MainJFrame extends javax.swing.JFrame {
 
         itemRechFourn.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_M, java.awt.event.InputEvent.CTRL_MASK));
         itemRechFourn.setText("Fournisseur");
+        itemRechFourn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemRechFournActionPerformed(evt);
+            }
+        });
         menuRecherche.add(itemRechFourn);
 
         itemRechCategorie.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_L, java.awt.event.InputEvent.CTRL_MASK));
@@ -270,6 +276,15 @@ public class MainJFrame extends javax.swing.JFrame {
         this.getContentPane().validate(); 
         this.getContentPane().repaint(); 
     }//GEN-LAST:event_itemRechCategorieActionPerformed
+
+    private void itemRechFournActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemRechFournActionPerformed
+        rechFourn=new RechercheFournisseur();
+        rechFourn.setBounds(this.getBounds());
+        this.getContentPane().removeAll();
+        this.getContentPane().add(rechFourn);
+        this.getContentPane().validate(); 
+        this.getContentPane().repaint(); 
+    }//GEN-LAST:event_itemRechFournActionPerformed
        
     
     public static void main(String args[]) {

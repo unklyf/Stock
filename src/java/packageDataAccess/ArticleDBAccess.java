@@ -248,7 +248,9 @@ public class ArticleDBAccess {
         double  prixC;
         
         try {  
-                 String req = "select * from Article where TypeA = ? AND IDCategorie = ? ";
+                 String req = "select Libelle, TypeA, Description, Qte, PrixMarchandise, PrixConsigne, Cadeau "
+                         + "from Article "
+                         + "where TypeA = ? AND IDCategorie = ? ";
                  PreparedStatement prepStat = SingletonConnexion.getInstance().prepareStatement(req);
                  prepStat.setString(1,typeArt);
                  prepStat.setInt(2,new CategorieDBAccess().getIDCat(cat.getNom()));
@@ -284,7 +286,107 @@ public class ArticleDBAccess {
         }
     return listeArticle;
 }
+    public ArrayList<Article> getAllArticleRechCat (String typeArt, Categorie cat)throws  BdErreur, NoIdentification{
+        
+        tabArt = new ArrayList<Article>();
+        String  cadeau;
+        double  prixC;
+
+        try{
+            String req ="select a.IDProduit, a.Libelle, a.TypeA, a.Description, a.Qte, a.PrixMarchandise, a.PrixConsigne, a.Cadeau, "
+                    + "f.Nom, c.Libelle libCat "
+                    + "from Article a, Fournisseur f, Categorie c "
+                    + "where a.IDFournisseur = f.IDFournisseur AND a.IDCategorie = c.IDCategorie AND a.TypeA = ? AND a.IDCategorie = ? "
+                    + "order by a.Libelle";
+            PreparedStatement prepStat = SingletonConnexion.getInstance().prepareStatement(req);
+            prepStat.setString(1,typeArt);
+            prepStat.setInt(2,new CategorieDBAccess().getIDCat(cat.getNom()));
+            ResultSet donnees = prepStat.executeQuery();
+   
+                 while (donnees.next( )){
+                      Article art = new Article (donnees.getInt("IDProduit"),
+                                                 donnees.getString("Libelle"),
+                                                 donnees.getString("TypeA"),
+                                                 donnees.getString("Description"),
+                                                 donnees.getInt("Qte"),
+                                                 donnees.getDouble("PrixMarchandise"),
+                                                 new Fournisseur (donnees.getString("Nom")),
+                                                 new Categorie (donnees.getString("LibCat")));
+                     
+                     
+                    
+                      cadeau = donnees.getString("Cadeau");
+                      if (donnees.wasNull()== false){
+                            art.setCadeau(cadeau);
+                      }
+                      
+                      prixC = donnees.getDouble("PrixConsigne");
+                      if (donnees.wasNull()== false){
+                            art.setPrixC(prixC);
+                       }
+                      
+                      tabArt.add(art);
+                 }
     
+        }
+        catch (SQLException e) {  
+            throw new BdErreur(e.getMessage());   
+        }                   
+        catch (NoIdentification e) {
+            throw new NoIdentification();
+        }
+        return tabArt;
+        
+    }
     
+    public ArrayList<Article> getAllArticleRechFourn (Fournisseur fourn)throws  BdErreur, NoIdentification{
+        tabArt = new ArrayList<Article>();
+        String  cadeau;
+        double  prixC;
+
+        try{
+            String req ="select a.IDProduit, a.Libelle, a.TypeA, a.Description, a.Qte, a.PrixMarchandise, a.PrixConsigne, a.Cadeau, "
+                    + "f.Nom, c.Libelle libCat "
+                    + "from Article a, Fournisseur f, Categorie c "
+                    + "where a.IDFournisseur = f.IDFournisseur AND a.IDCategorie = c.IDCategorie AND a.IDFournisseur = ?  "
+                    + "order by a.Libelle";
+            PreparedStatement prepStat = SingletonConnexion.getInstance().prepareStatement(req);
+            prepStat.setInt(1,new FournisseurDBAccess().getIDFourn(fourn.getNom()));
+            ResultSet donnees = prepStat.executeQuery();
+   
+                 while (donnees.next( )){
+                      Article art = new Article (donnees.getInt("IDProduit"),
+                                                 donnees.getString("Libelle"),
+                                                 donnees.getString("TypeA"),
+                                                 donnees.getString("Description"),
+                                                 donnees.getInt("Qte"),
+                                                 donnees.getDouble("PrixMarchandise"),
+                                                 new Fournisseur (donnees.getString("Nom")),
+                                                 new Categorie (donnees.getString("LibCat")));
+                     
+                     
+                    
+                      cadeau = donnees.getString("Cadeau");
+                      if (donnees.wasNull()== false){
+                            art.setCadeau(cadeau);
+                      }
+                      
+                      prixC = donnees.getDouble("PrixConsigne");
+                      if (donnees.wasNull()== false){
+                            art.setPrixC(prixC);
+                       }
+                      
+                      tabArt.add(art);
+                 }
     
+        }
+        catch (SQLException e) {  
+            throw new BdErreur(e.getMessage());   
+        }                   
+        catch (NoIdentification e) {
+            throw new NoIdentification();
+        }
+        return tabArt;
+        
+    }
 }

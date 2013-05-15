@@ -97,6 +97,12 @@ public class ApplicationController {
     public ArrayList <Article> getArticleCat(String typeArt,Categorie cat) throws  BdErreur, NoIdentification{
         return aM.getArticleCat(typeArt,cat);
     }
+    public ArrayList<Article> getAllArticleRechCat (String typeArt, Categorie cat)throws  BdErreur, NoIdentification{
+        return aM.getAllArticleRechCat(typeArt, cat);
+    }
+    public ArrayList<Article> getAllArticleRechFourn (Fournisseur fourn)throws  BdErreur, NoIdentification{
+        return aM.getAllArticleRechFourn(fourn);
+    }
     
     public ArrayList<Reappro> getRechReappro (GregorianCalendar dateR,Fournisseur fourn)throws  BdErreur, NoIdentification{
         return rM.getRechReappro(dateR,fourn);

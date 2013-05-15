@@ -1,13 +1,6 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package packageModel;
 
-/**
- *
- * @author Home
- */
+
 public class Categorie {
     
     private String nom;
@@ -18,13 +11,13 @@ public class Categorie {
         nom=n;
      }
 
-    public String getNom() {
+     public String getNom() {
         return nom;
-    }
+     }
 
-    public Integer getiDCat() {
+     public Integer getiDCat() {
         return iDCat;
-    }
+     }
     
         
 }
