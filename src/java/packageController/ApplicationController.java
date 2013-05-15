@@ -1,5 +1,6 @@
 package packageController;
 import java.util.ArrayList;
+import java.util.GregorianCalendar;
 import packageBusiness.*;
 import packageException.*;
 import packageModel.*;
@@ -95,6 +96,10 @@ public class ApplicationController {
     }
     public ArrayList <Article> getArticleCat(String typeArt,Categorie cat) throws  BdErreur, NoIdentification{
         return aM.getArticleCat(typeArt,cat);
+    }
+    
+    public ArrayList<Reappro> getRechReappro (GregorianCalendar dateR,Fournisseur fourn)throws  BdErreur, NoIdentification{
+        return rM.getRechReappro(dateR,fourn);
     }
     
      

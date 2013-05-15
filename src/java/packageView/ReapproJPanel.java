@@ -31,6 +31,7 @@ public class ReapproJPanel extends JPanel {
         jTableRecap.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         listSelect = jTableRecap.getSelectionModel();
         
+        
         //Remplir ce qu'on reçoit avec le constructeur
         reapAdd = rA;
     
@@ -503,9 +504,9 @@ public class ReapproJPanel extends JPanel {
     
     //Supprimer article de la commande (jTable)
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
+        int indLigne= listSelect.getMinSelectionIndex();
         
         if(listSelect.isSelectionEmpty()==false){
-            int indLigne= listSelect.getMinSelectionIndex();
             listeLReap.remove(indLigne);
         
             //Raffraichir jTable
@@ -522,9 +523,8 @@ public class ReapproJPanel extends JPanel {
     
     //Modifier article de la commande (jTable)--Affichage
     private void modifButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifButtonActionPerformed
-  
+       int indLigne= listSelect.getMinSelectionIndex();
        if(listSelect.isSelectionEmpty()==false){
-            int indLigne= listSelect.getMinSelectionIndex();
         
             //Afficher nouveaux champs avec valeurs et boutton
             confirmModifButton.setVisible(true);
@@ -559,13 +559,13 @@ public class ReapproJPanel extends JPanel {
     
     //Enregistrer/Confirmer la modification de l'article dans la commande
     private void confirmModifButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmModifButtonActionPerformed
-        
+       int indLigne= listSelect.getMinSelectionIndex();
        if(listSelect.isSelectionEmpty()==false){
-                int indLigne= listSelect.getMinSelectionIndex();
+                
             
                 //Encoder les changements
-                lReap = new LigneReappro(Integer.parseInt(quantiteSpinner.getValue().toString()),art);
-                listeLReap.set(indLigne, lReap);
+                //lReap = new LigneReappro(,art);
+                listeLReap.get(indLigne).setQte(Integer.parseInt(quantiteSpinner.getValue().toString()));
 
 
                 //Reaffichage des champs
@@ -591,13 +591,18 @@ public class ReapproJPanel extends JPanel {
                 AllLigneReapproModel model = new AllLigneReapproModel(listeLReap);
                 jTableRecap.setModel(model);
                 jTableRecap.repaint();
-                jTableRecap.validate();       
+                jTableRecap.validate();   
+                
+                //Remise à zéro spinner
+                quantiteSpinner.setValue(0); 
         }
         else{
             JOptionPane.showMessageDialog(null, "Aucune ligne du tableau récapitulatif sélectionnée");
         }
     }//GEN-LAST:event_confirmModifButtonActionPerformed
 
+    
+    //Annuler la commande retour à l'accueil
     private void annulerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_annulerButtonActionPerformed
         int choix= JOptionPane.showConfirmDialog(null, "Êtes-vous sûr de vouloir annuler la commande ?","Annuler la commande", JOptionPane.YES_NO_OPTION);
         

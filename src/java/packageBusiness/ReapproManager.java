@@ -1,20 +1,14 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package packageBusiness;
 
 import java.util.ArrayList;
+import java.util.GregorianCalendar;
 import packageDataAccess.ReapproDBAccess;
 import packageException.BdErreur;
 import packageException.NoIdentification;
+import packageModel.Fournisseur;
 import packageModel.LigneReappro;
 import packageModel.Reappro;
 
-/**
- *
- * @author Home
- */
 public class ReapproManager {
     
     private ReapproDBAccess rDBA= new ReapproDBAccess();
@@ -40,6 +34,10 @@ public class ReapproManager {
     }
      public void suppReappro(Integer idP) throws BdErreur, NoIdentification{
         rDBA.suppReappro(idP);
+    }
+     
+    public ArrayList<Reappro> getRechReappro (GregorianCalendar dateR,Fournisseur fourn)throws  BdErreur, NoIdentification{
+        return rDBA.getRechReappro(dateR,fourn);
     }
     
     

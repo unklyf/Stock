@@ -54,6 +54,7 @@ public class ReapproDBAccess {
        return lastID;      
    }
     
+    
     public  void  addLigneReappro (LigneReappro lReap,Integer iDReap)  throws  BdErreur,NoIdentification,Exception{
  
        try{ 
@@ -76,6 +77,8 @@ public class ReapproDBAccess {
            throw new BdErreur(e.getMessage());
        }    
    }
+    
+    
     
     public ArrayList<Reappro> getAllReappro ()throws  BdErreur, NoIdentification{
         
@@ -122,6 +125,8 @@ public class ReapproDBAccess {
         
     }    
     
+    
+    
     public ArrayList<LigneReappro> getAllLigneReappro (Integer iDR)throws  BdErreur, NoIdentification{
         
         ArrayList<LigneReappro> listeLigne = new ArrayList<LigneReappro>();    
@@ -157,6 +162,8 @@ public class ReapproDBAccess {
         
     }    
     
+    
+    
     public void setQteStock (Reappro reap, LigneReappro lReap)throws  BdErreur, NoIdentification{
        Integer Qte=0;
        Qte = new ArticleDBAccess().getQtePrec(lReap.getArt().getLibelle(),lReap.getArt().getType());
@@ -188,6 +195,8 @@ public class ReapproDBAccess {
         }
     }
     
+    
+    
     public void suppReappro(Integer idR) throws BdErreur, NoIdentification{
         
         try{  
@@ -213,6 +222,52 @@ public class ReapproDBAccess {
            throw new BdErreur(e.getMessage());
         }
     }
+    
+    
+    public ArrayList<Reappro> getRechReappro (GregorianCalendar dateR,Fournisseur fourn)throws  BdErreur, NoIdentification{
+        
+        ArrayList<Reappro> listeReapRech = new ArrayList<Reappro>();
+        String  note;     
+        
+        try{
+            String req ="select distinct r.IDReappro, r.Etat, r.NoteReappro, r.DateApprovisionnement, f.Nom\n"
+                      + "from Reapprovisionnement r, Fournisseur f, Article a, LigneReappro lr \n"
+                      + "where lr.IDReappro = r.IDReappro and lr.IDPRoduit = a.IDProduit\n"
+                      + "and a.IDFournisseur = f.IDFournisseur "
+                      + "and f.Nom = ? and r.DateApprovisionnement= ?\n"
+                      + "order by r.DateApprovisionnement";
+            
+            PreparedStatement prepStat = SingletonConnexion.getInstance().prepareStatement(req);            
+            prepStat.setString(1,fourn.getNom());
+            java.sql.Date sqlDateR = new java.sql.Date(dateR.getTimeInMillis());
+            prepStat.setDate(2,sqlDateR);
+            ResultSet donnees = prepStat.executeQuery();
+            
+            
+                 while (donnees.next( )){
+                      Reappro reap = new Reappro (donnees.getInt("IDReappro"),
+                                                  dateR,
+                                                  donnees.getString("Etat"),
+                                                  new Fournisseur(donnees.getString("Nom")));
+                     
+                                        
+                      note = donnees.getString("NoteReappro");
+                      if (donnees.wasNull()== false){
+                            reap.setNote(note);
+                      }                                         
+                      listeReapRech.add(reap);
+                 }
+    
+        }
+        catch (SQLException e) {  
+            throw new BdErreur(e.getMessage());   
+        }                   
+        catch (NoIdentification e) {
+            throw new NoIdentification();
+        }
+        return listeReapRech;
+        
+    }    
     
     
     

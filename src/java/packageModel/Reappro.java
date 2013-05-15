@@ -23,7 +23,7 @@ public class Reappro {
         this.etat=e;
         this.fourn=f;
     }
-
+    
     public GregorianCalendar getReapDate(){
         return this.dateReappro;        
     }
