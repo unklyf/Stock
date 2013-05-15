@@ -96,8 +96,9 @@ public class ApplicationController {
     public ArrayList <Article> getArticleCat(String typeArt,Categorie cat) throws  BdErreur, NoIdentification{
         return aM.getArticleCat(typeArt,cat);
     }
-    
-     
+    public ArrayList<Article> getAllArticleRech (String typeArt, Categorie cat)throws  BdErreur, NoIdentification{
+        return aM.getAllArticleRech(typeArt, cat);
+    }
     
 
     

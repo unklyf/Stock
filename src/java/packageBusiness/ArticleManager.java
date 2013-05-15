@@ -40,5 +40,8 @@ public class ArticleManager {
       public ArrayList <Article> getArticleCat(String typeArt,Categorie cat) throws  BdErreur, NoIdentification{
         return aDBA.getArticleCat(typeArt,cat);
     }
+      public ArrayList<Article> getAllArticleRech (String typeArt, Categorie cat)throws  BdErreur, NoIdentification{
+        return aDBA.getAllArticleRech(typeArt, cat);
+    }
     
 }
