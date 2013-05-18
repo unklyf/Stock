@@ -336,7 +336,7 @@ public class InsertArticle extends JPanel {
                                         
                                         JOptionPane.showMessageDialog(null,"Encodage réalisé avec succès !");
                                        // Retour page d'acceuil apres ajout 
-                                        AccueilJPanel panel= new AccueilJPanel();
+                                        AccueilPanel panel= new AccueilPanel();
                                         panel.setBounds(new MainJFrame().getBounds());
                                         this.removeAll();
                                         this.add(panel);

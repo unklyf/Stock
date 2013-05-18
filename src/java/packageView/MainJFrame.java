@@ -8,7 +8,7 @@ import javax.swing.JFrame;
 
 public class MainJFrame extends javax.swing.JFrame {
 
-    private AccueilJPanel aP;
+    private AccueilPanel aP;
     private InsertArticle insArt;
     private InsertReappro reapAdd;
     private ModifArticleJPanel modifArt;
@@ -226,7 +226,7 @@ public class MainJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_itemAjoutReapproActionPerformed
 
     private void itemMenuAccueilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemMenuAccueilActionPerformed
-        aP = new AccueilJPanel();
+        aP = new AccueilPanel();
         aP.setBounds(this.getBounds());
         this.getContentPane().removeAll();
         this.getContentPane().add(aP);

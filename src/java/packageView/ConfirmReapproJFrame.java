@@ -187,7 +187,7 @@ public class ConfirmReapproJFrame extends javax.swing.JFrame {
 
        //Retour Accueil
        this.dispose();
-       AccueilJPanel panel= new AccueilJPanel();
+       AccueilPanel panel= new AccueilPanel();
        panel.setBounds(new MainJFrame().getBounds());
        pan.removeAll();
        pan.add(panel);

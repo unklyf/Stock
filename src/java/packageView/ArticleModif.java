@@ -352,7 +352,7 @@ public class ArticleModif extends javax.swing.JPanel {
                 
                 // Retour page d'acceuil apres modif 
                 AccueilPanel panel= new AccueilPanel();
-                panel.setBounds(new MainJFrame().getContentPaneBounds());
+                panel.setBounds(new MainJFrame().getBounds());
                 this.removeAll();
                 this.add(panel);
                 this.repaint();

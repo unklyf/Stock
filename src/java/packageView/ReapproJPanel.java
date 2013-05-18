@@ -608,7 +608,7 @@ public class ReapproJPanel extends JPanel {
         
         //Retour accueil
         if(choix==JOptionPane.YES_OPTION){
-            AccueilJPanel panel= new AccueilJPanel();
+            AccueilPanel panel= new AccueilPanel();
             panel.setBounds(new MainJFrame().getBounds());
             this.removeAll();
             this.add(panel);

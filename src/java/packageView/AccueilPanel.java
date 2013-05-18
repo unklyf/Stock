@@ -8,12 +8,12 @@ import javax.swing.ImageIcon;
 
 
 
-public class AccueilJPanel extends javax.swing.JPanel {
+public class AccueilPanel extends javax.swing.JPanel {
     private Image image;
     private VerreThread vT;
         
             
-    public AccueilJPanel() {
+    public AccueilPanel() {
         initComponents();
         
         //Date du jour
@@ -56,7 +56,7 @@ public class AccueilJPanel extends javax.swing.JPanel {
         jLabelTitre.setFont(new java.awt.Font("Prestige Elite Std", 0, 24)); // NOI18N
         jLabelTitre.setText("-Gestion stock de la brasserie-");
         add(jLabelTitre);
-        jLabelTitre.setBounds(10, 70, 440, 81);
+        jLabelTitre.setBounds(10, 70, 510, 81);
 
         labelAut.setFont(new java.awt.Font("Prestige Elite Std", 0, 18)); // NOI18N
         labelAut.setIcon(new javax.swing.ImageIcon(getClass().getResource("/packageImage/auteurs.png"))); // NOI18N
@@ -66,9 +66,9 @@ public class AccueilJPanel extends javax.swing.JPanel {
         jLabelTitre2.setFont(new java.awt.Font("Prestige Elite Std", 1, 80)); // NOI18N
         jLabelTitre2.setText("BIENVENUE");
         add(jLabelTitre2);
-        jLabelTitre2.setBounds(10, 30, 440, 81);
+        jLabelTitre2.setBounds(10, 30, 510, 81);
         add(jLabelThread);
-        jLabelThread.setBounds(510, 40, 260, 460);
+        jLabelThread.setBounds(550, 30, 260, 460);
 
         labelDateAuj.setFont(new java.awt.Font("Prestige Elite Std", 0, 18)); // NOI18N
         labelDateAuj.setText("Date Jour");
