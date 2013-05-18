@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package packageDataAccess;
 
 import java.sql.PreparedStatement;
@@ -13,6 +9,7 @@ import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import packageException.BdErreur;
 import packageException.NoIdentification;
+import packageException.AddReapException;
 import packageModel.Article;
 import packageModel.Fournisseur;
 import packageModel.LigneReappro;
@@ -22,7 +19,7 @@ import packageModel.Reappro;
 
 public class ReapproDBAccess {
     
-    public  Integer  addReappro (Reappro reappro)  throws  BdErreur,NoIdentification,Exception{
+    public  Integer  addReappro (Reappro reappro)  throws  BdErreur,NoIdentification,AddReapException{
        int lastID=0;
        try{ 
              
@@ -48,14 +45,14 @@ public class ReapproDBAccess {
             throw new NoIdentification();
         }
         catch (Exception e){
-           throw new BdErreur(e.getMessage());
+           throw new AddReapException(e.getMessage());
        }
        
        return lastID;      
    }
     
     
-    public  void  addLigneReappro (LigneReappro lReap,Integer iDReap)  throws  BdErreur,NoIdentification,Exception{
+    public  void  addLigneReappro (LigneReappro lReap,Integer iDReap)  throws  BdErreur,NoIdentification,AddReapException{
  
        try{ 
              
@@ -74,7 +71,7 @@ public class ReapproDBAccess {
             throw new NoIdentification();
         }
         catch (Exception e){
-           throw new BdErreur(e.getMessage());
+           throw new AddReapException(e.getMessage());
        }    
    }
     
@@ -218,9 +215,7 @@ public class ReapproDBAccess {
         catch (NoIdentification e) {
             throw new NoIdentification();
         }
-        catch (Exception e){
-           throw new BdErreur(e.getMessage());
-        }
+        
     }
     
     

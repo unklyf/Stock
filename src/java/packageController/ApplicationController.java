@@ -33,11 +33,11 @@ public class ApplicationController {
         return aM.getIDArticle(libelle, typeA);
     }
     
-    public  Integer  addReappro (Reappro reappro)  throws  BdErreur,NoIdentification,Exception{
+    public  Integer  addReappro (Reappro reappro)  throws  BdErreur,NoIdentification,AddReapException{
         return rM.addReappro(reappro);
     }
     
-    public  void  addLigneReappro (LigneReappro lReap, Integer iDReap)  throws  BdErreur,NoIdentification,Exception{
+    public  void  addLigneReappro (LigneReappro lReap, Integer iDReap)  throws  BdErreur,NoIdentification,AddReapException{
         rM.addLigneReappro(lReap,iDReap);
     }
     
@@ -56,7 +56,7 @@ public class ApplicationController {
     }
        
     // AJOUT ARTICLE
-    public void  addArticle (Article nouvArt, Fournisseur fourn, Categorie cat) throws BdErreur,NoIdentification{
+    public void  addArticle (Article nouvArt, Fournisseur fourn, Categorie cat) throws BdErreur,NoIdentification, AddArtException{
         aM.addArticle(nouvArt,fourn, cat);
     }
 
@@ -70,8 +70,7 @@ public class ApplicationController {
             return cM.getIDCat(libelle);
     }
     
-   
-    
+      
     
     //Modif article
     public ArrayList<Article> getAllArticle ()throws  BdErreur, NoIdentification{

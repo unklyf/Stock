@@ -1,11 +1,14 @@
 package packageView;
 
-import java.awt.Rectangle;
+import java.awt.Dimension;
+import java.awt.Toolkit;
+import javax.swing.JFrame;
+
 
 
 public class MainJFrame extends javax.swing.JFrame {
 
-    private AccueilPanel aP;
+    private AccueilJPanel aP;
     private InsertArticle insArt;
     private InsertReappro reapAdd;
     private ModifArticleJPanel modifArt;
@@ -15,8 +18,13 @@ public class MainJFrame extends javax.swing.JFrame {
     private RechReapproJPanel rechReap;
     private RechercheCategorie rechCat;
     private RechercheFournisseur rechFourn;
+    private Dimension dim;
+  
             
     public MainJFrame() {
+        Toolkit t = this.getToolkit(); 
+        dim = t.getScreenSize(); 
+
         initComponents();
         this.itemMenuAccueil.doClick(); 
         this.setLocationRelativeTo(null);
@@ -30,6 +38,7 @@ public class MainJFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
         menuBar = new javax.swing.JMenuBar();
         menuApplication = new javax.swing.JMenu();
         itemMenuAccueil = new javax.swing.JMenuItem();
@@ -51,6 +60,9 @@ public class MainJFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Gestion Stock Brasserie");
+        setPreferredSize(dim);
+
+        jLabel1.setText("jLabel1");
 
         menuApplication.setText("Application |");
 
@@ -192,8 +204,7 @@ public class MainJFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void itemQuitterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemQuitterActionPerformed
-        this.setVisible(false);
-        this.dispose();
+         System.exit(0);
     }//GEN-LAST:event_itemQuitterActionPerformed
 
     private void itemArticleAjoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemArticleAjoutActionPerformed
@@ -215,7 +226,7 @@ public class MainJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_itemAjoutReapproActionPerformed
 
     private void itemMenuAccueilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemMenuAccueilActionPerformed
-        aP = new AccueilPanel();
+        aP = new AccueilJPanel();
         aP.setBounds(this.getBounds());
         this.getContentPane().removeAll();
         this.getContentPane().add(aP);
@@ -317,9 +328,7 @@ public class MainJFrame extends javax.swing.JFrame {
         });
     }
     
-    public Rectangle getContentPaneBounds() {                                            
-        return this.getContentPane().getBounds(); 
-    }
+
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem itemAjoutReappro;
@@ -333,6 +342,7 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JMenuItem itemRechFourn;
     private javax.swing.JMenuItem itemRechReappro;
     private javax.swing.JMenuItem itemSuppReap;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu menuAjout;
     private javax.swing.JMenu menuApplication;
     private javax.swing.JMenuBar menuBar;
