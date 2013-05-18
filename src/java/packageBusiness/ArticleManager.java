@@ -6,6 +6,7 @@ package packageBusiness;
 
 import java.util.ArrayList;
 import packageDataAccess.ArticleDBAccess;
+import packageException.AddArtException;
 import packageException.BdErreur;
 import packageException.NoIdentification;
 import packageModel.Article;
@@ -21,7 +22,7 @@ public class ArticleManager {
     
     private ArticleDBAccess aDBA= new ArticleDBAccess();
     
-     public void  addArticle (Article nouvArt, Fournisseur fourn, Categorie cat) throws BdErreur,NoIdentification{
+     public void  addArticle (Article nouvArt, Fournisseur fourn, Categorie cat) throws BdErreur,NoIdentification,AddArtException{
         aDBA.addArticle(nouvArt, fourn, cat);
     }
      public ArrayList <Article> getArticleReappro(Article art, Reappro reap) throws  BdErreur, NoIdentification{ 

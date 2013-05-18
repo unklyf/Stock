@@ -5,6 +5,7 @@ import java.util.GregorianCalendar;
 import packageDataAccess.ReapproDBAccess;
 import packageException.BdErreur;
 import packageException.NoIdentification;
+import packageException.AddReapException;
 import packageModel.Fournisseur;
 import packageModel.LigneReappro;
 import packageModel.Reappro;
@@ -13,11 +14,11 @@ public class ReapproManager {
     
     private ReapproDBAccess rDBA= new ReapproDBAccess();
     
-    public  Integer  addReappro (Reappro reappro)  throws  BdErreur,NoIdentification,Exception{
+    public  Integer  addReappro (Reappro reappro)  throws  BdErreur,NoIdentification,AddReapException{
         return rDBA.addReappro(reappro);
     }
     
-    public  void  addLigneReappro (LigneReappro lReap, Integer iDReap)  throws  BdErreur,NoIdentification,Exception{
+    public  void  addLigneReappro (LigneReappro lReap, Integer iDReap)  throws  BdErreur,NoIdentification,AddReapException{
        rDBA .addLigneReappro(lReap,iDReap);
     }
     

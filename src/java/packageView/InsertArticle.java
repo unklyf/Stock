@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package packageView;
 
 
@@ -24,11 +20,8 @@ public class InsertArticle extends JPanel {
     private Article nouvArt;
     private Fournisseur fourn;
     private Categorie cat;
-   
     
-            
-            
-            
+           
     public InsertArticle() {
         initComponents();
         typeArt = "";
@@ -343,8 +336,8 @@ public class InsertArticle extends JPanel {
                                         
                                         JOptionPane.showMessageDialog(null,"Encodage réalisé avec succès !");
                                        // Retour page d'acceuil apres ajout 
-                                        AccueilPanel panel= new AccueilPanel();
-                                        panel.setBounds(new MainJFrame().getContentPaneBounds());
+                                        AccueilJPanel panel= new AccueilJPanel();
+                                        panel.setBounds(new MainJFrame().getBounds());
                                         this.removeAll();
                                         this.add(panel);
                                         this.repaint();
@@ -358,8 +351,12 @@ public class InsertArticle extends JPanel {
                                     catch(NoIdentification e){
                                         JOptionPane.showMessageDialog(null, e, "Erreur identification", JOptionPane.ERROR_MESSAGE);
                                     }
+                                   
+                                    catch(Exception e){
+                                        JOptionPane.showMessageDialog(null, e, "Erreur identification", JOptionPane.ERROR_MESSAGE);
+                                    }
                             
-                                    }           
+                                 }           
                             }
    
                         }
@@ -386,7 +383,8 @@ public class InsertArticle extends JPanel {
            typeArt ="Fût";
        }
     }//GEN-LAST:event_ButtonFutItemStateChanged
-
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ButtonAjout;
     private javax.swing.JRadioButton ButtonBouteille;

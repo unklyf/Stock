@@ -1,7 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package packageDataAccess;
 
 import java.sql.PreparedStatement;
@@ -9,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import packageException.AddArtException;
 import packageException.BdErreur;
 import packageException.NoIdentification;
 import packageModel.Article;
@@ -21,7 +19,7 @@ public class ArticleDBAccess {
     
     private ArrayList<Article> tabArt;
     
-    public void  addArticle (Article nouvArt, Fournisseur fourn, Categorie cat) throws BdErreur,NoIdentification{
+    public void  addArticle (Article nouvArt, Fournisseur fourn, Categorie cat) throws BdErreur,NoIdentification,AddArtException{
         
         try { 
             String req = "insert into Article (Libelle,TypeA,Description,PrixMarchandise,IDFournisseur,IDCategorie,Cadeau,Qte) values(?,?,?,?,?,?,?,NULL)";
@@ -35,11 +33,7 @@ public class ArticleDBAccess {
             prepStat.setString(7, nouvArt.getCadeau());
             prepStat.executeUpdate(); 
             
-            /*
-            req= "update Article set Libelle = ";
-            prepStat = SingletonConnexion.getInstance().prepareStatement(req);
-            prepStat.executeUpdate();
-             */   
+               
             //Obtenir IDProduit venant d'être insérer
             ResultSet rs = prepStat.getGeneratedKeys();
             
@@ -65,8 +59,8 @@ public class ArticleDBAccess {
             throw new NoIdentification();
         }
         catch (Exception e){
-           throw new BdErreur(e.getMessage());
-       }
+           throw new AddArtException(e.getMessage());
+        }
        
        
       
@@ -163,6 +157,8 @@ public class ArticleDBAccess {
         }
     }
     
+    
+    
     public ArrayList <Article> getArticleReappro(Article artC, Reappro reap) throws  BdErreur, NoIdentification{   
          
          ArrayList <Article> listeLibA= new ArrayList <Article> ();
@@ -194,6 +190,9 @@ public class ArticleDBAccess {
         }
         return listeLibA;
    } 
+    
+    
+    
     public Integer getIDArticle(String libelleA, String typeA) throws  BdErreur, NoIdentification{   
          Integer IDArt=0;
                  
@@ -218,6 +217,9 @@ public class ArticleDBAccess {
    }
     
 
+    
+    
+    
     public Integer getQtePrec(String libelleA, String typeA) throws  BdErreur, NoIdentification{   
          Integer Qte=0;
                  
@@ -239,7 +241,9 @@ public class ArticleDBAccess {
             throw new NoIdentification();
         }
         return Qte;
-   }
+    }
+    
+    
     
     public ArrayList <Article> getArticleCat(String typeArt, Categorie cat) throws  BdErreur, NoIdentification{
 
@@ -285,7 +289,10 @@ public class ArticleDBAccess {
             throw new NoIdentification();
         }
     return listeArticle;
-}
+    }
+    
+    
+    
     public ArrayList<Article> getAllArticleRechCat (String typeArt, Categorie cat)throws  BdErreur, NoIdentification{
         
         tabArt = new ArrayList<Article>();
@@ -338,6 +345,8 @@ public class ArticleDBAccess {
         return tabArt;
         
     }
+    
+    
     
     public ArrayList<Article> getAllArticleRechFourn (Fournisseur fourn)throws  BdErreur, NoIdentification{
         tabArt = new ArrayList<Article>();

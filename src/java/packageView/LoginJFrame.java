@@ -2,10 +2,7 @@ package packageView;
 
 import java.awt.Color;
 import java.awt.event.KeyEvent;
-import javax.swing.InputMap;
-import javax.swing.JComponent;
 import javax.swing.JOptionPane;
-import javax.swing.KeyStroke;
 import packageController.ApplicationController;
 import packageException.IdentificationErreur;
 
@@ -15,11 +12,11 @@ public class LoginJFrame extends javax.swing.JFrame {
    
     public LoginJFrame() {
         initComponents();
-         this.setLocationRelativeTo(null);
+        this.setLocationRelativeTo(null);
     }
 
     
-    @SuppressWarnings("unchecked")
+
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -27,7 +24,7 @@ public class LoginJFrame extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        jPasswordField = new javax.swing.JPasswordField();
         jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -46,9 +43,9 @@ public class LoginJFrame extends javax.swing.JFrame {
 
         jLabel2.setText("PASSWORD :");
 
-        jPasswordField1.addKeyListener(new java.awt.event.KeyAdapter() {
+        jPasswordField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                jPasswordField1KeyPressed(evt);
+                jPasswordFieldKeyPressed(evt);
             }
         });
 
@@ -65,7 +62,7 @@ public class LoginJFrame extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(2, 2, 2))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
@@ -85,7 +82,7 @@ public class LoginJFrame extends javax.swing.JFrame {
                     .addComponent(jLabel1))
                 .addGap(13, 13, 13)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
                 .addGap(32, 32, 32)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -100,7 +97,7 @@ public class LoginJFrame extends javax.swing.JFrame {
  
         try{
             ApplicationController ap = new ApplicationController();
-            ap.identification(this.userField.getText(), new String(this.jPasswordField1.getPassword()));
+            ap.identification(this.userField.getText(), new String(this.jPasswordField.getPassword()));
             dispose();
             JOptionPane.showMessageDialog(null,"Connexion réussie");
             MainJFrame fen = new MainJFrame();
@@ -109,18 +106,18 @@ public class LoginJFrame extends javax.swing.JFrame {
         catch(IdentificationErreur e){
             JOptionPane.showMessageDialog(null, e, "Echec de connexion", JOptionPane.ERROR_MESSAGE);
             this.userField.setBackground(Color.red);
-            this.jPasswordField1.setBackground(Color.red);
+            this.jPasswordField.setBackground(Color.red);
         }
         
     }//GEN-LAST:event_ConnectActionPerformed
 
-    private void jPasswordField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPasswordField1KeyPressed
+    private void jPasswordFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPasswordFieldKeyPressed
         //Pour pouvoir appuyer sur ENTER et se connecter
         if(evt.getKeyCode() == KeyEvent.VK_ENTER){
             this.ConnectActionPerformed(null);
         }
         
-    }//GEN-LAST:event_jPasswordField1KeyPressed
+    }//GEN-LAST:event_jPasswordFieldKeyPressed
 
    
     public static void main(String args[]) {
@@ -162,7 +159,7 @@ public class LoginJFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JPasswordField jPasswordField1;
+    private javax.swing.JPasswordField jPasswordField;
     private javax.swing.JTextField userField;
     // End of variables declaration//GEN-END:variables
 }

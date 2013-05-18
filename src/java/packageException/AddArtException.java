@@ -1,16 +1,17 @@
+
 package packageException;
 
-public class BdErreur extends Exception {
-    
+
+public class AddArtException extends Exception {
     private String message;
     
-    public BdErreur(String message) {
+    public AddArtException(String message) {
         this.message=message;
     }
     
     @Override
     public String toString(){
-        return ("Erreur dans la BD: " +message);
+        return ("Exception article: " +message);
     } 
     
 }

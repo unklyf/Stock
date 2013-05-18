@@ -39,6 +39,8 @@ public class FournisseurDBAccess {
         return listeNomF;
     } 
     
+    
+    
     public Integer getIDFourn(String nom) throws  BdErreur, NoIdentification{
         
         Integer iDFourn=0;
