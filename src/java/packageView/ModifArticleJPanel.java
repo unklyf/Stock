@@ -1,7 +1,9 @@
 package packageView;
 
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
+import javax.swing.table.TableColumn;
 import packageController.ApplicationController;
 import packageException.BdErreur;
 import packageException.NoIdentification;
@@ -26,9 +28,23 @@ public class ModifArticleJPanel extends javax.swing.JPanel {
             JTableModif.setModel(artMod);
             JTableModif.repaint();
             JTableModif.validate();
+            JTableModif.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
             
-            JTableModif.getColumnModel().getColumn(0).setPreferredWidth(100);
-            
+            TableColumn colLib = JTableModif.getColumnModel( ).getColumn(0);
+            colLib.setPreferredWidth(150); 
+            TableColumn colDesc = JTableModif.getColumnModel( ).getColumn(2);          
+            colDesc.setPreferredWidth(420); 
+            TableColumn colPm = JTableModif.getColumnModel( ).getColumn(4);
+            colPm.setPreferredWidth(120);
+            TableColumn colPc = JTableModif.getColumnModel( ).getColumn(5);
+            colPc.setPreferredWidth(120);
+            TableColumn colCad = JTableModif.getColumnModel( ).getColumn(6);
+            colCad.setPreferredWidth(100);
+            TableColumn colFourn = JTableModif.getColumnModel( ).getColumn(7);
+            colFourn.setPreferredWidth(150);
+            TableColumn colCat = JTableModif.getColumnModel( ).getColumn(8);
+            colCat.setPreferredWidth(150);
+             
             JTableModif.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
             listSelect = JTableModif.getSelectionModel();
             
