@@ -24,15 +24,26 @@ public class ArticleDBAccess {
     public void  addArticle (Article nouvArt, Fournisseur fourn, Categorie cat) throws BdErreur,NoIdentification{
         
         try { 
-            String req = "insert into Article (Libelle,TypeA,Description,PrixMarchandise,IDFournisseur,IDCategorie,Cadeau,Qte) values(?,?,?,?,?,?,?,NULL)";
+            String req = "insert into Article "
+                       + "(Libelle, "
+                       + "TypeA, "
+                       + "Description, "
+                       + "PrixMarchandise, "
+                       + "IDFournisseur, "
+                       + "IDCategorie, "
+                       + "Cadeau, "
+                       + "Qte) "
+                       + "values( "
+                       + "upper(substr(?,1,1))|| lower(substr(?,2)), ?, ?, ?, ?, ?, ?, NULL)";
             PreparedStatement prepStat = SingletonConnexion.getInstance().prepareStatement(req,Statement.RETURN_GENERATED_KEYS);
             prepStat.setString(1,nouvArt.getLibelle());
-            prepStat.setString(2,nouvArt.getType());
-            prepStat.setString(3,nouvArt.getDescription());
-            prepStat.setDouble(4, nouvArt.getPrixM());
-            prepStat.setInt(5, new FournisseurDBAccess().getIDFourn(fourn.getNom()));
-            prepStat.setInt(6, new CategorieDBAccess().getIDCat(cat.getNom()));
-            prepStat.setString(7, nouvArt.getCadeau());
+            prepStat.setString(2,nouvArt.getLibelle());
+            prepStat.setString(3,nouvArt.getType());
+            prepStat.setString(4,nouvArt.getDescription());
+            prepStat.setDouble(5, nouvArt.getPrixM());
+            prepStat.setInt(6, new FournisseurDBAccess().getIDFourn(fourn.getNom()));
+            prepStat.setInt(7, new CategorieDBAccess().getIDCat(cat.getNom()));
+            prepStat.setString(8, nouvArt.getCadeau());
             prepStat.executeUpdate(); 
             
             /*

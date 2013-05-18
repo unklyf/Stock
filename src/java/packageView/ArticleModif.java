@@ -350,6 +350,14 @@ public class ArticleModif extends javax.swing.JPanel {
                 app.modifArticle(art,artModif);
                 JOptionPane.showMessageDialog(null,"Modification effectuée avec succès !");
                 
+                // Retour page d'acceuil apres modif 
+                AccueilPanel panel= new AccueilPanel();
+                panel.setBounds(new MainJFrame().getContentPaneBounds());
+                this.removeAll();
+                this.add(panel);
+                this.repaint();
+                this.validate();
+                
             }
             catch(BdErreur e){
                   JOptionPane.showMessageDialog(null, e, "Erreur BD", JOptionPane.ERROR_MESSAGE);
