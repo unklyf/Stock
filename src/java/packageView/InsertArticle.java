@@ -33,7 +33,7 @@ public class InsertArticle extends JPanel {
         try {
                 tabFourn= new ApplicationController().getFournisseur();
                 this.ComboFourn.removeAllItems();
-                this.ComboFourn.addItem(new String("------------------------------------------------"));
+                this.ComboFourn.addItem("------------------------------------------------");
                 for (Fournisseur f : tabFourn){
                     this.ComboFourn.addItem(f.getNom());
                 }
@@ -42,9 +42,9 @@ public class InsertArticle extends JPanel {
                 
                 tabCat= new ApplicationController().getCatArticle();
                 this.JComboCat.removeAllItems();
-                this.JComboCat.addItem(new String("------------------------------------------------"));
-                for (Categorie cat : tabCat){
-                    this.JComboCat.addItem(cat.getNom());
+                this.JComboCat.addItem("------------------------------------------------");
+                for (Categorie categ : tabCat){
+                    this.JComboCat.addItem(categ.getNom());
                 }
                 this.JComboCat.repaint();
                 this.JComboCat.validate();

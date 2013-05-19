@@ -2,9 +2,12 @@ package packageView;
 
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
-import java.util.Locale;
 import javax.swing.JOptionPane;
+import javax.swing.JSpinner;
+import javax.swing.SpinnerDateModel;
 import packageController.ApplicationController;
 import packageException.BdErreur;
 import packageException.NoIdentification;
@@ -18,11 +21,14 @@ public class InsertReappro extends javax.swing.JPanel {
     private ReapproJPanel reapAddPannel; 
     private GregorianCalendar dateReap;
     private Reappro reapAdd;
+    private SpinnerDateModel model;
     
     public InsertReappro() {
-        initComponents();
-        jCalendarReappro.setLocale(new Locale("fr", "FR"));
+        //Preparer jSpinner
+        model = new SpinnerDateModel(new java.util.Date(), new java.util.Date(), null, java.util.Calendar.DAY_OF_MONTH);
         
+        initComponents();
+                
         //Garnir comboBox de fournisseur   
         try {
                 tabLibF = new ApplicationController().getFournisseur();
@@ -50,7 +56,7 @@ public class InsertReappro extends javax.swing.JPanel {
         comboBoxFourn = new javax.swing.JComboBox();
         jLabelFourn = new javax.swing.JLabel();
         validerButton = new javax.swing.JButton();
-        jCalendarReappro = new com.toedter.calendar.JCalendar();
+        jSpinnerDate = new javax.swing.JSpinner();
 
         titrePanel.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         titrePanel.setForeground(new java.awt.Color(153, 0, 51));
@@ -69,7 +75,9 @@ public class InsertReappro extends javax.swing.JPanel {
             }
         });
 
-        jCalendarReappro.setMinSelectableDate(new java.util.Date());
+        jSpinnerDate.setModel(model);
+        jSpinnerDate.setEditor(new JSpinner.DateEditor(jSpinnerDate, "dd/MM/yyyy"));
+        jSpinnerDate.setMaximumSize(new java.awt.Dimension(103, 20));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -78,7 +86,7 @@ public class InsertReappro extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(59, 59, 59)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jCalendarReappro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jSpinnerDate, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(validerButton)
                     .addComponent(jLabelDate)
                     .addComponent(jLabelFourn)
@@ -98,18 +106,18 @@ public class InsertReappro extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addComponent(jLabelDate)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jCalendarReappro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSpinnerDate, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(validerButton, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(109, Short.MAX_VALUE))
+                .addContainerGap(230, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void validerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_validerButtonActionPerformed
         
         //Recuperation des donnees
-        dateReap=new GregorianCalendar();
-        dateReap.setTime(jCalendarReappro.getDate());
+        dateReap= new GregorianCalendar();
+        dateReap.setTime(model.getDate());
         
         //Instance objet reappro
         reapAdd = new Reappro (dateReap,null,"En cours",new Fournisseur (comboBoxFourn.getSelectedItem().toString()));
@@ -127,9 +135,9 @@ public class InsertReappro extends javax.swing.JPanel {
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox comboBoxFourn;
-    private com.toedter.calendar.JCalendar jCalendarReappro;
     private javax.swing.JLabel jLabelDate;
     private javax.swing.JLabel jLabelFourn;
+    private javax.swing.JSpinner jSpinnerDate;
     private javax.swing.JLabel titrePanel;
     private javax.swing.JButton validerButton;
     // End of variables declaration//GEN-END:variables

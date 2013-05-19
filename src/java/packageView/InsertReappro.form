@@ -19,7 +19,7 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jCalendarReappro" min="-2" max="-2" attributes="0"/>
+                  <Component id="jSpinnerDate" min="-2" pref="141" max="-2" attributes="0"/>
                   <Component id="validerButton" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabelDate" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabelFourn" min="-2" max="-2" attributes="0"/>
@@ -42,10 +42,10 @@
               <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
               <Component id="jLabelDate" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="jCalendarReappro" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jSpinnerDate" min="-2" pref="27" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="validerButton" min="-2" pref="33" max="-2" attributes="0"/>
-              <EmptySpace pref="109" max="32767" attributes="0"/>
+              <EmptySpace pref="230" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -88,10 +88,15 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="validerButtonActionPerformed"/>
       </Events>
     </Component>
-    <Component class="com.toedter.calendar.JCalendar" name="jCalendarReappro">
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="jCalendarReappro.setMinSelectableDate(new java.util.Date());"/>
-      </AuxValues>
+    <Component class="javax.swing.JSpinner" name="jSpinnerDate">
+      <Properties>
+        <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor" postCode="jSpinnerDate.setEditor(new JSpinner.DateEditor(jSpinnerDate, &quot;dd/MM/yyyy&quot;));">
+          <Connection code="model" type="code"/>
+        </Property>
+        <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[103, 20]"/>
+        </Property>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>
