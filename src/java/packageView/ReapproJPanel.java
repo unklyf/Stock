@@ -458,6 +458,8 @@ public class ReapproJPanel extends JPanel {
                   
                  //Creation ligne reappro
                  art.setLibelle(listeArtCombo.get(comboBoxArticle.getSelectedIndex()).getLibelle());
+                 art.setPrixC(listeArtCombo.get(comboBoxArticle.getSelectedIndex()).getPrixC());
+                 art.setPrixM(listeArtCombo.get(comboBoxArticle.getSelectedIndex()).getPrixM());
                  lReap = new LigneReappro(Integer.parseInt(quantiteSpinner.getValue().toString()),art);                      
                  
                 
@@ -562,9 +564,7 @@ public class ReapproJPanel extends JPanel {
        int indLigne= listSelect.getMinSelectionIndex();
        if(listSelect.isSelectionEmpty()==false){
                 
-            
                 //Encoder les changements
-                //lReap = new LigneReappro(,art);
                 listeLReap.get(indLigne).setQte(Integer.parseInt(quantiteSpinner.getValue().toString()));
 
 

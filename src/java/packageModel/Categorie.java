@@ -1,23 +1,35 @@
 package packageModel;
 
-
+/**
+ *
+ * @author BELLENGER JORDAN/SCHMITZ LOIC
+ */
 public class Categorie {
-    
+
     private String nom;
     private Integer iDCat;
-    
-    
-     public Categorie (String n){
-        nom=n;
-     }
 
-     public String getNom() {
+    /**
+     *
+     * @param n nom de la categorie
+     */
+    public Categorie(String n) {
+        nom = n;
+    }
+
+    /**
+     *
+     * @return le nom de la categorie
+     */
+    public String getNom() {
         return nom;
-     }
+    }
 
-     public Integer getiDCat() {
+    /**
+     *
+     * @return id de la categorie
+     */
+    public Integer getiDCat() {
         return iDCat;
-     }
-    
-        
+    }
 }

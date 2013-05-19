@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package packageBusiness;
 
 import java.util.ArrayList;
@@ -12,18 +8,21 @@ import packageModel.Fournisseur;
 
 /**
  *
- * @author Home
+ * @author BELLENGER JORDAN/SCHMITZ LOIC
  */
 public class FournisseurManager {
-    
-    private FournisseurDBAccess fDBA= new FournisseurDBAccess();
-    
-     public ArrayList <Fournisseur> getFournisseur()throws  BdErreur, NoIdentification{
+
+    private FournisseurDBAccess fDBA = new FournisseurDBAccess();
+
+    /**
+     * Liste de libelle de fournisseurs
+     * @return une ArrayList de fournisseur
+     * @throws BdErreur
+     * @throws NoIdentification
+     * @see ArrayList
+     * @see Fournisseur
+     */
+    public ArrayList<Fournisseur> getFournisseur() throws BdErreur, NoIdentification {
         return fDBA.getFournisseur();
     }
-     
-     public Integer getIDFourn(String nom) throws  BdErreur, NoIdentification{
-        return fDBA.getIDFourn(nom);
-    }
-    
 }

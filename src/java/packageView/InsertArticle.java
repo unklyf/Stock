@@ -22,6 +22,9 @@ public class InsertArticle extends JPanel {
     private Categorie cat;
     
            
+    /**
+     *
+     */
     public InsertArticle() {
         initComponents();
         typeArt = "";

@@ -16,6 +16,7 @@ public class ConfirmReapproJFrame extends javax.swing.JFrame {
     private Reappro reapAdd;
     private ReapproJPanel pan;
     private int iDReappro=0;
+    private double prixTotal = 0;
     
     public ConfirmReapproJFrame(ArrayList <LigneReappro> listeReap, Reappro reapInfo,ReapproJPanel panel) {
         initComponents();
@@ -23,12 +24,20 @@ public class ConfirmReapproJFrame extends javax.swing.JFrame {
         listeLReap=listeReap;
         pan=panel;
         
+        //Calcul prix total commande
+        for(LigneReappro lReap: listeLReap){
+            prixTotal+= (lReap.getArt().getPrixM()+lReap.getArt().getPrixC())*lReap.getQte();
+        }
+        
+        
         AllLigneReapproModel model = new AllLigneReapproModel(listeLReap);
-        jTextFieldLibF.setText(reapAdd.getFourn().getNom());
-        jTextFieldDateR.setText(reapInfo.getReapDate().getTime().toString());
         jTableRecapFinal.setModel(model);
         jTableRecapFinal.repaint();
         jTableRecapFinal.validate();  
+        
+        jTextFieldLibF.setText(reapAdd.getFourn().getNom());
+        jTextFieldDateR.setText(reapInfo.getReapDate().getTime().toString());
+        jTextFieldPrix.setText(String.valueOf(prixTotal));
     }
     
     
@@ -44,8 +53,11 @@ public class ConfirmReapproJFrame extends javax.swing.JFrame {
         jTextFieldLibF = new javax.swing.JTextField();
         jLabelDate = new javax.swing.JLabel();
         jLabelFourn = new javax.swing.JLabel();
+        jTextFieldPrix = new javax.swing.JTextField();
+        jLabelPrix = new javax.swing.JLabel();
+        jLabelEuro = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabelQuestion.setFont(new java.awt.Font("Tahoma", 2, 14)); // NOI18N
         jLabelQuestion.setText("La commande est-elle correcte ?");
@@ -93,6 +105,17 @@ public class ConfirmReapproJFrame extends javax.swing.JFrame {
         jLabelFourn.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabelFourn.setText("Fournisseur : ");
 
+        jTextFieldPrix.setEditable(false);
+        jTextFieldPrix.setBackground(new java.awt.Color(204, 102, 0));
+        jTextFieldPrix.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        jTextFieldPrix.setEnabled(false);
+
+        jLabelPrix.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabelPrix.setText("Prix à payer :");
+
+        jLabelEuro.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabelEuro.setText("€");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -103,23 +126,28 @@ public class ConfirmReapproJFrame extends javax.swing.JFrame {
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabelFourn)
-                            .addComponent(jLabelDate))
+                            .addComponent(jLabelDate)
+                            .addComponent(jLabelPrix))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jTextFieldLibF, javax.swing.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)
-                            .addComponent(jTextFieldDateR))
+                            .addComponent(jTextFieldDateR)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jTextFieldPrix, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabelEuro)))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 53, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(layout.createSequentialGroup()
                                     .addGap(23, 23, 23)
                                     .addComponent(jButtonOk)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                     .addComponent(jButtonAnnuler))
-                                .addComponent(jLabelQuestion, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(jLabelQuestion, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -133,7 +161,12 @@ public class ConfirmReapproJFrame extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextFieldDateR, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabelDate))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldPrix, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelPrix)
+                    .addComponent(jLabelEuro))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabelQuestion)
@@ -141,7 +174,7 @@ public class ConfirmReapproJFrame extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonOk)
                     .addComponent(jButtonAnnuler))
-                .addContainerGap(101, Short.MAX_VALUE))
+                .addGap(43, 43, 43))
         );
 
         pack();
@@ -172,7 +205,7 @@ public class ConfirmReapproJFrame extends javax.swing.JFrame {
         //Ajout LigneReappro
         try {
              for (int i=0;i<listeLReap.size();i++){
-                 new ApplicationController().addLigneReappro(listeLReap.get(i),iDReappro);
+                 new ApplicationController().addLigneReappro(listeLReap.get(i),iDReappro);                 
              }               
         }
         catch(BdErreur e){
@@ -200,11 +233,14 @@ public class ConfirmReapproJFrame extends javax.swing.JFrame {
     private javax.swing.JButton jButtonAnnuler;
     private javax.swing.JButton jButtonOk;
     private javax.swing.JLabel jLabelDate;
+    private javax.swing.JLabel jLabelEuro;
     private javax.swing.JLabel jLabelFourn;
+    private javax.swing.JLabel jLabelPrix;
     private javax.swing.JLabel jLabelQuestion;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableRecapFinal;
     private javax.swing.JTextField jTextFieldDateR;
     private javax.swing.JTextField jTextFieldLibF;
+    private javax.swing.JTextField jTextFieldPrix;
     // End of variables declaration//GEN-END:variables
 }

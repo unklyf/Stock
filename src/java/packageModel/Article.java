@@ -1,128 +1,270 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package packageModel;
 
-
+/**
+ *
+ * @author BELLENGER JORDAN/SCHMITZ LOIC
+ */
 public class Article {
-    
-    private  String libelle, typeA ,desc, cadeau;
-    private  double  prixM, prixC;
-    private  Categorie cat;
-    private  Fournisseur fourn;
-    private  Integer idProduit, quantite;
 
-    
-    
-    public Article (){    
+    private String libelle, typeA, desc, cadeau;
+    private double prixM, prixC;
+    private Categorie cat;
+    private Fournisseur fourn;
+    private Integer idProduit, quantite;
+
+    /**
+     *
+     */
+    public Article() {
     }
-    
-    public Article(String lib, String typ , String d , String c, double pm , double pc){
-            this.libelle = lib; 
-            this.typeA = typ;
-            this.desc = d;
-            this.prixM = pm;
-            this.prixC = pc; 
-            this.cadeau = c;
-            
+
+    /**
+     *
+     * @param lib libelle article
+     * @param typ type article
+     * @param d   description article
+     * @param c   cadeau lie a article
+     * @param pm  prix marchandise article
+     * @param pc  prix consigne article
+     * @see String
+     * @see Double
+     */
+    public Article(String lib, String typ, String d, String c, double pm, double pc) {
+        this.libelle = lib;
+        this.typeA = typ;
+        this.desc = d;
+        this.prixM = pm;
+        this.prixC = pc;
+        this.cadeau = c;
     }
-     public Article(String lib, String typ , String d ,Integer q, double pm){
-            this.libelle = lib; 
-            this.typeA = typ;
-            this.desc = d;
-            this.quantite =q;
-            this.prixM = pm;     
+
+    /**
+     *
+     * @param lib libelle article
+     * @param typ type article
+     * @param d   description article
+     * @param q   quantite article
+     * @param pm  prix marchandise article
+     * @see Integer
+     * @see String
+     * @see Double
+     */
+    public Article(String lib, String typ, String d, Integer q, double pm) {
+        this.libelle = lib;
+        this.typeA = typ;
+        this.desc = d;
+        this.quantite = q;
+        this.prixM = pm;
     }
-    
-    public Article(String lib,String typ , String d,double pm){
+
+    /**
+     *
+     * @param lib libelle article
+     * @param typ type article
+     * @param d   description article
+     * @param pm  prix marchandise article
+     * @see String
+     * @see Double
+     */
+    public Article(String lib, String typ, String d, double pm) {
         this.libelle = lib;
         this.typeA = typ;
         this.desc = d;
         this.prixM = pm;
     }
-    
-    public Article(Integer id, String lib, String typ , String d ,Integer q, double pm , Fournisseur f, Categorie ca){
+
+    /**
+     *
+     * @param id  id article
+     * @param lib libelle article
+     * @param typ type article
+     * @param d   description article
+     * @param q   quantite article
+     * @param pm  prix marchandise article
+     * @param f   fournisseur article
+     * @param ca  categorie article
+     * @see Integer
+     * @see String
+     * @see Double
+     * @see Fournisseur
+     * @see Categorie
+     */
+    public Article(Integer id, String lib, String typ, String d, Integer q, double pm, Fournisseur f, Categorie ca) {
         this.idProduit = id;
-        this.libelle = lib; 
+        this.libelle = lib;
         this.typeA = typ;
         this.desc = d;
-        this.quantite=q;
+        this.quantite = q;
         this.prixM = pm;
         this.fourn = f;
-        this.cat = ca;       
-    }
-      
-    public Article(String lib,String d){
-        this.libelle=lib;
-        this.desc= d;
-    }
-    
-    public Article (Integer id, String d, Double pm, double pc,String c){
-        this.idProduit=id;
-        this.desc=d;
-        this.prixM=pm;
-        this.prixC=pc;
-        this.cadeau=c;
+        this.cat = ca;
     }
 
+    /**
+     *
+     * @param lib libelle article
+     * @param d   description article
+     * @param pM  prix marchandise article
+     * @see String 
+     */
+    public Article(String lib, String d,double pM) {
+        this.libelle = lib;
+        this.desc = d;
+        this.prixM = pM;
+    }
+    
+
+    /**
+     *
+     * @param id id article
+     * @param d  description article
+     * @param pm prix marchandise article
+     * @param pc prix consigne article
+     * @param c  cadeau article
+     * @see Integer
+     * @see String
+     * @see Double
+     */
+    public Article(Integer id, String d, Double pm, double pc, String c) {
+        this.idProduit = id;
+        this.desc = d;
+        this.prixM = pm;
+        this.prixC = pc;
+        this.cadeau = c;
+    }
+
+    /**
+     *
+     * @return id article
+     * @see Integer
+     */
     public Integer getIdProduit() {
         return idProduit;
     }
-    
+
+    /**
+     *
+     * @return categorie article
+     * @see Categorie
+     */
     public Categorie getCat() {
         return cat;
     }
 
+    /**
+     *
+     * @return fournisseur article
+     * @see Fournisseur
+     */
     public Fournisseur getFourn() {
         return fourn;
     }
-    
-       
-    public String getLibelle(){
+
+    /**
+     *
+     * @return libelle article
+     * @see String
+     */
+    public String getLibelle() {
         return this.libelle;
     }
-    
-    public String getType(){
+
+    /**
+     *
+     * @return type article
+     * @see String 
+     */
+    public String getType() {
         return this.typeA;
     }
-    
-    public String getDescription(){
+
+    /**
+     *
+     * @return description article
+     * @see String 
+     */
+    public String getDescription() {
         return this.desc;
     }
-    
-    public String getCadeau(){
+
+    /**
+     *
+     * @return cadeau article
+     * @see String 
+     */
+    public String getCadeau() {
         return this.cadeau;
     }
 
+    /**
+     *
+     * @return quantite article
+     * @see Integer 
+     */
     public Integer getQuantite() {
         return quantite;
     }
-    
-    public double getPrixM(){
+
+    /**
+     *
+     * @return prix marchandise
+     * @see Double
+     */
+    public double getPrixM() {
         return this.prixM;
     }
-    
-    public double getPrixC(){
+
+    /**
+     *
+     * @return prix consigne
+     * @see Double
+     */
+    public double getPrixC() {
         return this.prixC;
     }
 
+    /**
+     *
+     * @param typeA type Article
+     * @see String 
+     */
     public void setTypeA(String typeA) {
         this.typeA = typeA;
     }
-    
-     public void setCadeau(String cadeau) {
+
+    /**
+     *
+     * @param cadeau cadeau article
+     * @see String
+     */
+    public void setCadeau(String cadeau) {
         this.cadeau = cadeau;
     }
 
+    /**
+     *
+     * @param prixC prix consigne
+     * @see Double
+     */
     public void setPrixC(double prixC) {
         this.prixC = prixC;
     }
+    
+    /**
+     *
+     * @param prixM prix marchandise article
+     * @see Double
+     */
+    public void setPrixM(double prixM) {
+        this.prixM = prixM;
+    }
 
+    /**
+     *
+     * @param libelle libelle article
+     * @see String
+     */
     public void setLibelle(String libelle) {
         this.libelle = libelle;
     }
-
-
- 
 }

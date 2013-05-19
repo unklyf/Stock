@@ -2,7 +2,13 @@ package packageView;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
-import javax.swing.JFrame;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import packageController.ApplicationController;
+import packageException.DeconnectionErreur;
 
 
 
@@ -202,9 +208,33 @@ public class MainJFrame extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    
+    public class MyWindowsListener extends WindowAdapter {
 
+        @Override
+        public void windowClosing(WindowEvent e) {
+            try {
+                new ApplicationController().deconnection();
+            } 
+            catch (DeconnectionErreur ex) {
+                JOptionPane.showMessageDialog(null, ex,"Erreur deconnection",JOptionPane.ERROR_MESSAGE);
+            } 
+            finally {
+                System.exit(0);
+            }
+        }
+    }
+    
     private void itemQuitterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemQuitterActionPerformed
-         System.exit(0);
+        try {
+            new ApplicationController().deconnection();  
+        } 
+        catch (DeconnectionErreur ex) {
+            JOptionPane.showMessageDialog(null, ex,"Erreur deconnection",JOptionPane.ERROR_MESSAGE);
+        }
+        finally{
+            System.exit(0);
+        }
     }//GEN-LAST:event_itemQuitterActionPerformed
 
     private void itemArticleAjoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemArticleAjoutActionPerformed

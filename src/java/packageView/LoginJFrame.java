@@ -98,9 +98,9 @@ public class LoginJFrame extends javax.swing.JFrame {
         try{
             ApplicationController ap = new ApplicationController();
             ap.identification(this.userField.getText(), new String(this.jPasswordField.getPassword()));
-            dispose();
-            JOptionPane.showMessageDialog(null,"Connexion réussie");
+            dispose();            
             MainJFrame fen = new MainJFrame();
+            JOptionPane.showMessageDialog(null,"Connexion réussie");
             fen.setVisible(true);
         }
         catch(IdentificationErreur e){

@@ -1,23 +1,27 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package packageModel;
 
 /**
  *
- * @author Home
+ * @author BELLENGER JORDAN/SCHMITZ LOIC
  */
 public class Fournisseur {
-    
+
     private String nom;
-    
-    public Fournisseur (String n){
-        nom=n;
+
+    /**
+     *
+     * @param n nom du fournisseur
+     */
+    public Fournisseur(String n) {
+        nom = n;
     }
 
+    /**
+     *
+     * @return nom du fournisseur
+     * @seeString
+     */
     public String getNom() {
         return nom;
     }
-    
 }

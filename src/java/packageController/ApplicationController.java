@@ -1,123 +1,253 @@
 package packageController;
+
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import packageBusiness.*;
 import packageException.*;
 import packageModel.*;
 
+/**
+ *
+ * @author BELLENGER JORDAN/SCHMITZ LOIC
+ */
 public class ApplicationController {
-    
-    
-    private LoginManager lM= new LoginManager();
-    private ReapproManager rM= new ReapproManager();
+
+    private LoginManager lM = new LoginManager();
+    private ReapproManager rM = new ReapproManager();
     private ArticleManager aM = new ArticleManager();
     private FournisseurManager fM = new FournisseurManager();
     private CategorieManager cM = new CategorieManager();
-   
-    
-    
-    //IDENTIFICATION
-    public void identification(String user, String pw) throws IdentificationErreur{
-        lM.identification(user, pw);         
-    }
-    
-    
-    
-    //AJOUT REAPPRO
 
-    public ArrayList <Article> getArticleReappro(Article art,Reappro reap) throws  BdErreur, NoIdentification{ 
-        return aM.getArticleReappro(art,reap);
+    /**
+     * IDENTIFICATION
+     *
+     * @param user identifiant de la base de donnees
+     * @param pw mode de pase de la base de donnees
+     * @throws IdentificationErreur
+     * @see String
+     */
+    public void identification(String user, String pw) throws IdentificationErreur {
+        lM.identification(user, pw);
     }
-     
-    public Integer getIDArticle(String libelle,String typeA) throws  BdErreur, NoIdentification{ 
-        return aM.getIDArticle(libelle, typeA);
+
+    /**
+     * DECONNECTION
+     *
+     * @throws DeconnectionErreur
+     */
+    public void deconnection() throws DeconnectionErreur {
+        lM.deconnection();
     }
-    
-    public  Integer  addReappro (Reappro reappro)  throws  BdErreur,NoIdentification,AddReapException{
+
+    //REAPPROVISIONNEMENT + LIGNE REAPPRO MANAGER
+    /**
+     *
+     * @param reappro le reapprovisionnement a ajouter
+     * @return id du reappro ajoute pour ajouter Lignereappro apres
+     * @throws BdErreur
+     * @throws NoIdentification
+     * @throws AddReapException
+     * @see Integer
+     * @see Reappro
+     */
+    public Integer addReappro(Reappro reappro) throws BdErreur, NoIdentification, AddReapException {
         return rM.addReappro(reappro);
     }
-    
-    public  void  addLigneReappro (LigneReappro lReap, Integer iDReap)  throws  BdErreur,NoIdentification,AddReapException{
-        rM.addLigneReappro(lReap,iDReap);
+
+    /**
+     *
+     * @param lReap le LigneReappro a ajouter
+     * @param iDReap id du reappro correspondant
+     * @throws BdErreur
+     * @throws NoIdentification
+     * @throws AddReapException
+     * @see LigneReappro
+     * @see Integer
+     */
+    public void addLigneReappro(LigneReappro lReap, Integer iDReap) throws BdErreur, NoIdentification, AddReapException {
+        rM.addLigneReappro(lReap, iDReap);
     }
-    
-    
-    //LISTING REAPPRO
-    public ArrayList<Reappro> getAllReappro ()throws  BdErreur, NoIdentification{
+
+    /**
+     *
+     * @return une ArrayList contenant tous les reapprovisionnements effectues
+     * @throws BdErreur
+     * @throws NoIdentification
+     * @see ArrayList
+     * @see Reappro
+     */
+    public ArrayList<Reappro> getAllReappro() throws BdErreur, NoIdentification {
         return rM.getAllReappro();
     }
-    
-    public ArrayList<LigneReappro> getAllLigneReappro (Integer iDR)throws  BdErreur, NoIdentification{
+
+    /**
+     *
+     * @param iDR id du reapprovisionnement selectionnee dans la table
+     * @return une ArrayList contenant les LignesReappro correspondant
+     * @throws BdErreur
+     * @throws NoIdentification
+     * @see ArrayList
+     * @see Integer
+     * @see LigneReappro
+     */
+    public ArrayList<LigneReappro> getAllLigneReappro(Integer iDR) throws BdErreur, NoIdentification {
         return rM.getAllLigneReappro(iDR);
     }
-    
-    public void setQteStock (Reappro reap, LigneReappro lReap)throws  BdErreur, NoIdentification{
+
+    /**
+     * Encoder la marchandise recue dans le stock - mise a jour quantite
+     *
+     * @param reap le Reappro qui va etre encoder dans le stock
+     * @param lReap la LigneReappro dans lequel la quantite va etre mise a jour
+     * @throws BdErreur
+     * @throws NoIdentification
+     * @see LigneReappro
+     * @see Reappro
+     */
+    public void setQteStock(Reappro reap, LigneReappro lReap) throws BdErreur, NoIdentification {
         rM.setQteStock(reap, lReap);
     }
-       
-    // AJOUT ARTICLE
-    public void  addArticle (Article nouvArt, Fournisseur fourn, Categorie cat) throws BdErreur,NoIdentification, AddArtException{
-        aM.addArticle(nouvArt,fourn, cat);
-    }
 
-    public ArrayList <Categorie> getCatArticle()throws  BdErreur, NoIdentification{
-        return cM.getCatArticle();
-    }
-    public Integer getIDFourn(String nom) throws  BdErreur, NoIdentification{
-        return fM.getIDFourn(nom);
-    }
-    public Integer getIDCat(String libelle) throws  BdErreur, NoIdentification{ 
-            return cM.getIDCat(libelle);
-    }
-    
-      
-    
-    //Modif article
-    public ArrayList<Article> getAllArticle ()throws  BdErreur, NoIdentification{
-        return aM.getAllArticle();
-    }
-    
-    public void modifArticle(Article artNouvVersion, Article artAncVersion) throws BdErreur, NoIdentification{
-         aM.modifArticle(artNouvVersion, artAncVersion);
-    }
-    
-    
-    
-    // Suppression réappro
-    public void suppReappro(Integer idP) throws BdErreur, NoIdentification{
+    /**
+     *
+     * @param idP id du reapprovisionnement a supprimer
+     * @throws BdErreur
+     * @throws NoIdentification
+     * @see Integer
+     */
+    public void suppReappro(Integer idP) throws BdErreur, NoIdentification {
         rM.suppReappro(idP);
     }
-    
-    
-    //Recherches
-    public ArrayList <Fournisseur> getFournisseur()throws  BdErreur, NoIdentification{
-        return fM.getFournisseur();
+
+    /**
+     *
+     * @param dateR la date a laquelle on veut consulter les
+     * reapprovisionnements
+     * @param fourn le fournisseur pour lequel on on veut consulter les
+     * reapprovisionnements
+     * @return une ArrayList des reapprovisionnements
+     * @throws BdErreur
+     * @throws NoIdentification
+     * @see ArrayList
+     * @see Reappro
+     * @see GregorianCalendar
+     * @see Fournisseur
+     */
+    public ArrayList<Reappro> getRechReappro(GregorianCalendar dateR, Fournisseur fourn) throws BdErreur, NoIdentification {
+        return rM.getRechReappro(dateR, fourn);
     }
-    public ArrayList <Article> getArticleCat(String typeArt,Categorie cat) throws  BdErreur, NoIdentification{
-        return aM.getArticleCat(typeArt,cat);
+
+    
+    //ARTICLE MANAGER
+    /**
+     *
+     * @param nouvArt nouvel article qui doit etre ajoute
+     * @param fourn fournisseur de l article -foreign key
+     * @param cat categorie de l article -foreign key
+     * @throws BdErreur
+     * @throws NoIdentification
+     * @throws AddArtException
+     * @see Article
+     * @see Fournisseur
+     * @see Categorie
+     */
+    public void addArticle(Article nouvArt, Fournisseur fourn, Categorie cat) throws BdErreur, NoIdentification, AddArtException {
+        aM.addArticle(nouvArt, fourn, cat);
     }
-    public ArrayList<Article> getAllArticleRechCat (String typeArt, Categorie cat)throws  BdErreur, NoIdentification{
+
+    /**
+     * Completer une comboBox suivant le type et le fournisseur selectionne
+     * @param art type de l article souhaite
+     * @param reap fournisseur deja selectionne dans le reappro
+     * @return une ArrayList d article suivant le type et le fournisseur
+     * @throws BdErreur
+     * @throws NoIdentification
+     * @see ArrayList
+     * @see Article
+     * @see Reappro
+     */
+    public ArrayList<Article> getArticleReappro(Article art, Reappro reap) throws BdErreur, NoIdentification {
+        return aM.getArticleReappro(art, reap);
+    }
+
+    
+    /**
+     *
+     * @return une ArrayList d articles de la BD
+     * @throws BdErreur
+     * @throws NoIdentification
+     * @see ArrayList
+     * @see Article
+     */
+    public ArrayList<Article> getAllArticle() throws BdErreur, NoIdentification {
+        return aM.getAllArticle();
+    }
+
+    /**
+     *
+     * @param artNouvVersion le nouvel article avec les nouvelles donnees
+     * @param artAncVersion l ancien article avec les vieilles donnees
+     * @throws BdErreur
+     * @throws NoIdentification
+     * @see Article
+     */
+    public void modifArticle(Article artNouvVersion, Article artAncVersion) throws BdErreur, NoIdentification {
+        aM.modifArticle(artNouvVersion, artAncVersion);
+    }
+
+    /**
+     *
+     * @param typeArt type de l article
+     * @param cat categorie de l article
+     * @return une ArrayList d articles suivant les parametres souhaites
+     * @throws BdErreur
+     * @throws NoIdentification
+     * @see ArrayList
+     * @see Categorie
+     * @see String
+     * @see Article
+     */
+    public ArrayList<Article> getAllArticleRechCat(String typeArt, Categorie cat) throws BdErreur, NoIdentification {
         return aM.getAllArticleRechCat(typeArt, cat);
     }
-    public ArrayList<Article> getAllArticleRechFourn (Fournisseur fourn)throws  BdErreur, NoIdentification{
+
+    /**
+     *
+     * @param fourn le fournisseur souhaite
+     * @return une ArrayList d articles suivant le fournisseur selectionne
+     * @throws BdErreur
+     * @throws NoIdentification
+     * @see ArrayList
+     * @see Article
+     * @see Fournisseur
+     */
+    public ArrayList<Article> getAllArticleRechFourn(Fournisseur fourn) throws BdErreur, NoIdentification {
         return aM.getAllArticleRechFourn(fourn);
     }
+        
     
-    public ArrayList<Reappro> getRechReappro (GregorianCalendar dateR,Fournisseur fourn)throws  BdErreur, NoIdentification{
-        return rM.getRechReappro(dateR,fourn);
+    //FOURNISSEUR MANAGER    
+    /**
+     * Liste de libelle de fournisseurs
+     * @return une ArrayList de fournisseur
+     * @throws BdErreur
+     * @throws NoIdentification
+     * @see ArrayList
+     * @see Fournisseur
+     */public ArrayList<Fournisseur> getFournisseur() throws BdErreur, NoIdentification {
+        return fM.getFournisseur();
     }
-    
-     
-    
 
-    
-    
-  
-
-    
-            
-    
-    
-    
-    
+    //CATEGORIE MANAGER 
+    /**
+     *
+     * @return une ArrayList des categorie de la BD
+     * @throws BdErreur
+     * @throws NoIdentification
+     * @see ArrayList
+     * @see Categorie
+     */
+    public ArrayList<Categorie> getCatArticle() throws BdErreur, NoIdentification {
+        return cM.getCatArticle();
+    }
 }
