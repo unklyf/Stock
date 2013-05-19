@@ -40,9 +40,11 @@ public class ModifArticleJPanel extends javax.swing.JPanel {
             colPc.setPreferredWidth(120);
             TableColumn colCad = JTableModif.getColumnModel( ).getColumn(6);
             colCad.setPreferredWidth(100);
-            TableColumn colFourn = JTableModif.getColumnModel( ).getColumn(7);
+            TableColumn col18ans = JTableModif.getColumnModel( ).getColumn(7);
+            col18ans.setPreferredWidth(50);
+            TableColumn colFourn = JTableModif.getColumnModel( ).getColumn(8);
             colFourn.setPreferredWidth(150);
-            TableColumn colCat = JTableModif.getColumnModel( ).getColumn(8);
+            TableColumn colCat = JTableModif.getColumnModel( ).getColumn(9);
             colCat.setPreferredWidth(150);
              
             JTableModif.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);

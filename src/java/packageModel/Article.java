@@ -11,6 +11,7 @@ public class Article {
     private Categorie cat;
     private Fournisseur fourn;
     private Integer idProduit, quantite;
+    private Boolean InterMoins18ans;
 
     /**
      *
@@ -29,13 +30,14 @@ public class Article {
      * @see String
      * @see Double
      */
-    public Article(String lib, String typ, String d, String c, double pm, double pc) {
+    public Article(String lib, String typ, String d, String c, double pm, double pc, Boolean in) {
         this.libelle = lib;
         this.typeA = typ;
         this.desc = d;
         this.prixM = pm;
         this.prixC = pc;
         this.cadeau = c;
+        this.InterMoins18ans=in;
     }
 
     /**
@@ -89,7 +91,7 @@ public class Article {
      * @see Fournisseur
      * @see Categorie
      */
-    public Article(Integer id, String lib, String typ, String d, Integer q, double pm, Fournisseur f, Categorie ca) {
+    public Article(Integer id, String lib, String typ, String d, Integer q, double pm, Fournisseur f, Categorie ca, Boolean in) {
         this.idProduit = id;
         this.libelle = lib;
         this.typeA = typ;
@@ -98,6 +100,7 @@ public class Article {
         this.prixM = pm;
         this.fourn = f;
         this.cat = ca;
+        this.InterMoins18ans=in;
     }
 
     /**
@@ -222,6 +225,11 @@ public class Article {
     public double getPrixC() {
         return this.prixC;
     }
+
+    public Boolean getInterMoins18ans() {
+        return InterMoins18ans;
+    }
+    
 
     /**
      *

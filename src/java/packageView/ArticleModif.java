@@ -26,13 +26,13 @@ public class ArticleModif extends javax.swing.JPanel {
         this.cadeauCombo.setVisible(false);
         
         artModif=art.getContents().get(indL);
-        this.fournisseurField.setText(art.getValueAt(indL,7).toString());
+        this.fournisseurField.setText(art.getValueAt(indL,8).toString());
         this.fournisseurField.setEnabled(false);
         this.typeArtField.setText(art.getValueAt(indL,1).toString());
         this.typeArtField.setEnabled(false);
         this.libelleField.setText(art.getValueAt(indL,0).toString());
         this.libelleField.setEnabled(false);
-        this.categorieField.setText(art.getValueAt(indL,8).toString());
+        this.categorieField.setText(art.getValueAt(indL,9).toString());
         this.categorieField.setEnabled(false);
         this.descriptionField.setText(art.getValueAt(indL,2).toString());
         this.quantiteField.setText(art.getValueAt(indL, 3).toString());

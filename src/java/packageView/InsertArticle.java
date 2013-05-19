@@ -20,6 +20,7 @@ public class InsertArticle extends JPanel {
     private Article nouvArt;
     private Fournisseur fourn;
     private Categorie cat;
+    private Boolean Inter18ans;
     
            
     /**
@@ -28,6 +29,7 @@ public class InsertArticle extends JPanel {
     public InsertArticle() {
         initComponents();
         typeArt = "";
+        Inter18ans = false;
         tabFourn= new ArrayList <Fournisseur>();
         tabCat= new ArrayList <Categorie>();
         try {
@@ -89,6 +91,8 @@ public class InsertArticle extends JPanel {
         labelMajuscule = new javax.swing.JLabel();
         labelCat = new javax.swing.JLabel();
         JComboCat = new javax.swing.JComboBox();
+        labelCadeau2 = new javax.swing.JLabel();
+        jCheckBox18ans = new javax.swing.JCheckBox();
 
         setPreferredSize(new java.awt.Dimension(800, 700));
 
@@ -174,6 +178,15 @@ public class InsertArticle extends JPanel {
         labelCat.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         labelCat.setText("Catégorie :");
 
+        labelCadeau2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        labelCadeau2.setText("Interdit au moins 18 ans : ");
+
+        jCheckBox18ans.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jCheckBox18ansItemStateChanged(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelChampLayout = new javax.swing.GroupLayout(panelChamp);
         panelChamp.setLayout(panelChampLayout);
         panelChampLayout.setHorizontalGroup(
@@ -181,23 +194,21 @@ public class InsertArticle extends JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelChampLayout.createSequentialGroup()
                 .addContainerGap(32, Short.MAX_VALUE)
                 .addGroup(panelChampLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelChampLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(labelCadeau, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(labelConsigne, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(labelMarchandise, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(labelDescription, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(labelLibelle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(labelType, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(labelCadeau2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(labelCat, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelFourn, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(panelChampLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(ComboFourn, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JComboCat, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(panelChampLayout.createSequentialGroup()
-                        .addComponent(labelCat, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(JComboCat, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(panelChampLayout.createSequentialGroup()
-                        .addComponent(labelFourn, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(ComboFourn, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(panelChampLayout.createSequentialGroup()
-                        .addGroup(panelChampLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(labelCadeau, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(labelConsigne, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(labelMarchandise, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(labelDescription, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(labelLibelle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(labelType, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
                         .addGroup(panelChampLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(panelChampLayout.createSequentialGroup()
                                 .addComponent(ButtonBouteille)
@@ -215,52 +226,58 @@ public class InsertArticle extends JPanel {
                         .addGroup(panelChampLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(labelFacultatifCons, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(labelFacultatifCad, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(ButtonAjout, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(ButtonAjout, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jCheckBox18ans))
                 .addGap(52, 52, 52))
         );
         panelChampLayout.setVerticalGroup(
             panelChampLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelChampLayout.createSequentialGroup()
                 .addContainerGap(27, Short.MAX_VALUE)
-                .addGroup(panelChampLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelFourn)
-                    .addComponent(ComboFourn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(panelChampLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(labelType)
-                    .addGroup(panelChampLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(ButtonBouteille)
-                        .addComponent(ButtonCasier)
-                        .addComponent(ButtonFut)))
-                .addGap(18, 18, 18)
                 .addGroup(panelChampLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(labelCat)
-                    .addComponent(JComboCat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(labelMajuscule)
-                .addGap(2, 2, 2)
-                .addGroup(panelChampLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelLibelle)
-                    .addComponent(JTextFieldLibelle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(panelChampLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(labelDescription)
-                    .addComponent(jScrollPaneDesc, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(panelChampLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelMarchandise)
-                    .addComponent(PrixMarchSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(23, 23, 23)
-                .addGroup(panelChampLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelConsigne)
-                    .addComponent(PrixConsSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelFacultatifCons))
-                .addGap(18, 18, 18)
-                .addGroup(panelChampLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelCadeau)
-                    .addComponent(CadeauComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelFacultatifCad))
-                .addGap(30, 30, 30)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelChampLayout.createSequentialGroup()
+                        .addGroup(panelChampLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(labelFourn, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(ComboFourn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(panelChampLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(labelType)
+                            .addGroup(panelChampLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(ButtonBouteille)
+                                .addComponent(ButtonCasier)
+                                .addComponent(ButtonFut)))
+                        .addGap(18, 18, 18)
+                        .addGroup(panelChampLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(labelCat)
+                            .addComponent(JComboCat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(labelMajuscule)
+                        .addGap(2, 2, 2)
+                        .addGroup(panelChampLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(labelLibelle)
+                            .addComponent(JTextFieldLibelle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(panelChampLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(labelDescription)
+                            .addComponent(jScrollPaneDesc, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(panelChampLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(labelMarchandise)
+                            .addComponent(PrixMarchSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(23, 23, 23)
+                        .addGroup(panelChampLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(labelConsigne)
+                            .addComponent(PrixConsSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(labelFacultatifCons))
+                        .addGap(18, 18, 18)
+                        .addGroup(panelChampLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(labelCadeau)
+                            .addComponent(CadeauComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(labelFacultatifCad))
+                        .addGap(18, 18, 18)
+                        .addComponent(labelCadeau2))
+                    .addComponent(jCheckBox18ans, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGap(26, 26, 26)
                 .addComponent(ButtonAjout, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -274,7 +291,7 @@ public class InsertArticle extends JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(panelChamp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelInsArt, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(180, Short.MAX_VALUE))
+                .addContainerGap(141, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -283,7 +300,7 @@ public class InsertArticle extends JPanel {
                 .addComponent(labelInsArt)
                 .addGap(18, 18, 18)
                 .addComponent(panelChamp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(134, Short.MAX_VALUE))
+                .addContainerGap(98, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -331,7 +348,8 @@ public class InsertArticle extends JPanel {
                                                                 this.JTextAreaDesc.getText(),
                                                                 cadeau,                                                               
                                                                 Double.parseDouble(this.PrixMarchSpinner.getValue().toString()),
-                                                                prixCons); 
+                                                                prixCons,
+                                                                Inter18ans); 
                                         fourn = new Fournisseur(ComboFourn.getSelectedItem().toString());
                                         cat = new Categorie (JComboCat.getSelectedItem().toString());
                                         app.addArticle(nouvArt, fourn, cat);
@@ -386,6 +404,12 @@ public class InsertArticle extends JPanel {
            typeArt ="Fût";
        }
     }//GEN-LAST:event_ButtonFutItemStateChanged
+
+    private void jCheckBox18ansItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jCheckBox18ansItemStateChanged
+         if(evt.getStateChange()== ItemEvent.SELECTED){
+           Inter18ans = true;
+       }
+    }//GEN-LAST:event_jCheckBox18ansItemStateChanged
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -401,8 +425,10 @@ public class InsertArticle extends JPanel {
     private javax.swing.JSpinner PrixConsSpinner;
     private javax.swing.JSpinner PrixMarchSpinner;
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JCheckBox jCheckBox18ans;
     private javax.swing.JScrollPane jScrollPaneDesc;
     private javax.swing.JLabel labelCadeau;
+    private javax.swing.JLabel labelCadeau2;
     private javax.swing.JLabel labelCat;
     private javax.swing.JLabel labelConsigne;
     private javax.swing.JLabel labelDescription;

@@ -20,6 +20,7 @@ public class AllArticleModif extends AbstractTableModel {
         columnNames.add("Prix Marchandise");
         columnNames.add("Prix Consigne");
         columnNames.add("Cadeau");
+        columnNames.add("-18ans");
         columnNames.add("Fournisseur");
         columnNames.add("Categorie");
        
@@ -67,9 +68,9 @@ public class AllArticleModif extends AbstractTableModel {
                     else {
                             return null;
                     }
-            
-            case 7: return art.getFourn().getNom();  
-            case 8: return art.getCat().getNom();
+            case 7: return art.getInterMoins18ans();
+            case 8: return art.getFourn().getNom();  
+            case 9: return art.getCat().getNom();
             default: return null;
         }
       }
@@ -95,9 +96,11 @@ public class AllArticleModif extends AbstractTableModel {
                 break;
             case 6: c = String.class;
                 break;
-            case 7: c = String.class;
+            case 7: c = Boolean.class;
                 break;
             case 8: c = String.class;
+                break;
+            case 9: c = String.class;
                 break;
             default: c = String.class;
           

@@ -45,9 +45,10 @@ public class ArticleDBAccess implements ArticleInterface {
                     + "IDFournisseur, "
                     + "IDCategorie, "
                     + "Cadeau, "
-                    + "Qte) "
+                    + "Qte,"
+                    + "InterMoins18ans) "
                     + "values( "
-                    + "upper(substr(?,1,1))|| lower(substr(?,2)), ?, ?, ?, ?, ?, ?, NULL)";
+                    + "upper(substr(?,1,1))|| lower(substr(?,2)), ?, ?, ?, ?, ?, ?, NULL,?)";
             PreparedStatement prepStat = SingletonConnexion.getInstance().prepareStatement(req, Statement.RETURN_GENERATED_KEYS);
             prepStat.setString(1, nouvArt.getLibelle());
             prepStat.setString(2, nouvArt.getLibelle());
@@ -57,6 +58,7 @@ public class ArticleDBAccess implements ArticleInterface {
             prepStat.setInt(6, new FournisseurDBAccess().getIDFourn(fourn.getNom()));
             prepStat.setInt(7, new CategorieDBAccess().getIDCat(cat.getNom()));
             prepStat.setString(8, nouvArt.getCadeau());
+            prepStat.setBoolean(9,nouvArt.getInterMoins18ans());
             prepStat.executeUpdate();
 
 
@@ -102,7 +104,8 @@ public class ArticleDBAccess implements ArticleInterface {
 
         try {
             //Select des articles
-            String req = "select a.IDProduit, a.Libelle, a.TypeA, a.Description, a.Qte, a.PrixMarchandise, a.PrixConsigne, a.Cadeau, "
+            String req = "select a.IDProduit, a.Libelle, a.TypeA, a.Description, a.Qte, "
+                    + "a.PrixMarchandise, a.PrixConsigne, a.Cadeau, a.InterMoins18ans, "
                     + "f.Nom, c.Libelle libCat "
                     + "from Article a, Fournisseur f, Categorie c "
                     + "where a.IDFournisseur = f.IDFournisseur AND a.IDCategorie = c.IDCategorie "
@@ -118,7 +121,9 @@ public class ArticleDBAccess implements ArticleInterface {
                         donnees.getInt("Qte"),
                         donnees.getDouble("PrixMarchandise"),
                         new Fournisseur(donnees.getString("Nom")),
-                        new Categorie(donnees.getString("LibCat")));
+                        new Categorie(donnees.getString("LibCat")),
+                        donnees.getBoolean("InterMoins18ans")
+                        );
 
 
                 //Colonnes facultatives
@@ -330,7 +335,8 @@ public class ArticleDBAccess implements ArticleInterface {
 
         try {
             //Select des articles
-            String req = "select a.IDProduit, a.Libelle, a.TypeA, a.Description, a.Qte, a.PrixMarchandise, a.PrixConsigne, a.Cadeau, "
+            String req = "select a.IDProduit, a.Libelle, a.TypeA, a.Description, a.Qte,"
+                    + " a.PrixMarchandise, a.PrixConsigne, a.Cadeau, a.InterMoins18ans, "
                     + "f.Nom, c.Libelle libCat "
                     + "from Article a, Fournisseur f, Categorie c "
                     + "where a.IDFournisseur = f.IDFournisseur AND a.IDCategorie = c.IDCategorie AND a.TypeA = ? AND a.IDCategorie = ? "
@@ -349,7 +355,9 @@ public class ArticleDBAccess implements ArticleInterface {
                         donnees.getInt("Qte"),
                         donnees.getDouble("PrixMarchandise"),
                         new Fournisseur(donnees.getString("Nom")),
-                        new Categorie(donnees.getString("LibCat")));
+                        new Categorie(donnees.getString("LibCat")),
+                        donnees.getBoolean("InterMoins18ans")
+                        );
 
 
                 //Colonnes facultatives
@@ -392,7 +400,8 @@ public class ArticleDBAccess implements ArticleInterface {
 
         try {
             //Select des articles
-            String req = "select a.IDProduit, a.Libelle, a.TypeA, a.Description, a.Qte, a.PrixMarchandise, a.PrixConsigne, a.Cadeau, "
+            String req = "select a.IDProduit, a.Libelle, a.TypeA, a.Description, a.Qte,"
+                    + " a.PrixMarchandise, a.PrixConsigne, a.Cadeau, a.InterMoins18ans,"
                     + "f.Nom, c.Libelle libCat "
                     + "from Article a, Fournisseur f, Categorie c "
                     + "where a.IDFournisseur = f.IDFournisseur AND a.IDCategorie = c.IDCategorie AND a.IDFournisseur = ?  "
@@ -409,7 +418,8 @@ public class ArticleDBAccess implements ArticleInterface {
                         donnees.getInt("Qte"),
                         donnees.getDouble("PrixMarchandise"),
                         new Fournisseur(donnees.getString("Nom")),
-                        new Categorie(donnees.getString("LibCat")));
+                        new Categorie(donnees.getString("LibCat")),
+                        donnees.getBoolean("InterMoins18ans"));
 
 
                 //Colonnes facultatives

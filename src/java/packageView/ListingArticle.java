@@ -40,9 +40,11 @@ public class ListingArticle extends javax.swing.JPanel {
             colPc.setPreferredWidth(120);
             TableColumn colCad = jTableListing.getColumnModel( ).getColumn(6);
             colCad.setPreferredWidth(100);
-            TableColumn colFourn = jTableListing.getColumnModel( ).getColumn(7);
+            TableColumn col18ans = jTableListing.getColumnModel( ).getColumn(7);
+            col18ans.setPreferredWidth(50);
+            TableColumn colFourn = jTableListing.getColumnModel( ).getColumn(8);
             colFourn.setPreferredWidth(150);
-            TableColumn colCat = jTableListing.getColumnModel( ).getColumn(8);
+            TableColumn colCat = jTableListing.getColumnModel( ).getColumn(9);
             colCat.setPreferredWidth(150);
             
             TableColumn col = jTableListing.getColumnModel().getColumn(3);

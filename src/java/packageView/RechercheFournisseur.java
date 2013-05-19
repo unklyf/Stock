@@ -128,9 +128,11 @@ public class RechercheFournisseur extends javax.swing.JPanel {
             colPc.setPreferredWidth(120);
             TableColumn colCad = jTableRechFourn.getColumnModel( ).getColumn(6);
             colCad.setPreferredWidth(100);
-            TableColumn colFourn = jTableRechFourn.getColumnModel( ).getColumn(7);
+            TableColumn col18ans = jTableRechFourn.getColumnModel( ).getColumn(7);
+            col18ans.setPreferredWidth(50);
+            TableColumn colFourn = jTableRechFourn.getColumnModel( ).getColumn(8);
             colFourn.setPreferredWidth(150);
-            TableColumn colCat = jTableRechFourn.getColumnModel( ).getColumn(8);
+            TableColumn colCat = jTableRechFourn.getColumnModel( ).getColumn(9);
             colCat.setPreferredWidth(150);
                 
         }
