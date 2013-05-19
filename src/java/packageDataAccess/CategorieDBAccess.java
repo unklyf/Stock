@@ -12,6 +12,7 @@ import packageModel.Categorie;
 public class CategorieDBAccess implements CategorieInterface {
 
     /**
+     * Liste des libelles categorie
      *
      * @return une ArrayList des categorie de la BD
      * @throws BdErreur
@@ -44,6 +45,7 @@ public class CategorieDBAccess implements CategorieInterface {
     }
 
     /**
+     * Obtenir id d'une categorie
      *
      * @param libelle libelle article souhaite
      * @return id categorie a partir du libelle

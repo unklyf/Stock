@@ -6,6 +6,7 @@ import packageDataAccess.ReapproDBAccess;
 import packageException.BdErreur;
 import packageException.NoIdentification;
 import packageException.AddReapException;
+import packageException.EncodageReapproException;
 import packageModel.Fournisseur;
 import packageModel.LigneReappro;
 import packageModel.Reappro;
@@ -19,6 +20,7 @@ public class ReapproManager {
     private ReapproDBAccess rDBA = new ReapproDBAccess();
   
     /**
+     * Ajout d'un reappro
      *
      * @param reappro le reapprovisionnement a ajouter
      * @return        id du reappro ajoute pour ajouter Lignereappro apres
@@ -29,10 +31,15 @@ public class ReapproManager {
      * @see Reappro
      */
     public Integer addReappro(Reappro reappro) throws BdErreur, NoIdentification, AddReapException {
-        return rDBA.addReappro(reappro);
+        if(reappro.getReapDate().getTime().before(new java.util.Date())){
+            throw new AddReapException("Erreur date : inférieure à aujourd'hui !");
+        } else{
+            return rDBA.addReappro(reappro);
+        }
     }
 
     /**
+     * Ajout LigneReappro
      *
      * @param lReap   le LigneReappro a ajouter
      * @param iDReap  id du reappro correspondant
@@ -43,10 +50,15 @@ public class ReapproManager {
      * @see Integer
      */
     public void addLigneReappro(LigneReappro lReap, Integer iDReap) throws BdErreur, NoIdentification, AddReapException {
-        rDBA.addLigneReappro(lReap, iDReap);
+        if(lReap.getQte() <= 0){
+            throw new AddReapException("Erreur quantité dans l'ajout de la LigneReappro");
+        } else{
+            rDBA.addLigneReappro(lReap, iDReap);
+        }        
     }
 
     /**
+     * Tous les reappros pour une table
      *
      * @return une ArrayList contenant tous les reapprovisionnements effectues
      * @throws BdErreur
@@ -59,6 +71,7 @@ public class ReapproManager {
     }
 
     /**
+     * Tous les LigneReappro pour une table
      *
      * @param iDR id du reapprovisionnement selectionnee dans la table 
      * @return    une ArrayList contenant les LignesReappro correspondant
@@ -74,19 +87,26 @@ public class ReapproManager {
 
     /**
      * Encoder la marchandise recue dans le stock - mise a jour quantite
+     * 
      * @param reap   le Reappro qui va etre encoder dans le stock
      * @param lReap  la LigneReappro dans lequel la quantite va etre mise a jour
      * @throws BdErreur
      * @throws NoIdentification
+     * @throws EncodageReapproException
      * @see LigneReappro
      * @see Reappro
      */
-    public void setQteStock(Reappro reap, LigneReappro lReap) throws BdErreur, NoIdentification {
-        rDBA.setQteStock(reap, lReap);
+    public void setQteStock(Reappro reap, LigneReappro lReap) throws BdErreur, NoIdentification,EncodageReapproException {
+        if(lReap.getQte() < 0){
+            throw new EncodageReapproException("Erreur quantité dans l'encodage de la LigneReappro");
+        } else{
+            rDBA.setQteStock(reap, lReap);
+        } 
     }
 
     /**
-     *
+     * Supprimer un reappro
+     * 
      * @param idP  id du reapprovisionnement  a supprimer
      * @throws BdErreur
      * @throws NoIdentification
@@ -97,7 +117,8 @@ public class ReapproManager {
     }
 
     /**
-     *
+     * Tous les reappro a une date pour un fournisseur
+     * 
      * @param dateR la date a laquelle on veut consulter les reapprovisionnements
      * @param fourn le fournisseur pour lequel on on veut consulter les reapprovisionnements
      * @return une ArrayList des reapprovisionnements 

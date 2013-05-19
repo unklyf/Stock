@@ -14,52 +14,91 @@
             <included-library dirs="200">libs.beans-binding.classpath</included-library>
         </data>
         <spellchecker-wordlist xmlns="http://www.netbeans.org/ns/spellchecker-wordlist/1">
+            <word>Ajout</word>
             <word>ajoute</word>
             <word>ajouter</word>
             <word>ancien</word>
+            <word>Apparence</word>
             <word>apres</word>
+            <word>boisson</word>
+            <word>booleen</word>
             <word>cadeau</word>
             <word>categorie</word>
+            <word>ces</word>
+            <word>colonnes</word>
             <word>commande</word>
             <word>consigne</word>
             <word>contenant</word>
+            <word>contenu</word>
             <word>correspondant</word>
+            <word>d'accueil</word>
+            <word>d'articles</word>
+            <word>d'un</word>
+            <word>d'une</word>
             <word>dans</word>
+            <word>Deconnection</word>
+            <word>derniers</word>
             <word>des</word>
             <word>donnees</word>
             <word>effectues</word>
+            <word>encodage</word>
             <word>etat</word>
             <word>etre</word>
+            <word>fonction</word>
             <word>fournisseur</word>
             <word>fournisseurs</word>
             <word>identifiant</word>
+            <word>indice</word>
+            <word>initialisation</word>
+            <word>initialiser</word>
+            <word>interdite</word>
+            <word>l'article</word>
             <word>laquelle</word>
             <word>le</word>
             <word>lequel</word>
             <word>libelle</word>
+            <word>libelles</word>
+            <word>ligne</word>
             <word>Lignereappro</word>
             <word>marchandise</word>
             <word>nom</word>
+            <word>Nommer</word>
             <word>nouvel</word>
             <word>nouvelles</word>
+            <word>Obtenir</word>
             <word>ou</word>
             <word>parametres</word>
             <word>partir</word>
+            <word>programme</word>
             <word>quantitee</word>
+            <word>quantité</word>
             <word>qui</word>
+            <word>rangée</word>
             <word>reappro</word>
+            <word>reappros</word>
             <word>reapprovisionnement</word>
             <word>reapprovisionnements</word>
             <word>recue</word>
+            <word>Recupérer</word>
+            <word>Remplir</word>
+            <word>remplit</word>
+            <word>reçoit</word>
+            <word>réappros</word>
+            <word>Réapprovisionnement</word>
+            <word>Récapitulatif</word>
+            <word>récupérer</word>
+            <word>se</word>
             <word>selectionne</word>
             <word>selectionnee</word>
             <word>souhaite</word>
             <word>souhaitee</word>
             <word>souhaites</word>
+            <word>souhaité</word>
             <word>suivant</word>
             <word>supprimer</word>
             <word>tous</word>
             <word>va</word>
+            <word>verre</word>
             <word>veut</word>
             <word>vieilles</word>
         </spellchecker-wordlist>

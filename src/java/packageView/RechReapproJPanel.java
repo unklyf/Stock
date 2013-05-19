@@ -1,4 +1,3 @@
-
 package packageView;
 
 import java.util.ArrayList;
@@ -15,48 +14,52 @@ import packageException.NoIdentification;
 import packageModel.Fournisseur;
 import packageModel.Reappro;
 
+/**
+ * Panel recherche reappro par date
+ *
+ * @author BELLENGER JORDAN/SCHMITZ LOIC
+ */
 public class RechReapproJPanel extends javax.swing.JPanel {
 
-    private ArrayList <Fournisseur> listeLib;
+    private ArrayList<Fournisseur> listeLib;
     private ListSelectionModel listSelect;
     private AllLigneReapproModel reapL;
-    private AllReapproModel  reapMod;
-    private SpinnerDateModel model =new SpinnerDateModel();
-    
+    private AllReapproModel reapMod;
+    private SpinnerDateModel model = new SpinnerDateModel();
+
+    /**
+     *
+     */
     public RechReapproJPanel() {
         initComponents();
-        //Cacher
-        jPanelTable.setVisible(false);      
+        //Cacher elements non necessaires au debut
+        jPanelTable.setVisible(false);
         jLabelNone.setVisible(false);
         jButtonVoir.setVisible(false);
         jPanelArticle.setVisible(false);
-        
+
         //Récuperer ligne
         jTableRechReap.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        listSelect= jTableRechReap.getSelectionModel();
-       
-        //Garnir comboBox de fournisseur  
-        listeLib= new ArrayList <Fournisseur>();
-        try {
-                listeLib = new ApplicationController().getFournisseur();
-                this.jComboBoxFournisseur.removeAllItems();
-                for (Fournisseur lib : listeLib){                   
-                    jComboBoxFournisseur.addItem(lib.getNom());
-                }                              
-                jComboBoxFournisseur.repaint();
-                jComboBoxFournisseur.validate();
+        listSelect = jTableRechReap.getSelectionModel();
 
-         }
-         catch(BdErreur e){
-             JOptionPane.showMessageDialog(null, e, "Erreur BD", JOptionPane.ERROR_MESSAGE);
-         }
-         catch(NoIdentification e){
-             JOptionPane.showMessageDialog(null, e, "Erreur identification", JOptionPane.ERROR_MESSAGE);
-         }
+        //Garnir comboBox de fournisseur  
+        listeLib = new ArrayList<Fournisseur>();
+        try {
+            listeLib = new ApplicationController().getFournisseur();
+            this.jComboBoxFournisseur.removeAllItems();
+            for (Fournisseur lib : listeLib) {
+                jComboBoxFournisseur.addItem(lib.getNom());
+            }
+            jComboBoxFournisseur.repaint();
+            jComboBoxFournisseur.validate();
+
+        } catch (BdErreur e) {
+            JOptionPane.showMessageDialog(null, e, "Erreur BD", JOptionPane.ERROR_MESSAGE);
+        } catch (NoIdentification e) {
+            JOptionPane.showMessageDialog(null, e, "Erreur identification", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
-    
-    @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -258,84 +261,82 @@ public class RechReapproJPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    
     //Lancer la recherche
     private void jButtonRechercheActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRechercheActionPerformed
-        
-        ArrayList <Reappro> listReap = new ArrayList <Reappro>() ;
-                
+
+        ArrayList<Reappro> listReap = new ArrayList<Reappro>();
+
         //Récupération données
-        GregorianCalendar dateR= new GregorianCalendar();
+        GregorianCalendar dateR = new GregorianCalendar();
         dateR.setTime(model.getDate());
         Fournisseur fourn = new Fournisseur(jComboBoxFournisseur.getSelectedItem().toString());
 
- 
+
         //Chercher dans la BD
         try {
-              listReap = new ApplicationController().getRechReappro(dateR, fourn);
-              reapMod = new AllReapproModel (listReap);             
+            listReap = new ApplicationController().getRechReappro(dateR, fourn);
+            reapMod = new AllReapproModel(listReap);
 
-         }
-         catch(BdErreur e){
-             JOptionPane.showMessageDialog(null, e, "Erreur BD", JOptionPane.ERROR_MESSAGE);
-         }
-         catch(NoIdentification e){
-             JOptionPane.showMessageDialog(null, e, "Erreur identification", JOptionPane.ERROR_MESSAGE);
-         }
-        
-        if(listReap.isEmpty()){
-              jLabelNone.setVisible(true);
-              jPanelTable.setVisible(false);
-              jButtonVoir.setVisible(false);
-              jPanelArticle.setVisible(false);
+        } catch (BdErreur e) {
+            JOptionPane.showMessageDialog(null, e, "Erreur BD", JOptionPane.ERROR_MESSAGE);
+        } catch (NoIdentification e) {
+            JOptionPane.showMessageDialog(null, e, "Erreur identification", JOptionPane.ERROR_MESSAGE);
         }
-        else{
-              jButtonVoir.setVisible(true);
-              jLabelNone.setVisible(false);
-              jPanelTable.setVisible(true);
-              jTableRechReap.setModel(reapMod);
-              jTableRechReap.repaint();
-              jTableRechReap.validate();
-              
-              jTableRechReap.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-            
-              TableColumn colID = jTableRechReap.getColumnModel( ).getColumn(0);
-              colID.setPreferredWidth(80); 
-              TableColumn colDate = jTableRechReap.getColumnModel( ).getColumn(1);          
-              colDate.setPreferredWidth(160); 
-              TableColumn colNote = jTableRechReap.getColumnModel( ).getColumn(3);
-              colNote.setPreferredWidth(276);
-              TableColumn colPc = jTableRechReap.getColumnModel( ).getColumn(4);
-              colPc.setPreferredWidth(120);
+
+        if (listReap.isEmpty()) {
+            //Aucun reappro trouve
+            jLabelNone.setVisible(true);
+            jPanelTable.setVisible(false);
+            jButtonVoir.setVisible(false);
+            jPanelArticle.setVisible(false);
+        } else {
+            //Affichage reappros trouves
+            jButtonVoir.setVisible(true);
+            jLabelNone.setVisible(false);
+            jPanelTable.setVisible(true);
+            //Remplir tableau
+            jTableRechReap.setModel(reapMod);
+            jTableRechReap.repaint();
+            jTableRechReap.validate();
+
+            //Redimensionnement colonnes
+            jTableRechReap.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+
+            TableColumn colID = jTableRechReap.getColumnModel().getColumn(0);
+            colID.setPreferredWidth(80);
+            TableColumn colDate = jTableRechReap.getColumnModel().getColumn(1);
+            colDate.setPreferredWidth(160);
+            TableColumn colNote = jTableRechReap.getColumnModel().getColumn(3);
+            colNote.setPreferredWidth(276);
+            TableColumn colPc = jTableRechReap.getColumnModel().getColumn(4);
+            colPc.setPreferredWidth(120);
         }
     }//GEN-LAST:event_jButtonRechercheActionPerformed
 
-    
     //Afficher articles du reappro
     private void jButtonVoirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVoirActionPerformed
-        if(listSelect.isSelectionEmpty()){
-             JOptionPane.showMessageDialog(null, "Aucune ligne sélectionnée.\nVeuillez sélectionner une ligne.");
-        }
-        else{
+        if (listSelect.isSelectionEmpty()) {
+            JOptionPane.showMessageDialog(null, "Aucune ligne sélectionnée.\nVeuillez sélectionner une ligne.");
+        } else {
             try {
+                //Recuperation indice ligne tableau
                 int indLigne = listSelect.getMinSelectionIndex();
-                reapL = new AllLigneReapproModel (new ApplicationController().getAllLigneReappro(Integer.parseInt(jTableRechReap.getValueAt(indLigne, 0).toString())));           
-            }        
-            catch(BdErreur e){
+                //Recuperer donnees
+                reapL = new AllLigneReapproModel(new ApplicationController().getAllLigneReappro(Integer.parseInt(jTableRechReap.getValueAt(indLigne, 0).toString())));
+            } catch (BdErreur e) {
                 JOptionPane.showMessageDialog(null, e, "Erreur BD", JOptionPane.ERROR_MESSAGE);
-            }
-            catch(NoIdentification e){
+            } catch (NoIdentification e) {
                 JOptionPane.showMessageDialog(null, e, "Erreur identification", JOptionPane.ERROR_MESSAGE);
             }
-            
+
+            //Remplir tableau
             jPanelArticle.setVisible(true);
             jTableRechReapArt.setModel(reapL);
             jTableRechReapArt.repaint();
             jTableRechReapArt.validate();
-            
+
         }
     }//GEN-LAST:event_jButtonVoirActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonRecherche;
     private javax.swing.JButton jButtonVoir;

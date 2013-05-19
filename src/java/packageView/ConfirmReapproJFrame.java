@@ -3,44 +3,53 @@ package packageView;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import packageController.ApplicationController;
+import packageException.AddReapException;
 import packageException.BdErreur;
 import packageException.NoIdentification;
 import packageModel.LigneReappro;
 import packageModel.Reappro;
 
-
+/**
+ * Récapitulatif final de la commande (Réapprovisionnement)
+ *
+ * @author BELLENGER JORDAN/SCHMITZ LOIC
+ */
 public class ConfirmReapproJFrame extends javax.swing.JFrame {
 
-
-    private ArrayList <LigneReappro> listeLReap;
+    private ArrayList<LigneReappro> listeLReap;
     private Reappro reapAdd;
     private ReapproJPanel pan;
-    private int iDReappro=0;
+    private int iDReappro = 0;
     private double prixTotal = 0;
-    
-    public ConfirmReapproJFrame(ArrayList <LigneReappro> listeReap, Reappro reapInfo,ReapproJPanel panel) {
+
+    /**
+     *
+     * @param listeReap arrayList LigneReappro
+     * @param reapInfo  le reappro du depart
+     * @param panel     le panel precedent
+     */
+    public ConfirmReapproJFrame(ArrayList<LigneReappro> listeReap, Reappro reapInfo, ReapproJPanel panel) {
         initComponents();
-        reapAdd=reapInfo;
-        listeLReap=listeReap;
-        pan=panel;
-        
+        reapAdd = reapInfo;
+        listeLReap = listeReap;
+        pan = panel;
+
         //Calcul prix total commande
-        for(LigneReappro lReap: listeLReap){
-            prixTotal+= (lReap.getArt().getPrixM()+lReap.getArt().getPrixC())*lReap.getQte();
+        for (LigneReappro lReap : listeLReap) {
+            prixTotal += (lReap.getArt().getPrixM() + lReap.getArt().getPrixC()) * lReap.getQte();
         }
-        
-        
+
+        //Remplir tableau recapitulatif
         AllLigneReapproModel model = new AllLigneReapproModel(listeLReap);
         jTableRecapFinal.setModel(model);
         jTableRecapFinal.repaint();
-        jTableRecapFinal.validate();  
-        
+        jTableRecapFinal.validate();
+
         jTextFieldLibF.setText(reapAdd.getFourn().getNom());
         jTextFieldDateR.setText(reapInfo.getReapDate().getTime().toString());
         jTextFieldPrix.setText(String.valueOf(prixTotal));
     }
-    
-    
+
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -180,55 +189,50 @@ public class ConfirmReapproJFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    //Annuler et retour au panel commande
     private void jButtonAnnulerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAnnulerActionPerformed
         this.dispose();
     }//GEN-LAST:event_jButtonAnnulerActionPerformed
 
+    //Confirmer la commande
     private void jButtonOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOkActionPerformed
 
         //Ajout Reappro
         try {
-             iDReappro = new ApplicationController().addReappro(reapAdd); 
+            iDReappro = new ApplicationController().addReappro(reapAdd);
 
-        }
-        catch(BdErreur e){
-             JOptionPane.showMessageDialog(null, e, "Erreur BD", JOptionPane.ERROR_MESSAGE);
-        }
-        catch(NoIdentification e){
-             JOptionPane.showMessageDialog(null, e, "Erreur identification", JOptionPane.ERROR_MESSAGE);
-        }
-        catch(Exception e){
-             JOptionPane.showMessageDialog(null, e, "Exception", JOptionPane.ERROR_MESSAGE);
+        } catch (BdErreur e) {
+            JOptionPane.showMessageDialog(null, e, "Erreur BD", JOptionPane.ERROR_MESSAGE);
+        } catch (NoIdentification e) {
+            JOptionPane.showMessageDialog(null, e, "Erreur identification", JOptionPane.ERROR_MESSAGE);
+        } catch (AddReapException e) {
+            JOptionPane.showMessageDialog(null, e, "Exception", JOptionPane.ERROR_MESSAGE);
         }
 
 
         //Ajout LigneReappro
         try {
-             for (int i=0;i<listeLReap.size();i++){
-                 new ApplicationController().addLigneReappro(listeLReap.get(i),iDReappro);                 
-             }               
-        }
-        catch(BdErreur e){
-             JOptionPane.showMessageDialog(null, e, "Erreur BD", JOptionPane.ERROR_MESSAGE);
-        }
-        catch(NoIdentification e){
-             JOptionPane.showMessageDialog(null, e, "Erreur identification", JOptionPane.ERROR_MESSAGE);
-        }
-        catch(Exception e){
-             JOptionPane.showMessageDialog(null, e, "Exception", JOptionPane.ERROR_MESSAGE);
+            for (int i = 0; i < listeLReap.size(); i++) {
+                new ApplicationController().addLigneReappro(listeLReap.get(i), iDReappro);
+            }
+        } catch (BdErreur e) {
+            JOptionPane.showMessageDialog(null, e, "Erreur BD", JOptionPane.ERROR_MESSAGE);
+        } catch (NoIdentification e) {
+            JOptionPane.showMessageDialog(null, e, "Erreur identification", JOptionPane.ERROR_MESSAGE);
+        } catch (AddReapException e) {
+            JOptionPane.showMessageDialog(null, e, "Exception", JOptionPane.ERROR_MESSAGE);
         }
 
-       //Retour Accueil
-       this.dispose();
-       AccueilPanel panel= new AccueilPanel();
-       panel.setBounds(new MainJFrame().getBounds());
-       pan.removeAll();
-       pan.add(panel);
-       pan.repaint();
-       pan.validate();
-         
+        //Retour Accueil
+        this.dispose();
+        AccueilPanel panel = new AccueilPanel();
+        panel.setBounds(new MainJFrame().getBounds());
+        pan.removeAll();
+        pan.add(panel);
+        pan.repaint();
+        pan.validate();
+
     }//GEN-LAST:event_jButtonOkActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAnnuler;
     private javax.swing.JButton jButtonOk;

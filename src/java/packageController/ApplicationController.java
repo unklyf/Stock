@@ -41,6 +41,7 @@ public class ApplicationController {
 
     //REAPPROVISIONNEMENT + LIGNE REAPPRO MANAGER
     /**
+     * Ajout d'un reappro
      *
      * @param reappro le reapprovisionnement a ajouter
      * @return id du reappro ajoute pour ajouter Lignereappro apres
@@ -55,6 +56,7 @@ public class ApplicationController {
     }
 
     /**
+     * Ajout LigneReappro
      *
      * @param lReap le LigneReappro a ajouter
      * @param iDReap id du reappro correspondant
@@ -69,6 +71,7 @@ public class ApplicationController {
     }
 
     /**
+     * Tous les reappros pour une table
      *
      * @return une ArrayList contenant tous les reapprovisionnements effectues
      * @throws BdErreur
@@ -81,6 +84,7 @@ public class ApplicationController {
     }
 
     /**
+     * Tous les LigneReappro pour une table
      *
      * @param iDR id du reapprovisionnement selectionnee dans la table
      * @return une ArrayList contenant les LignesReappro correspondant
@@ -101,14 +105,16 @@ public class ApplicationController {
      * @param lReap la LigneReappro dans lequel la quantite va etre mise a jour
      * @throws BdErreur
      * @throws NoIdentification
+     * @throws EncodageReapproException
      * @see LigneReappro
      * @see Reappro
      */
-    public void setQteStock(Reappro reap, LigneReappro lReap) throws BdErreur, NoIdentification {
+    public void setQteStock(Reappro reap, LigneReappro lReap) throws BdErreur, NoIdentification,EncodageReapproException {
         rM.setQteStock(reap, lReap);
     }
 
     /**
+     * Supprimer un reappro
      *
      * @param idP id du reapprovisionnement a supprimer
      * @throws BdErreur
@@ -120,6 +126,7 @@ public class ApplicationController {
     }
 
     /**
+     * Tous les reappro a une date pour un fournisseur
      *
      * @param dateR la date a laquelle on veut consulter les
      * reapprovisionnements
@@ -140,7 +147,8 @@ public class ApplicationController {
     
     //ARTICLE MANAGER
     /**
-     *
+     * Ajouter un article 
+     * 
      * @param nouvArt nouvel article qui doit etre ajoute
      * @param fourn fournisseur de l article -foreign key
      * @param cat categorie de l article -foreign key
@@ -172,6 +180,7 @@ public class ApplicationController {
 
     
     /**
+     * Recupérer une arrayList d'articles pour table
      *
      * @return une ArrayList d articles de la BD
      * @throws BdErreur
@@ -184,18 +193,21 @@ public class ApplicationController {
     }
 
     /**
+     * Modifier un article
      *
      * @param artNouvVersion le nouvel article avec les nouvelles donnees
      * @param artAncVersion l ancien article avec les vieilles donnees
      * @throws BdErreur
      * @throws NoIdentification
+     * @throws ModifArtException
      * @see Article
      */
-    public void modifArticle(Article artNouvVersion, Article artAncVersion) throws BdErreur, NoIdentification {
+    public void modifArticle(Article artNouvVersion, Article artAncVersion) throws BdErreur, NoIdentification,ModifArtException{
         aM.modifArticle(artNouvVersion, artAncVersion);
     }
 
     /**
+     * Tous les articles d'une categorie
      *
      * @param typeArt type de l article
      * @param cat categorie de l article
@@ -212,6 +224,7 @@ public class ApplicationController {
     }
 
     /**
+     * Tous les articles d'un fournisseur
      *
      * @param fourn le fournisseur souhaite
      * @return une ArrayList d articles suivant le fournisseur selectionne
@@ -229,6 +242,7 @@ public class ApplicationController {
     //FOURNISSEUR MANAGER    
     /**
      * Liste de libelle de fournisseurs
+     * 
      * @return une ArrayList de fournisseur
      * @throws BdErreur
      * @throws NoIdentification
@@ -240,6 +254,7 @@ public class ApplicationController {
 
     //CATEGORIE MANAGER 
     /**
+     * Liste des libelles categorie
      *
      * @return une ArrayList des categorie de la BD
      * @throws BdErreur

@@ -1,9 +1,6 @@
 package packageView;
 
-
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.GregorianCalendar;
 import javax.swing.JOptionPane;
 import javax.swing.JSpinner;
@@ -14,40 +11,46 @@ import packageException.NoIdentification;
 import packageModel.Fournisseur;
 import packageModel.Reappro;
 
-
+/**
+ * Panel initialisation nouvelle commande (reappro)
+ *
+ * @author BELLENGER JORDAN/SCHMITZ LOIC
+ */
 public class InsertReappro extends javax.swing.JPanel {
 
-    private ArrayList <Fournisseur> tabLibF;
-    private ReapproJPanel reapAddPannel; 
+    private ArrayList<Fournisseur> tabLibF;
+    private ReapproJPanel reapAddPannel;
     private GregorianCalendar dateReap;
     private Reappro reapAdd;
     private SpinnerDateModel model;
-    
-    public InsertReappro() {
-        //Preparer jSpinner
-        model = new SpinnerDateModel(new java.util.Date(), new java.util.Date(), null, java.util.Calendar.DAY_OF_MONTH);
-        
-        initComponents();
-                
-        //Garnir comboBox de fournisseur   
-        try {
-                tabLibF = new ApplicationController().getFournisseur();
-                this.comboBoxFourn.removeAllItems();
-                for (Fournisseur lib : tabLibF){                   
-                    this.comboBoxFourn.addItem(lib.getNom());
-                }
-                this.comboBoxFourn.repaint();
-                this.comboBoxFourn.validate();
 
-           }
-            catch(BdErreur e){
-                JOptionPane.showMessageDialog(null, e, "Erreur BD", JOptionPane.ERROR_MESSAGE);
+    /**
+     *
+     */
+    public InsertReappro() {
+        //Preparer jSpinner date
+        model = new SpinnerDateModel(new java.util.Date(), new java.util.Date(), null, java.util.Calendar.DAY_OF_MONTH);
+
+        initComponents();
+
+
+        try {
+            //Garnir comboBox de fournisseur 
+            tabLibF = new ApplicationController().getFournisseur();
+            this.comboBoxFourn.removeAllItems();
+            for (Fournisseur lib : tabLibF) {
+                this.comboBoxFourn.addItem(lib.getNom());
             }
-            catch(NoIdentification e){
-                JOptionPane.showMessageDialog(null, e, "Erreur identification", JOptionPane.ERROR_MESSAGE);
-            }
+            this.comboBoxFourn.repaint();
+            this.comboBoxFourn.validate();
+
+        } catch (BdErreur e) {
+            JOptionPane.showMessageDialog(null, e, "Erreur BD", JOptionPane.ERROR_MESSAGE);
+        } catch (NoIdentification e) {
+            JOptionPane.showMessageDialog(null, e, "Erreur identification", JOptionPane.ERROR_MESSAGE);
+        }
     }
-    
+
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -113,26 +116,25 @@ public class InsertReappro extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    //Valider et initialiser encodage
     private void validerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_validerButtonActionPerformed
-        
+
         //Recuperation des donnees
-        dateReap= new GregorianCalendar();
+        dateReap = new GregorianCalendar();
         dateReap.setTime(model.getDate());
-        
+
         //Instance objet reappro
-        reapAdd = new Reappro (dateReap,null,"En cours",new Fournisseur (comboBoxFourn.getSelectedItem().toString()));
-        
+        reapAdd = new Reappro(dateReap, null, "En cours", new Fournisseur(comboBoxFourn.getSelectedItem().toString()));
+
         //Affichage de panel d'encodage des articles pour la commande (reappro)
-        reapAddPannel=new ReapproJPanel(reapAdd);
+        reapAddPannel = new ReapproJPanel(reapAdd);
         reapAddPannel.setBounds(this.getBounds());
         this.removeAll();
         this.add(reapAddPannel);
         this.repaint();
         this.validate();
-       
-    }//GEN-LAST:event_validerButtonActionPerformed
 
-    
+    }//GEN-LAST:event_validerButtonActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox comboBoxFourn;
     private javax.swing.JLabel jLabelDate;

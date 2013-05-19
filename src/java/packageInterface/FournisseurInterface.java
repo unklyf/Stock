@@ -5,11 +5,15 @@ import packageException.BdErreur;
 import packageException.NoIdentification;
 import packageModel.Fournisseur;
 
-
+/**
+ *
+ * @author BELLENGER JORDAN/SCHMITZ LOIC
+ */
 public interface FournisseurInterface {
 
     /**
      * Liste de libelle de fournisseurs
+     * 
      * @return une ArrayList de fournisseur
      * @throws BdErreur
      * @throws NoIdentification
@@ -20,7 +24,8 @@ public interface FournisseurInterface {
     
     
     /**
-     *
+     *  Obtenir id d'un fournisseur
+     * 
      * @param nom
      * @return id du fournisseur suivant son nom
      * @throws BdErreur

@@ -10,6 +10,7 @@ import packageException.*;
 public class LoginManager {
 
     /**
+     * Connection a la BD
      *
      * @param user identifiant de la base de donnees
      * @param pw mode de pase de la base de donnees
@@ -21,6 +22,7 @@ public class LoginManager {
     }
 
     /**
+     * Deconnection de la BD
      *
      * @throws IdentificationErreur
      */

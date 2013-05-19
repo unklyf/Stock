@@ -6,42 +6,45 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.ImageIcon;
 
-
-
+/**
+ * Panel d'accueil du programme
+ *
+ * @author BELLENGER JORDAN/SCHMITZ LOIC
+ */
 public class AccueilPanel extends javax.swing.JPanel {
+
     private Image image;
     private VerreThread vT;
-        
-            
+
+    /**
+     *
+     */
     public AccueilPanel() {
         initComponents();
-        
+
         //Date du jour
         String format = "'Nous sommes le : 'dd MMMM yyyy";
-        SimpleDateFormat formater = new SimpleDateFormat(format ); 
+        SimpleDateFormat formater = new SimpleDateFormat(format);
         Date date = new Date();
         labelDateAuj.setText(formater.format(date));
-                
-        
+
+
         //Background
-        image=(new ImageIcon(getClass().getResource("/packageImage/bg.jpg"))).getImage();
-                
+        image = (new ImageIcon(getClass().getResource("/packageImage/bg.jpg"))).getImage();
+
         //Thread    
         vT = new VerreThread(jLabelThread);
         vT.start();
- 
-     
+
     }
-  
-   @Override
-   public void paintComponent(Graphics g){
-        super.paintComponent(g); 
-        g.drawImage (image, 0,0, this); 
-   }
- 
-   
-  
- 
+    
+    //Background
+    @Override
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        g.drawImage(image, 0, 0, this);
+    }
+
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 

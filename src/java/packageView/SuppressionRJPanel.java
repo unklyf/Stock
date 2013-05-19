@@ -8,51 +8,55 @@ import packageController.ApplicationController;
 import packageException.BdErreur;
 import packageException.NoIdentification;
 
-
-
+/**
+ * Panel suppression reappro
+ *
+ * @author BELLENGER JORDAN/SCHMITZ LOIC
+ */
 public class SuppressionRJPanel extends javax.swing.JPanel {
 
     private AllReapproModel allReap;
     private ListSelectionModel listSelect;
     private ApplicationController app;
-    
+
+    /**
+     *
+     */
     public SuppressionRJPanel() {
-    
+
         try {
             initComponents();
-            allReap = new AllReapproModel (new ApplicationController().getAllReappro());
+
+            //Remplir table
+            allReap = new AllReapproModel(new ApplicationController().getAllReappro());
             jTableSupp.setModel(allReap);
             jTableSupp.repaint();
             jTableSupp.validate();
-            
+
+
+            //Redimensionnement table
             jTableSupp.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-            
-            TableColumn colID = jTableSupp.getColumnModel( ).getColumn(0);
-            colID.setPreferredWidth(80); 
-            TableColumn colDate = jTableSupp.getColumnModel( ).getColumn(1);          
-            colDate.setPreferredWidth(200); 
-            TableColumn colNote = jTableSupp.getColumnModel( ).getColumn(3);
+
+            TableColumn colID = jTableSupp.getColumnModel().getColumn(0);
+            colID.setPreferredWidth(80);
+            TableColumn colDate = jTableSupp.getColumnModel().getColumn(1);
+            colDate.setPreferredWidth(200);
+            TableColumn colNote = jTableSupp.getColumnModel().getColumn(3);
             colNote.setPreferredWidth(400);
-            TableColumn colPc = jTableSupp.getColumnModel( ).getColumn(4);
+            TableColumn colPc = jTableSupp.getColumnModel().getColumn(4);
             colPc.setPreferredWidth(157);
-            
-            
-            
+
+            //Selection ligne tableau
             jTableSupp.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
             listSelect = jTableSupp.getSelectionModel();
-            
-            
-        }
-        catch(BdErreur e){
-             JOptionPane.showMessageDialog(null, e, "Erreur BD", JOptionPane.ERROR_MESSAGE);
-        }
-        catch(NoIdentification e){
-              JOptionPane.showMessageDialog(null, e, "Erreur identification", JOptionPane.ERROR_MESSAGE);
+
+        } catch (BdErreur e) {
+            JOptionPane.showMessageDialog(null, e, "Erreur BD", JOptionPane.ERROR_MESSAGE);
+        } catch (NoIdentification e) {
+            JOptionPane.showMessageDialog(null, e, "Erreur identification", JOptionPane.ERROR_MESSAGE);
         }
     }
 
-  
-    @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -133,36 +137,34 @@ public class SuppressionRJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void boutonSuppActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonSuppActionPerformed
-          if(listSelect.isSelectionEmpty()==false){
-            
-            int indLigne= listSelect.getMinSelectionIndex();
+        if (listSelect.isSelectionEmpty() == false) {
+
+            //Recuperer indice ligne selectionee
+            int indLigne = listSelect.getMinSelectionIndex();
             app = new ApplicationController();
-            
-            
-            try { 
+
+
+            try {
+                //Suppressiopn totale du reappro 
                 app.suppReappro(allReap.getContents().get(indLigne).getiDReappro());
-                JOptionPane.showMessageDialog(null,"Suppression effectuée avec succès !");
-                allReap = new AllReapproModel (new ApplicationController().getAllReappro());
-            }  
-            
-            catch(BdErreur e){
-                  JOptionPane.showMessageDialog(null, e, "Erreur BD", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Suppression effectuée avec succès !");
+                allReap = new AllReapproModel(new ApplicationController().getAllReappro());
+            } catch (BdErreur e) {
+                JOptionPane.showMessageDialog(null, e, "Erreur BD", JOptionPane.ERROR_MESSAGE);
+            } catch (NoIdentification e) {
+                JOptionPane.showMessageDialog(null, e, "Erreur identification", JOptionPane.ERROR_MESSAGE);
             }
 
-            catch(NoIdentification e){
-                  JOptionPane.showMessageDialog(null, e, "Erreur identification", JOptionPane.ERROR_MESSAGE);
-            }
-            
+
+            //Reaffichage table
             jTableSupp.setModel(allReap);
             jTableSupp.repaint();
             jTableSupp.validate();
-            
-        }
-        else{
+
+        } else {
             JOptionPane.showMessageDialog(null, "Aucune ligne du tableau récapitulatif sélectionnée");
         }
     }//GEN-LAST:event_boutonSuppActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton boutonSupp;
     private javax.swing.JPanel jPanelSupp;

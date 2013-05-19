@@ -4,14 +4,16 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 import javax.swing.JOptionPane;
 import packageController.ApplicationController;
 import packageException.DeconnectionErreur;
 
-
-
+/**
+ * Fenetre principale
+ *
+ * @author BELLENGER JORDAN/SCHMITZ LOIC
+ */
 public class MainJFrame extends javax.swing.JFrame {
 
     private AccueilPanel aP;
@@ -25,21 +27,24 @@ public class MainJFrame extends javax.swing.JFrame {
     private RechercheCategorie rechCat;
     private RechercheFournisseur rechFourn;
     private Dimension dim;
-  
-            
+
+    /**
+     *
+     */
     public MainJFrame() {
-        Toolkit t = this.getToolkit(); 
-        dim = t.getScreenSize(); 
+        Toolkit t = this.getToolkit();
+        dim = t.getScreenSize();
 
         initComponents();
-        this.itemMenuAccueil.doClick(); 
+        //Affichage pannel accueil
+        this.itemMenuAccueil.doClick();
+
+        //Affichage directement plein écran
         this.setLocationRelativeTo(null);
         this.pack();
         this.setDefaultLookAndFeelDecorated(true);
-        this.setExtendedState(this.MAXIMIZED_BOTH);          
+        this.setExtendedState(this.MAXIMIZED_BOTH);
     }
-
-   
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -208,128 +213,140 @@ public class MainJFrame extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    
+
+    //Fermer fenetre avec la croix rouge et deconnection BD
     public class MyWindowsListener extends WindowAdapter {
 
         @Override
         public void windowClosing(WindowEvent e) {
             try {
                 new ApplicationController().deconnection();
-            } 
-            catch (DeconnectionErreur ex) {
-                JOptionPane.showMessageDialog(null, ex,"Erreur deconnection",JOptionPane.ERROR_MESSAGE);
-            } 
-            finally {
+            } catch (DeconnectionErreur ex) {
+                JOptionPane.showMessageDialog(null, ex, "Erreur deconnection", JOptionPane.ERROR_MESSAGE);
+            } finally {
                 System.exit(0);
             }
         }
     }
-    
+
+    //Fermer application et deconnection BD
     private void itemQuitterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemQuitterActionPerformed
         try {
-            new ApplicationController().deconnection();  
-        } 
-        catch (DeconnectionErreur ex) {
-            JOptionPane.showMessageDialog(null, ex,"Erreur deconnection",JOptionPane.ERROR_MESSAGE);
-        }
-        finally{
+            new ApplicationController().deconnection();
+        } catch (DeconnectionErreur ex) {
+            JOptionPane.showMessageDialog(null, ex, "Erreur deconnection", JOptionPane.ERROR_MESSAGE);
+        } finally {
             System.exit(0);
         }
     }//GEN-LAST:event_itemQuitterActionPerformed
 
+    //Afficher pannel ajout article
     private void itemArticleAjoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemArticleAjoutActionPerformed
-        insArt=new InsertArticle();
+        insArt = new InsertArticle();
         insArt.setBounds(this.getBounds());
         this.getContentPane().removeAll();
         this.getContentPane().add(insArt);
-        this.getContentPane().validate(); 
-        this.getContentPane().repaint(); 
+        this.getContentPane().validate();
+        this.getContentPane().repaint();
     }//GEN-LAST:event_itemArticleAjoutActionPerformed
 
+    //Afficher pannel ajout reappro
     private void itemAjoutReapproActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemAjoutReapproActionPerformed
-        reapAdd=new InsertReappro();
+        reapAdd = new InsertReappro();
         reapAdd.setBounds(this.getBounds());
         this.getContentPane().removeAll();
         this.getContentPane().add(reapAdd);
-        this.getContentPane().validate(); 
-        this.getContentPane().repaint();        
+        this.getContentPane().validate();
+        this.getContentPane().repaint();
     }//GEN-LAST:event_itemAjoutReapproActionPerformed
 
+    //Afficher pannel accueil
     private void itemMenuAccueilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemMenuAccueilActionPerformed
         aP = new AccueilPanel();
         aP.setBounds(this.getBounds());
         this.getContentPane().removeAll();
         this.getContentPane().add(aP);
-        this.getContentPane().validate(); 
-        this.getContentPane().repaint(); 
+        this.getContentPane().validate();
+        this.getContentPane().repaint();
     }//GEN-LAST:event_itemMenuAccueilActionPerformed
 
+    //Afficher pannel modifier article
     private void itemModifAjoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemModifAjoutActionPerformed
-        modifArt =new ModifArticleJPanel();
+        modifArt = new ModifArticleJPanel();
         modifArt.setBounds(this.getBounds());
         this.getContentPane().removeAll();
         this.getContentPane().add(modifArt);
-        this.getContentPane().validate(); 
-        this.getContentPane().repaint(); 
+        this.getContentPane().validate();
+        this.getContentPane().repaint();
     }//GEN-LAST:event_itemModifAjoutActionPerformed
 
+    //Afficher pannel lisitng reappros
     private void itemListReapproActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemListReapproActionPerformed
-        listReap =new ListingReapproJPanel();
+        listReap = new ListingReapproJPanel();
         listReap.setBounds(this.getBounds());
         this.getContentPane().removeAll();
         this.getContentPane().add(listReap);
-        this.getContentPane().validate(); 
-        this.getContentPane().repaint(); 
+        this.getContentPane().validate();
+        this.getContentPane().repaint();
     }//GEN-LAST:event_itemListReapproActionPerformed
 
+    //Afficher pannel supprimer reappro
     private void itemSuppReapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemSuppReapActionPerformed
-        suppArt =new SuppressionRJPanel();
+        suppArt = new SuppressionRJPanel();
         suppArt.setBounds(this.getBounds());
         this.getContentPane().removeAll();
         this.getContentPane().add(suppArt);
-        this.getContentPane().validate(); 
-        this.getContentPane().repaint(); 
+        this.getContentPane().validate();
+        this.getContentPane().repaint();
     }//GEN-LAST:event_itemSuppReapActionPerformed
 
+    //Afficher pannel listing articles
     private void itemListingArticleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemListingArticleActionPerformed
-        listArt =new ListingArticle();
+        listArt = new ListingArticle();
         listArt.setBounds(this.getBounds());
         this.getContentPane().removeAll();
         this.getContentPane().add(listArt);
-        this.getContentPane().validate(); 
-        this.getContentPane().repaint(); 
+        this.getContentPane().validate();
+        this.getContentPane().repaint();
     }//GEN-LAST:event_itemListingArticleActionPerformed
 
+    //Afficher pannel recherche reappro
     private void itemRechReapproActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemRechReapproActionPerformed
-        rechReap=new RechReapproJPanel();
+        rechReap = new RechReapproJPanel();
         rechReap.setBounds(this.getBounds());
         this.getContentPane().removeAll();
         this.getContentPane().add(rechReap);
-        this.getContentPane().validate(); 
-        this.getContentPane().repaint(); 
+        this.getContentPane().validate();
+        this.getContentPane().repaint();
     }//GEN-LAST:event_itemRechReapproActionPerformed
 
+    //Afficher pannel recherche catégorie
     private void itemRechCategorieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemRechCategorieActionPerformed
-        rechCat=new RechercheCategorie();
+        rechCat = new RechercheCategorie();
         rechCat.setBounds(this.getBounds());
         this.getContentPane().removeAll();
         this.getContentPane().add(rechCat);
-        this.getContentPane().validate(); 
-        this.getContentPane().repaint(); 
+        this.getContentPane().validate();
+        this.getContentPane().repaint();
     }//GEN-LAST:event_itemRechCategorieActionPerformed
 
+    //Afficher pannel recherhce fournisseur
     private void itemRechFournActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemRechFournActionPerformed
-        rechFourn=new RechercheFournisseur();
+        rechFourn = new RechercheFournisseur();
         rechFourn.setBounds(this.getBounds());
         this.getContentPane().removeAll();
         this.getContentPane().add(rechFourn);
-        this.getContentPane().validate(); 
-        this.getContentPane().repaint(); 
+        this.getContentPane().validate();
+        this.getContentPane().repaint();
     }//GEN-LAST:event_itemRechFournActionPerformed
-       
-    
+
+    /**
+     * MAIN
+     *
+     * @param args argument fonction main
+     */
     public static void main(String args[]) {
-        
+
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
@@ -352,14 +369,12 @@ public class MainJFrame extends javax.swing.JFrame {
         }
         //</editor-fold>
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new MainJFrame().setVisible(true);
             }
         });
     }
-    
-
-    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem itemAjoutReappro;
     private javax.swing.JMenuItem itemArticleAjout;

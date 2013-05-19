@@ -4,69 +4,103 @@ import java.util.ArrayList;
 import javax.swing.table.AbstractTableModel;
 import packageModel.LigneReappro;
 
-public class AllLigneReapproModel extends AbstractTableModel{ 
-    
-    private ArrayList<String> columnNames = new ArrayList<String>( );
+/**
+ * Remplir une jTable de LigneReappro a partir d'une arrayList
+ *
+ * @author BELLENGER JORDAN/SCHMITZ LOIC
+ */
+public class AllLigneReapproModel extends AbstractTableModel {
+
+    private ArrayList<String> columnNames = new ArrayList<String>();
     private ArrayList<LigneReappro> contents = new ArrayList<LigneReappro>();
 
-    
-    public AllLigneReapproModel (ArrayList<LigneReappro> lReappro){
+    /**
+     * Nommer les colonnes et initialiser contenu table
+     *
+     * @param lReappro une arrayList de LigneReappro
+     * @see ArrayList
+     * @see LigneReappro
+     */
+    public AllLigneReapproModel(ArrayList<LigneReappro> lReappro) {
         contents = lReappro;
         columnNames.add("Libelle");
         columnNames.add("Type");
         columnNames.add("Quantité");
     }
-    
-    
-    public void setQte(Integer qte,int row){
+
+    /**
+     * Modifier la quantité article dans la table
+     * 
+     * @param qte quantité de l'article
+     * @param row rangée article souhaité
+     * @see Integer
+     */ 
+    public void setQte(Integer qte, int row) {
         contents.get(row).setQte(qte);
     }
-    
+
+    /**
+     * Pour récupérer contenu du tableau
+     * 
+     * @return une arrayList de LigneReappro
+     * @see LigneReappro
+     * @see ArrayList
+     */
     public ArrayList<LigneReappro> getContents() {
         return contents;
     }
-    
+
+    @Override
     public int getColumnCount() {
         return columnNames.size();
     }
-    
+
+    @Override
     public int getRowCount() {
         return contents.size();
     }
-    
+
+    @Override
     public String getColumnName(int col) {
         return columnNames.get(col);
     }
-    
-   
-    public Object getValueAt(int row, int col){
-        LigneReappro reap = contents.get(row);
-          
 
-        switch(col){ 
-            case 0: return reap.getArt().getLibelle();
-            case 1: return reap.getArt().getType();
-            case 2: return reap.getQte();          
-            default: return null;
+    @Override
+    public Object getValueAt(int row, int col) {
+        LigneReappro reap = contents.get(row);
+
+
+        switch (col) {
+            case 0:
+                return reap.getArt().getLibelle();
+            case 1:
+                return reap.getArt().getType();
+            case 2:
+                return reap.getQte();
+            default:
+                return null;
         }
-    
+
     }
-    
-    public Class getColumnClass (int col){
+
+    @Override
+    public Class getColumnClass(int col) {
 
         Class c;
 
-        switch (col){
-            case 0: c = String.class;  
-            break;
-            case 1: c = String.class;
-            break;
-            case 2: c = Integer.class;
-            break;
-            default: c = String.class;
+        switch (col) {
+            case 0:
+                c = String.class;
+                break;
+            case 1:
+                c = String.class;
+                break;
+            case 2:
+                c = Integer.class;
+                break;
+            default:
+                c = String.class;
         }
         return c;
     }
 }
-    
-

@@ -16,6 +16,7 @@ public class FournisseurManager {
 
     /**
      * Liste de libelle de fournisseurs
+     * 
      * @return une ArrayList de fournisseur
      * @throws BdErreur
      * @throws NoIdentification

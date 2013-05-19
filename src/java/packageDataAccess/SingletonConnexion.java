@@ -32,7 +32,8 @@ public class SingletonConnexion {
     }
 
     /**
-     *
+     * Connection a la BD 
+     * 
      * @param user identifiant de la base de donnees
      * @param pw mode de pase de la base de donnees
      * @return
@@ -59,6 +60,7 @@ public class SingletonConnexion {
     }
 
     /**
+     * Deconnection de la BD
      *
      * @throws IdentificationErreur
      */

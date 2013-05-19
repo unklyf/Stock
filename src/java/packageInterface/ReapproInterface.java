@@ -5,6 +5,7 @@ import java.util.GregorianCalendar;
 import packageException.BdErreur;
 import packageException.NoIdentification;
 import packageException.AddReapException;
+import packageException.EncodageReapproException;
 import packageModel.Fournisseur;
 import packageModel.LigneReappro;
 import packageModel.Reappro;
@@ -16,6 +17,7 @@ import packageModel.Reappro;
 public interface ReapproInterface {
 
     /**
+     * Ajout d'un reappro
      *
      * @param reappro le reapprovisionnement a ajouter
      * @return id du reappro ajoute pour ajouter Lignereappro apres
@@ -28,6 +30,7 @@ public interface ReapproInterface {
     public Integer addReappro(Reappro reappro) throws BdErreur, NoIdentification, AddReapException;
 
     /**
+     * Ajout LigneReappro
      *
      * @param lReap le LigneReappro a ajouter
      * @param iDReap id du reappro correspondant
@@ -40,6 +43,7 @@ public interface ReapproInterface {
     public void addLigneReappro(LigneReappro lReap, Integer iDReap) throws BdErreur, NoIdentification, AddReapException;
 
     /**
+     * Tous les reappros pour une table
      *
      * @return une ArrayList contenant tous les reapprovisionnements effectues
      * @throws BdErreur
@@ -50,6 +54,7 @@ public interface ReapproInterface {
     public ArrayList<Reappro> getAllReappro() throws BdErreur, NoIdentification;
 
     /**
+     * Tous les LigneReappro pour une table
      *
      * @param iDR id du reapprovisionnement selectionnee dans la table
      * @return une ArrayList contenant les LignesReappro correspondant
@@ -68,12 +73,14 @@ public interface ReapproInterface {
      * @param lReap la LigneReappro dans lequel la quantite va etre mise a jour
      * @throws BdErreur
      * @throws NoIdentification
+     * @throws EncodageReapproException
      * @see LigneReappro
      * @see Reappro
      */
-    public void setQteStock(Reappro reap, LigneReappro lReap) throws BdErreur, NoIdentification;
+    public void setQteStock(Reappro reap, LigneReappro lReap) throws BdErreur, NoIdentification,EncodageReapproException;
 
     /**
+     * Supprimer un reappro
      *
      * @param idP id du reapprovisionnement a supprimer
      * @throws BdErreur
@@ -83,6 +90,7 @@ public interface ReapproInterface {
     public void suppReappro(Integer idP) throws BdErreur, NoIdentification;
 
     /**
+     * Tous les reappro a une date pour un fournisseur
      *
      * @param dateR la date a laquelle on veut consulter les
      * reapprovisionnements

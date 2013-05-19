@@ -3,6 +3,7 @@ package packageInterface;
 import java.util.ArrayList;
 import packageException.AddArtException;
 import packageException.BdErreur;
+import packageException.ModifArtException;
 import packageException.NoIdentification;
 import packageModel.Article;
 import packageModel.Categorie;
@@ -16,6 +17,7 @@ import packageModel.Reappro;
 public interface ArticleInterface {
 
     /**
+     * Ajouter un article 
      *
      * @param nouvArt nouvel article qui doit etre ajoute
      * @param fourn fournisseur de l article -foreign key
@@ -44,6 +46,7 @@ public interface ArticleInterface {
     public ArrayList<Article> getArticleReappro(Article art, Reappro reap) throws BdErreur, NoIdentification;
 
     /**
+     * Recupérer id article
      *
      * @param libelle libelle de l article selectionne
      * @param typeA type de l article selectionne
@@ -56,6 +59,7 @@ public interface ArticleInterface {
     public Integer getIDArticle(String libelle, String typeA) throws BdErreur, NoIdentification;
 
     /**
+     * Recupérer une arrayList d'articles pour table
      *
      * @return une ArrayList d articles de la BD
      * @throws BdErreur
@@ -66,6 +70,7 @@ public interface ArticleInterface {
     public ArrayList<Article> getAllArticle() throws BdErreur, NoIdentification;
 
     /**
+     * Modifier un article
      *
      * @param artNouvVersion le nouvel article avec les nouvelles donnees
      * @param artAncVersion l ancien article avec les vieilles donnees
@@ -73,9 +78,10 @@ public interface ArticleInterface {
      * @throws NoIdentification
      * @see Article
      */
-    public void modifArticle(Article artNouvVersion, Article artAncVersion) throws BdErreur, NoIdentification;
+    public void modifArticle(Article artNouvVersion, Article artAncVersion) throws BdErreur, NoIdentification,ModifArtException;
 
     /**
+     * Tous les articles d'une categorie
      *
      * @param typeArt type de l article
      * @param cat categorie de l article
@@ -90,6 +96,7 @@ public interface ArticleInterface {
     public ArrayList<Article> getAllArticleRechCat(String typeArt, Categorie cat) throws BdErreur, NoIdentification;
 
     /**
+     * Tous les articles d'un fournisseur
      *
      * @param fourn le fournisseur souhaite
      * @return une ArrayList d articles suivant le fournisseur selectionne
@@ -102,6 +109,7 @@ public interface ArticleInterface {
     public ArrayList<Article> getAllArticleRechFourn(Fournisseur fourn) throws BdErreur, NoIdentification;
     
     /**
+     * Recupérer quantité d'un article
      *
      * @param libelleA libelle de l article a encoder
      * @param typeA    type de l article a encoder

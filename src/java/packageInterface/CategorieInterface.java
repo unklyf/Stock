@@ -12,6 +12,7 @@ import packageModel.Categorie;
 public interface CategorieInterface {
     
     /**
+     * Liste des libelles categorie
      *
      * @return une ArrayList des categorie de la BD
      * @throws BdErreur
@@ -22,6 +23,7 @@ public interface CategorieInterface {
     public ArrayList<Categorie> getCatArticle() throws BdErreur, NoIdentification;
 
     /**
+     * Obtenir id d'une categorie
      *
      * @param libelle libelle article souhaite
      * @return id article a partir du libelle

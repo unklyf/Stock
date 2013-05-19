@@ -6,16 +6,20 @@ import javax.swing.JOptionPane;
 import packageController.ApplicationController;
 import packageException.IdentificationErreur;
 
-
+/**
+ * Fenetre login
+ *
+ * @author BELLENGER JORDAN/SCHMITZ LOIC
+ */
 public class LoginJFrame extends javax.swing.JFrame {
 
-   
+    /**
+     *
+     */
     public LoginJFrame() {
         initComponents();
         this.setLocationRelativeTo(null);
     }
-
-    
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -94,40 +98,38 @@ public class LoginJFrame extends javax.swing.JFrame {
 
     private void ConnectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConnectActionPerformed
         // Bouton se connecter
- 
-        try{
+
+        try {
+            //Connection
             ApplicationController ap = new ApplicationController();
             ap.identification(this.userField.getText(), new String(this.jPasswordField.getPassword()));
-            dispose();            
+            dispose();
             MainJFrame fen = new MainJFrame();
-            JOptionPane.showMessageDialog(null,"Connexion réussie");
             fen.setVisible(true);
-        }
-        catch(IdentificationErreur e){
+            JOptionPane.showMessageDialog(null, "Connexion réussie");
+        } catch (IdentificationErreur e) {
             JOptionPane.showMessageDialog(null, e, "Echec de connexion", JOptionPane.ERROR_MESSAGE);
             this.userField.setBackground(Color.red);
             this.jPasswordField.setBackground(Color.red);
         }
-        
+
     }//GEN-LAST:event_ConnectActionPerformed
 
     private void jPasswordFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPasswordFieldKeyPressed
         //Pour pouvoir appuyer sur ENTER et se connecter
-        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             this.ConnectActionPerformed(null);
         }
-        
+
     }//GEN-LAST:event_jPasswordFieldKeyPressed
 
-   
+    /**
+     * MAIN
+     *
+     * @param args parametres fonction main
+     */
     public static void main(String args[]) {
-       
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /*
-         * If Nimbus (introduced in Java SE 6) is not available, stay with the
-         * default look and feel. For details see
-         * http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
-         */
+
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -144,11 +146,10 @@ public class LoginJFrame extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(LoginJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
 
-      
+
         java.awt.EventQueue.invokeLater(new Runnable() {
-
+            @Override
             public void run() {
                 new LoginJFrame().setVisible(true);
             }

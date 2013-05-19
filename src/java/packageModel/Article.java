@@ -11,6 +11,7 @@ public class Article {
     private Categorie cat;
     private Fournisseur fourn;
     private Integer idProduit, quantite;
+    private Boolean interMoins18ans;
 
     /**
      *
@@ -26,16 +27,18 @@ public class Article {
      * @param c   cadeau lie a article
      * @param pm  prix marchandise article
      * @param pc  prix consigne article
+     * @param in  booleen boisson interdite -18
      * @see String
      * @see Double
      */
-    public Article(String lib, String typ, String d, String c, double pm, double pc) {
+    public Article(String lib, String typ, String d, String c, double pm, double pc, Boolean in) {
         this.libelle = lib;
         this.typeA = typ;
         this.desc = d;
         this.prixM = pm;
         this.prixC = pc;
         this.cadeau = c;
+        this.interMoins18ans=in;
     }
 
     /**
@@ -83,13 +86,14 @@ public class Article {
      * @param pm  prix marchandise article
      * @param f   fournisseur article
      * @param ca  categorie article
+     * @param in  booleen boisson interdite -18
      * @see Integer
      * @see String
      * @see Double
      * @see Fournisseur
      * @see Categorie
      */
-    public Article(Integer id, String lib, String typ, String d, Integer q, double pm, Fournisseur f, Categorie ca) {
+    public Article(Integer id, String lib, String typ, String d, Integer q, double pm, Fournisseur f, Categorie ca,Boolean in) {
         this.idProduit = id;
         this.libelle = lib;
         this.typeA = typ;
@@ -98,6 +102,7 @@ public class Article {
         this.prixM = pm;
         this.fourn = f;
         this.cat = ca;
+        this.interMoins18ans=in;
     }
 
     /**
@@ -221,6 +226,15 @@ public class Article {
      */
     public double getPrixC() {
         return this.prixC;
+    }
+    
+    /**
+     *
+     * @return booleen boisson interdite -18
+     * @see Boolean
+     */
+    public Boolean getInterMoins18ans() {
+        return interMoins18ans;
     }
 
     /**

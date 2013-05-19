@@ -15,6 +15,8 @@ public class CategorieManager {
     private CategorieDBAccess cDBA = new CategorieDBAccess();
 
     /**
+     * Liste des libelles categorie
+     * 
      * @return une ArrayList des categorie de la BD
      * @throws BdErreur
      * @throws NoIdentification

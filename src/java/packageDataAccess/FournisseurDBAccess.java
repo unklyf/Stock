@@ -17,6 +17,7 @@ public class FournisseurDBAccess implements FournisseurInterface {
 
     /**
      * Liste de libelle de fournisseurs
+     * 
      * @return une ArrayList de fournisseur
      * @throws BdErreur
      * @throws NoIdentification
@@ -48,6 +49,7 @@ public class FournisseurDBAccess implements FournisseurInterface {
     }
 
     /**
+     * Obtenir id d'un fournisseur
      *
      * @param nom
      * @return id du fournisseur suivant son nom

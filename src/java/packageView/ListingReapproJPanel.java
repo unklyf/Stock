@@ -8,14 +8,23 @@ import javax.swing.SpinnerNumberModel;
 import javax.swing.table.TableColumn;
 import packageController.ApplicationController;
 import packageException.BdErreur;
+import packageException.EncodageReapproException;
 import packageException.NoIdentification;
 
-
+/**
+ * Listing des reappros et encodage de ces derniers
+ *
+ * @author BELLENGER JORDAN/SCHMITZ LOIC
+ */
 public class ListingReapproJPanel extends javax.swing.JPanel {
+
     private ListSelectionModel listSelect, listSelectArticle;
     private AllLigneReapproModel reapL;
-    private AllReapproModel  reapMod;
-    
+    private AllReapproModel reapMod;
+
+    /**
+     *
+     */
     public ListingReapproJPanel() {
         initComponents();
         //JTable Reappro et Ligne Reappro sélection
@@ -23,7 +32,7 @@ public class ListingReapproJPanel extends javax.swing.JPanel {
         listSelect = jTableReappro.getSelectionModel();
         jTableLigneReappro.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         listSelectArticle = jTableLigneReappro.getSelectionModel();
-        
+
         //Panneau et boutons modifs cachés
         labelTitrePanelEncodage.setVisible(false);
         jPanelEncodageStock.setVisible(false);
@@ -33,37 +42,36 @@ public class ListingReapproJPanel extends javax.swing.JPanel {
         jLabelFacult.setVisible(false);
         jLabelNote.setVisible(false);
         jTextNote.setVisible(false);
-        
+
         try {
-            reapMod = new AllReapproModel (new ApplicationController().getAllReappro());
+            //Remplir tableau
+            reapMod = new AllReapproModel(new ApplicationController().getAllReappro());
             jTableReappro.setModel(reapMod);
             jTableReappro.repaint();
             jTableReappro.validate();
-            
+
+            //Redimensionnement colonnes
             jTableReappro.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-            
-            TableColumn colID = jTableReappro.getColumnModel( ).getColumn(0);
-            colID.setPreferredWidth(80); 
-            TableColumn colDate = jTableReappro.getColumnModel( ).getColumn(1);          
-            colDate.setPreferredWidth(160); 
-            TableColumn colNote = jTableReappro.getColumnModel( ).getColumn(3);
+
+            TableColumn colID = jTableReappro.getColumnModel().getColumn(0);
+            colID.setPreferredWidth(80);
+            TableColumn colDate = jTableReappro.getColumnModel().getColumn(1);
+            colDate.setPreferredWidth(160);
+            TableColumn colNote = jTableReappro.getColumnModel().getColumn(3);
             colNote.setPreferredWidth(276);
-            TableColumn colPc = jTableReappro.getColumnModel( ).getColumn(4);
+            TableColumn colPc = jTableReappro.getColumnModel().getColumn(4);
             colPc.setPreferredWidth(120);
-            
-           
-            
-            }        
-            catch(BdErreur e){
-                JOptionPane.showMessageDialog(null, e, "Erreur BD", JOptionPane.ERROR_MESSAGE);
-            }
-            catch(NoIdentification e){
-                JOptionPane.showMessageDialog(null, e, "Erreur identification", JOptionPane.ERROR_MESSAGE);
-        
+
+
+
+        } catch (BdErreur e) {
+            JOptionPane.showMessageDialog(null, e, "Erreur BD", JOptionPane.ERROR_MESSAGE);
+        } catch (NoIdentification e) {
+            JOptionPane.showMessageDialog(null, e, "Erreur identification", JOptionPane.ERROR_MESSAGE);
+
         }
     }
 
-   
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -338,94 +346,89 @@ public class ListingReapproJPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    //Afficher les articles du reappro (LigneReappro)
     private void buttonListerLigneReap1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonListerLigneReap1ActionPerformed
-       
-        if(listSelect.isSelectionEmpty()){
-             JOptionPane.showMessageDialog(null, "Aucune ligne sélectionnée.\nVeuillez sélectionner une ligne.");
-        }
-        else{
+
+        if (listSelect.isSelectionEmpty()) {
+            JOptionPane.showMessageDialog(null, "Aucune ligne sélectionnée.\nVeuillez sélectionner une ligne.");
+        } else {
             try {
+                //Remplir tableau
                 int indLigne = listSelect.getMinSelectionIndex();
-                reapL = new AllLigneReapproModel (new ApplicationController().getAllLigneReappro(Integer.parseInt(jTableReappro.getValueAt(indLigne, 0).toString())));
+                reapL = new AllLigneReapproModel(new ApplicationController().getAllLigneReappro(Integer.parseInt(jTableReappro.getValueAt(indLigne, 0).toString())));
                 jTableLigneReappro.setVisible(true);
                 jTableLigneReappro.setModel(reapL);
                 jTableLigneReappro.repaint();
                 jTableLigneReappro.validate();
-            
-            }        
-            catch(BdErreur e){
+
+            } catch (BdErreur e) {
                 JOptionPane.showMessageDialog(null, e, "Erreur BD", JOptionPane.ERROR_MESSAGE);
-            }
-            catch(NoIdentification e){
+            } catch (NoIdentification e) {
                 JOptionPane.showMessageDialog(null, e, "Erreur identification", JOptionPane.ERROR_MESSAGE);
             }
-            
+
         }
     }//GEN-LAST:event_buttonListerLigneReap1ActionPerformed
 
+    //Encoder reappro dans le stock
     private void buttonEncoderReapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEncoderReapActionPerformed
-        int indLigne = listSelect.getMinSelectionIndex(); 
-        
-        if(listSelect.isSelectionEmpty()){
-             JOptionPane.showMessageDialog(null, "Aucune ligne sélectionnée.\nVeuillez sélectionner une ligne.");
-        }
-        else{
-                if(jTableReappro.getValueAt(indLigne, 2).toString().equals("Terminé")){
-                      JOptionPane.showMessageDialog(null, "Réapprovisionnement terminé","Encodage déjà réalisé",JOptionPane.ERROR_MESSAGE);
-                }
-                else{
-                   //Affichage de ce qu'on a besoin
-                   jLabelFacult.setVisible(true);
-                   jLabelNote.setVisible(true);
-                   jTextNote.setVisible(true);
-                   buttonModifArt.setVisible(true);
-                   buttonEndEncoder.setVisible(true);
-                   buttonAnnuler.setVisible(true);
-                   buttonListerLigneReap1.setVisible(false);
-                   buttonEncoderReap.setVisible(false);
-                   jTableReappro.setEnabled(false);
-                   
-                   
-                   try {
-                        reapL = new AllLigneReapproModel (new ApplicationController().getAllLigneReappro(Integer.parseInt(jTableReappro.getValueAt(indLigne, 0).toString())));
-                        jTableLigneReappro.setVisible(true);
-                        jTableLigneReappro.setModel(reapL);
-                        jTableLigneReappro.repaint();
-                        jTableLigneReappro.validate();
+        //Récupérer ligne tableau  
+        int indLigne = listSelect.getMinSelectionIndex();
 
-                    }        
-                    catch(BdErreur e){
-                        JOptionPane.showMessageDialog(null, e, "Erreur BD", JOptionPane.ERROR_MESSAGE);
-                    }
-                    catch(NoIdentification e){
-                        JOptionPane.showMessageDialog(null, e, "Erreur identification", JOptionPane.ERROR_MESSAGE);
-                    }
-               }
+        if (listSelect.isSelectionEmpty()) {
+            JOptionPane.showMessageDialog(null, "Aucune ligne sélectionnée.\nVeuillez sélectionner une ligne.");
+        } else {
+            if (jTableReappro.getValueAt(indLigne, 2).toString().equals("Terminé")) {
+                JOptionPane.showMessageDialog(null, "Réapprovisionnement terminé", "Encodage déjà réalisé", JOptionPane.ERROR_MESSAGE);
+            } else {
+                //Affichage de ce qu'on a besoin
+                jLabelFacult.setVisible(true);
+                jLabelNote.setVisible(true);
+                jTextNote.setVisible(true);
+                buttonModifArt.setVisible(true);
+                buttonEndEncoder.setVisible(true);
+                buttonAnnuler.setVisible(true);
+                buttonListerLigneReap1.setVisible(false);
+                buttonEncoderReap.setVisible(false);
+                jTableReappro.setEnabled(false);
+
+
+                try {
+                    reapL = new AllLigneReapproModel(new ApplicationController().getAllLigneReappro(Integer.parseInt(jTableReappro.getValueAt(indLigne, 0).toString())));
+                    jTableLigneReappro.setVisible(true);
+                    jTableLigneReappro.setModel(reapL);
+                    jTableLigneReappro.repaint();
+                    jTableLigneReappro.validate();
+
+                } catch (BdErreur e) {
+                    JOptionPane.showMessageDialog(null, e, "Erreur BD", JOptionPane.ERROR_MESSAGE);
+                } catch (NoIdentification e) {
+                    JOptionPane.showMessageDialog(null, e, "Erreur identification", JOptionPane.ERROR_MESSAGE);
+                }
+            }
         }
-      
+
     }//GEN-LAST:event_buttonEncoderReapActionPerformed
 
-    
-    
+    //Modifier un article 
     private void buttonModifArtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonModifArtActionPerformed
-        
-        //Récupérer ligne       
-        int indice = listSelectArticle.getMinSelectionIndex(); 
-        
-        if(listSelectArticle.isSelectionEmpty()){
-             JOptionPane.showMessageDialog(null, "Aucune ligne sélectionnée.\nVeuillez sélectionner une ligne.");
-        }
-        else{
-             jTextFieldModifType.setText(reapL.getValueAt(indice, 1).toString());
-             jTextFieldModifLib.setText(reapL.getValueAt(indice, 0).toString());
-             quantiteSpinner.setValue(Integer.parseInt(reapL.getValueAt(indice, 2).toString()));
-             labelTitrePanelEncodage.setVisible(true);
-             jPanelEncodageStock.setVisible(true);
+
+        //Récupérer ligne tableau       
+        int indice = listSelectArticle.getMinSelectionIndex();
+
+        if (listSelectArticle.isSelectionEmpty()) {
+            JOptionPane.showMessageDialog(null, "Aucune ligne sélectionnée.\nVeuillez sélectionner une ligne.");
+        } else {
+            //Modification
+            jTextFieldModifType.setText(reapL.getValueAt(indice, 1).toString());
+            jTextFieldModifLib.setText(reapL.getValueAt(indice, 0).toString());
+            quantiteSpinner.setValue(Integer.parseInt(reapL.getValueAt(indice, 2).toString()));
+            labelTitrePanelEncodage.setVisible(true);
+            jPanelEncodageStock.setVisible(true);
         }
     }//GEN-LAST:event_buttonModifArtActionPerformed
 
-    
-    
+    //Annuler encodage
     private void buttonAnnulerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAnnulerActionPerformed
         //Affichage comme avant
         jLabelFacult.setVisible(false);
@@ -441,14 +444,14 @@ public class ListingReapproJPanel extends javax.swing.JPanel {
         buttonAnnuler.setVisible(false);
     }//GEN-LAST:event_buttonAnnulerActionPerformed
 
-    
+    //Valider la modification article
     private void buttonValiderModifActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonValiderModifActionPerformed
-        //Récupérer ligne       
-        int indice = listSelectArticle.getMinSelectionIndex(); 
-        
+        //Récupérer ligne tableau      
+        int indice = listSelectArticle.getMinSelectionIndex();
+
         //Modifier quantitée
         reapL.getContents().get(indice).setQte(Integer.parseInt(quantiteSpinner.getValue().toString()));
-        
+
         //Reaffichage encodage et jTable
         labelTitrePanelEncodage.setVisible(false);
         jPanelEncodageStock.setVisible(false);
@@ -456,33 +459,33 @@ public class ListingReapproJPanel extends javax.swing.JPanel {
         jTableLigneReappro.validate();
     }//GEN-LAST:event_buttonValiderModifActionPerformed
 
+    //Encoder definitivement tous les articles dans le stock
     private void buttonEndEncoderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEndEncoderActionPerformed
-        
+
         //Encoder les articles dans les stocks        
         int indLigne = listSelect.getMinSelectionIndex();
         reapMod.getContents().get(indLigne).setNote(this.jTextNote.getText());
         reapMod.getContents().get(indLigne).setEtat("Terminé");
         try {
-                for(int i=0; i < reapL.getContents().size();i++){
-                    new ApplicationController().setQteStock(reapMod.getContents().get(indLigne), reapL.getContents().get(i));
-                }       
-        }        
-        catch(BdErreur e){
+            for (int i = 0; i < reapL.getContents().size(); i++) {
+                new ApplicationController().setQteStock(reapMod.getContents().get(indLigne), reapL.getContents().get(i));
+            }
+        } catch (BdErreur e) {
             JOptionPane.showMessageDialog(null, e, "Erreur BD", JOptionPane.ERROR_MESSAGE);
-        }
-        catch(NoIdentification e){
+        } catch (NoIdentification e) {
             JOptionPane.showMessageDialog(null, e, "Erreur identification", JOptionPane.ERROR_MESSAGE);
+        } catch (EncodageReapproException e) {
+            JOptionPane.showMessageDialog(null, e, "Exception", JOptionPane.ERROR_MESSAGE);
         }
-        
-        
+
+
         //Reaffichage listing
         buttonAnnuler.doClick();
         jTableReappro.setModel(reapMod);
         jTableReappro.repaint();
         jTableReappro.validate();
-        jTableLigneReappro.setVisible(false);       
+        jTableLigneReappro.setVisible(false);
     }//GEN-LAST:event_buttonEndEncoderActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonAnnuler;
     private javax.swing.JButton buttonEncoderReap;
