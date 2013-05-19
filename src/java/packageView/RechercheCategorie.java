@@ -1,6 +1,5 @@
 package packageView;
 
-import java.awt.Color;
 import java.awt.event.ItemEvent;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -9,21 +8,28 @@ import javax.swing.table.TableColumn;
 import packageController.ApplicationController;
 import packageException.BdErreur;
 import packageException.NoIdentification;
-import packageModel.Article;
 import packageModel.Categorie;
 
+/**
+ * Panel recherche par categorie
+ *
+ * @author BELLENGER JORDAN/SCHMITZ LOIC
+ */
 public class RechercheCategorie extends javax.swing.JPanel {
 
     private ArrayList<Categorie> tabCat;
-    private ArrayList<Article> listeArtCombo;
     private String typeArt;
     private AllArticleModif allArt;
 
+    /**
+     *
+     */
     public RechercheCategorie() {
         initComponents();
         this.jTableRechCat.setVisible(false);
         tabCat = new ArrayList<Categorie>();
-        listeArtCombo = new ArrayList<Article>();
+
+        //Remplir liste catégorie
         try {
             tabCat = new ApplicationController().getCatArticle();
             this.comboCat.removeAllItems();
@@ -40,7 +46,6 @@ public class RechercheCategorie extends javax.swing.JPanel {
         }
     }
 
-    @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -147,31 +152,35 @@ public class RechercheCategorie extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    //Choix type article bouteille
     private void ButtonBouteilleItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_ButtonBouteilleItemStateChanged
         if (evt.getStateChange() == ItemEvent.SELECTED) {
             try {
                 typeArt = "Bouteille";
+
+                //Remplir tableau
                 this.jTableRechCat.setVisible(true);
                 allArt = new AllArticleModif(new ApplicationController().getAllArticleRechCat(typeArt, tabCat.get(comboCat.getSelectedIndex())));
                 jTableRechCat.setModel(allArt);
                 jTableRechCat.repaint();
                 jTableRechCat.validate();
-                
+
+                //Redimensionnement cellules
                 jTableRechCat.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-            
-                TableColumn colLib = jTableRechCat.getColumnModel( ).getColumn(0);
-                colLib.setPreferredWidth(150); 
-                TableColumn colDesc = jTableRechCat.getColumnModel( ).getColumn(2);          
-                colDesc.setPreferredWidth(420); 
-                TableColumn colPm = jTableRechCat.getColumnModel( ).getColumn(4);
+
+                TableColumn colLib = jTableRechCat.getColumnModel().getColumn(0);
+                colLib.setPreferredWidth(150);
+                TableColumn colDesc = jTableRechCat.getColumnModel().getColumn(2);
+                colDesc.setPreferredWidth(420);
+                TableColumn colPm = jTableRechCat.getColumnModel().getColumn(4);
                 colPm.setPreferredWidth(120);
-                TableColumn colPc = jTableRechCat.getColumnModel( ).getColumn(5);
+                TableColumn colPc = jTableRechCat.getColumnModel().getColumn(5);
                 colPc.setPreferredWidth(120);
-                TableColumn colCad = jTableRechCat.getColumnModel( ).getColumn(6);
+                TableColumn colCad = jTableRechCat.getColumnModel().getColumn(6);
                 colCad.setPreferredWidth(100);
-                TableColumn colFourn = jTableRechCat.getColumnModel( ).getColumn(7);
+                TableColumn colFourn = jTableRechCat.getColumnModel().getColumn(7);
                 colFourn.setPreferredWidth(150);
-                TableColumn colCat = jTableRechCat.getColumnModel( ).getColumn(8);
+                TableColumn colCat = jTableRechCat.getColumnModel().getColumn(8);
                 colCat.setPreferredWidth(150);
 
             } catch (BdErreur e) {
@@ -182,33 +191,36 @@ public class RechercheCategorie extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_ButtonBouteilleItemStateChanged
 
+    //Choix type article casier
     private void ButtonCasierItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_ButtonCasierItemStateChanged
         if (evt.getStateChange() == ItemEvent.SELECTED) {
             try {
                 typeArt = "Casier";
+                //Remplir tableau
                 this.jTableRechCat.setVisible(true);
                 allArt = new AllArticleModif(new ApplicationController().getAllArticleRechCat(typeArt, tabCat.get(comboCat.getSelectedIndex())));
                 jTableRechCat.setModel(allArt);
                 jTableRechCat.repaint();
                 jTableRechCat.validate();
-                
+
+                //Redimensionnement cellules
                 jTableRechCat.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-            
-                TableColumn colLib = jTableRechCat.getColumnModel( ).getColumn(0);
-                colLib.setPreferredWidth(150); 
-                TableColumn colDesc = jTableRechCat.getColumnModel( ).getColumn(2);          
-                colDesc.setPreferredWidth(420); 
-                TableColumn colPm = jTableRechCat.getColumnModel( ).getColumn(4);
+
+                TableColumn colLib = jTableRechCat.getColumnModel().getColumn(0);
+                colLib.setPreferredWidth(150);
+                TableColumn colDesc = jTableRechCat.getColumnModel().getColumn(2);
+                colDesc.setPreferredWidth(420);
+                TableColumn colPm = jTableRechCat.getColumnModel().getColumn(4);
                 colPm.setPreferredWidth(120);
-                TableColumn colPc = jTableRechCat.getColumnModel( ).getColumn(5);
+                TableColumn colPc = jTableRechCat.getColumnModel().getColumn(5);
                 colPc.setPreferredWidth(120);
-                TableColumn colCad = jTableRechCat.getColumnModel( ).getColumn(6);
+                TableColumn colCad = jTableRechCat.getColumnModel().getColumn(6);
                 colCad.setPreferredWidth(100);
-                TableColumn colFourn = jTableRechCat.getColumnModel( ).getColumn(7);
+                TableColumn colFourn = jTableRechCat.getColumnModel().getColumn(7);
                 colFourn.setPreferredWidth(150);
-                TableColumn colCat = jTableRechCat.getColumnModel( ).getColumn(8);
+                TableColumn colCat = jTableRechCat.getColumnModel().getColumn(8);
                 colCat.setPreferredWidth(150);
-                
+
             } catch (BdErreur e) {
                 JOptionPane.showMessageDialog(null, e, "Erreur BD", JOptionPane.ERROR_MESSAGE);
             } catch (NoIdentification e) {
@@ -217,33 +229,36 @@ public class RechercheCategorie extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_ButtonCasierItemStateChanged
 
+    //Choix type article fut
     private void ButtonFutItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_ButtonFutItemStateChanged
         if (evt.getStateChange() == ItemEvent.SELECTED) {
             try {
                 typeArt = "Fût";
+                //Remplir tableau
                 this.jTableRechCat.setVisible(true);
                 allArt = new AllArticleModif(new ApplicationController().getAllArticleRechCat(typeArt, tabCat.get(comboCat.getSelectedIndex())));
                 jTableRechCat.setModel(allArt);
                 jTableRechCat.repaint();
                 jTableRechCat.validate();
-                
+
+                //Redimensionnement cellules
                 jTableRechCat.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-            
-                TableColumn colLib = jTableRechCat.getColumnModel( ).getColumn(0);
-                colLib.setPreferredWidth(150); 
-                TableColumn colDesc = jTableRechCat.getColumnModel( ).getColumn(2);          
-                colDesc.setPreferredWidth(420); 
-                TableColumn colPm = jTableRechCat.getColumnModel( ).getColumn(4);
+
+                TableColumn colLib = jTableRechCat.getColumnModel().getColumn(0);
+                colLib.setPreferredWidth(150);
+                TableColumn colDesc = jTableRechCat.getColumnModel().getColumn(2);
+                colDesc.setPreferredWidth(420);
+                TableColumn colPm = jTableRechCat.getColumnModel().getColumn(4);
                 colPm.setPreferredWidth(120);
-                TableColumn colPc = jTableRechCat.getColumnModel( ).getColumn(5);
+                TableColumn colPc = jTableRechCat.getColumnModel().getColumn(5);
                 colPc.setPreferredWidth(120);
-                TableColumn colCad = jTableRechCat.getColumnModel( ).getColumn(6);
+                TableColumn colCad = jTableRechCat.getColumnModel().getColumn(6);
                 colCad.setPreferredWidth(100);
-                TableColumn colFourn = jTableRechCat.getColumnModel( ).getColumn(7);
+                TableColumn colFourn = jTableRechCat.getColumnModel().getColumn(7);
                 colFourn.setPreferredWidth(150);
-                TableColumn colCat = jTableRechCat.getColumnModel( ).getColumn(8);
+                TableColumn colCat = jTableRechCat.getColumnModel().getColumn(8);
                 colCat.setPreferredWidth(150);
-                
+
             } catch (BdErreur e) {
                 JOptionPane.showMessageDialog(null, e, "Erreur BD", JOptionPane.ERROR_MESSAGE);
             } catch (NoIdentification e) {
@@ -252,7 +267,9 @@ public class RechercheCategorie extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_ButtonFutItemStateChanged
 
+    //Quand choix catégorie change
     private void comboCatItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comboCatItemStateChanged
+        //Reinitialise
         this.buttonGroup1.clearSelection();
         this.jTableRechCat.setVisible(false);
     }//GEN-LAST:event_comboCatItemStateChanged

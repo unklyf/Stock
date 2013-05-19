@@ -70,12 +70,12 @@
                       <Group type="102" attributes="0">
                           <Component id="labelCat" min="-2" pref="174" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="JComboCat" min="-2" pref="226" max="-2" attributes="0"/>
+                          <Component id="jComboCat" min="-2" pref="226" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="labelFourn" min="-2" pref="174" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="ComboFourn" min="-2" pref="226" max="-2" attributes="0"/>
+                          <Component id="comboFourn" min="-2" pref="226" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -89,24 +89,24 @@
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="ButtonBouteille" min="-2" max="-2" attributes="0"/>
+                                  <Component id="buttonBouteille" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="ButtonCasier" min="-2" max="-2" attributes="0"/>
+                                  <Component id="buttonCasier" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="ButtonFut" min="-2" max="-2" attributes="0"/>
+                                  <Component id="buttonFut" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <Component id="JTextFieldLibelle" max="32767" attributes="0"/>
+                              <Component id="jTextFieldLibelle" max="32767" attributes="0"/>
                               <Component id="labelMajuscule" alignment="0" min="-2" pref="197" max="-2" attributes="0"/>
                               <Component id="jScrollPaneDesc" max="32767" attributes="0"/>
-                              <Component id="PrixConsSpinner" alignment="0" max="32767" attributes="0"/>
-                              <Component id="PrixMarchSpinner" alignment="0" max="32767" attributes="0"/>
-                              <Component id="CadeauComboBox" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="prixConsSpinner" alignment="0" max="32767" attributes="0"/>
+                              <Component id="prixMarchSpinner" alignment="0" max="32767" attributes="0"/>
+                              <Component id="cadeauComboBox" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="labelFacultatifCons" min="-2" pref="78" max="-2" attributes="0"/>
                               <Component id="labelFacultatifCad" min="-2" pref="78" max="-2" attributes="0"/>
-                              <Component id="ButtonAjout" min="-2" pref="78" max="-2" attributes="0"/>
+                              <Component id="buttonAjout" min="-2" pref="78" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -120,28 +120,28 @@
                   <EmptySpace pref="27" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="labelFourn" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="ComboFourn" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="comboFourn" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
                       <Component id="labelType" min="-2" max="-2" attributes="0"/>
                       <Group type="103" alignment="1" groupAlignment="3" attributes="0">
-                          <Component id="ButtonBouteille" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="ButtonCasier" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="ButtonFut" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="buttonBouteille" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="buttonCasier" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="buttonFut" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="labelCat" min="-2" max="-2" attributes="0"/>
-                      <Component id="JComboCat" min="-2" max="-2" attributes="0"/>
+                      <Component id="jComboCat" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="labelMajuscule" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="labelLibelle" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="JTextFieldLibelle" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jTextFieldLibelle" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
@@ -151,22 +151,22 @@
                   <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="labelMarchandise" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="PrixMarchSpinner" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="prixMarchSpinner" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="labelConsigne" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="PrixConsSpinner" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="prixConsSpinner" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="labelFacultatifCons" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="labelCadeau" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="CadeauComboBox" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="cadeauComboBox" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="labelFacultatifCad" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-                  <Component id="ButtonAjout" min="-2" pref="33" max="-2" attributes="0"/>
+                  <Component id="buttonAjout" min="-2" pref="33" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -181,14 +181,14 @@
             <Property name="text" type="java.lang.String" value="Prix Consigne :"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JSpinner" name="PrixMarchSpinner">
+        <Component class="javax.swing.JSpinner" name="prixMarchSpinner">
           <Properties>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
               <Connection code="null" type="code"/>
             </Property>
           </Properties>
           <AuxValues>
-            <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="SpinnerModel modelpm = new SpinnerNumberModel(0.00,0.00,1000.00,0.01);&#xa;PrixMarchSpinner.setModel(modelpm);"/>
+            <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="SpinnerModel modelpm = new SpinnerNumberModel(0.00,0.00,1000.00,0.01);&#xa;prixMarchSpinner.setModel(modelpm);"/>
           </AuxValues>
         </Component>
         <Component class="javax.swing.JLabel" name="labelMarchandise">
@@ -199,7 +199,7 @@
             <Property name="text" type="java.lang.String" value="Prix Marchandise :"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JComboBox" name="CadeauComboBox">
+        <Component class="javax.swing.JComboBox" name="cadeauComboBox">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="8">
@@ -215,17 +215,17 @@
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="ButtonAjout">
+        <Component class="javax.swing.JButton" name="buttonAjout">
           <Properties>
             <Property name="text" type="java.lang.String" value="Ajouter "/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ButtonAjoutActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonAjoutActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JSpinner" name="PrixConsSpinner">
+        <Component class="javax.swing.JSpinner" name="prixConsSpinner">
           <AuxValues>
-            <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="SpinnerModel modelpc = new SpinnerNumberModel(0.00,0.00,1000.00,0.01);&#xa;PrixConsSpinner.setModel(modelpc);"/>
+            <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="SpinnerModel modelpc = new SpinnerNumberModel(0.00,0.00,1000.00,0.01);&#xa;prixConsSpinner.setModel(modelpc);"/>
           </AuxValues>
         </Component>
         <Component class="javax.swing.JLabel" name="labelCadeau">
@@ -244,7 +244,7 @@
             <Property name="text" type="java.lang.String" value="(Facultatif)"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="JTextFieldLibelle">
+        <Component class="javax.swing.JTextField" name="jTextFieldLibelle">
         </Component>
         <Component class="javax.swing.JLabel" name="labelFacultatifCons">
           <Properties>
@@ -270,7 +270,7 @@
             <Property name="text" type="java.lang.String" value="Fournisseur :"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JRadioButton" name="ButtonBouteille">
+        <Component class="javax.swing.JRadioButton" name="buttonBouteille">
           <Properties>
             <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
               <ComponentRef name="buttonGroup1"/>
@@ -278,7 +278,7 @@
             <Property name="text" type="java.lang.String" value="Bouteille"/>
           </Properties>
           <Events>
-            <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="ButtonBouteilleItemStateChanged"/>
+            <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="buttonBouteilleItemStateChanged"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="labelType">
@@ -289,7 +289,7 @@
             <Property name="text" type="java.lang.String" value="Type Article :"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JRadioButton" name="ButtonFut">
+        <Component class="javax.swing.JRadioButton" name="buttonFut">
           <Properties>
             <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
               <ComponentRef name="buttonGroup1"/>
@@ -297,10 +297,10 @@
             <Property name="text" type="java.lang.String" value="F&#xfb;t"/>
           </Properties>
           <Events>
-            <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="ButtonFutItemStateChanged"/>
+            <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="buttonFutItemStateChanged"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JRadioButton" name="ButtonCasier">
+        <Component class="javax.swing.JRadioButton" name="buttonCasier">
           <Properties>
             <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
               <ComponentRef name="buttonGroup1"/>
@@ -308,7 +308,7 @@
             <Property name="text" type="java.lang.String" value="Casier"/>
           </Properties>
           <Events>
-            <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="ButtonCasierItemStateChanged"/>
+            <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="buttonCasierItemStateChanged"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="labelDescription">
@@ -319,7 +319,7 @@
             <Property name="text" type="java.lang.String" value="Description :"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JComboBox" name="ComboFourn">
+        <Component class="javax.swing.JComboBox" name="comboFourn">
         </Component>
         <Container class="javax.swing.JScrollPane" name="jScrollPaneDesc">
           <AuxValues>
@@ -355,7 +355,7 @@
             <Property name="text" type="java.lang.String" value="Cat&#xe9;gorie :"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JComboBox" name="JComboCat">
+        <Component class="javax.swing.JComboBox" name="jComboCat">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="0"/>

@@ -7,6 +7,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import packageException.AddArtException;
 import packageException.BdErreur;
+import packageException.ModifArtException;
 import packageException.NoIdentification;
 import packageInterface.ArticleInterface;
 import packageModel.Article;
@@ -21,6 +22,7 @@ import packageModel.Reappro;
 public class ArticleDBAccess implements ArticleInterface {
 
     /**
+     * Ajouter un article 
      *
      * @param nouvArt nouvel article qui doit etre ajoute
      * @param fourn fournisseur de l article -foreign key
@@ -85,6 +87,7 @@ public class ArticleDBAccess implements ArticleInterface {
     }
 
     /**
+     * Recupérer une arrayList d'articles pour table
      *
      * @return une ArrayList d articles de la BD
      * @throws BdErreur
@@ -145,15 +148,17 @@ public class ArticleDBAccess implements ArticleInterface {
     }
 
     /**
+     * Modifier un article
      *
      * @param artNouvVersion le nouvel article avec les nouvelles donnees
      * @param artAncVersion l ancien article avec les vieilles donnees
      * @throws BdErreur
      * @throws NoIdentification
+     * @throws ModifArtException
      * @see Article
      */
     @Override
-    public void modifArticle(Article artNouvVersion, Article artAncVersion) throws BdErreur, NoIdentification {
+    public void modifArticle(Article artNouvVersion, Article artAncVersion) throws BdErreur, NoIdentification,ModifArtException {
 
         try {
             //Update pour la modification
@@ -188,6 +193,8 @@ public class ArticleDBAccess implements ArticleInterface {
             throw new BdErreur(e.getMessage());
         } catch (NoIdentification e) {
             throw new NoIdentification();
+        } catch (Exception e) {
+            throw new ModifArtException(e.getMessage());
         }
     }
 
@@ -245,6 +252,7 @@ public class ArticleDBAccess implements ArticleInterface {
     }
 
     /**
+     * Recupérer id d'un article
      *
      * @param libelle libelle de l article selectionne
      * @param typeA type de l article selectionne
@@ -278,6 +286,7 @@ public class ArticleDBAccess implements ArticleInterface {
     }
 
     /**
+     * Recupérer quantité d'un article
      *
      * @param libelleA libelle de l article a encoder
      * @param typeA    type de l article a encoder
@@ -309,6 +318,7 @@ public class ArticleDBAccess implements ArticleInterface {
     }
 
     /**
+     * Tous les articles d'une categorie
      *
      * @param typeArt type de l article
      * @param cat categorie de l article
@@ -374,6 +384,7 @@ public class ArticleDBAccess implements ArticleInterface {
     }
 
     /**
+     * Tous les articles d'un fournisseur
      *
      * @param fourn le fournisseur souhaite
      * @return une ArrayList d articles suivant le fournisseur selectionne

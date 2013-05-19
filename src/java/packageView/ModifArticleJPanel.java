@@ -8,57 +8,61 @@ import packageController.ApplicationController;
 import packageException.BdErreur;
 import packageException.NoIdentification;
 
-
-
+/**
+ * Modifier un article
+ *
+ * @author BELLENGER JORDAN/SCHMITZ LOIC
+ */
 public class ModifArticleJPanel extends javax.swing.JPanel {
 
-  private ListSelectionModel listSelect;
-  private ArticleModif panModif;
-  private AllArticleModif artMod;
+    private ListSelectionModel listSelect;
+    private ArticleModif panModif;
+    private AllArticleModif artMod;
 
-  
-  
-   public ModifArticleJPanel() {
-       
-        
-       
+    /**
+     *
+     */
+    public ModifArticleJPanel() {
+
         try {
             initComponents();
-            artMod = new AllArticleModif (new ApplicationController().getAllArticle());
+
+            //Remplir tableau
+            artMod = new AllArticleModif(new ApplicationController().getAllArticle());
             JTableModif.setModel(artMod);
             JTableModif.repaint();
             JTableModif.validate();
+
+            //Redimensionner colonnes
             JTableModif.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-            
-            TableColumn colLib = JTableModif.getColumnModel( ).getColumn(0);
-            colLib.setPreferredWidth(150); 
-            TableColumn colDesc = JTableModif.getColumnModel( ).getColumn(2);          
-            colDesc.setPreferredWidth(420); 
-            TableColumn colPm = JTableModif.getColumnModel( ).getColumn(4);
+
+            TableColumn colLib = JTableModif.getColumnModel().getColumn(0);
+            colLib.setPreferredWidth(150);
+            TableColumn colDesc = JTableModif.getColumnModel().getColumn(2);
+            colDesc.setPreferredWidth(420);
+            TableColumn colPm = JTableModif.getColumnModel().getColumn(4);
             colPm.setPreferredWidth(120);
-            TableColumn colPc = JTableModif.getColumnModel( ).getColumn(5);
+            TableColumn colPc = JTableModif.getColumnModel().getColumn(5);
             colPc.setPreferredWidth(120);
-            TableColumn colCad = JTableModif.getColumnModel( ).getColumn(6);
+            TableColumn colCad = JTableModif.getColumnModel().getColumn(6);
             colCad.setPreferredWidth(100);
-            TableColumn colFourn = JTableModif.getColumnModel( ).getColumn(7);
+            TableColumn colFourn = JTableModif.getColumnModel().getColumn(7);
             colFourn.setPreferredWidth(150);
-            TableColumn colCat = JTableModif.getColumnModel( ).getColumn(8);
+            TableColumn colCat = JTableModif.getColumnModel().getColumn(8);
             colCat.setPreferredWidth(150);
-             
+
+            //Selection ligne du tableau
             JTableModif.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
             listSelect = JTableModif.getSelectionModel();
-            
-            }        
-            catch(BdErreur e){
-                JOptionPane.showMessageDialog(null, e, "Erreur BD", JOptionPane.ERROR_MESSAGE);
-            }
-            catch(NoIdentification e){
-                JOptionPane.showMessageDialog(null, e, "Erreur identification", JOptionPane.ERROR_MESSAGE);
-            }
-    
+
+        } catch (BdErreur e) {
+            JOptionPane.showMessageDialog(null, e, "Erreur BD", JOptionPane.ERROR_MESSAGE);
+        } catch (NoIdentification e) {
+            JOptionPane.showMessageDialog(null, e, "Erreur identification", JOptionPane.ERROR_MESSAGE);
+        }
+
     }
 
-    @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -118,25 +122,24 @@ public class ModifArticleJPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    //Modifier article
     private void BoutonModifActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BoutonModifActionPerformed
-        if(listSelect.isSelectionEmpty()==false){
-            
-            int indLigne= listSelect.getMinSelectionIndex();
-            
-            panModif=new ArticleModif(indLigne, artMod);
+        if (listSelect.isSelectionEmpty() == false) {
+
+            //Recuperation indice ligne tableau
+            int indLigne = listSelect.getMinSelectionIndex();
+
+            //Affichage panel de modification
+            panModif = new ArticleModif(indLigne, artMod);
             panModif.setBounds(this.getBounds());
             this.removeAll();
             this.add(panModif);
             this.repaint();
-            this.validate();     
-        }
-        else{
+            this.validate();
+        } else {
             JOptionPane.showMessageDialog(null, "Aucune ligne du tableau récapitulatif sélectionnée");
         }
     }//GEN-LAST:event_BoutonModifActionPerformed
-
-    
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BoutonModif;
     private javax.swing.JTable JTableModif;
