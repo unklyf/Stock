@@ -1,9 +1,11 @@
 package packageView;
 
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.SpinnerModel;
 import javax.swing.SpinnerNumberModel;
+import javax.swing.table.TableColumn;
 import packageController.ApplicationController;
 import packageException.BdErreur;
 import packageException.NoIdentification;
@@ -37,6 +39,19 @@ public class ListingReapproJPanel extends javax.swing.JPanel {
             jTableReappro.setModel(reapMod);
             jTableReappro.repaint();
             jTableReappro.validate();
+            
+            jTableReappro.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+            
+            TableColumn colID = jTableReappro.getColumnModel( ).getColumn(0);
+            colID.setPreferredWidth(80); 
+            TableColumn colDate = jTableReappro.getColumnModel( ).getColumn(1);          
+            colDate.setPreferredWidth(160); 
+            TableColumn colNote = jTableReappro.getColumnModel( ).getColumn(3);
+            colNote.setPreferredWidth(276);
+            TableColumn colPc = jTableReappro.getColumnModel( ).getColumn(4);
+            colPc.setPreferredWidth(120);
+            
+           
             
             }        
             catch(BdErreur e){
@@ -189,7 +204,8 @@ public class ListingReapproJPanel extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jTableReappro.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
+        jTableReappro.getTableHeader().setResizingAllowed(false);
+        jTableReappro.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(jTableReappro);
 
         buttonEndEncoder.setBackground(new java.awt.Color(0, 119, 0));
@@ -236,8 +252,7 @@ public class ListingReapproJPanel extends javax.swing.JPanel {
             .addGroup(jPanelListingLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanelListingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 717, Short.MAX_VALUE)
-                    .addComponent(jScrollPane2)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 717, Short.MAX_VALUE)
                     .addGroup(jPanelListingLayout.createSequentialGroup()
                         .addGroup(jPanelListingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanelListingLayout.createSequentialGroup()
@@ -256,7 +271,8 @@ public class ListingReapproJPanel extends javax.swing.JPanel {
                             .addComponent(jLabelNote)
                             .addComponent(jLabelFacult))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane3)))
+                        .addComponent(jScrollPane3))
+                    .addComponent(jScrollPane1))
                 .addContainerGap())
         );
         jPanelListingLayout.setVerticalGroup(

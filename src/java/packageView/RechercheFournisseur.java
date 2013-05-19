@@ -7,6 +7,8 @@ package packageView;
 import java.awt.event.ItemEvent;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.TableColumn;
 import packageController.ApplicationController;
 import packageException.BdErreur;
 import packageException.NoIdentification;
@@ -30,8 +32,7 @@ public class RechercheFournisseur extends javax.swing.JPanel {
                 }
                 this.comboFourn.repaint();
                 this.comboFourn.validate();
-                
- 
+
          }   
          catch(BdErreur e){
                 JOptionPane.showMessageDialog(null, e, "Erreur BD", JOptionPane.ERROR_MESSAGE);
@@ -82,13 +83,13 @@ public class RechercheFournisseur extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(42, 42, 42)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1015, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(labelFourn, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(comboFourn, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(labelRechArtFourn, javax.swing.GroupLayout.PREFERRED_SIZE, 543, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(32, Short.MAX_VALUE))
+                    .addComponent(labelRechArtFourn, javax.swing.GroupLayout.PREFERRED_SIZE, 543, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1300, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -114,6 +115,24 @@ public class RechercheFournisseur extends javax.swing.JPanel {
             jTableRechFourn.setModel(allArt);
             jTableRechFourn.repaint();
             jTableRechFourn.validate();
+            
+            jTableRechFourn.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+            
+            TableColumn colLib = jTableRechFourn.getColumnModel( ).getColumn(0);
+            colLib.setPreferredWidth(150); 
+            TableColumn colDesc = jTableRechFourn.getColumnModel( ).getColumn(2);          
+            colDesc.setPreferredWidth(420); 
+            TableColumn colPm = jTableRechFourn.getColumnModel( ).getColumn(4);
+            colPm.setPreferredWidth(120);
+            TableColumn colPc = jTableRechFourn.getColumnModel( ).getColumn(5);
+            colPc.setPreferredWidth(120);
+            TableColumn colCad = jTableRechFourn.getColumnModel( ).getColumn(6);
+            colCad.setPreferredWidth(100);
+            TableColumn colFourn = jTableRechFourn.getColumnModel( ).getColumn(7);
+            colFourn.setPreferredWidth(150);
+            TableColumn colCat = jTableRechFourn.getColumnModel( ).getColumn(8);
+            colCat.setPreferredWidth(150);
+                
         }
         catch(BdErreur e){
              JOptionPane.showMessageDialog(null, e, "Erreur BD", JOptionPane.ERROR_MESSAGE);

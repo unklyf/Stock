@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.event.ItemEvent;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.TableColumn;
 import packageController.ApplicationController;
 import packageException.BdErreur;
 import packageException.NoIdentification;
@@ -119,8 +121,8 @@ public class RechercheCategorie extends javax.swing.JPanel {
                                 .addGap(18, 18, 18)
                                 .addComponent(ButtonFut))
                             .addComponent(comboCat, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1015, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(18, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1300, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -154,6 +156,23 @@ public class RechercheCategorie extends javax.swing.JPanel {
                 jTableRechCat.setModel(allArt);
                 jTableRechCat.repaint();
                 jTableRechCat.validate();
+                
+                jTableRechCat.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+            
+                TableColumn colLib = jTableRechCat.getColumnModel( ).getColumn(0);
+                colLib.setPreferredWidth(150); 
+                TableColumn colDesc = jTableRechCat.getColumnModel( ).getColumn(2);          
+                colDesc.setPreferredWidth(420); 
+                TableColumn colPm = jTableRechCat.getColumnModel( ).getColumn(4);
+                colPm.setPreferredWidth(120);
+                TableColumn colPc = jTableRechCat.getColumnModel( ).getColumn(5);
+                colPc.setPreferredWidth(120);
+                TableColumn colCad = jTableRechCat.getColumnModel( ).getColumn(6);
+                colCad.setPreferredWidth(100);
+                TableColumn colFourn = jTableRechCat.getColumnModel( ).getColumn(7);
+                colFourn.setPreferredWidth(150);
+                TableColumn colCat = jTableRechCat.getColumnModel( ).getColumn(8);
+                colCat.setPreferredWidth(150);
 
             } catch (BdErreur e) {
                 JOptionPane.showMessageDialog(null, e, "Erreur BD", JOptionPane.ERROR_MESSAGE);
@@ -172,6 +191,24 @@ public class RechercheCategorie extends javax.swing.JPanel {
                 jTableRechCat.setModel(allArt);
                 jTableRechCat.repaint();
                 jTableRechCat.validate();
+                
+                jTableRechCat.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+            
+                TableColumn colLib = jTableRechCat.getColumnModel( ).getColumn(0);
+                colLib.setPreferredWidth(150); 
+                TableColumn colDesc = jTableRechCat.getColumnModel( ).getColumn(2);          
+                colDesc.setPreferredWidth(420); 
+                TableColumn colPm = jTableRechCat.getColumnModel( ).getColumn(4);
+                colPm.setPreferredWidth(120);
+                TableColumn colPc = jTableRechCat.getColumnModel( ).getColumn(5);
+                colPc.setPreferredWidth(120);
+                TableColumn colCad = jTableRechCat.getColumnModel( ).getColumn(6);
+                colCad.setPreferredWidth(100);
+                TableColumn colFourn = jTableRechCat.getColumnModel( ).getColumn(7);
+                colFourn.setPreferredWidth(150);
+                TableColumn colCat = jTableRechCat.getColumnModel( ).getColumn(8);
+                colCat.setPreferredWidth(150);
+                
             } catch (BdErreur e) {
                 JOptionPane.showMessageDialog(null, e, "Erreur BD", JOptionPane.ERROR_MESSAGE);
             } catch (NoIdentification e) {
@@ -189,6 +226,24 @@ public class RechercheCategorie extends javax.swing.JPanel {
                 jTableRechCat.setModel(allArt);
                 jTableRechCat.repaint();
                 jTableRechCat.validate();
+                
+                jTableRechCat.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+            
+                TableColumn colLib = jTableRechCat.getColumnModel( ).getColumn(0);
+                colLib.setPreferredWidth(150); 
+                TableColumn colDesc = jTableRechCat.getColumnModel( ).getColumn(2);          
+                colDesc.setPreferredWidth(420); 
+                TableColumn colPm = jTableRechCat.getColumnModel( ).getColumn(4);
+                colPm.setPreferredWidth(120);
+                TableColumn colPc = jTableRechCat.getColumnModel( ).getColumn(5);
+                colPc.setPreferredWidth(120);
+                TableColumn colCad = jTableRechCat.getColumnModel( ).getColumn(6);
+                colCad.setPreferredWidth(100);
+                TableColumn colFourn = jTableRechCat.getColumnModel( ).getColumn(7);
+                colFourn.setPreferredWidth(150);
+                TableColumn colCat = jTableRechCat.getColumnModel( ).getColumn(8);
+                colCat.setPreferredWidth(150);
+                
             } catch (BdErreur e) {
                 JOptionPane.showMessageDialog(null, e, "Erreur BD", JOptionPane.ERROR_MESSAGE);
             } catch (NoIdentification e) {

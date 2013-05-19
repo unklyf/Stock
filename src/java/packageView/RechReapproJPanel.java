@@ -5,8 +5,10 @@ import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import javax.swing.JOptionPane;
 import javax.swing.JSpinner;
+import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.SpinnerDateModel;
+import javax.swing.table.TableColumn;
 import packageController.ApplicationController;
 import packageException.BdErreur;
 import packageException.NoIdentification;
@@ -148,7 +150,7 @@ public class RechReapproJPanel extends javax.swing.JPanel {
             jPanelFournLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelFournLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabelFourn, javax.swing.GroupLayout.DEFAULT_SIZE, 289, Short.MAX_VALUE)
+                .addComponent(jLabelFourn, javax.swing.GroupLayout.DEFAULT_SIZE, 509, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanelFournLayout.setVerticalGroup(
@@ -159,13 +161,17 @@ public class RechReapproJPanel extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
+        jTableRechReap.getTableHeader().setResizingAllowed(false);
+        jTableRechReap.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(jTableRechReap);
 
         javax.swing.GroupLayout jPanelTableLayout = new javax.swing.GroupLayout(jPanelTable);
         jPanelTable.setLayout(jPanelTableLayout);
         jPanelTableLayout.setHorizontalGroup(
             jPanelTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 526, Short.MAX_VALUE)
+            .addGroup(jPanelTableLayout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 717, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanelTableLayout.setVerticalGroup(
             jPanelTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -183,13 +189,15 @@ public class RechReapproJPanel extends javax.swing.JPanel {
             }
         });
 
+        jTableRechReapArt.getTableHeader().setResizingAllowed(false);
+        jTableRechReapArt.getTableHeader().setReorderingAllowed(false);
         jScrollPane2.setViewportView(jTableRechReapArt);
 
         javax.swing.GroupLayout jPanelArticleLayout = new javax.swing.GroupLayout(jPanelArticle);
         jPanelArticle.setLayout(jPanelArticleLayout);
         jPanelArticleLayout.setHorizontalGroup(
             jPanelArticleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 526, Short.MAX_VALUE)
+            .addComponent(jScrollPane2)
         );
         jPanelArticleLayout.setVerticalGroup(
             jPanelArticleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -220,13 +228,12 @@ public class RechReapproJPanel extends javax.swing.JPanel {
                 .addGap(62, 62, 62)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanelArticle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jPanelTable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabelNone, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jButtonVoir))))
-                .addContainerGap(183, Short.MAX_VALUE))
+                    .addComponent(jPanelTable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabelNone, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonVoir)))
+                .addContainerGap(212, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -288,7 +295,18 @@ public class RechReapproJPanel extends javax.swing.JPanel {
               jPanelTable.setVisible(true);
               jTableRechReap.setModel(reapMod);
               jTableRechReap.repaint();
-              jTableRechReap.validate(); 
+              jTableRechReap.validate();
+              
+              jTableRechReap.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+            
+              TableColumn colID = jTableRechReap.getColumnModel( ).getColumn(0);
+              colID.setPreferredWidth(80); 
+              TableColumn colDate = jTableRechReap.getColumnModel( ).getColumn(1);          
+              colDate.setPreferredWidth(160); 
+              TableColumn colNote = jTableRechReap.getColumnModel( ).getColumn(3);
+              colNote.setPreferredWidth(276);
+              TableColumn colPc = jTableRechReap.getColumnModel( ).getColumn(4);
+              colPc.setPreferredWidth(120);
         }
     }//GEN-LAST:event_jButtonRechercheActionPerformed
 

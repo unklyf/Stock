@@ -1,7 +1,9 @@
 package packageView;
 
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
+import javax.swing.table.TableColumn;
 import packageController.ApplicationController;
 import packageException.BdErreur;
 import packageException.NoIdentification;
@@ -22,6 +24,19 @@ public class SuppressionRJPanel extends javax.swing.JPanel {
             jTableSupp.setModel(allReap);
             jTableSupp.repaint();
             jTableSupp.validate();
+            
+            jTableSupp.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+            
+            TableColumn colID = jTableSupp.getColumnModel( ).getColumn(0);
+            colID.setPreferredWidth(80); 
+            TableColumn colDate = jTableSupp.getColumnModel( ).getColumn(1);          
+            colDate.setPreferredWidth(200); 
+            TableColumn colNote = jTableSupp.getColumnModel( ).getColumn(3);
+            colNote.setPreferredWidth(400);
+            TableColumn colPc = jTableSupp.getColumnModel( ).getColumn(4);
+            colPc.setPreferredWidth(157);
+            
+            
             
             jTableSupp.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
             listSelect = jTableSupp.getSelectionModel();
