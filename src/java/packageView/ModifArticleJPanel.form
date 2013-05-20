@@ -19,8 +19,8 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="BoutonModif" min="-2" pref="92" max="-2" attributes="0"/>
-                  <Component id="LabelModif" min="-2" pref="380" max="-2" attributes="0"/>
+                  <Component id="boutonModif" min="-2" pref="92" max="-2" attributes="0"/>
+                  <Component id="labelModif" min="-2" pref="380" max="-2" attributes="0"/>
                   <Component id="jScrollPaneModif" alignment="0" min="-2" pref="1293" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="126" max="-2" attributes="0"/>
@@ -31,18 +31,18 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
-              <Component id="LabelModif" min="-2" max="-2" attributes="0"/>
+              <Component id="labelModif" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
               <Component id="jScrollPaneModif" min="-2" pref="373" max="-2" attributes="0"/>
               <EmptySpace min="-2" max="-2" attributes="0"/>
-              <Component id="BoutonModif" min="-2" pref="32" max="-2" attributes="0"/>
+              <Component id="boutonModif" min="-2" pref="32" max="-2" attributes="0"/>
               <EmptySpace pref="65" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JLabel" name="LabelModif">
+    <Component class="javax.swing.JLabel" name="labelModif">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="36" style="0"/>
@@ -96,12 +96,12 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JButton" name="BoutonModif">
+    <Component class="javax.swing.JButton" name="boutonModif">
       <Properties>
         <Property name="text" type="java.lang.String" value="Modifier"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BoutonModifActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="boutonModifActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

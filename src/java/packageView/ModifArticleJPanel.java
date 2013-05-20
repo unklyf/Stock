@@ -68,23 +68,23 @@ public class ModifArticleJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        LabelModif = new javax.swing.JLabel();
+        labelModif = new javax.swing.JLabel();
         jScrollPaneModif = new javax.swing.JScrollPane();
         JTableModif = new javax.swing.JTable();
-        BoutonModif = new javax.swing.JButton();
+        boutonModif = new javax.swing.JButton();
 
-        LabelModif.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        LabelModif.setForeground(new java.awt.Color(153, 0, 51));
-        LabelModif.setText("Modification article ");
+        labelModif.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        labelModif.setForeground(new java.awt.Color(153, 0, 51));
+        labelModif.setText("Modification article ");
 
         JTableModif.getTableHeader().setResizingAllowed(false);
         JTableModif.getTableHeader().setReorderingAllowed(false);
         jScrollPaneModif.setViewportView(JTableModif);
 
-        BoutonModif.setText("Modifier");
-        BoutonModif.addActionListener(new java.awt.event.ActionListener() {
+        boutonModif.setText("Modifier");
+        boutonModif.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BoutonModifActionPerformed(evt);
+                boutonModifActionPerformed(evt);
             }
         });
 
@@ -95,8 +95,8 @@ public class ModifArticleJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(51, 51, 51)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(BoutonModif, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(LabelModif, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(boutonModif, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelModif, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPaneModif, javax.swing.GroupLayout.PREFERRED_SIZE, 1293, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(126, 126, 126))
         );
@@ -104,17 +104,17 @@ public class ModifArticleJPanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(29, 29, 29)
-                .addComponent(LabelModif)
+                .addComponent(labelModif)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPaneModif, javax.swing.GroupLayout.PREFERRED_SIZE, 373, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(BoutonModif, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(boutonModif, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(65, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     //Modifier article
-    private void BoutonModifActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BoutonModifActionPerformed
+    private void boutonModifActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boutonModifActionPerformed
         if (listSelect.isSelectionEmpty() == false) {
 
             //Recuperation indice ligne tableau
@@ -130,11 +130,11 @@ public class ModifArticleJPanel extends javax.swing.JPanel {
         } else {
             JOptionPane.showMessageDialog(null, "Aucune ligne du tableau récapitulatif sélectionnée");
         }
-    }//GEN-LAST:event_BoutonModifActionPerformed
+    }//GEN-LAST:event_boutonModifActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BoutonModif;
     private javax.swing.JTable JTableModif;
-    private javax.swing.JLabel LabelModif;
+    private javax.swing.JButton boutonModif;
     private javax.swing.JScrollPane jScrollPaneModif;
+    private javax.swing.JLabel labelModif;
     // End of variables declaration//GEN-END:variables
 }

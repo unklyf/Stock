@@ -54,9 +54,9 @@ public class RechercheCategorie extends javax.swing.JPanel {
         labelCat = new javax.swing.JLabel();
         labelType = new javax.swing.JLabel();
         comboCat = new javax.swing.JComboBox();
-        ButtonBouteille = new javax.swing.JRadioButton();
-        ButtonCasier = new javax.swing.JRadioButton();
-        ButtonFut = new javax.swing.JRadioButton();
+        buttonBouteille = new javax.swing.JRadioButton();
+        buttonCasier = new javax.swing.JRadioButton();
+        buttonFut = new javax.swing.JRadioButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableRechCat = new javax.swing.JTable();
 
@@ -76,27 +76,27 @@ public class RechercheCategorie extends javax.swing.JPanel {
             }
         });
 
-        buttonGroup1.add(ButtonBouteille);
-        ButtonBouteille.setText("Bouteille");
-        ButtonBouteille.addItemListener(new java.awt.event.ItemListener() {
+        buttonGroup1.add(buttonBouteille);
+        buttonBouteille.setText("Bouteille");
+        buttonBouteille.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                ButtonBouteilleItemStateChanged(evt);
+                buttonBouteilleItemStateChanged(evt);
             }
         });
 
-        buttonGroup1.add(ButtonCasier);
-        ButtonCasier.setText("Casier");
-        ButtonCasier.addItemListener(new java.awt.event.ItemListener() {
+        buttonGroup1.add(buttonCasier);
+        buttonCasier.setText("Casier");
+        buttonCasier.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                ButtonCasierItemStateChanged(evt);
+                buttonCasierItemStateChanged(evt);
             }
         });
 
-        buttonGroup1.add(ButtonFut);
-        ButtonFut.setText("Fût");
-        ButtonFut.addItemListener(new java.awt.event.ItemListener() {
+        buttonGroup1.add(buttonFut);
+        buttonFut.setText("Fût");
+        buttonFut.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                ButtonFutItemStateChanged(evt);
+                buttonFutItemStateChanged(evt);
             }
         });
 
@@ -120,11 +120,11 @@ public class RechercheCategorie extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(ButtonBouteille)
+                                .addComponent(buttonBouteille)
                                 .addGap(18, 18, 18)
-                                .addComponent(ButtonCasier)
+                                .addComponent(buttonCasier)
                                 .addGap(18, 18, 18)
-                                .addComponent(ButtonFut))
+                                .addComponent(buttonFut))
                             .addComponent(comboCat, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1300, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(33, Short.MAX_VALUE))
@@ -143,9 +143,9 @@ public class RechercheCategorie extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addComponent(labelType))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(ButtonBouteille)
-                        .addComponent(ButtonCasier)
-                        .addComponent(ButtonFut)))
+                        .addComponent(buttonBouteille)
+                        .addComponent(buttonCasier)
+                        .addComponent(buttonFut)))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(32, Short.MAX_VALUE))
@@ -153,7 +153,7 @@ public class RechercheCategorie extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     //Choix type article bouteille
-    private void ButtonBouteilleItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_ButtonBouteilleItemStateChanged
+    private void buttonBouteilleItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_buttonBouteilleItemStateChanged
         if (evt.getStateChange() == ItemEvent.SELECTED) {
             try {
                 typeArt = "Bouteille";
@@ -191,10 +191,10 @@ public class RechercheCategorie extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(null, e, "Erreur identification", JOptionPane.ERROR_MESSAGE);
             }
         }
-    }//GEN-LAST:event_ButtonBouteilleItemStateChanged
+    }//GEN-LAST:event_buttonBouteilleItemStateChanged
 
     //Choix type article casier
-    private void ButtonCasierItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_ButtonCasierItemStateChanged
+    private void buttonCasierItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_buttonCasierItemStateChanged
         if (evt.getStateChange() == ItemEvent.SELECTED) {
             try {
                 typeArt = "Casier";
@@ -231,10 +231,10 @@ public class RechercheCategorie extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(null, e, "Erreur identification", JOptionPane.ERROR_MESSAGE);
             }
         }
-    }//GEN-LAST:event_ButtonCasierItemStateChanged
+    }//GEN-LAST:event_buttonCasierItemStateChanged
 
     //Choix type article fut
-    private void ButtonFutItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_ButtonFutItemStateChanged
+    private void buttonFutItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_buttonFutItemStateChanged
         if (evt.getStateChange() == ItemEvent.SELECTED) {
             try {
                 typeArt = "Fût";
@@ -271,7 +271,7 @@ public class RechercheCategorie extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(null, e, "Erreur identification", JOptionPane.ERROR_MESSAGE);
             }
         }
-    }//GEN-LAST:event_ButtonFutItemStateChanged
+    }//GEN-LAST:event_buttonFutItemStateChanged
 
     //Quand choix catégorie change
     private void comboCatItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comboCatItemStateChanged
@@ -280,10 +280,10 @@ public class RechercheCategorie extends javax.swing.JPanel {
         this.jTableRechCat.setVisible(false);
     }//GEN-LAST:event_comboCatItemStateChanged
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JRadioButton ButtonBouteille;
-    private javax.swing.JRadioButton ButtonCasier;
-    private javax.swing.JRadioButton ButtonFut;
     private javax.swing.JLabel LabelListing;
+    private javax.swing.JRadioButton buttonBouteille;
+    private javax.swing.JRadioButton buttonCasier;
+    private javax.swing.JRadioButton buttonFut;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox comboCat;
     private javax.swing.JScrollPane jScrollPane1;

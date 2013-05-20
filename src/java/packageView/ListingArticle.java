@@ -63,13 +63,13 @@ public class ListingArticle extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        LabelListing = new javax.swing.JLabel();
+        labelListing = new javax.swing.JLabel();
         jScrollPaneListing = new javax.swing.JScrollPane();
         jTableListing = new javax.swing.JTable();
 
-        LabelListing.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        LabelListing.setForeground(new java.awt.Color(153, 0, 51));
-        LabelListing.setText("Listing article ");
+        labelListing.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        labelListing.setForeground(new java.awt.Color(153, 0, 51));
+        labelListing.setText("Listing article ");
 
         jTableListing.setDragEnabled(true);
         jTableListing.setRowSelectionAllowed(false);
@@ -84,7 +84,7 @@ public class ListingArticle extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(36, 36, 36)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(LabelListing, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelListing, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPaneListing, javax.swing.GroupLayout.PREFERRED_SIZE, 1296, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(129, 129, 129))
         );
@@ -92,15 +92,15 @@ public class ListingArticle extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addComponent(LabelListing)
+                .addComponent(labelListing)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPaneListing, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel LabelListing;
     private javax.swing.JScrollPane jScrollPaneListing;
     private javax.swing.JTable jTableListing;
+    private javax.swing.JLabel labelListing;
     // End of variables declaration//GEN-END:variables
 }
