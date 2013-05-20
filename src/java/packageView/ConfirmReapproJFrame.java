@@ -67,6 +67,8 @@ public class ConfirmReapproJFrame extends javax.swing.JFrame {
         jLabelEuro = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Confirmation commande");
+        setBounds(new java.awt.Rectangle(400, 100, 0, 0));
 
         jLabelQuestion.setFont(new java.awt.Font("Tahoma", 2, 14)); // NOI18N
         jLabelQuestion.setText("La commande est-elle correcte ?");

@@ -30,20 +30,23 @@ public class ListingArticle extends javax.swing.JPanel {
             jTableListing.validate();
 
             //Redimensionnement cellules
-            jTableListing.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-            TableColumn colLib = jTableListing.getColumnModel().getColumn(0);
-            colLib.setPreferredWidth(150);
-            TableColumn colDesc = jTableListing.getColumnModel().getColumn(2);
-            colDesc.setPreferredWidth(420);
-            TableColumn colPm = jTableListing.getColumnModel().getColumn(4);
+             jTableListing.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+            
+            TableColumn colLib = jTableListing.getColumnModel( ).getColumn(0);
+            colLib.setPreferredWidth(150); 
+            TableColumn colDesc = jTableListing.getColumnModel( ).getColumn(2);          
+            colDesc.setPreferredWidth(420); 
+            TableColumn colPm = jTableListing.getColumnModel( ).getColumn(4);
             colPm.setPreferredWidth(120);
-            TableColumn colPc = jTableListing.getColumnModel().getColumn(5);
+            TableColumn colPc = jTableListing.getColumnModel( ).getColumn(5);
             colPc.setPreferredWidth(120);
-            TableColumn colCad = jTableListing.getColumnModel().getColumn(6);
+            TableColumn colCad = jTableListing.getColumnModel( ).getColumn(6);
             colCad.setPreferredWidth(100);
-            TableColumn colFourn = jTableListing.getColumnModel().getColumn(7);
+            TableColumn col18ans = jTableListing.getColumnModel( ).getColumn(7);
+            col18ans.setPreferredWidth(50);
+            TableColumn colFourn = jTableListing.getColumnModel( ).getColumn(8);
             colFourn.setPreferredWidth(150);
-            TableColumn colCat = jTableListing.getColumnModel().getColumn(8);
+            TableColumn colCat = jTableListing.getColumnModel( ).getColumn(9);
             colCat.setPreferredWidth(150);
 
             //Changement background cellule pour quantité
@@ -68,17 +71,6 @@ public class ListingArticle extends javax.swing.JPanel {
         LabelListing.setForeground(new java.awt.Color(153, 0, 51));
         LabelListing.setText("Listing article ");
 
-        jTableListing.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
         jTableListing.setDragEnabled(true);
         jTableListing.setRowSelectionAllowed(false);
         jTableListing.getTableHeader().setResizingAllowed(false);

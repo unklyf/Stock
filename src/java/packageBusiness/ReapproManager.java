@@ -31,11 +31,7 @@ public class ReapproManager {
      * @see Reappro
      */
     public Integer addReappro(Reappro reappro) throws BdErreur, NoIdentification, AddReapException {
-        if(reappro.getReapDate().getTime().before(new java.util.Date())){
-            throw new AddReapException("Erreur date : inférieure à aujourd'hui !");
-        } else{
-            return rDBA.addReappro(reappro);
-        }
+         return rDBA.addReappro(reappro);
     }
 
     /**

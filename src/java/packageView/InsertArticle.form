@@ -31,7 +31,7 @@
                   <Component id="panelChamp" min="-2" max="-2" attributes="0"/>
                   <Component id="labelInsArt" min="-2" pref="380" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="180" max="32767" attributes="0"/>
+              <EmptySpace pref="202" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -65,7 +65,7 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace pref="32" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
                           <Component id="labelCat" min="-2" pref="174" max="-2" attributes="0"/>
@@ -87,20 +87,23 @@
                               <Component id="labelType" min="-2" pref="174" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="buttonBouteille" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="buttonCasier" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="buttonFut" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="buttonBouteille" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="buttonCasier" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="buttonFut" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Component id="jTextFieldLibelle" max="32767" attributes="0"/>
+                                  <Component id="labelMajuscule" alignment="0" min="-2" pref="197" max="-2" attributes="0"/>
+                                  <Component id="jScrollPaneDesc" max="32767" attributes="0"/>
+                                  <Component id="prixConsSpinner" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="prixMarchSpinner" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="cadeauComboBox" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <Component id="jTextFieldLibelle" max="32767" attributes="0"/>
-                              <Component id="labelMajuscule" alignment="0" min="-2" pref="197" max="-2" attributes="0"/>
-                              <Component id="jScrollPaneDesc" max="32767" attributes="0"/>
-                              <Component id="prixConsSpinner" alignment="0" max="32767" attributes="0"/>
-                              <Component id="prixMarchSpinner" alignment="0" max="32767" attributes="0"/>
-                              <Component id="cadeauComboBox" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jCheckBox18ans" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
@@ -166,7 +169,10 @@
                       <Component id="labelFacultatifCad" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-                  <Component id="buttonAjout" min="-2" pref="33" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="buttonAjout" min="-2" pref="33" max="-2" attributes="0"/>
+                      <Component id="jCheckBox18ans" min="-2" max="-2" attributes="0"/>
+                  </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -361,6 +367,14 @@
               <StringArray count="0"/>
             </Property>
           </Properties>
+        </Component>
+        <Component class="javax.swing.JCheckBox" name="jCheckBox18ans">
+          <Properties>
+            <Property name="text" type="java.lang.String" value=" interdit aux - de 18 ans"/>
+          </Properties>
+          <Events>
+            <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="jCheckBox18ansItemStateChanged"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

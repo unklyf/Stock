@@ -25,6 +25,7 @@ public class InsertArticle extends JPanel {
     private Article nouvArt;
     private Fournisseur fourn;
     private Categorie cat;
+    private Boolean inter18ans;
 
     /**
      *
@@ -95,6 +96,7 @@ public class InsertArticle extends JPanel {
         labelMajuscule = new javax.swing.JLabel();
         labelCat = new javax.swing.JLabel();
         jComboCat = new javax.swing.JComboBox();
+        jCheckBox18ans = new javax.swing.JCheckBox();
 
         setPreferredSize(new java.awt.Dimension(800, 700));
 
@@ -180,12 +182,19 @@ public class InsertArticle extends JPanel {
         labelCat.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         labelCat.setText("Catégorie :");
 
+        jCheckBox18ans.setText(" interdit aux - de 18 ans");
+        jCheckBox18ans.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jCheckBox18ansItemStateChanged(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelChampLayout = new javax.swing.GroupLayout(panelChamp);
         panelChamp.setLayout(panelChampLayout);
         panelChampLayout.setHorizontalGroup(
             panelChampLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelChampLayout.createSequentialGroup()
-                .addContainerGap(32, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(panelChampLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelChampLayout.createSequentialGroup()
                         .addComponent(labelCat, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -204,19 +213,21 @@ public class InsertArticle extends JPanel {
                             .addComponent(labelLibelle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(labelType, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addGroup(panelChampLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(panelChampLayout.createSequentialGroup()
-                                .addComponent(buttonBouteille)
-                                .addGap(18, 18, 18)
-                                .addComponent(buttonCasier)
-                                .addGap(18, 18, 18)
-                                .addComponent(buttonFut))
-                            .addComponent(jTextFieldLibelle)
-                            .addComponent(labelMajuscule, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPaneDesc)
-                            .addComponent(prixConsSpinner)
-                            .addComponent(prixMarchSpinner)
-                            .addComponent(cadeauComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(panelChampLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panelChampLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(panelChampLayout.createSequentialGroup()
+                                    .addComponent(buttonBouteille)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(buttonCasier)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(buttonFut))
+                                .addComponent(jTextFieldLibelle)
+                                .addComponent(labelMajuscule, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jScrollPaneDesc)
+                                .addComponent(prixConsSpinner)
+                                .addComponent(prixMarchSpinner)
+                                .addComponent(cadeauComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jCheckBox18ans))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(panelChampLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(labelFacultatifCons, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -267,7 +278,9 @@ public class InsertArticle extends JPanel {
                     .addComponent(cadeauComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelFacultatifCad))
                 .addGap(30, 30, 30)
-                .addComponent(buttonAjout, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(panelChampLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(buttonAjout, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jCheckBox18ans))
                 .addContainerGap())
         );
 
@@ -280,7 +293,7 @@ public class InsertArticle extends JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(panelChamp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelInsArt, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(180, Short.MAX_VALUE))
+                .addContainerGap(202, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -334,7 +347,8 @@ public class InsertArticle extends JPanel {
                                             this.JTextAreaDesc.getText(),
                                             cadeau,
                                             Double.parseDouble(this.prixMarchSpinner.getValue().toString()),
-                                            prixCons);
+                                            prixCons,
+                                            inter18ans);
                                     fourn = new Fournisseur(comboFourn.getSelectedItem().toString());
                                     cat = new Categorie(jComboCat.getSelectedItem().toString());
                                     app.addArticle(nouvArt, fourn, cat);
@@ -388,6 +402,14 @@ public class InsertArticle extends JPanel {
             typeArt = "Fût";
         }
     }//GEN-LAST:event_buttonFutItemStateChanged
+
+    //Checkbox - 18 cochée
+    private void jCheckBox18ansItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jCheckBox18ansItemStateChanged
+       if(evt.getStateChange()== ItemEvent.SELECTED){
+           inter18ans = true;
+       }
+    }//GEN-LAST:event_jCheckBox18ansItemStateChanged
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea JTextAreaDesc;
     private javax.swing.JButton buttonAjout;
@@ -397,6 +419,7 @@ public class InsertArticle extends JPanel {
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox cadeauComboBox;
     private javax.swing.JComboBox comboFourn;
+    private javax.swing.JCheckBox jCheckBox18ans;
     private javax.swing.JComboBox jComboCat;
     private javax.swing.JScrollPane jScrollPaneDesc;
     private javax.swing.JTextField jTextFieldLibelle;

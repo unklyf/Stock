@@ -36,19 +36,21 @@ public class ModifArticleJPanel extends javax.swing.JPanel {
             //Redimensionner colonnes
             JTableModif.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-            TableColumn colLib = JTableModif.getColumnModel().getColumn(0);
-            colLib.setPreferredWidth(150);
-            TableColumn colDesc = JTableModif.getColumnModel().getColumn(2);
-            colDesc.setPreferredWidth(420);
-            TableColumn colPm = JTableModif.getColumnModel().getColumn(4);
+            TableColumn colLib = JTableModif.getColumnModel( ).getColumn(0);
+            colLib.setPreferredWidth(150); 
+            TableColumn colDesc = JTableModif.getColumnModel( ).getColumn(2);          
+            colDesc.setPreferredWidth(420); 
+            TableColumn colPm = JTableModif.getColumnModel( ).getColumn(4);
             colPm.setPreferredWidth(120);
-            TableColumn colPc = JTableModif.getColumnModel().getColumn(5);
+            TableColumn colPc = JTableModif.getColumnModel( ).getColumn(5);
             colPc.setPreferredWidth(120);
-            TableColumn colCad = JTableModif.getColumnModel().getColumn(6);
+            TableColumn colCad = JTableModif.getColumnModel( ).getColumn(6);
             colCad.setPreferredWidth(100);
-            TableColumn colFourn = JTableModif.getColumnModel().getColumn(7);
+            TableColumn col18ans = JTableModif.getColumnModel( ).getColumn(7);
+            col18ans.setPreferredWidth(50);
+            TableColumn colFourn = JTableModif.getColumnModel( ).getColumn(8);
             colFourn.setPreferredWidth(150);
-            TableColumn colCat = JTableModif.getColumnModel().getColumn(8);
+            TableColumn colCat = JTableModif.getColumnModel( ).getColumn(9);
             colCat.setPreferredWidth(150);
 
             //Selection ligne du tableau
@@ -75,17 +77,6 @@ public class ModifArticleJPanel extends javax.swing.JPanel {
         LabelModif.setForeground(new java.awt.Color(153, 0, 51));
         LabelModif.setText("Modification article ");
 
-        JTableModif.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
         JTableModif.getTableHeader().setResizingAllowed(false);
         JTableModif.getTableHeader().setReorderingAllowed(false);
         jScrollPaneModif.setViewportView(JTableModif);

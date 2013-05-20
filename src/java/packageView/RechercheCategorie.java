@@ -168,19 +168,21 @@ public class RechercheCategorie extends javax.swing.JPanel {
                 //Redimensionnement cellules
                 jTableRechCat.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-                TableColumn colLib = jTableRechCat.getColumnModel().getColumn(0);
-                colLib.setPreferredWidth(150);
-                TableColumn colDesc = jTableRechCat.getColumnModel().getColumn(2);
-                colDesc.setPreferredWidth(420);
-                TableColumn colPm = jTableRechCat.getColumnModel().getColumn(4);
+                TableColumn colLib = jTableRechCat.getColumnModel( ).getColumn(0);
+                colLib.setPreferredWidth(150); 
+                TableColumn colDesc = jTableRechCat.getColumnModel( ).getColumn(2);          
+                colDesc.setPreferredWidth(420); 
+                TableColumn colPm = jTableRechCat.getColumnModel( ).getColumn(4);
                 colPm.setPreferredWidth(120);
-                TableColumn colPc = jTableRechCat.getColumnModel().getColumn(5);
+                TableColumn colPc = jTableRechCat.getColumnModel( ).getColumn(5);
                 colPc.setPreferredWidth(120);
-                TableColumn colCad = jTableRechCat.getColumnModel().getColumn(6);
+                TableColumn colCad = jTableRechCat.getColumnModel( ).getColumn(6);
                 colCad.setPreferredWidth(100);
-                TableColumn colFourn = jTableRechCat.getColumnModel().getColumn(7);
+                TableColumn col18ans = jTableRechCat.getColumnModel( ).getColumn(7);
+                col18ans.setPreferredWidth(50);
+                TableColumn colFourn = jTableRechCat.getColumnModel( ).getColumn(8);
                 colFourn.setPreferredWidth(150);
-                TableColumn colCat = jTableRechCat.getColumnModel().getColumn(8);
+                TableColumn colCat = jTableRechCat.getColumnModel( ).getColumn(9);
                 colCat.setPreferredWidth(150);
 
             } catch (BdErreur e) {
@@ -206,19 +208,21 @@ public class RechercheCategorie extends javax.swing.JPanel {
                 //Redimensionnement cellules
                 jTableRechCat.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-                TableColumn colLib = jTableRechCat.getColumnModel().getColumn(0);
-                colLib.setPreferredWidth(150);
-                TableColumn colDesc = jTableRechCat.getColumnModel().getColumn(2);
-                colDesc.setPreferredWidth(420);
-                TableColumn colPm = jTableRechCat.getColumnModel().getColumn(4);
+                TableColumn colLib = jTableRechCat.getColumnModel( ).getColumn(0);
+                colLib.setPreferredWidth(150); 
+                TableColumn colDesc = jTableRechCat.getColumnModel( ).getColumn(2);          
+                colDesc.setPreferredWidth(420); 
+                TableColumn colPm = jTableRechCat.getColumnModel( ).getColumn(4);
                 colPm.setPreferredWidth(120);
-                TableColumn colPc = jTableRechCat.getColumnModel().getColumn(5);
+                TableColumn colPc = jTableRechCat.getColumnModel( ).getColumn(5);
                 colPc.setPreferredWidth(120);
-                TableColumn colCad = jTableRechCat.getColumnModel().getColumn(6);
+                TableColumn colCad = jTableRechCat.getColumnModel( ).getColumn(6);
                 colCad.setPreferredWidth(100);
-                TableColumn colFourn = jTableRechCat.getColumnModel().getColumn(7);
+                TableColumn col18ans = jTableRechCat.getColumnModel( ).getColumn(7);
+                col18ans.setPreferredWidth(50);
+                TableColumn colFourn = jTableRechCat.getColumnModel( ).getColumn(8);
                 colFourn.setPreferredWidth(150);
-                TableColumn colCat = jTableRechCat.getColumnModel().getColumn(8);
+                TableColumn colCat = jTableRechCat.getColumnModel( ).getColumn(9);
                 colCat.setPreferredWidth(150);
 
             } catch (BdErreur e) {
@@ -244,19 +248,21 @@ public class RechercheCategorie extends javax.swing.JPanel {
                 //Redimensionnement cellules
                 jTableRechCat.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-                TableColumn colLib = jTableRechCat.getColumnModel().getColumn(0);
-                colLib.setPreferredWidth(150);
-                TableColumn colDesc = jTableRechCat.getColumnModel().getColumn(2);
-                colDesc.setPreferredWidth(420);
-                TableColumn colPm = jTableRechCat.getColumnModel().getColumn(4);
+                TableColumn colLib = jTableRechCat.getColumnModel( ).getColumn(0);
+                colLib.setPreferredWidth(150); 
+                TableColumn colDesc = jTableRechCat.getColumnModel( ).getColumn(2);          
+                colDesc.setPreferredWidth(420); 
+                TableColumn colPm = jTableRechCat.getColumnModel( ).getColumn(4);
                 colPm.setPreferredWidth(120);
-                TableColumn colPc = jTableRechCat.getColumnModel().getColumn(5);
+                TableColumn colPc = jTableRechCat.getColumnModel( ).getColumn(5);
                 colPc.setPreferredWidth(120);
-                TableColumn colCad = jTableRechCat.getColumnModel().getColumn(6);
+                TableColumn colCad = jTableRechCat.getColumnModel( ).getColumn(6);
                 colCad.setPreferredWidth(100);
-                TableColumn colFourn = jTableRechCat.getColumnModel().getColumn(7);
+                TableColumn col18ans = jTableRechCat.getColumnModel( ).getColumn(7);
+                col18ans.setPreferredWidth(50);
+                TableColumn colFourn = jTableRechCat.getColumnModel( ).getColumn(8);
                 colFourn.setPreferredWidth(150);
-                TableColumn colCat = jTableRechCat.getColumnModel().getColumn(8);
+                TableColumn colCat = jTableRechCat.getColumnModel( ).getColumn(9);
                 colCat.setPreferredWidth(150);
 
             } catch (BdErreur e) {
