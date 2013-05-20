@@ -117,6 +117,8 @@ public class AllArticleModif extends AbstractTableModel {
                 break;
             case 9: c = String.class;
                 break;
+            case 9: c = String.class;
+                break;
             default: c = String.class;
           
         }

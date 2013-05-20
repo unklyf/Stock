@@ -105,41 +105,41 @@ public class RechercheFournisseur extends javax.swing.JPanel {
 
     //Choix fournisseur
     private void comboFournItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comboFournItemStateChanged
-        if (evt.getStateChange() == ItemEvent.SELECTED) {
-            try {
-
-                //Remplir table
-                this.jTableRechFourn.setVisible(true);
-                allArt = new AllArticleModif(new ApplicationController().getAllArticleRechFourn(tabFourn.get(comboFourn.getSelectedIndex())));
-                jTableRechFourn.setModel(allArt);
-                jTableRechFourn.repaint();
-                jTableRechFourn.validate();
-
-                //Redimensionner colonnes
-                jTableRechFourn.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-
-                TableColumn colLib = jTableRechFourn.getColumnModel( ).getColumn(0);
-                colLib.setPreferredWidth(150); 
-                TableColumn colDesc = jTableRechFourn.getColumnModel( ).getColumn(2);          
-                colDesc.setPreferredWidth(420); 
-                TableColumn colPm = jTableRechFourn.getColumnModel( ).getColumn(4);
-                colPm.setPreferredWidth(120);
-                TableColumn colPc = jTableRechFourn.getColumnModel( ).getColumn(5);
-                colPc.setPreferredWidth(120);
-                TableColumn colCad = jTableRechFourn.getColumnModel( ).getColumn(6);
-                colCad.setPreferredWidth(100);
-                TableColumn col18ans = jTableRechFourn.getColumnModel( ).getColumn(7);
-                col18ans.setPreferredWidth(50);
-                TableColumn colFourn = jTableRechFourn.getColumnModel( ).getColumn(8);
-                colFourn.setPreferredWidth(150);
-                TableColumn colCat = jTableRechFourn.getColumnModel( ).getColumn(9);
-                colCat.setPreferredWidth(150);
-
-            } catch (BdErreur e) {
-                JOptionPane.showMessageDialog(null, e, "Erreur BD", JOptionPane.ERROR_MESSAGE);
-            } catch (NoIdentification e) {
-                JOptionPane.showMessageDialog(null, e, "Erreur identification", JOptionPane.ERROR_MESSAGE);
-            }
+        if(evt.getStateChange()== ItemEvent.SELECTED){          
+        try {
+            
+            this.jTableRechFourn.setVisible(true);
+            allArt = new AllArticleModif (new ApplicationController().getAllArticleRechFourn(tabFourn.get(comboFourn.getSelectedIndex())));
+            jTableRechFourn.setModel(allArt);
+            jTableRechFourn.repaint();
+            jTableRechFourn.validate();
+            
+            jTableRechFourn.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+            
+            TableColumn colLib = jTableRechFourn.getColumnModel( ).getColumn(0);
+            colLib.setPreferredWidth(150); 
+            TableColumn colDesc = jTableRechFourn.getColumnModel( ).getColumn(2);          
+            colDesc.setPreferredWidth(420); 
+            TableColumn colPm = jTableRechFourn.getColumnModel( ).getColumn(4);
+            colPm.setPreferredWidth(120);
+            TableColumn colPc = jTableRechFourn.getColumnModel( ).getColumn(5);
+            colPc.setPreferredWidth(120);
+            TableColumn colCad = jTableRechFourn.getColumnModel( ).getColumn(6);
+            colCad.setPreferredWidth(100);
+            TableColumn col18ans = jTableRechFourn.getColumnModel( ).getColumn(7);
+            col18ans.setPreferredWidth(50);
+            TableColumn colFourn = jTableRechFourn.getColumnModel( ).getColumn(8);
+            colFourn.setPreferredWidth(150);
+            TableColumn colCat = jTableRechFourn.getColumnModel( ).getColumn(9);
+            colCat.setPreferredWidth(150);
+                
+        }
+        catch(BdErreur e){
+             JOptionPane.showMessageDialog(null, e, "Erreur BD", JOptionPane.ERROR_MESSAGE);
+        }
+        catch(NoIdentification e){
+             JOptionPane.showMessageDialog(null, e, "Erreur identification", JOptionPane.ERROR_MESSAGE);
+        }
         }
     }//GEN-LAST:event_comboFournItemStateChanged
     // Variables declaration - do not modify//GEN-BEGIN:variables
