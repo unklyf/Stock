@@ -19,7 +19,7 @@ public class Fournisseur {
     /**
      *
      * @return nom du fournisseur
-     * @seeString
+     * @see String
      */
     public String getNom() {
         return nom;

@@ -263,7 +263,7 @@ public class ReapproDBAccess implements ReapproInterface {
     /**
      * Supprimer un reappro
      *
-     * @param idP id du reapprovisionnement a supprimer
+     * @param idR id du reapprovisionnement a supprimer
      * @throws BdErreur
      * @throws NoIdentification
      * @see Integer

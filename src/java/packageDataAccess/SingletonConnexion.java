@@ -36,9 +36,10 @@ public class SingletonConnexion {
      * 
      * @param user identifiant de la base de donnees
      * @param pw mode de pase de la base de donnees
-     * @return
+     * @return Connection
      * @throws IdentificationErreur
      * @see String
+     * @see Connection
      */
     public static Connection getInstance(String user, String pw) throws IdentificationErreur {
         if (connexionUnique == null) {

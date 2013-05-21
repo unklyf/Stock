@@ -206,7 +206,7 @@ public class ArticleDBAccess implements ArticleInterface {
     /**
      * Completer une comboBox suivant le type et le fournisseur selectionne
      *
-     * @param art type de l article souhaite
+     * @param artC type de l article souhaite
      * @param reap fournisseur deja selectionne dans le reappro
      * @return une ArrayList d article suivant le type et le fournisseur
      * @throws BdErreur
@@ -259,7 +259,7 @@ public class ArticleDBAccess implements ArticleInterface {
     /**
      * Recupérer id d'un article
      *
-     * @param libelle libelle de l article selectionne
+     * @param libelleA libelle de l article selectionne
      * @param typeA type de l article selectionne
      * @return id de l article dans la BD
      * @throws BdErreur
